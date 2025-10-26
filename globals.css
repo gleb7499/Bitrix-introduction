@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Global Styles - Bitrix Introduction Landing Page
+   ========================================================================== */
+
+/* Import reset */
+@import url('./assets/css/reset.css');
+
+/* ==========================================================================
+   CSS Custom Properties (Variables)
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --pg-primary: #f42534;
+  --pg-primary-hover: #d91f2c;
+  --pg-text-primary: #1f1933;
+  --pg-text-secondary: #333333; /* Improved contrast */
+  --pg-text-muted: #666666; /* Improved contrast */
+  --pg-white: #ffffff;
+  --pg-gray-light: #ececec;
+  --pg-gray-medium: #bfbfbf;
+  --pg-bg-light: #e5e5e5;
+
+  /* Typography */
+  --pg-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --pg-font-weight-normal: 400;
+  --pg-font-weight-medium: 500;
+  --pg-font-weight-bold: 700;
+
+  /* Font Sizes - Mobile First (using rem for scalability) */
+  --pg-font-size-xs: 0.875rem;  /* ~14px */
+  --pg-font-size-sm: 1.125rem;  /* ~18px */
+  --pg-font-size-md: 1.375rem;  /* ~22px */
+  --pg-font-size-lg: 1.5rem;    /* ~24px */
+  --pg-font-size-xl: 2rem;      /* ~32px */
+  --pg-font-size-2xl: 2.25rem;  /* ~36px */
+  --pg-font-size-3xl: 4rem;     /* ~64px */
+
+  /* Spacing */
+  --pg-spacing-xs: 10px;
+  --pg-spacing-sm: 20px;
+  --pg-spacing-md: 30px;
+  --pg-spacing-lg: 40px;
+  --pg-spacing-xl: 80px;
+
+  /* Border Radius */
+  --pg-radius-sm: 10px;
+  --pg-radius-md: 20px;
+  --pg-radius-lg: 74px;
+  --pg-radius-xl: 94px;
+
+  /* Layout */
+  --pg-max-width: 1920px;
+  --pg-container-padding: 20px;
+
+  /* Transitions */
+  --pg-transition-fast: 150ms ease-in-out;
+  --pg-transition-normal: 300ms ease-in-out;
+  --pg-transition-slow: 500ms ease-in-out;
+
+  /* Z-index */
+  --pg-z-header: 1000;
+  --pg-z-modal: 2000;
+  --pg-z-overlay: 1500;
+
+  /* Breakpoints (for reference in JS) */
+  --pg-bp-mobile: 360px;
+  --pg-bp-tablet: 768px;
+  --pg-bp-desktop: 1024px;
+  --pg-bp-desktop-lg: 1440px;
+}
+
+/* ==========================================================================
+   Base Typography
+   ========================================================================== */
+
+body {
+  font-family: var(--pg-font-family);
+  font-size: var(--pg-font-size-sm);
+  font-weight: var(--pg-font-weight-normal);
+  color: var(--pg-text-secondary);
+  line-height: 1.5;
+  background-color: var(--pg-bg-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--pg-font-weight-bold);
+  color: var(--pg-text-primary);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--pg-font-size-xl); /* 32px mobile */
+}
+
+h2 {
+  font-size: var(--pg-font-size-lg); /* 24px mobile */
+}
+
+h3 {
+  font-size: var(--pg-font-size-md); /* 22px mobile */
+}
+
+/* ==========================================================================
+   Links & Buttons
+   ========================================================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--pg-transition-fast);
+}
+
+a:hover {
+  color: var(--pg-primary);
+}
+
+a:focus {
+  color: var(--pg-primary);
+  outline: 2px solid var(--pg-primary);
+  outline-offset: 2px;
+}
+
+/* Visible focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--pg-primary);
+  outline-offset: 2px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all var(--pg-transition-fast);
+}
+
+button:focus {
+  outline: 2px solid var(--pg-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Layout Utilities
+   ========================================================================== */
+
+.pg-container {
+  width: 100%;
+  max-width: var(--pg-max-width);
+  margin: 0 auto;
+  padding: 0 var(--pg-container-padding);
+}
+
+.pg-section {
+  padding: var(--pg-spacing-sm) 0;
+}
+
+/* Visually hidden but accessible to screen readers */
+.pg-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip to main content link for keyboard users */
+.pg-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--pg-primary);
+  color: var(--pg-white);
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: calc(var(--pg-z-header) + 1);
+}
+
+.pg-skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--pg-white);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Media Queries - Tablet & Desktop
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  :root {
+    --pg-container-padding: 30px;
+  }
+
+  h1 {
+    font-size: var(--pg-font-size-3xl); /* 64px desktop */
+  }
+
+  h2 {
+    font-size: var(--pg-font-size-2xl); /* 36px desktop */
+  }
+
+  .pg-section {
+    padding: var(--pg-spacing-md) 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --pg-container-padding: 80px;
+  }
+
+  .pg-section {
+    padding: var(--pg-spacing-lg) 0;
+  }
+}
