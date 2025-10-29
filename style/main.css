@@ -334,9 +334,15 @@ button {
 .section {
   width: calc(100% - 60px);
   background-color: #ffffff;
-  border-radius: 94px;
-  padding: 94px;
+  border-radius: clamp(40px, 4.9vw, 94px);
   margin: 0 30px 20px 30px;
+}
+
+.section--bitrix24 {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.08vw, 40px);
+  padding: 0;
 }
 
 .section:first-of-type {
@@ -355,64 +361,88 @@ button {
   color: #222;
 }
 
-/* Секция Битрикс 24 */
-.bitrix24 {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .bitrix24__content {
   flex: 1;
-  max-width: 500px;
+  max-width: clamp(300px, 26vw, 500px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(80px, 8.49vw, 163px);
+  margin-left: 80px;
+  margin-top: 70px;
+  margin-bottom: 80px;
+}
+
+.bitrix24__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.08vw, 40px);
 }
 
 .bitrix24__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: clamp(10px, 1.04vw, 20px);
 }
 
 .bitrix24__breadcrumb-icon {
-  width: 24px;
-  height: 24px;
+  width: clamp(15px, 1.09vw, 21px);
+  height: clamp(17px, 1.25vw, 24px);
   flex-shrink: 0;
 }
 
+.bitrix24__breadcrumb-arrow {
+  width: clamp(6px, 0.47vw, 9px);
+  height: clamp(3px, 0.23vw, 4.5px);
+  flex-shrink: 0;
+  transform: rotate(270deg);
+  filter: brightness(0) saturate(100%) invert(62%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(95%) contrast(89%);
+  margin: 0 clamp(4px, 0.42vw, 8px);
+}
+
 .bitrix24__breadcrumb-text {
-  font-size: 14px;
-  color: #999;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(14px, 1.15vw, 22px);
   font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #9D9D9D;
 }
 
 .bitrix24__title {
-  font-size: 64px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(32px, 3.33vw, 64px);
   font-weight: 700;
-  line-height: 1.1;
-  color: #1E1B39;
-  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1F1933;
 }
 
 .bitrix24__description {
-  font-size: 20px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
   font-weight: 400;
-  line-height: 1.5;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
   color: #494555;
-  margin-bottom: 40px;
 }
 
 .bitrix24__btn {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(16px, 1.35vw, 26px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #FFFFFF;
   background: #EE3F3F;
-  color: #fff;
-  padding: 18px 40px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: clamp(18px, 1.56vw, 30px) clamp(25px, 2.19vw, 42px);
+  border-radius: clamp(20px, 1.56vw, 30px);
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(238, 63, 63, 0.3);
+  width: fit-content;
 }
 
 .bitrix24__btn:hover {
@@ -425,12 +455,20 @@ button {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  min-width: 0;
 }
 
 .bitrix24__image img {
   max-width: 100%;
   height: auto;
+  max-height: clamp(400px, 37.29vw, 716px);
   object-fit: contain;
+  border-radius: clamp(37px, 3.85vw, 74px);
+  display: block;
 }
 
 /* Секция Узнайте больше */
@@ -1634,6 +1672,12 @@ button {
 
   .bitrix24__image {
     justify-content: center;
+    padding: 20px;
+  }
+
+  .bitrix24__image img {
+    height: auto;
+    min-height: 400px;
   }
 
   .learn-more {
