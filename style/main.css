@@ -338,7 +338,8 @@ button {
   margin: 0 30px 20px 30px;
 }
 
-.section--bitrix24 {
+/* Секция Hero (ИТ-инфраструктура нового уровня) */
+.section--hero {
   display: flex;
   align-items: center;
   gap: clamp(20px, 2.08vw, 40px);
@@ -361,7 +362,7 @@ button {
   color: #222;
 }
 
-.bitrix24__content {
+.hero__content {
   flex: 1;
   max-width: clamp(300px, 26vw, 500px);
   display: flex;
@@ -372,25 +373,25 @@ button {
   margin-bottom: 80px;
 }
 
-.bitrix24__text-group {
+.hero__text-group {
   display: flex;
   flex-direction: column;
   gap: clamp(20px, 2.08vw, 40px);
 }
 
-.bitrix24__breadcrumb {
+.hero__breadcrumb {
   display: flex;
   align-items: center;
   gap: clamp(10px, 1.04vw, 20px);
 }
 
-.bitrix24__breadcrumb-icon {
+.hero__breadcrumb-icon {
   width: clamp(15px, 1.09vw, 21px);
   height: clamp(17px, 1.25vw, 24px);
   flex-shrink: 0;
 }
 
-.bitrix24__breadcrumb-arrow {
+.hero__breadcrumb-arrow {
   width: clamp(6px, 0.47vw, 9px);
   height: clamp(3px, 0.23vw, 4.5px);
   flex-shrink: 0;
@@ -400,7 +401,7 @@ button {
   margin: 0 clamp(4px, 0.42vw, 8px);
 }
 
-.bitrix24__breadcrumb-text {
+.hero__breadcrumb-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(14px, 1.15vw, 22px);
@@ -411,7 +412,7 @@ button {
   color: #9d9d9d;
 }
 
-.bitrix24__title {
+.hero__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(32px, 3.33vw, 64px);
@@ -422,7 +423,7 @@ button {
   color: #1f1933;
 }
 
-.bitrix24__description {
+.hero__description {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(18px, 1.88vw, 36px);
@@ -433,7 +434,7 @@ button {
   color: #494555;
 }
 
-.bitrix24__btn {
+.hero__btn {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(16px, 1.35vw, 26px);
@@ -450,13 +451,13 @@ button {
   width: fit-content;
 }
 
-.bitrix24__btn:hover {
+.hero__btn:hover {
   background: #d32f2f;
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(238, 63, 63, 0.4);
 }
 
-.bitrix24__image {
+.hero__image {
   flex: 1;
   display: flex;
   justify-content: flex-end;
@@ -467,7 +468,7 @@ button {
   min-width: 0;
 }
 
-.bitrix24__image img {
+.hero__image img {
   max-width: 100%;
   height: auto;
   max-height: clamp(400px, 37.29vw, 716px);
@@ -476,8 +477,8 @@ button {
   display: block;
 }
 
-/* Секция Узнайте больше */
-.section--learn-more {
+/* Секция Узнайте больше о нашей компании (About Company) */
+.section--about-company {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
@@ -485,7 +486,7 @@ button {
   padding: 0;
 }
 
-.learn-more__title {
+.about-company__title {
   grid-column: 1;
   grid-row: 1;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -501,7 +502,7 @@ button {
   margin-bottom: 0;
 }
 
-.learn-more__image {
+.about-company__image {
   grid-column: 1;
   grid-row: 2;
   display: flex;
@@ -512,7 +513,7 @@ button {
   min-width: 0;
 }
 
-.learn-more__image img {
+.about-company__image img {
   max-width: 100%;
   height: auto;
   max-height: clamp(400px, 37.29vw, 716px);
@@ -521,7 +522,7 @@ button {
   display: block;
 }
 
-.learn-more__content {
+.about-company__content {
   grid-column: 2;
   grid-row: 1 / 3;
   display: flex;
@@ -532,13 +533,13 @@ button {
   margin-top: clamp(35px, 3.65vw, 70px);
 }
 
-.learn-more__text {
+.about-company__text {
   display: flex;
   flex-direction: column;
   gap: clamp(10px, 1.04vw, 20px);
 }
 
-.learn-more__text p {
+.about-company__text p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(18px, 1.88vw, 36px);
@@ -550,7 +551,7 @@ button {
   margin: 0;
 }
 
-.learn-more__btn {
+.about-company__btn {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(16px, 1.35vw, 26px);
@@ -567,23 +568,23 @@ button {
   width: fit-content;
 }
 
-.learn-more__btn:hover {
+.about-company__btn:hover {
   background: #d32f2f;
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(238, 63, 63, 0.4);
 }
 
-/* Секция CRM процесс */
-.section--crm-process {
+/* Секция Как построена наша работа? (Work Process) */
+.section--work-process {
   padding-top: clamp(35px, 3.65vw, 70px);
 }
 
-.crm-process {
+.work-process {
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.crm-process__title {
+.work-process__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(24px, 2.5vw, 48px);
@@ -598,7 +599,7 @@ button {
   margin-left: clamp(40px, 4.17vw, 80px);
 }
 
-.crm-process__subtitle {
+.work-process__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(18px, 1.88vw, 36px);
@@ -611,7 +612,7 @@ button {
   margin-left: clamp(40px, 4.17vw, 80px);
 }
 
-.crm-process__grid {
+.work-process__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(10px, 1.04vw, 20px);
@@ -620,7 +621,7 @@ button {
   padding-bottom: clamp(10px, 1.04vw, 20px);
 }
 
-.crm-card {
+.work-process-card {
   background: transparent;
   box-sizing: border-box;
   border: 2px solid rgba(191, 191, 191, 1);
@@ -630,12 +631,12 @@ button {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.crm-card:hover {
+.work-process-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.crm-card__image {
+.work-process-card__image {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -645,7 +646,7 @@ button {
   margin-bottom: clamp(20px, 2.08vw, 40px);
 }
 
-.crm-card__image img {
+.work-process-card__image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -653,7 +654,7 @@ button {
   background: rgba(244, 244, 244, 1);
 }
 
-.crm-card__title {
+.work-process-card__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(18px, 1.88vw, 36px);
@@ -666,7 +667,7 @@ button {
   margin-left: clamp(30px, 3.13vw, 60px);
 }
 
-.crm-card__text {
+.work-process-card__text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: clamp(11px, 1.15vw, 22px);
@@ -833,52 +834,57 @@ button {
   margin: 0 auto;
 }
 
+.section--advantages {
+  padding-top: clamp(35px, 3.65vw, 70px);
+}
+
 .advantages__title {
-  font-size: 48px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(24px, 2.5vw, 48px);
   font-weight: 700;
-  line-height: 1.2;
-  color: #1e1b39;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  margin-left: 80px;
   margin-bottom: 20px;
 }
 
 .advantages__subtitle {
-  font-size: 18px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
   font-weight: 400;
-  line-height: 1.5;
-  color: #494555;
-  margin-bottom: 60px;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #504d5d;
+  margin-left: 80px;
+  margin-bottom: 70px;
 }
 
 .advantages__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: clamp(10px, 1.04vw, 20px);
+  padding-left: clamp(10px, 1.04vw, 20px);
+  padding-right: clamp(10px, 1.04vw, 20px);
+  padding-bottom: clamp(10px, 1.04vw, 20px);
 }
 
 .advantage-card {
-  border-radius: 40px;
-  padding: 40px 30px;
+  background: transparent;
+  box-sizing: border-box;
+  border: 2px solid rgba(191, 191, 191, 1);
+  border-radius: clamp(37px, 3.85vw, 74px);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.advantage-card--purple {
-  background: linear-gradient(135deg, #f5f0ff 0%, #e8dcff 100%);
-}
-
-.advantage-card--pink {
-  background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 100%);
-}
-
-.advantage-card--beige {
-  background: linear-gradient(135deg, #fffef0 0%, #fff9e6 100%);
-}
-
-.advantage-card--yellow {
-  background: linear-gradient(135deg, #fffef0 0%, #fff8dc 100%);
+  padding-left: clamp(10px, 1.04vw, 20px);
+  padding-right: clamp(10px, 1.04vw, 20px);
+  padding-top: clamp(10px, 1.04vw, 20px);
+  padding-bottom: clamp(20px, 2.08vw, 40px);
 }
 
 .advantage-card:hover {
@@ -887,32 +893,51 @@ button {
 }
 
 .advantage-card__image {
-  width: 100%;
-  height: 180px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 2.08vw, 40px);
 }
 
 .advantage-card__image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  border-radius: clamp(27px, 2.81vw, 54px);
+  background: rgba(244, 244, 244, 1);
 }
 
 .advantage-card__title {
-  font-size: 24px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
   font-weight: 700;
-  color: #1e1b39;
-  margin-bottom: 15px;
+  font-style: normal;
+  text-align: center;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
 }
 
 .advantage-card__text {
-  font-size: 16px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(11px, 1.15vw, 22px);
   font-weight: 400;
-  line-height: 1.5;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
   color: #494555;
+  margin-left: clamp(30px, 3.13vw, 60px);
+  margin-bottom: clamp(10px, 1.04vw, 20px);
+}
+
+/* Удаляем старые модификаторы цветов */
+.advantage-card--purple,
+.advantage-card--pink,
+.advantage-card--beige,
+.advantage-card--yellow {
+  background: transparent;
 }
 
 /* Секция Отзывы */
@@ -1056,225 +1081,272 @@ button {
   color: #d32f2f;
 }
 
-/* Секция Внедрение и настройка CRM */
-.crm-setup {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  max-width: 1400px;
-  margin: 0 auto;
+/* Секция Наши достижения и результаты (Achievements) */
+.section--achievements {
+  padding-top: clamp(35px, 3.65vw, 70px);
 }
 
-.crm-setup__content {
-  flex: 1;
-}
-
-.crm-setup__title {
-  font-size: 48px;
+.achievements__title {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(24px, 2.5vw, 48px);
   font-weight: 700;
-  line-height: 1.2;
-  color: #1e1b39;
-  margin-bottom: 30px;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  text-align: center;
+  margin-bottom: clamp(30px, 3.13vw, 60px);
 }
 
-.crm-setup__text {
-  margin-bottom: 35px;
+.achievements__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 1.04vw, 20px);
+  padding-left: clamp(10px, 1.04vw, 20px);
+  padding-right: clamp(10px, 1.04vw, 20px);
+  padding-bottom: clamp(10px, 1.04vw, 20px);
 }
 
-.crm-setup__text p {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: #494555;
-}
-
-.crm-setup__stats {
-  margin-bottom: 40px;
-  padding-left: 20px;
-  border-left: 4px solid #ee3f3f;
-}
-
-.crm-setup__stat {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.8;
-  color: #494555;
-  margin-bottom: 10px;
-}
-
-.crm-setup__stat:last-child {
-  margin-bottom: 0;
-}
-
-.crm-setup__btn {
-  background: #ee3f3f;
-  color: #fff;
-  padding: 18px 40px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(238, 63, 63, 0.3);
-}
-
-.crm-setup__btn:hover {
-  background: #d32f2f;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(238, 63, 63, 0.4);
-}
-
-.crm-setup__image {
-  flex: 1;
+.achievements__card {
+  background: transparent;
+  box-sizing: border-box;
+  border: 2px solid rgba(191, 191, 191, 1);
+  border-radius: clamp(37px, 3.85vw, 74px);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: clamp(30px, 3.13vw, 60px);
+  min-height: clamp(150px, 15.63vw, 300px);
 }
 
-.crm-setup__image img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 20px;
+.achievements__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Секция Финальные услуги */
-.services-final {
+.achievements__card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.04vw, 20px);
+  text-align: center;
+}
+
+.achievements__card-value {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(32px, 3.33vw, 64px);
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+}
+
+.achievements__card-label {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+}
+
+/* Секция Услуги (Services) */
+.services__container {
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.services-final__header {
+.section--services {
+  padding-top: clamp(35px, 3.65vw, 70px);
+}
+
+.services__header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 40px;
+  align-items: flex-end;
+  margin-bottom: clamp(30px, 3.13vw, 60px);
   gap: 40px;
 }
 
-.services-final__header-text {
+.services__header-text {
   flex: 1;
 }
 
-.services-final__title {
-  font-size: 48px;
+.services__title {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(24px, 2.5vw, 48px);
   font-weight: 700;
-  color: #1e1b39;
-  margin-bottom: 12px;
-  line-height: 1.2;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  margin-left: clamp(40px, 4.17vw, 80px);
+  margin-bottom: clamp(10px, 1.04vw, 20px);
 }
 
-.services-final__subtitle {
-  font-size: 18px;
+.services__subtitle {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
   font-weight: 400;
-  color: #494555;
-  margin: 0;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #504d5d;
+  margin-left: clamp(40px, 4.17vw, 80px);
+  margin-bottom: 0;
 }
 
-.services-final__navigation {
+.services__navigation {
   display: flex;
-  gap: 12px;
+  gap: clamp(20px, 2.0vw, 40px);
   flex-shrink: 0;
+  align-self: flex-end;
+  margin-right: clamp(40px, 4.17vw, 80px);
 }
 
-.services-final__nav-btn {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px solid #e5e5e5;
-  background: #ffffff;
+.services__nav-btn {
+  width: clamp(28px, 1.88vw, 36px);
+  height: clamp(28px, 1.88vw, 36px);
+  border: none;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #1e1b39;
+  padding: 0;
 }
 
-.services-final__nav-btn:hover {
-  border-color: #ee3f3f;
-  color: #ee3f3f;
+.services__nav-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.services__nav-btn:hover {
+  opacity: 0.7;
   transform: scale(1.05);
 }
 
-.services-final__nav-btn:disabled {
+.services__nav-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  border-color: #e5e5e5;
-  color: #1e1b39;
 }
 
-.services-final__nav-btn:disabled:hover {
+.services__nav-btn:disabled:hover {
   transform: scale(1);
 }
 
-.services-final__carousel {
-  overflow: hidden;
-  position: relative;
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(10px, 1.04vw, 20px);
+  padding-left: clamp(10px, 1.04vw, 20px);
+  padding-right: clamp(10px, 1.04vw, 20px);
+  padding-bottom: clamp(10px, 1.04vw, 20px);
 }
 
-.services-final__track {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
-}
-
-.services-final__card {
-  flex: 0 0 calc(25% - 15px);
-  background: #ffffff;
-  border: 2px solid #e5e5e5;
-  border-radius: 47px;
-  padding: 40px 30px;
+.services__card {
+  background: transparent;
+  box-sizing: border-box;
+  border: 2px solid rgba(191, 191, 191, 1);
+  border-radius: clamp(37px, 3.85vw, 74px);
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  padding-left: clamp(10px, 1.04vw, 20px);
+  padding-right: clamp(10px, 1.04vw, 20px);
+  padding-top: clamp(10px, 1.04vw, 20px);
+  padding-bottom: clamp(20px, 2.08vw, 40px);
 }
 
-.services-final__card:hover {
-  border-color: #ee3f3f;
+.services__card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(238, 63, 63, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.services-final__card-title {
-  font-size: 24px;
+.services__card-image {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: clamp(20px, 2.08vw, 40px);
+  width: 100%;
+  height: clamp(120px, 2.28vw, 160px);
+  overflow: hidden;
+}
+
+.services__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: clamp(27px, 2.81vw, 54px);
+  background: rgba(244, 244, 244, 1);
+}
+
+.services__card-title {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
   font-weight: 700;
-  color: #1e1b39;
-  margin-bottom: 20px;
-  line-height: 1.3;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  margin-bottom: clamp(10px, 1.04vw, 20px);
+  margin-left: clamp(30px, 3.13vw, 60px);
 }
 
-.services-final__card-description {
-  font-size: 16px;
-  font-weight: 400;
+.services__card-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: clamp(30px, 3.13vw, 60px);
+  margin-bottom: clamp(10px, 1.04vw, 20px);
+}
+
+.services__card-menu li {
+  margin-bottom: clamp(5px, 0.52vw, 10px);
+}
+
+.services__card-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.services__card-menu a {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(11px, 1.15vw, 22px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
   color: #494555;
-  line-height: 1.5;
-  margin-bottom: 30px;
-  flex-grow: 1;
-}
-
-.services-final__card-link {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ee3f3f;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.services-final__card-link:hover {
-  color: #d63838;
-  gap: 8px;
+.services__card-menu a:hover {
+  color: #fa0012;
 }
 
-.services-final__card-link::after {
-  content: "→";
-  margin-left: 4px;
-  transition: margin-left 0.3s ease;
-}
-
-.services-final__card-link:hover::after {
-  margin-left: 8px;
+/* Удаляем старые стили карусели */
+.services__carousel,
+.services__track,
+.services__card-description,
+.services__card-link {
+  display: none;
 }
 
 /* Секция FAQ */
@@ -1379,6 +1451,12 @@ button {
 }
 
 /* Секция Клиенты */
+.section--clients {
+  padding-top: clamp(35px, 3.65vw, 70px);
+  padding-bottom: clamp(35px, 3.65vw, 70px);
+  overflow: hidden;
+}
+
 .clients {
   max-width: 1400px;
   margin: 0 auto;
@@ -1386,22 +1464,35 @@ button {
 }
 
 .clients__title {
-  font-size: 48px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(24px, 2.5vw, 48px);
   font-weight: 700;
-  color: #1e1b39;
-  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  text-align: center;
+  margin-bottom: clamp(10px, 1.04vw, 20px);
 }
 
 .clients__subtitle {
-  font-size: 18px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
   font-weight: 400;
-  color: #494555;
-  margin-bottom: 60px;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #504d5d;
+  margin-bottom: clamp(30px, 3.13vw, 60px);
 }
 
 .clients__carousel-wrapper {
   position: relative;
   overflow: hidden;
+  margin-bottom: clamp(35px, 3.65vw, 70px);
 }
 
 /* Затухание по краям */
@@ -1411,7 +1502,7 @@ button {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 150px;
+  width: clamp(80px, 7.81vw, 150px);
   z-index: 2;
   pointer-events: none;
 }
@@ -1436,12 +1527,12 @@ button {
 
 .clients__carousel {
   overflow: hidden;
-  padding: 20px 0;
+  padding: clamp(10px, 1.04vw, 20px) 0;
 }
 
 .clients__track {
   display: flex;
-  gap: 60px;
+  gap: clamp(20px, 2.08vw, 40px);
   animation: scroll 40s linear infinite;
   width: max-content;
 }
@@ -1461,8 +1552,8 @@ button {
 
 .clients__logo {
   flex-shrink: 0;
-  width: 200px;
-  height: 80px;
+  width: clamp(120px, 10.42vw, 200px);
+  height: clamp(50px, 4.17vw, 80px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1629,6 +1720,214 @@ button {
 
 .footer__legal-link:hover {
   color: #1e1b39;
+}
+
+/* Секция ИТ для Трак Групп (Track Group) */
+.track-group {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(35px, 3.65vw, 70px);
+}
+
+.track-group__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 20px;
+}
+
+.track-group__description {
+  font-size: 18px;
+  font-weight: 400;
+  color: #494555;
+}
+
+/* Секция Готовы начать? (Ready to Start) */
+.ready-to-start {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(35px, 3.65vw, 70px);
+  text-align: center;
+}
+
+.ready-to-start__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 20px;
+}
+
+/* Секция Специальные предложения (Special Offers) */
+.special-offers {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.special-offers__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 20px;
+}
+
+.special-offers__description {
+  font-size: 18px;
+  font-weight: 400;
+  color: #494555;
+}
+
+.special-offers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.special-offers-card {
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.special-offers-card--green {
+  border: 3px solid #a3e88c;
+}
+
+.special-offers-card--yellow {
+  border: 3px solid #f5d76e;
+}
+
+.special-offers-card--red {
+  border: 3px solid #ffb8b8;
+}
+
+.special-offers-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.special-offers-card__header {
+  margin-bottom: 35px;
+}
+
+.special-offers-card__name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 15px;
+}
+
+.special-offers-card__price {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 15px;
+}
+
+.special-offers-card__badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.special-offers-card__badge--green {
+  background: #d4f4c8;
+  color: #2d5016;
+}
+
+.special-offers-card__badge--orange {
+  background: #ffe4c4;
+  color: #8b4513;
+}
+
+.special-offers-card__badge--red {
+  background: #ffe0e0;
+  color: #d32f2f;
+}
+
+.special-offers-card__discount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.special-offers-card__old-price {
+  font-size: 16px;
+  font-weight: 400;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.special-offers-card__features {
+  list-style: none;
+  margin-bottom: 40px;
+  flex-grow: 1;
+}
+
+.special-offers-card__feature {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #494555;
+  margin-bottom: 15px;
+  padding-left: 0;
+}
+
+.special-offers-card__feature:last-child {
+  margin-bottom: 0;
+}
+
+.special-offers-card__btn {
+  background: #ee3f3f;
+  color: #fff;
+  padding: 18px 40px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(238, 63, 63, 0.3);
+}
+
+.special-offers-card__btn:hover {
+  background: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(238, 63, 63, 0.4);
+}
+
+/* Секция Быстрый ответ (Quick Response) */
+.quick-response {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(35px, 3.65vw, 70px);
+  text-align: center;
+}
+
+.quick-response__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 20px;
+}
+
+/* Секция Блог (Blog / Полезные статьи) */
+.blog {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(35px, 3.65vw, 70px);
+}
+
+.blog__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 20px;
 }
 
 /* Адаптивность */
@@ -1817,10 +2116,14 @@ button {
 
   .advantages__title {
     font-size: 32px;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-bottom: 15px;
   }
 
   .advantages__subtitle {
-    font-size: 16px;
+    font-size: 24px;
+    margin-left: 40px;
     margin-bottom: 40px;
   }
 
@@ -1829,21 +2132,20 @@ button {
     gap: 15px;
   }
 
-  .advantage-card {
-    padding: 30px 20px;
-  }
-
-  .advantage-card__image {
-    height: 140px;
-    margin-bottom: 20px;
-  }
-
   .advantage-card__title {
     font-size: 20px;
   }
 
   .advantage-card__text {
     font-size: 14px;
+  }
+
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .reviews__header {
@@ -1883,27 +2185,6 @@ button {
 
   .review-card__text {
     font-size: 15px;
-  }
-
-  .crm-setup {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .crm-setup__title {
-    font-size: 32px;
-  }
-
-  .crm-setup__text p {
-    font-size: 16px;
-  }
-
-  .crm-setup__stat {
-    font-size: 15px;
-  }
-
-  .crm-setup__image {
-    width: 100%;
   }
 
   .services-final__header {
@@ -1953,27 +2234,29 @@ button {
     font-size: 28px;
   }
 
-  .clients__title {
-    font-size: 32px;
+  .services-final__header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .clients__subtitle {
+  .services-final__title {
+    font-size: 36px;
+  }
+
+  .services-final__subtitle {
     font-size: 16px;
-    margin-bottom: 40px;
   }
 
-  .clients__carousel-wrapper::before,
-  .clients__carousel-wrapper::after {
-    width: 80px;
+  .services-final__card {
+    padding: 35px 25px;
   }
 
-  .clients__logo {
-    width: 150px;
-    height: 60px;
+  .services-final__card-title {
+    font-size: 20px;
   }
 
-  .clients__track {
-    gap: 40px;
+  .services-final__card-description {
+    font-size: 15px;
   }
 }
 
@@ -1990,13 +2273,17 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .achievements__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+
   .reviews__btn {
     width: 100%;
     text-align: center;
-  }
-
-  .crm-setup__stats {
-    padding-left: 15px;
   }
 
   .services-final__title {
@@ -2049,20 +2336,6 @@ button {
   .faq__cta-btn {
     width: 100%;
     padding: 18px 30px;
-  }
-
-  .clients__carousel-wrapper::before,
-  .clients__carousel-wrapper::after {
-    width: 50px;
-  }
-
-  .clients__logo {
-    width: 120px;
-    height: 50px;
-  }
-
-  .clients__track {
-    gap: 30px;
   }
 
   .footer {
