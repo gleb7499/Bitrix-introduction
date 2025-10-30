@@ -394,8 +394,77 @@
 
     <!-- 8. Секция: ИТ для Трак Групп -->
     <section class="section section--track-group">
-        <h2 class="track-group__title">Тарифы</h2>
-        <p class="track-group__description">От базовой настройки до полного внедрения и поддержки CRM</p>
+        <div class="track-group__carousel">
+            <!-- Навигация карусели -->
+            <div class="track-group__navigation">
+                <button class="track-group__nav-btn track-group__nav-btn--prev" id="trackGroupPrev">
+                    <img src="assets/img/arrow-left.png" alt="Назад" style="transform: rotate(180deg);">
+                </button>
+                <span class="track-group__nav-text">
+                    <span class="track-group__nav-current">1</span> / <span class="track-group__nav-total">3</span>
+                </span>
+                <button class="track-group__nav-btn track-group__nav-btn--next" id="trackGroupNext">
+                    <img src="assets/img/arrow-left.png" alt="Вперед">
+                </button>
+            </div>
+
+            <!-- Карточки карусели -->
+            <div class="track-group__cards">
+                <!-- Карточка 1: ИТ для Трак Групп -->
+                <div class="track-group__card track-group__card--active">
+                    <div class="track-group__content">
+                        <h2 class="track-group__title">ИТ для Трак Групп</h2>
+                        <p class="track-group__subtitle">Защита сети и хранилище данных</p>
+                        <p class="track-group__description">Для компании была разработана и внедрена интегрированная система для защиты локальной сети, которая включала в себя установку надежного файервола и настройку безопасных каналов связи для всех подразделений компаний. Также была разработана система централизованного хранения данных, обеспечивающая быстрый и безопасный доступ к информации для всех сотрудников.</p>
+                        <ul class="track-group__list">
+                            <li>Обеспечена защита сети и централизованное хранение данных</li>
+                            <li>Внедрены 1С, Exchange и Project Server</li>
+                            <li>Повышена эффективность управления проектами</li>
+                        </ul>
+                        <button class="track-group__btn">Хочу так же</button>
+                    </div>
+                    <div class="track-group__image">
+                        <img src="assets/img/IT-truck-group-section-track-group.png" alt="ИТ для Трак Групп">
+                    </div>
+                </div>
+
+                <!-- Карточка 2: ИТ для видеостудии -->
+                <div class="track-group__card">
+                    <div class="track-group__content">
+                        <h2 class="track-group__title">ИТ для видеостудии</h2>
+                        <p class="track-group__subtitle">Высокоскоростное хранилище и GPU-серверы</p>
+                        <p class="track-group__description">Для видеостудии была разработана система с высокоскоростным хранилищем данных объемом свыше 200 ТБ для работы с большими видеофайлами. Установлены GPU-серверы для ускоренной обработки видео и рендеринга. Все данные хранятся в зашифрованном, обеспечивающим безопасный доступ.</p>
+                        <ul class="track-group__list">
+                            <li>Создано высокоскоростное хранилище данных</li>
+                            <li>Установлен GPU-сервер, ускоряющий обработку видео на 80 %</li>
+                            <li>Обеспечен безопасный и стабильный доступ к данным</li>
+                        </ul>
+                        <button class="track-group__btn">Хочу так же</button>
+                    </div>
+                    <div class="track-group__image">
+                        <img src="assets/img/IT-video-studio-section-track-group.png" alt="ИТ для видеостудии">
+                    </div>
+                </div>
+
+                <!-- Карточка 3: ИТ для Консалтинг Логистики -->
+                <div class="track-group__card">
+                    <div class="track-group__content">
+                        <h2 class="track-group__title">ИТ для Консалтинг Логистики</h2>
+                        <p class="track-group__subtitle">Защита сети и автоматизация процессов</p>
+                        <p class="track-group__description">Для компании была внедрена система защиты локальной сети с установкой файервола, созданием защищённых каналов связи и даже настроено централизованное файловое хранилище для рабочих документов и данных. Внедрены решения для автоматизации работы: 1С для учёта и финансов, Exchange для корпоративной почты и Project Server для управления проектами.</p>
+                        <ul class="track-group__list">
+                            <li>Обеспечена защита сети и хранение данных</li>
+                            <li>Внедрены 1С, Exchange и Project Server</li>
+                            <li>Ускорено управление проектами и документооборотом</li>
+                        </ul>
+                        <button class="track-group__btn">Хочу так же</button>
+                    </div>
+                    <div class="track-group__image">
+                        <img src="assets/img/IT-consulting-logistics-section-track-group.png" alt="ИТ для Консалтинг Логистики">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- 9. Секция: Отзывы -->

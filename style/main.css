@@ -1208,7 +1208,7 @@ button {
 
 .services__navigation {
   display: flex;
-  gap: clamp(20px, 2.0vw, 40px);
+  gap: clamp(20px, 2vw, 40px);
   flex-shrink: 0;
   align-self: flex-end;
   margin-right: clamp(40px, 4.17vw, 80px);
@@ -1453,7 +1453,6 @@ button {
 /* Секция Клиенты */
 .section--clients {
   padding-top: clamp(35px, 3.65vw, 70px);
-  padding-bottom: clamp(35px, 3.65vw, 70px);
   overflow: hidden;
 }
 
@@ -1552,8 +1551,7 @@ button {
 
 .clients__logo {
   flex-shrink: 0;
-  width: clamp(120px, 10.42vw, 200px);
-  height: clamp(50px, 4.17vw, 80px);
+  width: clamp(320px, 1.42vw, 440px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1722,24 +1720,188 @@ button {
   color: #1e1b39;
 }
 
-/* Секция ИТ для Трак Групп (Track Group) */
-.track-group {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: clamp(35px, 3.65vw, 70px);
+/* Секция ИТ для Трак Групп (Track Group) - Карусель кейсов */
+.section--track-group {
+  overflow: hidden;
+  position: relative;
+}
+
+.track-group__carousel {
+  position: relative;
+}
+
+.track-group__navigation {
+  position: absolute;
+  top: clamp(40px, 4.08vw, 80px);
+  right: clamp(40px, 4.08vw, 80px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.04vw, 20px);
+  background: rgba(255, 255, 255, 1);
+  border-radius: clamp(10px, 1.04vw, 20px);
+  padding: clamp(15px, 1.56vw, 30px) clamp(21px, 2.19vw, 42px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.track-group__nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.track-group__nav-btn img {
+  width: clamp(18px, 1.88vw, 36px);
+  height: clamp(18px, 1.88vw, 36px);
+  display: block;
+}
+
+.track-group__nav-btn:hover {
+  opacity: 0.7;
+}
+
+.track-group__nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.track-group__nav-text {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(11px, 1.15vw, 22px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+}
+
+.track-group__cards {
+  position: relative;
+  width: 100%;
+}
+
+.track-group__card {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  
+  align-items: stretch;
+}
+
+.track-group__card--active {
+  display: grid;
+}
+
+.track-group__content {
+  display: flex;
+  flex-direction: column;
+  padding-right: clamp(20px, 2.08vw, 80px);
+  padding-top: clamp(35px, 3.65vw, 70px);
+  padding-left: clamp(40px, 4.17vw, 80px);
+  padding-bottom: clamp(40px, 4.17vw, 80px);
 }
 
 .track-group__title {
-  font-size: 48px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(24px, 2.5vw, 48px);
   font-weight: 700;
-  color: #1e1b39;
-  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  margin-bottom: clamp(20px, 2.08vw, 40px);
+}
+
+.track-group__subtitle {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(18px, 1.88vw, 36px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #504d5d;
+  margin-bottom: clamp(15px, 1.56vw, 30px);
 }
 
 .track-group__description {
-  font-size: 18px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(11px, 1.15vw, 22px);
   font-weight: 400;
+  font-style: normal;
+  line-height: 140%;
+  letter-spacing: 0%;
   color: #494555;
+  margin-bottom: clamp(17px, 1.77vw, 34px);
+}
+
+.track-group__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: clamp(15px, 1.56vw, 30px);
+  border-left: 2px solid #f42534;
+  margin-bottom: auto;
+}
+
+.track-group__list li {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(11px, 1.15vw, 22px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+  margin-bottom: clamp(5px, 0.52vw, 10px);
+}
+
+.track-group__list li:last-child {
+  margin-bottom: 0;
+}
+
+.track-group__btn {
+  background: #f42534;
+  color: #ffffff;
+  border: none;
+  border-radius: clamp(10px, 1.04vw, 20px);
+  padding: clamp(16px, 1.64vw, 31.5px) clamp(21px, 2.19vw, 42px);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: clamp(11px, 1.15vw, 22px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  margin-top: clamp(40px, 4.17vw, 80px);
+}
+
+.track-group__btn:hover {
+  background: #d32030;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(244, 37, 52, 0.4);
+}
+
+.track-group__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 1.04vw, 20px);
+  padding-left: 0;
+}
+
+.track-group__image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: clamp(37px, 3.85vw, 74px);
 }
 
 /* Секция Готовы начать? (Ready to Start) */

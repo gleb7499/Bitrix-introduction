@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPortfolioItems();
     initFAQ();
     initServicesCarousel();
+    initTrackGroupCarousel();
 });
 
 // Бургер-меню
@@ -293,6 +294,61 @@ function initServicesCarousel() {
     updateCardsPerView();
     
     console.log('Карусель услуг инициализирована');
+}
+
+// Инициализация карусели Track Group
+function initTrackGroupCarousel() {
+    const prevBtn = document.getElementById('trackGroupPrev');
+    const nextBtn = document.getElementById('trackGroupNext');
+    const navCurrent = document.querySelector('.track-group__nav-current');
+    const cards = document.querySelectorAll('.track-group__card');
+    
+    if (!prevBtn || !nextBtn || !navCurrent || cards.length === 0) {
+        console.log('Track Group carousel elements not found');
+        return;
+    }
+    
+    let currentIndex = 0;
+    
+    function updateCarousel() {
+        // Скрываем все карточки
+        cards.forEach(card => {
+            card.classList.remove('track-group__card--active');
+        });
+        
+        // Показываем текущую карточку
+        cards[currentIndex].classList.add('track-group__card--active');
+        
+        // Обновляем текст навигации
+        navCurrent.textContent = currentIndex + 1;
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === cards.length - 1;
+        
+        console.log(`Track Group carousel updated: card ${currentIndex + 1}/${cards.length}`);
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        console.log('Prev button clicked');
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        console.log('Next button clicked');
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+    
+    // Инициализация - показываем первую карточку
+    updateCarousel();
+    
+    console.log('Карусель Track Group инициализирована');
 }
 
 // Дополнительные функции, которые можно использовать
