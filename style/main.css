@@ -125,12 +125,6 @@ button {
   flex-shrink: 0;
 }
 
-/* Навигация с авто-отступами */
-.nav {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* Правый блок */
 .header__actions {
   display: flex;
@@ -1428,14 +1422,6 @@ button {
   color: #fa0012;
 }
 
-/* Удаляем старые стили карусели */
-.services__carousel,
-.services__track,
-.services__card-description,
-.services__card-link {
-  display: none;
-}
-
 /* Секция FAQ */
 .faq {
   max-width: 1400px;
@@ -1980,21 +1966,6 @@ button {
   max-height: 100%;
   object-fit: contain;
   border-radius: clamp(29.6px, 3.854vw, 74px);
-}
-
-/* Секция Готовы начать? (Ready to Start) */
-.ready-to-start {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: clamp(28px, 3.646vw, 70px);
-  text-align: center;
-}
-
-.ready-to-start__title {
-  font-size: clamp(19.2px, 2.5vw, 48px);
-  font-weight: 700;
-  color: #1e1b39;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
 }
 
 /* Секция Специальные предложения (Special Offers) */
