@@ -2,6 +2,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Страница загружена');
     
+    // Устанавливаем высоту header для корректного padding-top у body
+    updateHeaderHeight();
+    
+    // Обновляем высоту при изменении размера окна
+    window.addEventListener('resize', debounce(updateHeaderHeight, 250));
+    
     // Инициализация всех обработчиков
     initBurgerMenu();
     initSmoothScroll();
@@ -14,6 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
     initServicesCarousel();
     initTrackGroupCarousel();
 });
+
+// Функция для обновления высоты header
+function updateHeaderHeight() {
+    const header = document.querySelector('.header');
+    if (header) {
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+        console.log('Header height updated:', headerHeight + 'px');
+    }
+}
 
 // Бургер-меню
 function initBurgerMenu() {
