@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initCallButton();
     initHeroButton();
     initContactForm();
+    initQuickResponseForm();
     initPortfolioItems();
     initFAQ();
     initServicesCarousel();
+    initSpecialOffersCarousel();
     initTrackGroupCarousel();
+    initBlogCarousel();
 });
 
 // Функция для обновления высоты header
@@ -193,6 +196,234 @@ function initContactForm() {
     }
 }
 
+// Обработка формы Quick Response с валидацией
+function initQuickResponseForm() {
+    const form = document.querySelector('.quick-response__form');
+    
+    if (!form) return;
+    
+    const fields = form.querySelectorAll('.quick-response__field');
+    const submitBtn = form.querySelector('.quick-response__btn');
+    
+    // Объект для отслеживания состояния полей
+    const fieldStates = {};
+    
+    fields.forEach((field, index) => {
+        const input = field.querySelector('.quick-response__input');
+        const errorText = field.querySelector('.quick-response__error');
+        
+        if (!input || !errorText) return;
+        
+        const fieldId = `field_${index}`;
+        fieldStates[fieldId] = {
+            touched: false,
+            valid: false,
+            empty: true
+        };
+        
+        // Обработка ввода
+        input.addEventListener('input', function() {
+            const value = this.value.trim();
+            fieldStates[fieldId].empty = !value;
+            
+            if (value) {
+                this.classList.add('active');
+                fieldStates[fieldId].touched = true;
+                const isValid = validateInput(this, field, errorText, true);
+                fieldStates[fieldId].valid = isValid;
+            } else {
+                this.classList.remove('active');
+                // Если поле пустое и пользователь его трогал - показываем ошибку
+                if (fieldStates[fieldId].touched) {
+                    this.classList.add('error');
+                    field.classList.add('has-error');
+                    errorText.textContent = 'Поле обязательно для заполнения';
+                    fieldStates[fieldId].valid = false;
+                } else {
+                    // Если не трогал - просто убираем все ошибки
+                    clearFieldErrors(this, field);
+                    fieldStates[fieldId].valid = false;
+                }
+            }
+            
+            updateSubmitButton();
+        });
+        
+        // Обработка потери фокуса
+        input.addEventListener('blur', function() {
+            const value = this.value.trim();
+            
+            if (!value) {
+                // Если поле пустое при потере фокуса - показываем ошибку
+                if (fieldStates[fieldId].touched) {
+                    this.classList.add('error');
+                    field.classList.add('has-error');
+                    errorText.textContent = 'Поле обязательно для заполнения';
+                    fieldStates[fieldId].valid = false;
+                }
+            } else {
+                // Валидируем заполненное поле
+                fieldStates[fieldId].touched = true;
+                const isValid = validateInput(this, field, errorText, false);
+                fieldStates[fieldId].valid = isValid;
+            }
+            
+            updateSubmitButton();
+        });
+        
+        // Обработка получения фокуса
+        input.addEventListener('focus', function() {
+            // Убираем ошибки только при фокусе, но не сообщения об успехе
+            if (field.classList.contains('has-error') || field.classList.contains('has-warning')) {
+                this.classList.remove('error', 'warning');
+                field.classList.remove('has-error', 'has-warning');
+            }
+        });
+    });
+    
+    // Функция обновления состояния кнопки
+    function updateSubmitButton() {
+        // Проверяем: все ли поля валидны и заполнены
+        const allValid = Object.values(fieldStates).every(state => state.valid && !state.empty);
+        
+        if (submitBtn) {
+            submitBtn.disabled = !allValid;
+        }
+    }
+    
+    // Функция очистки ошибок поля
+    function clearFieldErrors(input, field) {
+        input.classList.remove('error', 'warning', 'active');
+        field.classList.remove('has-error', 'has-warning');
+    }
+    
+    // Инициализация - кнопка disabled по умолчанию
+    updateSubmitButton();
+    
+    // Валидация формы при отправке
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        
+        fields.forEach((field, index) => {
+            const input = field.querySelector('.quick-response__input');
+            const errorText = field.querySelector('.quick-response__error');
+            const fieldId = `field_${index}`;
+            
+            fieldStates[fieldId].touched = true;
+            
+            if (!validateInput(input, field, errorText, false)) {
+                isValid = false;
+                fieldStates[fieldId].valid = false;
+            }
+        });
+        
+        if (isValid) {
+            console.log('Форма Quick Response отправлена');
+            alert('Спасибо! Ваш запрос принят. Мы свяжемся с вами в течение 15 минут.');
+            
+            // Сброс формы
+            form.reset();
+            
+            // Сброс всех состояний
+            fields.forEach((field, index) => {
+                const input = field.querySelector('.quick-response__input');
+                const fieldId = `field_${index}`;
+                
+                input.classList.remove('active', 'error', 'warning');
+                field.classList.remove('has-error', 'has-warning');
+                
+                fieldStates[fieldId] = {
+                    touched: false,
+                    valid: false,
+                    empty: true
+                };
+            });
+            
+            updateSubmitButton();
+        }
+    });
+}
+
+// Функция валидации input
+function validateInput(input, field, errorText, isTyping) {
+    const value = input.value.trim();
+    const type = input.type;
+    
+    // Очищаем предыдущие состояния
+    input.classList.remove('error', 'warning');
+    field.classList.remove('has-error', 'has-warning');
+    
+    if (!value) {
+        return false;
+    }
+    
+    // Валидация имени
+    if (type === 'text') {
+        if (value.length < 2) {
+            input.classList.add('error');
+            field.classList.add('has-error');
+            errorText.textContent = 'Имя должно содержать минимум 2 символа';
+            return false;
+        }
+        
+        if (!/^[а-яА-ЯёЁa-zA-Z\s-]+$/.test(value)) {
+            input.classList.add('error');
+            field.classList.add('has-error');
+            errorText.textContent = 'Имя может содержать только буквы';
+            return false;
+        }
+        
+        // Если всё корректно - убираем все сообщения
+        field.classList.remove('has-error', 'has-warning');
+        return true;
+    }
+    
+    // Валидация телефона
+    if (type === 'tel') {
+        // Убираем все нецифровые символы
+        const phoneDigits = value.replace(/\D/g, '');
+        
+        if (phoneDigits.length === 0) {
+            return false;
+        }
+        
+        // При вводе показываем warning если номер неполный
+        if (phoneDigits.length < 11) {
+            if (isTyping) {
+                // При вводе не показываем ошибку, только если пользователь покинул поле
+                return false;
+            } else {
+                input.classList.add('warning');
+                field.classList.add('has-warning');
+                errorText.textContent = 'Неполный номер телефона';
+                return false;
+            }
+        }
+        
+        if (phoneDigits.length > 11) {
+            input.classList.add('error');
+            field.classList.add('has-error');
+            errorText.textContent = 'Номер телефона слишком длинный';
+            return false;
+        }
+        
+        if (!phoneDigits.startsWith('7') && !phoneDigits.startsWith('8')) {
+            input.classList.add('error');
+            field.classList.add('has-error');
+            errorText.textContent = 'Номер должен начинаться с +7 или 8';
+            return false;
+        }
+        
+        // Если всё корректно - убираем все сообщения
+        field.classList.remove('has-error', 'has-warning');
+        return true;
+    }
+    
+    return true;
+}
+
 // Интерактивность для элементов портфолио
 function initPortfolioItems() {
     const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -213,41 +444,39 @@ function initPortfolioItems() {
 
 // Инициализация FAQ аккордеона
 function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq__item');
+    const faqCards = document.querySelectorAll('.faq__card');
     
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq__question');
-        const answer = item.querySelector('.faq__answer');
-        const icon = item.querySelector('.faq__icon');
+    faqCards.forEach(card => {
+        const toggleBtn = card.querySelector('.faq__toggle-btn');
+        const answer = card.querySelector('.faq__answer');
+        const icon = toggleBtn ? toggleBtn.querySelector('img') : null;
         
-        if (question && answer && icon) {
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('faq__item--active');
-                
-                // Закрыть все остальные пункты
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('faq__item--active');
-                        const otherAnswer = otherItem.querySelector('.faq__answer');
-                        const otherIcon = otherItem.querySelector('.faq__icon');
-                        if (otherAnswer) otherAnswer.style.display = 'none';
-                        if (otherIcon) otherIcon.textContent = '+';
-                    }
-                });
-                
-                // Переключить текущий пункт
-                if (isActive) {
-                    item.classList.remove('faq__item--active');
-                    answer.style.display = 'none';
-                    icon.textContent = '+';
-                } else {
-                    item.classList.add('faq__item--active');
-                    answer.style.display = 'block';
-                    icon.textContent = '−';
+        if (answer && icon) {
+            // Клик по всей карточке
+            card.addEventListener('click', (e) => {
+                // Предотвращаем двойное срабатывание, если клик был по кнопке
+                if (e.target.closest('.faq__toggle-btn') && e.target !== card) {
+                    return;
                 }
                 
-                console.log('FAQ пункт переключен');
+                const isActive = card.classList.contains('active');
+                
+                // Переключить текущую карточку
+                if (isActive) {
+                    card.classList.remove('active');
+                    icon.src = 'assets/img/plus.png';
+                    icon.alt = 'Показать ответ';
+                } else {
+                    card.classList.add('active');
+                    icon.src = 'assets/img/minus.png';
+                    icon.alt = 'Скрыть ответ';
+                }
+                
+                console.log('FAQ карточка переключена');
             });
+            
+            // Добавляем курсор pointer для всей карточки
+            card.style.cursor = 'pointer';
         }
     });
 }
@@ -443,3 +672,127 @@ window.addEventListener('resize', debounce(function() {
     console.log('Размер окна изменен');
     // Здесь можно добавить логику при изменении размера окна
 }, 250));
+
+// Универсальная функция инициализации карусели
+function initCarousel(config) {
+    const { 
+        prevBtnId, 
+        nextBtnId, 
+        gridSelector, 
+        cardSelector, 
+        cardsPerView = 4,
+        name = 'carousel'
+    } = config;
+    
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+    const grid = document.querySelector(gridSelector);
+    
+    if (!prevBtn || !nextBtn || !grid) {
+        console.log(`${name}: элементы не найдены`);
+        return;
+    }
+    
+    const cards = grid.querySelectorAll(cardSelector);
+    
+    if (cards.length === 0) {
+        console.log(`${name}: карточки не найдены`);
+        return;
+    }
+    
+    let currentIndex = 0;
+    
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+        const offset = -(currentIndex * (cardWidth + gap));
+        
+        cards.forEach((card) => {
+            card.style.transform = `translateX(${offset}px)`;
+            card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+        
+        // Обновляем состояние кнопок
+        const isAtStart = currentIndex === 0;
+        const isAtEnd = currentIndex >= cards.length - cardsPerView;
+        
+        prevBtn.disabled = isAtStart;
+        nextBtn.disabled = isAtEnd;
+        
+        prevBtn.style.opacity = isAtStart ? '0.3' : '1';
+        nextBtn.style.opacity = isAtEnd ? '0.3' : '1';
+        
+        prevBtn.style.cursor = isAtStart ? 'not-allowed' : 'pointer';
+        nextBtn.style.cursor = isAtEnd ? 'not-allowed' : 'pointer';
+        
+        console.log(`${name}: показаны карточки ${currentIndex + 1}-${Math.min(currentIndex + cardsPerView, cards.length)} из ${cards.length}`);
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+            console.log(`${name}: переход назад`);
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < cards.length - cardsPerView) {
+            currentIndex++;
+            updateCarousel();
+            console.log(`${name}: переход вперёд`);
+        }
+    });
+    
+    // Обновляем при изменении размера окна
+    const resizeHandler = debounce(() => {
+        // Сбрасываем индекс если он стал недопустимым
+        if (currentIndex >= cards.length - cardsPerView && currentIndex > 0) {
+            currentIndex = Math.max(0, cards.length - cardsPerView);
+        }
+        updateCarousel();
+    }, 250);
+    
+    window.addEventListener('resize', resizeHandler);
+    
+    // Инициализация
+    updateCarousel();
+    
+    console.log(`${name}: карусель инициализирована (${cards.length} карточек, показываем ${cardsPerView})`);
+}
+
+// Инициализация карусели услуг
+function initServicesCarousel() {
+    initCarousel({
+        prevBtnId: 'servicesPrev',
+        nextBtnId: 'servicesNext',
+        gridSelector: '.services__grid',
+        cardSelector: '.services__card',
+        cardsPerView: 4,
+        name: 'Services'
+    });
+}
+
+// Инициализация карусели специальных предложений
+function initSpecialOffersCarousel() {
+    initCarousel({
+        prevBtnId: 'specialOffersPrev',
+        nextBtnId: 'specialOffersNext',
+        gridSelector: '.special-offers__grid',
+        cardSelector: '.special-offers__card',
+        cardsPerView: 4,
+        name: 'Special Offers'
+    });
+}
+
+// Инициализация карусели блога
+function initBlogCarousel() {
+    initCarousel({
+        prevBtnId: 'blogPrev',
+        nextBtnId: 'blogNext',
+        gridSelector: '.blog__grid',
+        cardSelector: '.blog__card',
+        cardsPerView: 4,
+        name: 'Blog'
+    });
+}
