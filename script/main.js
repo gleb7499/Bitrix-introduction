@@ -701,6 +701,28 @@ function initCarousel(config) {
     }
     
     let currentIndex = 0;
+    const totalCards = cards.length;
+    const hasMoreCards = totalCards > cardsPerView;
+    
+    // Функция обновления градиентов
+    function updateGradients() {
+        // Левый градиент: показываем, если не в начале и есть больше карточек
+        if (currentIndex > 0 && hasMoreCards) {
+            grid.classList.add('show-left-gradient');
+        } else {
+            grid.classList.remove('show-left-gradient');
+        }
+        
+        // Правый градиент: показываем, если не в конце и есть больше карточек
+        const isAtEnd = currentIndex >= totalCards - cardsPerView;
+        if (!isAtEnd && hasMoreCards) {
+            grid.classList.add('show-right-gradient');
+        } else {
+            grid.classList.remove('show-right-gradient');
+        }
+        
+        console.log(`${name}: градиенты обновлены. Index: ${currentIndex}, Left: ${currentIndex > 0 && hasMoreCards}, Right: ${!isAtEnd && hasMoreCards}`);
+    }
     
     function updateCarousel() {
         const cardWidth = cards[0].offsetWidth;
@@ -714,7 +736,7 @@ function initCarousel(config) {
         
         // Обновляем состояние кнопок
         const isAtStart = currentIndex === 0;
-        const isAtEnd = currentIndex >= cards.length - cardsPerView;
+        const isAtEnd = currentIndex >= totalCards - cardsPerView;
         
         prevBtn.disabled = isAtStart;
         nextBtn.disabled = isAtEnd;
@@ -725,7 +747,10 @@ function initCarousel(config) {
         prevBtn.style.cursor = isAtStart ? 'not-allowed' : 'pointer';
         nextBtn.style.cursor = isAtEnd ? 'not-allowed' : 'pointer';
         
-        console.log(`${name}: показаны карточки ${currentIndex + 1}-${Math.min(currentIndex + cardsPerView, cards.length)} из ${cards.length}`);
+        // Обновляем градиенты
+        updateGradients();
+        
+        console.log(`${name}: показаны карточки ${currentIndex + 1}-${Math.min(currentIndex + cardsPerView, totalCards)} из ${totalCards}`);
     }
     
     prevBtn.addEventListener('click', () => {
@@ -737,7 +762,7 @@ function initCarousel(config) {
     });
     
     nextBtn.addEventListener('click', () => {
-        if (currentIndex < cards.length - cardsPerView) {
+        if (currentIndex < totalCards - cardsPerView) {
             currentIndex++;
             updateCarousel();
             console.log(`${name}: переход вперёд`);
@@ -747,8 +772,8 @@ function initCarousel(config) {
     // Обновляем при изменении размера окна
     const resizeHandler = debounce(() => {
         // Сбрасываем индекс если он стал недопустимым
-        if (currentIndex >= cards.length - cardsPerView && currentIndex > 0) {
-            currentIndex = Math.max(0, cards.length - cardsPerView);
+        if (currentIndex >= totalCards - cardsPerView && currentIndex > 0) {
+            currentIndex = Math.max(0, totalCards - cardsPerView);
         }
         updateCarousel();
     }, 250);
@@ -758,7 +783,7 @@ function initCarousel(config) {
     // Инициализация
     updateCarousel();
     
-    console.log(`${name}: карусель инициализирована (${cards.length} карточек, показываем ${cardsPerView})`);
+    console.log(`${name}: карусель инициализирована (${totalCards} карточек, показываем ${cardsPerView}, есть больше карточек: ${hasMoreCards})`);
 }
 
 // Инициализация карусели услуг
