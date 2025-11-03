@@ -546,54 +546,135 @@ function initTrackGroupCarousel() {
     const prevBtn = document.getElementById('trackGroupPrev');
     const nextBtn = document.getElementById('trackGroupNext');
     const navCurrent = document.querySelector('.track-group__nav-current');
-    const cards = document.querySelectorAll('.track-group__card');
-    
-    if (!prevBtn || !nextBtn || !navCurrent || cards.length === 0) {
+    const container = document.querySelector('.track-group__cards');
+    const cards = container ? container.querySelectorAll('.track-group__card') : [];
+
+    if (!prevBtn || !nextBtn || !navCurrent || !container || cards.length === 0) {
         console.log('Track Group carousel elements not found');
         return;
     }
-    
+
     let currentIndex = 0;
-    
-    function updateCarousel() {
-        // Скрываем все карточки
-        cards.forEach(card => {
-            card.classList.remove('track-group__card--active');
-        });
-        
-        // Показываем текущую карточку
-        cards[currentIndex].classList.add('track-group__card--active');
-        
+    let isAnimating = false;
+
+    function setContainerHeight() {
+        const active = cards[currentIndex];
+        if (active) {
+            // Устанавливаем высоту контейнера равной высоте активной карточки
+            container.style.height = active.offsetHeight + 'px';
+        }
+    }
+
+    function updateUI() {
         // Обновляем текст навигации
         navCurrent.textContent = currentIndex + 1;
-        
+
         // Обновляем состояние кнопок
         prevBtn.disabled = currentIndex === 0;
         nextBtn.disabled = currentIndex === cards.length - 1;
-        
+
+        setContainerHeight();
         console.log(`Track Group carousel updated: card ${currentIndex + 1}/${cards.length}`);
     }
-    
+
+    function goTo(newIndex, direction) {
+        if (isAnimating || newIndex === currentIndex || newIndex < 0 || newIndex >= cards.length) return;
+        isAnimating = true;
+
+        const current = cards[currentIndex];
+        const next = cards[newIndex];
+
+        // Сначала делаем текущую карточку absolute, чтобы она могла уплыть
+        current.style.position = 'absolute';
+        current.style.inset = '0';
+        current.style.width = '100%';
+
+        // Подготовка следующего слайда к входу
+        next.classList.remove(
+            'track-group__card--animate-out-left',
+            'track-group__card--animate-out-right',
+            'track-group__card--pre-enter-from-left',
+            'track-group__card--pre-enter-from-right',
+            'track-group__card--active'
+        );
+        next.classList.add(
+            direction === 'next'
+                ? 'track-group__card--pre-enter-from-right'
+                : 'track-group__card--pre-enter-from-left'
+        );
+
+        // Принудительный рефлоу, чтобы браузер применил стартовое положение
+        // перед запуском анимации входа
+        // eslint-disable-next-line no-unused-expressions
+        next.offsetWidth;
+
+        // Запускаем анимации
+        next.classList.add('track-group__card--active');
+        current.classList.add(
+            direction === 'next'
+                ? 'track-group__card--animate-out-left'
+                : 'track-group__card--animate-out-right'
+        );
+
+        const onDone = () => {
+            // Завершаем анимацию, чистим классы
+            current.classList.remove(
+                'track-group__card--active',
+                'track-group__card--animate-out-left',
+                'track-group__card--animate-out-right'
+            );
+            next.classList.remove(
+                'track-group__card--pre-enter-from-left',
+                'track-group__card--pre-enter-from-right'
+            );
+
+            // Сбрасываем inline-стили у текущей карточки
+            current.style.position = '';
+            current.style.inset = '';
+            current.style.width = '';
+
+            currentIndex = newIndex;
+            updateUI();
+            isAnimating = false;
+        };
+
+        // Когда текущий слайд закончит уходить — завершаем переход
+        current.addEventListener('transitionend', onDone, { once: true });
+
+        // Фолбэк на случай, если transitionend не сработает
+        setTimeout(() => {
+            if (isAnimating) onDone();
+        }, 700);
+    }
+
     prevBtn.addEventListener('click', () => {
-        console.log('Prev button clicked');
         if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
+            console.log('Prev button clicked');
+            goTo(currentIndex - 1, 'prev');
         }
     });
-    
+
     nextBtn.addEventListener('click', () => {
-        console.log('Next button clicked');
         if (currentIndex < cards.length - 1) {
-            currentIndex++;
-            updateCarousel();
+            console.log('Next button clicked');
+            goTo(currentIndex + 1, 'next');
         }
     });
-    
-    // Инициализация - показываем первую карточку
-    updateCarousel();
-    
-    console.log('Карусель Track Group инициализирована');
+
+    // Инициализация: показываем первый слайд
+    cards.forEach((card, i) => {
+        if (i === 0) {
+            card.classList.add('track-group__card--active');
+        } else {
+            card.classList.remove('track-group__card--active');
+        }
+    });
+    updateUI();
+
+    // Поддерживаем корректную высоту контейнера при ресайзе
+    window.addEventListener('resize', debounce(setContainerHeight, 250));
+
+    console.log('Карусель Track Group инициализирована (с анимацией)');
 }
 
 // Дополнительные функции, которые можно использовать

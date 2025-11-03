@@ -1851,17 +1851,54 @@ button {
 .track-group__cards {
   position: relative;
   width: 100%;
+  overflow: hidden; /* скрываем выходящие части слайдов */
 }
 
+/* Базовые стили слайдов для анимации */
 .track-group__card {
-  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: grid; /* всегда grid, скрытие делаем через opacity/transform */
   grid-template-columns: 1fr 1fr;
-
   align-items: stretch;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
 
+/* Активный слайд */
 .track-group__card--active {
-  display: grid;
+  position: relative; /* активный слайд участвует в потоке, задаёт высоту контейнера */
+  inset: auto; /* сброс ограничений absolute-позиционирования */
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+/* Подготовка входа следующего слайда справа */
+.track-group__card--pre-enter-from-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Подготовка входа следующего слайда слева */
+.track-group__card--pre-enter-from-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Анимация выхода текущего слайда влево/вправо */
+.track-group__card--animate-out-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.track-group__card--animate-out-right {
+  transform: translateX(100%);
+  opacity: 0;
 }
 
 .track-group__content {
