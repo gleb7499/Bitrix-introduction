@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initBurgerMenu();
   initSmoothScroll();
   initServicesButton();
+  initAboutDropdown();
   initCallButton();
   initHeroButton();
   initContactForm();
@@ -54,24 +55,120 @@ function initBurgerMenu() {
 // Кнопка "Услуги"
 function initServicesButton() {
   const servicesBtn = document.getElementById("servicesBtn");
+  const servicesPopup = document.getElementById("servicesPopup");
+  const overlay = servicesPopup?.querySelector(".services-popup__overlay");
 
-  if (servicesBtn) {
-    servicesBtn.addEventListener("click", function () {
-      console.log('Кнопка "Услуги" нажата');
-
-      // Прокрутка к секции услуг
-      const servicesSection = document.getElementById("services");
-      if (servicesSection) {
-        servicesSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-
-      // Здесь можно добавить показ выпадающего меню
-      // showServicesDropdown();
-    });
+  if (!servicesBtn || !servicesPopup) {
+    console.log("Services button or popup not found");
+    return;
   }
+
+  let isPopupOpen = false;
+
+  // Функция открытия меню
+  function openPopup() {
+    isPopupOpen = true;
+    servicesPopup.classList.add("active");
+    servicesBtn.classList.add("active");
+    document.body.style.overflow = 'hidden';
+    console.log("Services popup opened");
+  }
+
+  // Функция закрытия меню
+  function closePopup() {
+    isPopupOpen = false;
+    servicesPopup.classList.remove("active");
+    servicesBtn.classList.remove("active");
+    document.body.style.overflow = '';
+    console.log("Services popup closed");
+  }
+
+  // Функция toggle (переключение)
+  function togglePopup() {
+    if (isPopupOpen) {
+      closePopup();
+    } else {
+      openPopup();
+    }
+  }
+
+  // Клик по кнопке переключает меню
+  servicesBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    togglePopup();
+  });
+
+  // Клик по оверлею закрывает меню
+  if (overlay) {
+    overlay.addEventListener("click", closePopup);
+  }
+
+  // Клик вне меню закрывает его
+  document.addEventListener("click", (e) => {
+    if (isPopupOpen && 
+        !servicesPopup.querySelector('.services-popup__container').contains(e.target) && 
+        !servicesBtn.contains(e.target)) {
+      closePopup();
+    }
+  });
+
+  // Закрытие по Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isPopupOpen) {
+      closePopup();
+    }
+  });
+
+  // Инициализация переключения категорий
+  initServicesPopupCategories();
+}
+
+// Выпадающее меню "О компании"
+function initAboutDropdown() {
+  const navItem = document.querySelector(".nav__item--has-dropdown");
+  const dropdown = document.getElementById("aboutDropdown");
+
+  if (!navItem || !dropdown) {
+    console.log("About dropdown elements not found");
+    return;
+  }
+
+  let hideTimeout = null;
+
+  // Функция для показа меню
+  function showDropdown() {
+    if (hideTimeout) {
+      clearTimeout(hideTimeout);
+      hideTimeout = null;
+    }
+    dropdown.classList.add("active");
+  }
+
+  // Функция для скрытия меню с задержкой
+  function hideDropdown() {
+    hideTimeout = setTimeout(() => {
+      dropdown.classList.remove("active");
+    }, 300);
+  }
+
+  // Наведение на элемент навигации
+  navItem.addEventListener("mouseenter", showDropdown);
+
+  // Уход с элемента навигации
+  navItem.addEventListener("mouseleave", hideDropdown);
+
+  // Наведение на само меню (отменяет скрытие)
+  dropdown.addEventListener("mouseenter", () => {
+    if (hideTimeout) {
+      clearTimeout(hideTimeout);
+      hideTimeout = null;
+    }
+  });
+
+  // Уход с меню
+  dropdown.addEventListener("mouseleave", hideDropdown);
+
+  console.log("About dropdown initialized");
 }
 
 // Кнопка "Заказать звонок"
@@ -906,6 +1003,59 @@ function initCarousel(config) {
   console.log(
     `${name}: карусель инициализирована (${totalCards} карточек, показываем ${cardsPerView}, есть больше карточек: ${hasMoreCards})`
   );
+}
+
+// Инициализация переключения категорий во всплывающем меню услуг
+function initServicesPopupCategories() {
+  const categories = document.querySelectorAll(".services-popup__category");
+  const allLinks = document.querySelectorAll(".services-popup__link");
+  const photos = document.querySelectorAll(".services-popup__photo");
+
+  if (categories.length === 0 || allLinks.length === 0 || photos.length === 0) {
+    console.log("Services popup elements not found");
+    return;
+  }
+
+  categories.forEach((category) => {
+    category.addEventListener("mouseenter", function () {
+      const categoryType = this.dataset.category;
+
+      // Убираем active класс у всех категорий
+      categories.forEach((cat) => cat.classList.remove("active"));
+
+      // Добавляем active класс к текущей категории
+      this.classList.add("active");
+
+      // Показываем/скрываем ссылки в зависимости от категории
+      allLinks.forEach((link) => {
+        const linkCategory = link.dataset.category;
+        if (linkCategory === categoryType) {
+          link.style.display = "flex";
+          // Добавляем небольшую анимацию появления
+          link.style.opacity = "0";
+          setTimeout(() => {
+            link.style.transition = "opacity 0.3s ease";
+            link.style.opacity = "1";
+          }, 10);
+        } else {
+          link.style.display = "none";
+        }
+      });
+
+      // Переключаем фотографии
+      photos.forEach((photo) => {
+        if (photo.dataset.image === categoryType) {
+          photo.classList.add("active");
+        } else {
+          photo.classList.remove("active");
+        }
+      });
+
+      console.log(`Switched to category: ${categoryType}`);
+    });
+  });
+
+  console.log("Services popup categories initialized");
 }
 
 // Инициализация карусели услуг

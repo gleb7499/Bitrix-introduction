@@ -225,8 +225,10 @@ button {
   -webkit-backdrop-filter: blur(100px);
   border-radius: clamp(18.8px, 2.448vw, 47px);
   margin: 0 clamp(8px, 1.042vw, 20px);
+  transition: none;
 }
 
+/* Header не должен блюриться когда открыто меню */
 .header .container {
   max-width: 100%;
   padding: clamp(8px, 1.042vw, 20px) clamp(12px, 1.563vw, 30px);
@@ -272,6 +274,11 @@ button {
   position: relative;
 }
 
+/* Элемент с выпадающим меню */
+.nav__item--has-dropdown {
+  position: relative;
+}
+
 .nav__link {
   font-size: clamp(8.8px, 1.146vw, 22px);
   font-weight: 500;
@@ -290,7 +297,7 @@ button {
   /* Фильтр для цвета #494555 */
   filter: brightness(0) saturate(100%) invert(29%) sepia(8%) saturate(705%)
     hue-rotate(222deg) brightness(94%) contrast(88%);
-  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav__link:hover {
@@ -300,6 +307,11 @@ button {
 .nav__link:hover .nav__link-icon {
   filter: brightness(0) saturate(100%) invert(37%) sepia(95%) saturate(2791%)
     hue-rotate(346deg) brightness(95%) contrast(93%);
+}
+
+/* Поворот иконки при наведении на элемент с dropdown */
+.nav__item--has-dropdown:hover .nav__link-icon {
+  transform: rotate(180deg);
 }
 
 .nav__link::after {
@@ -315,6 +327,61 @@ button {
 
 .nav__link:hover::after {
   width: 100%;
+}
+
+/* ========================================
+   ВЫПАДАЮЩЕЕ МЕНЮ "О КОМПАНИИ"
+   ======================================== */
+
+.nav-dropdown {
+  position: absolute;
+  padding-top: clamp(8px, 1.042vw, 20px);
+  top: calc(100% + clamp(8px, 1.042vw, 20px));
+  left: 50%;
+  transform: translateX(-50%) translateY(clamp(-8px, -1.042vw, -20px));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+}
+
+/* Убираем CSS hover, управление только через JavaScript */
+.nav-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown__container {
+  background: #FFFFFF;
+  border-radius: clamp(37.6px, 4.896vw, 94px);
+  padding: clamp(32px, 4.167vw, 80px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.042vw, 20px);
+  box-shadow: 0 clamp(4px, 0.521vw, 10px) clamp(20px, 2.604vw, 50px) rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.nav-dropdown__link {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(8.8px, 1.146vw, 22px);
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: clamp(4px, 0.521vw, 10px) 0;
+}
+
+.nav-dropdown__link:hover {
+  color: #F42534;
 }
 
 .header__phone {
@@ -2745,4 +2812,170 @@ button {
   max-height: 50%;
   object-fit: contain;
   display: block;
+}
+
+/* ========================================
+   ВСПЛЫВАЮЩЕЕ МЕНЮ УСЛУГ
+   ======================================== */
+
+.services-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-popup.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Блюр фона */
+.services-popup__overlay {
+  position: fixed;
+  border-radius: clamp(37.6px, 4.896vw, 94px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
+  -webkit-backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
+  background-color: #FFFFFF03;
+  z-index: 998;
+}
+
+/* Контейнер меню */
+.services-popup__container {
+  position: absolute;
+  top: calc(var(--header-offset-top) + var(--header-height, 94px) + clamp(8px, 1.042vw, 20px));
+  left: clamp(8px, 1.042vw, 20px);
+  right: clamp(8px, 1.042vw, 20px);
+  border-radius: clamp(37.6px, 4.896vw, 94px);
+  background: #FFFFFF;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4.167vw, 80px);
+  transform: translateY(clamp(-8px, -1.042vw, -20px));
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+}
+
+.services-popup.active .services-popup__container {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Блок со ссылками */
+.services-popup__links {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(32px, 4.167vw, 80px);
+  padding-top: clamp(32px, 4.167vw, 80px);
+  padding-left: clamp(32px, 4.167vw, 80px);
+  padding-bottom: clamp(32px, 4.167vw, 80px);
+}
+
+/* Блок заголовков категорий */
+.services-popup__categories {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.563vw, 30px);
+}
+
+.services-popup__category {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: clamp(11.2px, 1.458vw, 28px);
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1F1933;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.services-popup__category:hover {
+  color: #FA0012;
+}
+
+.services-popup__category.active {
+  color: #FA0012;
+}
+
+/* Колонки с подтемами */
+.services-popup__column {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.042vw, 20px);
+}
+
+.services-popup__link {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(8.8px, 1.146vw, 22px);
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.services-popup__link:hover {
+  color: #FA0012;
+}
+
+/* Блок с фотографией */
+.services-popup__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(8px, 1.042vw, 20px);
+  padding-left: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-popup__photo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: clamp(29.6px, 3.854vw, 74px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.services-popup__photo:not(.active) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.services-popup__photo.active {
+  position: relative;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Анимация для иконки кнопки */
+.btn--services .btn__icon {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn--services.active .btn__icon {
+  transform: rotate(180deg);
 }

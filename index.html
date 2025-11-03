@@ -23,9 +23,76 @@
             <img src="assets/img/show-more.png" alt="" class="btn__icon" />
           </button>
 
+          <!-- Всплывающее меню услуг -->
+          <div class="services-popup" id="servicesPopup">
+            <div class="services-popup__overlay"></div>
+            <div class="services-popup__container">
+              <div class="services-popup__links">
+                <!-- Блок заголовков категорий -->
+                <div class="services-popup__categories">
+                  <h3 class="services-popup__category active" data-category="1c">
+                    Услуги 1С
+                  </h3>
+                  <h3 class="services-popup__category" data-category="bitrix24">
+                    Услуги Битрикс 24
+                  </h3>
+                  <h3 class="services-popup__category" data-category="it-infrastructure">
+                    ИТ-инфраструктура и оборудование
+                  </h3>
+                  <h3 class="services-popup__category" data-category="server-solutions">
+                    Серверные решения и сети
+                  </h3>
+                </div>
+
+                <!-- Колонка 1 -->
+                <div class="services-popup__column" data-column="1">
+                  <a href="#" class="services-popup__link" data-category="1c">Внедрение 1С</a>
+                  <a href="#" class="services-popup__link" data-category="1c">Доработка 1С</a>
+                  <a href="#" class="services-popup__link" data-category="1c">Техническая поддержка 1С</a>
+                  <a href="#" class="services-popup__link" data-category="1c">Сопровождение 1С</a>
+                  
+                  <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none;">Внедрение Битрикс 24</a>
+                  <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none;">Обслуживание Битрикс 24</a>
+                  
+                  <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none;">Создание ИТ инфраструктуры</a>
+                  <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none;">Установка серверного оборудования</a>
+                  <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none;">ИТ-обслуживание ПК и серверов</a>
+                  
+                  <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none;">Внедрение хранилищ данных</a>
+                  <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none;">Внедрение почтового сервера</a>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div class="services-popup__column" data-column="2">
+                  <a href="#" class="services-popup__link" data-category="1c">Обновление 1С</a>
+                  <a href="#" class="services-popup__link" data-category="1c">Настройка 1С</a>
+                  <a href="#" class="services-popup__link" data-category="1c">Разработка 1С</a>
+                  <a href="#" class="services-popup__link" data-category="1c">Аренда 1С</a>
+                  
+                  <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none;">Настройка Битрикс 24</a>
+                  <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none;">Разработка Битрикс 24</a>
+                  
+                  <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none;">Монтаж локальных сетей</a>
+                  <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none;">Монтаж СКС</a>
+                  <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none;">Установка видеонаблюдения</a>
+                  
+                  <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none;">Корпоративный VPN</a>
+                </div>
+              </div>
+
+              <!-- Блок с фотографией -->
+              <div class="services-popup__image">
+                <img src="assets/img/popup-menu-1c.png" alt="Услуги 1С" data-image="1c" class="services-popup__photo active" />
+                <img src="assets/img/popup-menu-bitrix-24.png" alt="Услуги Битрикс 24" data-image="bitrix24" class="services-popup__photo" />
+                <img src="assets/img/popup-menu-IT-solutions-and-equipment.png" alt="ИТ-инфраструктура и оборудование" data-image="it-infrastructure" class="services-popup__photo" />
+                <img src="assets/img/popup-menu-server-solutions-and-networks.png" alt="Серверные решения и сети" data-image="server-solutions" class="services-popup__photo" />
+              </div>
+            </div>
+          </div>
+
           <nav class="nav">
             <ul class="nav__list">
-              <li class="nav__item">
+              <li class="nav__item nav__item--has-dropdown">
                 <a href="#about" class="nav__link">
                   О компании
                   <img
@@ -34,6 +101,16 @@
                     class="nav__link-icon"
                   />
                 </a>
+                <!-- Всплывающее меню "О компании" -->
+                <div class="nav-dropdown" id="aboutDropdown">
+                  <div class="nav-dropdown__container">
+                    <a href="#" class="nav-dropdown__link">О компании</a>
+                    <a href="#" class="nav-dropdown__link">Вакансии</a>
+                    <a href="#" class="nav-dropdown__link">Отзывы</a>
+                    <a href="#" class="nav-dropdown__link">Вопрос-ответ</a>
+                    <a href="#" class="nav-dropdown__link">Акции и скидки</a>
+                  </div>
+                </div>
               </li>
               <li class="nav__item">
                 <a href="#prices" class="nav__link">Цены</a>
