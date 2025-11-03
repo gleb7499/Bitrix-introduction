@@ -1,3 +1,57 @@
+/*
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                     СИСТЕМА КНОПОК - ДОКУМЕНТАЦИЯ                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+📌 БАЗОВЫЙ КЛАСС
+   .btn - применяется ко всем кнопкам (базовый стиль)
+
+📌 МОДИФИКАТОРЫ (используйте вместе с .btn)
+
+   🔴 .btn--primary (Основные красные CTA-кнопки)
+      Применение: Все главные призывы к действию в секциях
+      Цвет: красный (#ee3f3f) с эффектом hover
+      Padding: большой (для акцента)
+      Особенности: 
+        - Поддерживает :disabled состояние (серая, недоступная)
+        - Используется в большинстве секций
+      
+      Примеры использования:
+        <button class="btn btn--primary">Заказать консультацию</button>
+        <button class="btn btn--primary" disabled>Отправить</button>
+
+   ⚪ .btn--secondary (Белая кнопка header)
+      Применение: Вторичная кнопка в header ("Заказать звонок")
+      Цвет: белый фон, при hover - черный фон с белым текстом
+      Padding: средний
+      
+      Пример:
+        <button class="btn btn--secondary">Заказать звонок</button>
+
+   🔴 .btn--services (Красная кнопка с иконкой в header)
+      Применение: Кнопка "Услуги" в header с иконкой-стрелкой
+      Цвет: красный (#ee3f3f) с иконкой
+      Padding: компактный
+      Особенности: display: flex для размещения иконки
+      
+      Пример:
+        <button class="btn btn--services">
+          Услуги
+          <img src="icon.png" class="btn__icon" alt="">
+        </button>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ ПРЕИМУЩЕСТВА
+   1. Единая точка управления стилями кнопок
+   2. Легко изменить цвет/размер всех кнопок одного типа
+   3. Меньше дублирования кода
+   4. Понятная семантика модификаторов
+   5. Поддержка состояния :disabled из коробки
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
+
 /* Общие стили и сброс */
 :root {
   --header-offset-top: clamp(8px, 1.042vw, 20px);
@@ -56,24 +110,98 @@ button {
   padding: 0;
 }
 
-/* Кнопки */
+/* ========================================
+   УНИФИЦИРОВАННАЯ СИСТЕМА КНОПОК
+   ======================================== */
+
+/* Базовый класс для всех кнопок */
 .btn {
-  display: inline-block;
-  padding: clamp(4.8px, 0.625vw, 12px) clamp(12px, 1.563vw, 30px);
-  font-size: clamp(6.4px, 0.833vw, 16px);
-  font-weight: 600;
-  border-radius: clamp(2px, 0.26vw, 5px);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
+/* Модификатор: Основная красная кнопка (CTA) */
 .btn--primary {
-  background-color: #007bff;
-  color: #fff;
+  background: #ee3f3f;
+  color: #ffffff;
+  border-radius: clamp(8px, 1.042vw, 20px);
+  padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
+  font-size: clamp(10.4px, 1.354vw, 26px);
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  width: fit-content;
+  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
+    rgba(238, 63, 63, 0.3);
 }
 
 .btn--primary:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+  background: #d32030;
+  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
+  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
+    rgba(238, 63, 63, 0.4);
+}
+
+.btn--primary:disabled {
+  background: #d0d0d0;
+  color: #9d9d9d;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Модификатор: Белая кнопка (вторичная, header) */
+.btn--secondary {
+  background: #ffffff;
+  color: inherit;
+  border-radius: clamp(8px, 1.042vw, 20px);
+  padding: clamp(6.4px, 0.833vw, 16px) clamp(8px, 1.042vw, 20px);
+  font-size: clamp(8.8px, 1.146vw, 22px);
+}
+
+.btn--secondary:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(clamp(-0.4px, -0.052vw, -1px));
+  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(4.8px, 0.625vw, 12px)
+    rgba(0, 0, 0, 0.2);
+}
+
+/* Модификатор: Красная кнопка с иконкой (header services) */
+.btn--services {
+  background: #ee3f3f;
+  color: #fff;
+  border-radius: clamp(8px, 1.042vw, 20px);
+  padding: clamp(5.4px, 0.703vw, 13.5px) clamp(8px, 1.042vw, 20px);
+  font-size: clamp(8.8px, 1.146vw, 22px);
+  display: flex;
+  align-items: center;
+  gap: clamp(3.2px, 0.417vw, 8px);
+  flex-shrink: 0;
+}
+
+.btn--services:hover {
+  background: #d32f2f;
+  transform: translateY(clamp(-0.4px, -0.052vw, -1px));
+  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(4.8px, 0.625vw, 12px)
+    rgba(238, 63, 63, 0.3);
+}
+
+.btn--services .btn__icon {
+  width: clamp(3.6px, 0.469vw, 9px);
+  height: clamp(1.8px, 0.234vw, 4.5px);
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.btn--services:hover .btn__icon {
+  transform: translateY(clamp(0.8px, 0.104vw, 2px));
 }
 
 /* Заголовки секций */
@@ -119,11 +247,6 @@ button {
   object-fit: contain;
 }
 
-.btn-services {
-  margin-left: 0;
-  flex-shrink: 0;
-}
-
 /* Правый блок */
 .header__actions {
   display: flex;
@@ -131,43 +254,6 @@ button {
   gap: clamp(8px, 1.042vw, 20px);
   flex-shrink: 0;
 }
-
-/* Кнопка Услуги */
-.btn-services {
-  background: #ee3f3f;
-  color: #fff;
-  padding-bottom: clamp(5.4px, 0.703vw, 13.5px);
-  padding-top: clamp(5.4px, 0.703vw, 13.5px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  font-size: clamp(8.8px, 1.146vw, 22px);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: clamp(3.2px, 0.417vw, 8px);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.btn-services:hover {
-  background: #d32f2f;
-  transform: translateY(clamp(-0.4px, -0.052vw, -1px));
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(4.8px, 0.625vw, 12px)
-    rgba(238, 63, 63, 0.3);
-}
-
-.btn-services__icon {
-  width: clamp(3.6px, 0.469vw, 9px);
-  height: clamp(1.8px, 0.234vw, 4.5px);
-  filter: brightness(0) invert(1);
-  transition: transform 0.3s ease;
-}
-
-.btn-services:hover .btn-services__icon {
-  transform: translateY(clamp(0.8px, 0.104vw, 2px));
-}
-
 /* Навигация */
 .nav {
   margin-left: auto;
@@ -242,27 +328,6 @@ button {
 
 .header__phone:hover {
   color: #ee3f3f;
-}
-
-.btn-call {
-  background: #ffffff;
-  padding-bottom: clamp(6.4px, 0.833vw, 16px);
-  padding-top: clamp(6.4px, 0.833vw, 16px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  font-size: clamp(8.8px, 1.146vw, 22px);
-  font-weight: 500;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.btn-call:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(clamp(-0.4px, -0.052vw, -1px));
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(4.8px, 0.625vw, 12px)
-    rgba(0, 0, 0, 0.2);
 }
 
 /* Бургер меню */
@@ -367,31 +432,6 @@ button {
   color: #494555;
 }
 
-.hero__btn {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  font-style: normal;
-  line-height: 100%;
-  letter-spacing: 0%;
-  color: #ffffff;
-  background: #ee3f3f;
-  padding: clamp(12px, 1.563vw, 30px) clamp(16.8px, 2.188vw, 42px);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  transition: all 0.3s ease;
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
-    rgba(238, 63, 63, 0.3);
-  width: fit-content;
-}
-
-.hero__btn:hover {
-  background: #d32f2f;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
-}
-
 .hero__image {
   display: flex;
   justify-content: center;
@@ -479,31 +519,6 @@ button {
   letter-spacing: 0%;
   color: #504d5d;
   margin: 0;
-}
-
-.about-company__btn {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  font-style: normal;
-  line-height: 100%;
-  letter-spacing: 0%;
-  color: #ffffff;
-  background: #ee3f3f;
-  padding: clamp(12.4px, 1.615vw, 31px) clamp(16.8px, 2.188vw, 42px);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  transition: all 0.3s ease;
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
-    rgba(238, 63, 63, 0.3);
-  width: fit-content;
-}
-
-.about-company__btn:hover {
-  background: #d32f2f;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
 }
 
 /* Секция Как построена наша работа? (Work Process) */
@@ -898,29 +913,6 @@ button {
   margin: 0;
 }
 
-.reviews__btn {
-  background: #ee3f3f;
-  color: #ffffff;
-  border: none;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: fit-content;
-  margin-top: auto;
-}
-
-.reviews__btn:hover {
-  background: #d32030;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
-}
-
 /* Блок справа: Карточки отзывов */
 .reviews__cards-block {
   column-count: 3;
@@ -1134,31 +1126,6 @@ button {
   letter-spacing: 0%;
   color: #504d5d;
   margin: 0;
-}
-
-.ready-to-start__btn {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  font-style: normal;
-  line-height: 100%;
-  letter-spacing: 0%;
-  color: #ffffff;
-  background: #ee3f3f;
-  padding: clamp(12.4px, 1.615vw, 31px) clamp(16.8px, 2.188vw, 42px);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  transition: all 0.3s ease;
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
-    rgba(238, 63, 63, 0.3);
-  width: fit-content;
-}
-
-.ready-to-start__btn:hover {
-  background: #d32f2f;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
 }
 
 /* Секция Наши достижения и результаты (Achievements) */
@@ -1490,29 +1457,6 @@ button {
   letter-spacing: 0%;
   color: #1f1933;
   margin: 0;
-}
-
-.faq__btn {
-  background: #ee3f3f;
-  color: #ffffff;
-  border: none;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: fit-content;
-  margin-top: auto;
-}
-
-.faq__btn:hover {
-  background: #d32030;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
 }
 
 /* Блок справа: Карточки FAQ */
@@ -1971,29 +1915,6 @@ button {
   margin-bottom: 0;
 }
 
-.track-group__btn {
-  background: #f42534;
-  color: #ffffff;
-  border: none;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: flex-start;
-  margin-top: clamp(32px, 4.167vw, 80px);
-}
-
-.track-group__btn:hover {
-  background: #d32030;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(244, 37, 52, 0.4);
-}
-
 .track-group__image {
   display: flex;
   align-items: center;
@@ -2411,34 +2332,9 @@ button {
   color: #ffa500;
 }
 
-.quick-response__btn {
+/* Кнопка формы должна растягиваться на всю ширину */
+.quick-response__form .btn {
   width: 100%;
-  background: #ee3f3f;
-  color: #ffffff;
-  border: none;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  font-size: clamp(10.4px, 1.354vw, 26px);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: clamp(4px, 0.521vw, 10px);
-}
-
-.quick-response__btn:hover:not(:disabled) {
-  background: #d32030;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
-}
-
-.quick-response__btn:disabled {
-  background: #d0d0d0;
-  color: #9d9d9d;
-  cursor: not-allowed;
-  opacity: 0.7;
 }
 
 .quick-response__agreement {
@@ -2451,7 +2347,7 @@ button {
   letter-spacing: 0%;
   text-align: center;
   color: #9d9d9d;
-  margin: 0;
+  margin-top: clamp(4px, 0.521vw, 10px);
 }
 
 .quick-response__agreement a {
