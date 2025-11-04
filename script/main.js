@@ -148,7 +148,7 @@ function initAboutDropdown() {
   function hideDropdown() {
     hideTimeout = setTimeout(() => {
       dropdown.classList.remove("active");
-    }, 300);
+    }, 150);
   }
 
   // Наведение на элемент навигации

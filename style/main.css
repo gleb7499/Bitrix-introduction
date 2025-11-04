@@ -121,13 +121,12 @@ button {
   font-weight: 500;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 /* Модификатор: Основная красная кнопка (CTA) */
 .btn--primary {
-  background: #ee3f3f;
+  background: #f42534;
   color: #ffffff;
   border-radius: clamp(8px, 1.042vw, 20px);
   padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
@@ -136,47 +135,35 @@ button {
   line-height: 100%;
   letter-spacing: 0%;
   width: fit-content;
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
-    rgba(238, 63, 63, 0.3);
 }
 
 .btn--primary:hover {
-  background: #d32030;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
-    rgba(238, 63, 63, 0.4);
+  background: #fa0012;
 }
 
 .btn--primary:disabled {
-  background: #d0d0d0;
-  color: #9d9d9d;
+  background: #ffd8d8;
+  color: #ffffff;
   cursor: not-allowed;
-  opacity: 0.7;
-  transform: none;
-  box-shadow: none;
 }
 
 /* Модификатор: Белая кнопка (вторичная, header) */
 .btn--secondary {
   background: #ffffff;
-  color: inherit;
+  color: #120f20;
   border-radius: clamp(8px, 1.042vw, 20px);
   padding: clamp(6.4px, 0.833vw, 16px) clamp(8px, 1.042vw, 20px);
   font-size: clamp(8.8px, 1.146vw, 22px);
 }
 
 .btn--secondary:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(clamp(-0.4px, -0.052vw, -1px));
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(4.8px, 0.625vw, 12px)
-    rgba(0, 0, 0, 0.2);
+  background: #e5e5e5;
 }
 
 /* Модификатор: Красная кнопка с иконкой (header services) */
 .btn--services {
-  background: #ee3f3f;
-  color: #fff;
+  background: #f42534;
+  color: #ffffff;
   border-radius: clamp(8px, 1.042vw, 20px);
   padding: clamp(5.4px, 0.703vw, 13.5px) clamp(8px, 1.042vw, 20px);
   font-size: clamp(8.8px, 1.146vw, 22px);
@@ -187,10 +174,7 @@ button {
 }
 
 .btn--services:hover {
-  background: #d32f2f;
-  transform: translateY(clamp(-0.4px, -0.052vw, -1px));
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(4.8px, 0.625vw, 12px)
-    rgba(238, 63, 63, 0.3);
+  background: #FA0012;
 }
 
 .btn--services .btn__icon {
@@ -198,10 +182,6 @@ button {
   height: clamp(1.8px, 0.234vw, 4.5px);
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease;
-}
-
-.btn--services:hover .btn__icon {
-  transform: translateY(clamp(0.8px, 0.104vw, 2px));
 }
 
 /* Заголовки секций */
@@ -301,7 +281,7 @@ button {
 }
 
 .nav__link:hover {
-  color: #ee3f3f;
+  color: #FA0012;
 }
 
 .nav__link:hover .nav__link-icon {
@@ -312,21 +292,6 @@ button {
 /* Поворот иконки при наведении на элемент с dropdown */
 .nav__item--has-dropdown:hover .nav__link-icon {
   transform: rotate(180deg);
-}
-
-.nav__link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: clamp(0.8px, 0.104vw, 2px);
-  background: #ee3f3f;
-  transition: width 0.3s ease;
-}
-
-.nav__link:hover::after {
-  width: 100%;
 }
 
 /* ========================================
@@ -343,8 +308,8 @@ button {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
 }
 
@@ -357,18 +322,20 @@ button {
 }
 
 .nav-dropdown__container {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: clamp(37.6px, 4.896vw, 94px);
   padding: clamp(32px, 4.167vw, 80px);
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 1.042vw, 20px);
-  box-shadow: 0 clamp(4px, 0.521vw, 10px) clamp(20px, 2.604vw, 50px) rgba(0, 0, 0, 0.1);
+  box-shadow: 0 clamp(4px, 0.521vw, 10px) clamp(20px, 2.604vw, 50px)
+    rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
 
 .nav-dropdown__link {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: clamp(8.8px, 1.146vw, 22px);
@@ -381,7 +348,7 @@ button {
 }
 
 .nav-dropdown__link:hover {
-  color: #F42534;
+  color: #f42534;
 }
 
 .header__phone {
@@ -1331,7 +1298,6 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
   padding: 0;
 }
 
@@ -1339,20 +1305,24 @@ button {
   width: 100%;
   height: 100%;
   display: block;
+  filter: none;
+  transition: filter 0.3s ease;
 }
 
-.services__nav-btn:hover {
-  opacity: 0.7;
-  transform: scale(1.05);
+.services__nav-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
 }
 
 .services__nav-btn:disabled {
-  opacity: 0.4;
   cursor: not-allowed;
 }
 
-.services__nav-btn:disabled:hover {
-  transform: scale(1);
+.services__nav-btn:disabled img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+}
+
+.services__nav-btn:disabled:hover img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .services__grid {
@@ -1830,22 +1800,30 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.3s ease;
 }
 
 .track-group__nav-btn img {
   width: clamp(14.4px, 1.875vw, 36px);
   height: clamp(14.4px, 1.875vw, 36px);
   display: block;
+  filter: none;
+  transition: filter 0.3s ease;
 }
 
-.track-group__nav-btn:hover {
-  opacity: 0.7;
+.track-group__nav-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
 }
 
 .track-group__nav-btn:disabled {
-  opacity: 0.3;
   cursor: not-allowed;
+}
+
+.track-group__nav-btn:disabled img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+}
+
+.track-group__nav-btn:disabled:hover img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .track-group__nav-text {
@@ -2060,11 +2038,30 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.special-offers__nav-btn:hover {
-  opacity: 0.7;
+.special-offers__nav-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+.special-offers__nav-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
+}
+
+.special-offers__nav-btn:disabled {
+  cursor: not-allowed;
+}
+
+.special-offers__nav-btn:disabled img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+}
+
+.special-offers__nav-btn:disabled:hover img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .special-offers__nav-btn svg {
@@ -2505,11 +2502,30 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.blog__nav-btn:hover {
-  opacity: 0.7;
+.blog__nav-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+.blog__nav-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
+}
+
+.blog__nav-btn:disabled {
+  cursor: not-allowed;
+}
+
+.blog__nav-btn:disabled img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+}
+
+.blog__nav-btn:disabled:hover img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .blog__nav-btn svg {
@@ -2802,8 +2818,12 @@ button {
   justify-content: center;
   width: clamp(32px, 4.167vw, 80px);
   height: clamp(32px, 4.167vw, 80px);
-  border-radius: clamp(16px, 2.083vw, 40px);
-  color: #494555;
+  border-radius: 100px; /* фиксированной значение px обязательно для круглой иконки! */
+  background-color: #ffffff;
+}
+
+.footer__social-link:hover {
+  background-color: #e5e5e5;
 }
 
 .footer__social-link img {
@@ -2829,7 +2849,7 @@ button {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .services-popup.active {
@@ -2848,25 +2868,28 @@ button {
   bottom: 0;
   backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
   -webkit-backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
-  background-color: #FFFFFF03;
+  background-color: #ffffff03;
   z-index: 998;
 }
 
 /* Контейнер меню */
 .services-popup__container {
   position: absolute;
-  top: calc(var(--header-offset-top) + var(--header-height, 94px) + clamp(8px, 1.042vw, 20px));
+  top: calc(
+    var(--header-offset-top) + var(--header-height, 94px) +
+      clamp(8px, 1.042vw, 20px)
+  );
   left: clamp(8px, 1.042vw, 20px);
   right: clamp(8px, 1.042vw, 20px);
   border-radius: clamp(37.6px, 4.896vw, 94px);
-  background: #FFFFFF;
+  background: #ffffff;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(32px, 4.167vw, 80px);
   transform: translateY(clamp(-8px, -1.042vw, -20px));
   opacity: 0;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 999;
 }
 
@@ -2894,13 +2917,14 @@ button {
 }
 
 .services-popup__category {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: clamp(11.2px, 1.458vw, 28px);
   line-height: 100%;
   letter-spacing: 0%;
-  color: #1F1933;
+  color: #1f1933;
   margin: 0;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -2908,11 +2932,11 @@ button {
 }
 
 .services-popup__category:hover {
-  color: #FA0012;
+  color: #fa0012;
 }
 
 .services-popup__category.active {
-  color: #FA0012;
+  color: #fa0012;
 }
 
 /* Колонки с подтемами */
@@ -2923,7 +2947,8 @@ button {
 }
 
 .services-popup__link {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: clamp(8.8px, 1.146vw, 22px);
@@ -2935,7 +2960,7 @@ button {
 }
 
 .services-popup__link:hover {
-  color: #FA0012;
+  color: #fa0012;
 }
 
 /* Блок с фотографией */
