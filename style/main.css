@@ -54,9 +54,9 @@
 
 /* Общие стили и сброс */
 :root {
-  --header-offset-top: clamp(8px, 1.042vw, 20px);
-  --header-padding-vertical: clamp(8px, 1.042vw, 20px);
-  --header-border-radius: clamp(18.8px, 2.448vw, 47px);
+  --header-offset-top: 1.042vw /* 20px */;
+  --header-padding-vertical: 1.042vw /* 20px */;
+  --header-border-radius: 2.448vw /* 47px */;
 }
 
 * {
@@ -72,13 +72,13 @@ html {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   line-height: 1.6;
   color: #333;
   background-color: #e5e5e5;
   /* Динамический padding: верхний = отступ + высота header + доп. отступ, боковые = 20px (адаптивные) */
   padding: calc(var(--header-offset-top) + var(--header-height, 94px) + 20px)
-    clamp(8px, 1.042vw, 20px) 0;
+    1.042vw /* 20px */ 0;
   transition: none;
 }
 
@@ -140,9 +140,9 @@ button {
 .btn--primary {
   background: #f42534;
   color: #ffffff;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(12.6px, 1.641vw, 31.5px) clamp(16.8px, 2.188vw, 42px);
-  font-size: clamp(10.4px, 1.354vw, 26px);
+  border-radius: 1.042vw /* 20px */;
+  padding: 1.641vw /* 31.5px */ 2.188vw /* 42px */;
+  font-size: 1.354vw /* 26px */;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
@@ -163,9 +163,9 @@ button {
 .btn--secondary {
   background: #ffffff;
   color: #120f20;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(6.4px, 0.833vw, 16px) clamp(8px, 1.042vw, 20px);
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  border-radius: 1.042vw /* 20px */;
+  padding: 0.833vw /* 16px */ 1.042vw /* 20px */;
+  font-size: 1.146vw /* 22px */;
 }
 
 .btn--secondary:hover {
@@ -176,12 +176,12 @@ button {
 .btn--services {
   background: #f42534;
   color: #ffffff;
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(5.4px, 0.703vw, 13.5px) clamp(8px, 1.042vw, 20px);
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  border-radius: 1.042vw /* 20px */;
+  padding: 0.703vw /* 13.5px */ 1.042vw /* 20px */;
+  font-size: 1.146vw /* 22px */;
   display: flex;
   align-items: center;
-  gap: clamp(3.2px, 0.417vw, 8px);
+  gap: 0.417vw /* 8px */;
   flex-shrink: 0;
 }
 
@@ -190,24 +190,24 @@ button {
 }
 
 .btn--services .btn__icon {
-  width: clamp(3.6px, 0.469vw, 9px);
-  height: clamp(1.8px, 0.234vw, 4.5px);
+  width: 0.469vw /* 9px */;
+  height: 0.234vw /* 4.5px */;
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease;
 }
 
 /* Заголовки секций */
 .section__title {
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   text-align: center;
-  margin-bottom: clamp(20px, 2.604vw, 50px);
+  margin-bottom: 2.604vw /* 50px */;
   color: #222;
 }
 
 .header {
   position: fixed;
-  top: clamp(8px, 1.042vw, 20px);
+  top: 1.042vw /* 20px */;
   left: 0;
   right: 0;
   z-index: 1200;
@@ -215,8 +215,8 @@ button {
   background: #ffffff03;
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
-  border-radius: clamp(18.8px, 2.448vw, 47px);
-  margin: 0 clamp(8px, 1.042vw, 20px);
+  border-radius: 2.448vw /* 47px */;
+  margin: 0 1.042vw /* 20px */;
   transition: backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -231,20 +231,20 @@ body.overlay-active .header {
 /* Header не должен блюриться когда открыто меню */
 .header .container {
   max-width: 100%;
-  padding: clamp(8px, 1.042vw, 20px) clamp(12px, 1.563vw, 30px);
+  padding: 1.042vw /* 20px */ 1.563vw /* 30px */;
 }
 
 .header__content {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
 }
 
 /* Логотип в header */
 .header__logo {
-  width: clamp(90.36px, 11.766vw, 225.9px);
-  height: clamp(21.6px, 2.813vw, 54px);
-  margin-left: clamp(16px, 2.083vw, 40px);
+  width: 11.766vw /* 225.9px */;
+  height: 2.813vw /* 54px */;
+  margin-left: 2.083vw /* 40px */;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -253,7 +253,7 @@ body.overlay-active .header {
 .header__actions {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
   flex-shrink: 0;
 }
 /* Навигация */
@@ -266,7 +266,7 @@ body.overlay-active .header {
 
 .nav__list {
   display: flex;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
   align-items: center;
 }
 
@@ -280,20 +280,20 @@ body.overlay-active .header {
 }
 
 .nav__link {
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   color: #494555;
   transition: color 0.3s ease;
   position: relative;
-  padding: clamp(2px, 0.26vw, 5px) 0;
+  padding: 0.26vw /* 5px */ 0;
   display: inline-flex;
   align-items: center;
-  gap: clamp(2.4px, 0.313vw, 6px);
+  gap: 0.313vw /* 6px */;
 }
 
 .nav__link-icon {
-  width: clamp(3.6px, 0.469vw, 9px);
-  height: clamp(1.8px, 0.234vw, 4.5px);
+  width: 0.469vw /* 9px */;
+  height: 0.234vw /* 4.5px */;
   /* Фильтр для цвета #494555 */
   filter: brightness(0) saturate(100%) invert(29%) sepia(8%) saturate(705%)
     hue-rotate(222deg) brightness(94%) contrast(88%);
@@ -320,10 +320,10 @@ body.overlay-active .header {
 
 .nav-dropdown {
   position: absolute;
-  padding-top: clamp(8px, 1.042vw, 20px);
-  top: calc(100% + clamp(8px, 1.042vw, 20px));
+  padding-top: 1.042vw /* 20px */;
+  top: calc(100% + 1.042vw /* 20px */);
   left: 50%;
-  transform: translateX(-50%) translateY(clamp(-8px, -1.042vw, -20px));
+  transform: translateX(-50%) translateY(-1.042vw /* -20px */);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -343,12 +343,12 @@ body.overlay-active .header {
 
 .nav-dropdown__container {
   background: #ffffff;
-  border-radius: clamp(37.6px, 4.896vw, 94px);
-  padding: clamp(32px, 4.167vw, 80px);
+  border-radius: 4.896vw /* 94px */;
+  padding: 4.167vw /* 80px */;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.042vw, 20px);
-  box-shadow: 0 clamp(4px, 0.521vw, 10px) clamp(20px, 2.604vw, 50px)
+  gap: 1.042vw /* 20px */;
+  box-shadow: 0 0.521vw /* 10px */ 2.604vw /* 50px */
     rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
@@ -358,13 +358,13 @@ body.overlay-active .header {
     sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
   text-decoration: none;
   transition: color 0.3s ease;
-  padding: clamp(4px, 0.521vw, 10px) 0;
+  padding: 0.521vw /* 10px */ 0;
 }
 
 .nav-dropdown__link:hover {
@@ -372,7 +372,7 @@ body.overlay-active .header {
 }
 
 .header__phone {
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   color: #494555;
   text-decoration: none;
@@ -388,22 +388,22 @@ body.overlay-active .header {
 .burger {
   display: none;
   flex-direction: column;
-  gap: clamp(2px, 0.26vw, 5px);
-  padding: clamp(4px, 0.521vw, 10px);
+  gap: 0.26vw /* 5px */;
+  padding: 0.521vw /* 10px */;
   flex-shrink: 0;
 }
 
 .burger__line {
-  width: clamp(10px, 1.302vw, 25px);
-  height: clamp(1.2px, 0.156vw, 3px);
+  width: 1.302vw /* 25px */;
+  height: 0.156vw /* 3px */;
   background-color: #000;
-  border-radius: clamp(0.8px, 0.104vw, 2px);
+  border-radius: 0.104vw /* 2px */;
   transition: all 0.3s ease;
 }
 
 .burger.active .burger__line:nth-child(1) {
   transform: rotate(45deg)
-    translate(clamp(3.2px, 0.417vw, 8px), clamp(3.2px, 0.417vw, 8px));
+    translate(0.417vw /* 8px */, 0.417vw /* 8px */);
 }
 
 .burger.active .burger__line:nth-child(2) {
@@ -412,15 +412,15 @@ body.overlay-active .header {
 
 .burger.active .burger__line:nth-child(3) {
   transform: rotate(-45deg)
-    translate(clamp(2.8px, 0.365vw, 7px), clamp(-2.8px, -0.365vw, -7px));
+    translate(0.365vw /* 7px */, -0.365vw /* -7px */);
 }
 
 /* Основные секции */
 .section {
   width: 100%;
   background-color: #ffffff;
-  border-radius: clamp(37.6px, 4.896vw, 94px);
-  margin: 0 0 clamp(8px, 1.042vw, 20px) 0;
+  border-radius: 4.896vw /* 94px */;
+  margin: 0 0 1.042vw /* 20px */ 0;
 }
 
 /* Секция Hero (ИТ-инфраструктура нового уровня) */
@@ -441,9 +441,9 @@ body.overlay-active .header {
 }
 
 .section__title {
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
   color: #222;
 }
 
@@ -451,23 +451,23 @@ body.overlay-active .header {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: clamp(65.2px, 8.49vw, 163px);
-  padding-top: clamp(28px, 3.646vw, 70px);
-  padding-left: clamp(32px, 4.167vw, 80px);
-  padding-bottom: clamp(32px, 4.167vw, 80px);
-  padding-right: clamp(5.2px, 0.677vw, 13px);
+  gap: 8.49vw /* 163px */;
+  padding-top: 3.646vw /* 70px */;
+  padding-left: 4.167vw /* 80px */;
+  padding-bottom: 4.167vw /* 80px */;
+  padding-right: 0.677vw /* 13px */;
 }
 
 .hero__text-group {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
 }
 
 .hero__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(25.6px, 3.333vw, 64px);
+  font-size: 3.333vw /* 64px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -478,7 +478,7 @@ body.overlay-active .header {
 .hero__description {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -490,14 +490,14 @@ body.overlay-active .header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(8px, 1.042vw, 20px);
+  padding: 1.042vw /* 20px */;
   padding-left: 0;
 }
 
 .hero__image img {
   max-width: 55.83vw;
   object-fit: contain;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border-radius: 3.854vw /* 74px */;
 }
 
 /* Секция Узнайте больше о нашей компании (About Company) */
@@ -505,7 +505,7 @@ body.overlay-active .header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  gap: clamp(28px, 3.646vw, 70px);
+  gap: 3.646vw /* 70px */;
   padding: 0;
 }
 
@@ -514,14 +514,14 @@ body.overlay-active .header {
   grid-row: 1;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-top: clamp(28px, 3.646vw, 70px);
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-top: 3.646vw /* 70px */;
+  margin-left: 4.167vw /* 80px */;
   margin-bottom: 0;
 }
 
@@ -531,17 +531,17 @@ body.overlay-active .header {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: clamp(8px, 1.042vw, 20px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 1.042vw /* 20px */;
+  margin-bottom: 1.042vw /* 20px */;
   min-width: 0;
 }
 
 .about-company__image img {
   max-width: 100%;
   height: auto;
-  max-height: clamp(286.4px, 37.292vw, 716px);
+  max-height: 37.292vw /* 716px */;
   object-fit: contain;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border-radius: 3.854vw /* 74px */;
   display: block;
 }
 
@@ -551,21 +551,21 @@ body.overlay-active .header {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  gap: clamp(26.4px, 3.438vw, 66px);
-  margin-right: clamp(28px, 3.646vw, 70px);
-  margin-top: clamp(28px, 3.646vw, 70px);
+  gap: 3.438vw /* 66px */;
+  margin-right: 3.646vw /* 70px */;
+  margin-top: 3.646vw /* 70px */;
 }
 
 .about-company__text {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
 }
 
 .about-company__text p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -576,7 +576,7 @@ body.overlay-active .header {
 
 /* Секция Как построена наша работа? (Work Process) */
 .section--work-process {
-  padding-top: clamp(28px, 3.646vw, 70px);
+  padding-top: 3.646vw /* 70px */;
 }
 
 .work-process {
@@ -587,7 +587,7 @@ body.overlay-active .header {
 .work-process__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -595,37 +595,37 @@ body.overlay-active .header {
   color: #1f1933;
   text-align: start;
   margin-top: 0;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-bottom: 1.042vw /* 20px */;
+  margin-left: 4.167vw /* 80px */;
 }
 
 .work-process__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-bottom: clamp(24px, 3.125vw, 60px);
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-bottom: 3.125vw /* 60px */;
+  margin-left: 4.167vw /* 80px */;
 }
 
 .work-process__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(8px, 1.042vw, 20px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
 }
 
 .work-process-card {
   background: transparent;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
 }
@@ -634,44 +634,44 @@ body.overlay-active .header {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-top: clamp(8px, 1.042vw, 20px);
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-top: 1.042vw /* 20px */;
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .work-process-card__image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(21.6px, 2.813vw, 54px);
+  border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
 }
 
 .work-process-card__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
-  margin-left: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 1.042vw /* 20px */;
+  margin-left: 3.125vw /* 60px */;
 }
 
 .work-process-card__text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-left: clamp(24px, 3.125vw, 60px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 3.125vw /* 60px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 /* Секция Тарифы */
@@ -681,18 +681,18 @@ body.overlay-active .header {
 }
 
 .tariffs__header {
-  margin-bottom: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 3.125vw /* 60px */;
 }
 
 .tariffs__title {
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   color: #1e1b39;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .tariffs__description {
-  font-size: clamp(7.2px, 0.938vw, 18px);
+  font-size: 0.938vw /* 18px */;
   font-weight: 400;
   color: #494555;
 }
@@ -700,13 +700,13 @@ body.overlay-active .header {
 .tariffs__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(12px, 1.563vw, 30px);
+  gap: 1.563vw /* 30px */;
 }
 
 .tariff-card {
   background: #ffffff;
-  border-radius: clamp(16px, 2.083vw, 40px);
-  padding: clamp(20px, 2.604vw, 50px) clamp(16px, 2.083vw, 40px);
+  border-radius: 2.083vw /* 40px */;
+  padding: 2.604vw /* 50px */ 2.083vw /* 40px */;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -714,46 +714,46 @@ body.overlay-active .header {
 }
 
 .tariff-card--green {
-  border: clamp(1.2px, 0.156vw, 3px) solid #a3e88c;
+  border: 0.156vw /* 3px */ solid #a3e88c;
 }
 
 .tariff-card--yellow {
-  border: clamp(1.2px, 0.156vw, 3px) solid #f5d76e;
+  border: 0.156vw /* 3px */ solid #f5d76e;
 }
 
 .tariff-card--red {
-  border: clamp(1.2px, 0.156vw, 3px) solid #ffb8b8;
+  border: 0.156vw /* 3px */ solid #ffb8b8;
 }
 
 .tariff-card:hover {
-  transform: translateY(clamp(-4px, -0.521vw, -10px));
-  box-shadow: 0 clamp(6px, 0.781vw, 15px) clamp(16px, 2.083vw, 40px)
+  transform: translateY(-0.521vw /* -10px */);
+  box-shadow: 0 0.781vw /* 15px */ 2.083vw /* 40px */
     rgba(0, 0, 0, 0.12);
 }
 
 .tariff-card__header {
-  margin-bottom: clamp(14px, 1.823vw, 35px);
+  margin-bottom: 1.823vw /* 35px */;
 }
 
 .tariff-card__name {
-  font-size: clamp(11.2px, 1.458vw, 28px);
+  font-size: 1.458vw /* 28px */;
   font-weight: 700;
   color: #1e1b39;
-  margin-bottom: clamp(6px, 0.781vw, 15px);
+  margin-bottom: 0.781vw /* 15px */;
 }
 
 .tariff-card__price {
-  font-size: clamp(12.8px, 1.667vw, 32px);
+  font-size: 1.667vw /* 32px */;
   font-weight: 700;
   color: #1e1b39;
-  margin-bottom: clamp(6px, 0.781vw, 15px);
+  margin-bottom: 0.781vw /* 15px */;
 }
 
 .tariff-card__badge {
   display: inline-block;
-  padding: clamp(3.2px, 0.417vw, 8px) clamp(6.4px, 0.833vw, 16px);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  font-size: clamp(5.6px, 0.729vw, 14px);
+  padding: 0.417vw /* 8px */ 0.833vw /* 16px */;
+  border-radius: 1.042vw /* 20px */;
+  font-size: 0.729vw /* 14px */;
   font-weight: 600;
 }
 
@@ -775,12 +775,12 @@ body.overlay-active .header {
 .tariff-card__discount {
   display: flex;
   align-items: center;
-  gap: clamp(4px, 0.521vw, 10px);
-  margin-top: clamp(4px, 0.521vw, 10px);
+  gap: 0.521vw /* 10px */;
+  margin-top: 0.521vw /* 10px */;
 }
 
 .tariff-card__old-price {
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   font-weight: 400;
   color: #999;
   text-decoration: line-through;
@@ -788,16 +788,16 @@ body.overlay-active .header {
 
 .tariff-card__features {
   list-style: none;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
   flex-grow: 1;
 }
 
 .tariff-card__feature {
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   font-weight: 400;
   line-height: 1.6;
   color: #494555;
-  margin-bottom: clamp(6px, 0.781vw, 15px);
+  margin-bottom: 0.781vw /* 15px */;
   padding-left: 0;
 }
 
@@ -808,20 +808,20 @@ body.overlay-active .header {
 .tariff-card__btn {
   background: #ee3f3f;
   color: #fff;
-  padding: clamp(7.2px, 0.938vw, 18px) clamp(16px, 2.083vw, 40px);
-  border-radius: clamp(12px, 1.563vw, 30px);
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  padding: 0.938vw /* 18px */ 2.083vw /* 40px */;
+  border-radius: 1.563vw /* 30px */;
+  font-size: 0.833vw /* 16px */;
   font-weight: 600;
   width: 100%;
   transition: all 0.3s ease;
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
+  box-shadow: 0 0.208vw /* 4px */ 1.042vw /* 20px */
     rgba(238, 63, 63, 0.3);
 }
 
 .tariff-card__btn:hover {
   background: #d32f2f;
-  transform: translateY(clamp(-0.8px, -0.104vw, -2px));
-  box-shadow: 0 clamp(2.4px, 0.313vw, 6px) clamp(10px, 1.302vw, 25px)
+  transform: translateY(-0.104vw /* -2px */);
+  box-shadow: 0 0.313vw /* 6px */ 1.302vw /* 25px */
     rgba(238, 63, 63, 0.4);
 }
 
@@ -832,76 +832,76 @@ body.overlay-active .header {
 }
 
 .section--advantages {
-  padding-top: clamp(28px, 3.646vw, 70px);
+  padding-top: 3.646vw /* 70px */;
 }
 
 .advantages__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: clamp(32px, 4.167vw, 80px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 4.167vw /* 80px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .advantages__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: clamp(32px, 4.167vw, 80px);
-  margin-bottom: clamp(28px, 3.646vw, 70px);
+  margin-left: 4.167vw /* 80px */;
+  margin-bottom: 3.646vw /* 70px */;
 }
 
 .advantages__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(8px, 1.042vw, 20px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
 }
 
 .advantage-card {
   background: transparent;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-top: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(16px, 2.083vw, 40px);
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-top: 1.042vw /* 20px */;
+  padding-bottom: 2.083vw /* 40px */;
 }
 
 .advantage-card__image {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .advantage-card__image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(21.6px, 2.813vw, 54px);
+  border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
 }
 
 .advantage-card__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   font-style: normal;
   text-align: center;
@@ -913,14 +913,14 @@ body.overlay-active .header {
 .advantage-card__text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-left: clamp(24px, 3.125vw, 60px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 3.125vw /* 60px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 /* Удаляем старые модификаторы цветов */
@@ -933,13 +933,13 @@ body.overlay-active .header {
 
 /* Секция Отзывы */
 .section--reviews {
-  gap: clamp(32px, 4.167vw, 80px);
+  gap: 4.167vw /* 80px */;
 }
 
 .reviews__container {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: clamp(32px, 4.167vw, 80px);
+  gap: 4.167vw /* 80px */;
   justify-content: space-between;
   margin: 0 auto;
 }
@@ -949,15 +949,15 @@ body.overlay-active .header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: clamp(28px, 3.646vw, 70px);
-  padding-left: clamp(32px, 4.167vw, 80px);
-  padding-bottom: clamp(32px, 4.167vw, 80px);
+  padding-top: 3.646vw /* 70px */;
+  padding-left: 4.167vw /* 80px */;
+  padding-bottom: 4.167vw /* 80px */;
 }
 
 .reviews__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -969,8 +969,8 @@ body.overlay-active .header {
 /* Блок справа: Карточки отзывов */
 .reviews__cards-block {
   column-count: 3;
-  column-gap: clamp(8px, 1.042vw, 20px);
-  padding: clamp(8px, 1.042vw, 20px);
+  column-gap: 1.042vw /* 20px */;
+  padding: 1.042vw /* 20px */;
   position: relative;
 }
 
@@ -978,11 +978,11 @@ body.overlay-active .header {
 .reviews__cards-block::after {
   content: "";
   position: absolute;
-  border-radius: clamp(37.6px, 4.896vw, 94px);
+  border-radius: 4.896vw /* 94px */;
   bottom: 0;
   left: 0;
   right: 0;
-  height: clamp(120px, 15.625vw, 300px);
+  height: 15.625vw /* 300px */;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
@@ -999,28 +999,28 @@ body.overlay-active .header {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: clamp(8px, 1.042vw, 20px);
-  padding: clamp(20px, 2.604vw, 50px);
+  gap: 1.042vw /* 20px */;
+  padding: 2.604vw /* 50px */;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   break-inside: avoid;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 /* Хедер карточки: Фото + Инфо */
 .reviews__card-header {
   display: flex;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
   align-items: center;
   width: 100%;
 }
 
 /* Фото пользователя */
 .reviews__card-photo {
-  width: clamp(32px, 4.167vw, 80px);
-  height: clamp(32px, 4.167vw, 80px);
-  border-radius: clamp(43.2px, 5.625vw, 108px);
+  width: 4.167vw /* 80px */;
+  height: 4.167vw /* 80px */;
+  border-radius: 5.625vw /* 108px */;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -1029,7 +1029,7 @@ body.overlay-active .header {
 .reviews__card-info {
   display: flex;
   flex-direction: column;
-  gap: clamp(3.2px, 0.417vw, 8px);
+  gap: 0.417vw /* 8px */;
   justify-content: center;
 }
 
@@ -1037,7 +1037,7 @@ body.overlay-active .header {
 .reviews__card-name {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -1048,14 +1048,14 @@ body.overlay-active .header {
 /* Мета-информация: компания и дата */
 .reviews__card-meta {
   display: flex;
-  gap: clamp(3.2px, 0.417vw, 8px);
+  gap: 0.417vw /* 8px */;
 }
 
 /* Название компании */
 .reviews__card-company {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1068,7 +1068,7 @@ body.overlay-active .header {
 .reviews__card-date {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1080,7 +1080,7 @@ body.overlay-active .header {
 .reviews__card-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1093,7 +1093,7 @@ body.overlay-active .header {
 .reviews__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -1112,7 +1112,7 @@ body.overlay-active .header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  gap: clamp(28px, 3.646vw, 70px);
+  gap: 3.646vw /* 70px */;
   padding: 0;
 }
 
@@ -1121,14 +1121,14 @@ body.overlay-active .header {
   grid-row: 1;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-top: clamp(28px, 3.646vw, 70px);
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-top: 3.646vw /* 70px */;
+  margin-left: 4.167vw /* 80px */;
   margin-bottom: 0;
 }
 
@@ -1138,17 +1138,17 @@ body.overlay-active .header {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: clamp(8px, 1.042vw, 20px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 1.042vw /* 20px */;
+  margin-bottom: 1.042vw /* 20px */;
   min-width: 0;
 }
 
 .ready-to-start__image img {
   max-width: 100%;
   height: auto;
-  max-height: clamp(286.4px, 37.292vw, 716px);
+  max-height: 37.292vw /* 716px */;
   object-fit: contain;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border-radius: 3.854vw /* 74px */;
   display: block;
 }
 
@@ -1158,21 +1158,21 @@ body.overlay-active .header {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  gap: clamp(26.4px, 3.438vw, 66px);
-  margin-right: clamp(28px, 3.646vw, 70px);
-  margin-top: clamp(28px, 3.646vw, 70px);
+  gap: 3.438vw /* 66px */;
+  margin-right: 3.646vw /* 70px */;
+  margin-top: 3.646vw /* 70px */;
 }
 
 .ready-to-start__text {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
 }
 
 .ready-to-start__text p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1183,42 +1183,42 @@ body.overlay-active .header {
 
 /* Секция Наши достижения и результаты (Achievements) */
 .section--achievements {
-  padding-top: clamp(28px, 3.646vw, 70px);
+  padding-top: 3.646vw /* 70px */;
 }
 
 .achievements__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
   text-align: center;
-  margin-bottom: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 3.125vw /* 60px */;
 }
 
 .achievements__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(8px, 1.042vw, 20px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
 }
 
 .achievements__card {
   background: transparent;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(24px, 3.125vw, 60px);
-  min-height: clamp(120px, 15.625vw, 300px);
+  padding: 3.125vw /* 60px */;
+  min-height: 15.625vw /* 300px */;
 }
 
 .achievements__card-content {
@@ -1226,14 +1226,14 @@ body.overlay-active .header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
   text-align: center;
 }
 
 .achievements__card-value {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(25.6px, 3.333vw, 64px);
+  font-size: 3.333vw /* 64px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -1244,7 +1244,7 @@ body.overlay-active .header {
 .achievements__card-label {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1259,15 +1259,15 @@ body.overlay-active .header {
 }
 
 .section--services {
-  padding-top: clamp(28px, 3.646vw, 70px);
+  padding-top: 3.646vw /* 70px */;
 }
 
 .services__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: clamp(24px, 3.125vw, 60px);
-  gap: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 3.125vw /* 60px */;
+  gap: 2.083vw /* 40px */;
 }
 
 .services__header-text {
@@ -1277,40 +1277,40 @@ body.overlay-active .header {
 .services__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: clamp(32px, 4.167vw, 80px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 4.167vw /* 80px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .services__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-left: 4.167vw /* 80px */;
   margin-bottom: 0;
 }
 
 .services__navigation {
   display: flex;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
   flex-shrink: 0;
   align-self: flex-end;
-  margin-right: clamp(32px, 4.167vw, 80px);
+  margin-right: 4.167vw /* 80px */;
 }
 
 .services__nav-btn {
-  width: clamp(14.4px, 1.875vw, 36px);
-  height: clamp(14.4px, 1.875vw, 36px);
+  width: 1.875vw /* 36px */;
+  height: 1.875vw /* 36px */;
   border: none;
   background: transparent;
   display: flex;
@@ -1349,10 +1349,10 @@ body.overlay-active .header {
 
 .services__grid {
   display: flex;
-  gap: clamp(8px, 1.042vw, 20px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
   position: relative;
   overflow: hidden;
 }
@@ -1361,11 +1361,11 @@ body.overlay-active .header {
 .services__grid::before {
   content: "";
   position: absolute;
-  border-radius: 0 0 0 clamp(37.6px, 4.896vw, 94px);
+  border-radius: 0 0 0 4.896vw /* 94px */;
   top: 0;
   bottom: 0;
   left: 0;
-  width: clamp(120px, 15.625vw, 300px);
+  width: 15.625vw /* 300px */;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) 0%,
@@ -1386,11 +1386,11 @@ body.overlay-active .header {
 .services__grid::after {
   content: "";
   position: absolute;
-  border-radius: 0 0 clamp(37.6px, 4.896vw, 94px) 0;
+  border-radius: 0 0 4.896vw /* 94px */ 0;
   top: 0;
   bottom: 0;
   right: 0;
-  width: clamp(120px, 15.625vw, 300px);
+  width: 15.625vw /* 300px */;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -1410,56 +1410,56 @@ body.overlay-active .header {
 .services__card {
   background: transparent;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: calc((100% - (3 * clamp(8px, 1.042vw, 20px))) / 4);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-top: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(16px, 2.083vw, 40px);
+  width: calc((100% - (3 * 1.042vw /* 20px */)) / 4);
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-top: 1.042vw /* 20px */;
+  padding-bottom: 2.083vw /* 40px */;
 }
 
 .services__card-image {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .services__card-image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(21.6px, 2.813vw, 54px);
+  border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
 }
 
 .services__card-title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
-  margin-left: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 1.042vw /* 20px */;
+  margin-left: 3.125vw /* 60px */;
 }
 
 .services__card-menu {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-left: clamp(24px, 3.125vw, 60px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 3.125vw /* 60px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .services__card-menu li {
-  margin-bottom: clamp(4px, 0.521vw, 10px);
+  margin-bottom: 0.521vw /* 10px */;
 }
 
 .services__card-menu li:last-child {
@@ -1469,7 +1469,7 @@ body.overlay-active .header {
 .services__card-menu a {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -1485,13 +1485,13 @@ body.overlay-active .header {
 
 /* Секция FAQ */
 .section--faq {
-  gap: clamp(32px, 4.167vw, 80px);
+  gap: 4.167vw /* 80px */;
 }
 
 .faq__container {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: clamp(32px, 4.167vw, 80px);
+  gap: 4.167vw /* 80px */;
   justify-content: space-between;
   margin: 0 auto;
 }
@@ -1501,15 +1501,15 @@ body.overlay-active .header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: clamp(28px, 3.646vw, 70px);
-  padding-left: clamp(32px, 4.167vw, 80px);
-  padding-bottom: clamp(32px, 4.167vw, 80px);
+  padding-top: 3.646vw /* 70px */;
+  padding-left: 4.167vw /* 80px */;
+  padding-bottom: 4.167vw /* 80px */;
 }
 
 .faq__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -1521,8 +1521,8 @@ body.overlay-active .header {
 /* Блок справа: Карточки FAQ */
 .faq__cards-block {
   column-count: 2;
-  column-gap: clamp(8px, 1.042vw, 20px);
-  padding: clamp(8px, 1.042vw, 20px);
+  column-gap: 1.042vw /* 20px */;
+  padding: 1.042vw /* 20px */;
   position: relative;
 }
 
@@ -1533,12 +1533,12 @@ body.overlay-active .header {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 0;
-  padding: clamp(20px, 2.604vw, 50px);
+  padding: 2.604vw /* 50px */;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid #bfbfbf;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid #bfbfbf;
+  border-radius: 3.854vw /* 74px */;
   break-inside: avoid;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
   transition: border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1552,7 +1552,7 @@ body.overlay-active .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
   width: 100%;
 }
 
@@ -1560,7 +1560,7 @@ body.overlay-active .header {
 .faq__question-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 120%;
@@ -1577,8 +1577,8 @@ body.overlay-active .header {
   padding: 0;
   cursor: pointer;
   flex-shrink: 0;
-  width: clamp(16px, 2.083vw, 40px);
-  height: clamp(16px, 2.083vw, 40px);
+  width: 2.083vw /* 40px */;
+  height: 2.083vw /* 40px */;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1600,7 +1600,7 @@ body.overlay-active .header {
 .faq__answer {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 140%;
@@ -1620,15 +1620,15 @@ body.overlay-active .header {
 
 /* Активный ответ (раскрыт) */
 .faq__card.active .faq__answer {
-  max-height: clamp(600px, 78.125vw, 1500px);
+  max-height: 78.125vw /* 1500px */;
   opacity: 1;
-  padding-top: clamp(12px, 1.563vw, 30px);
+  padding-top: 1.563vw /* 30px */;
   transform: translateY(0);
 }
 
 /* Секция Клиенты */
 .section--clients {
-  padding-top: clamp(28px, 3.646vw, 70px);
+  padding-top: 3.646vw /* 70px */;
   overflow: hidden;
 }
 
@@ -1641,33 +1641,33 @@ body.overlay-active .header {
 .clients__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
   text-align: center;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .clients__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
   color: #504d5d;
-  margin-bottom: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 3.125vw /* 60px */;
 }
 
 .clients__carousel-wrapper {
   position: relative;
   overflow: hidden;
-  margin-bottom: clamp(28px, 3.646vw, 70px);
+  margin-bottom: 3.646vw /* 70px */;
 }
 
 /* Затухание по краям */
@@ -1677,7 +1677,7 @@ body.overlay-active .header {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(60px, 7.813vw, 150px);
+  width: 7.813vw /* 150px */;
   z-index: 2;
   pointer-events: none;
 }
@@ -1702,12 +1702,12 @@ body.overlay-active .header {
 
 .clients__carousel {
   overflow: hidden;
-  padding: clamp(8px, 1.042vw, 20px) 0;
+  padding: 1.042vw /* 20px */ 0;
 }
 
 .clients__track {
   display: flex;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
   animation: scroll 40s linear infinite;
   width: max-content;
 }
@@ -1723,7 +1723,7 @@ body.overlay-active .header {
 
 .clients__logo {
   flex-shrink: 0;
-  width: clamp(176px, 22.917vw, 440px);
+  width: 22.917vw /* 440px */;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1737,10 +1737,10 @@ body.overlay-active .header {
 
 /* Подвал */
 .footer {
-  padding-top: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(16px, 2.083vw, 40px);
-  padding-left: clamp(32px, 4.167vw, 80px);
-  padding-right: clamp(32px, 4.167vw, 80px);
+  padding-top: 1.042vw /* 20px */;
+  padding-bottom: 2.083vw /* 40px */;
+  padding-left: 4.167vw /* 80px */;
+  padding-right: 4.167vw /* 80px */;
 }
 
 .footer__container {
@@ -1752,7 +1752,7 @@ body.overlay-active .header {
   /* font-size: 22px -> min = 8.8px, mid = 1.146vw, max = 22px */
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1765,7 +1765,7 @@ body.overlay-active .header {
 
 .footer__legal {
   display: flex;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
   align-items: center;
   flex-shrink: 0;
 }
@@ -1774,7 +1774,7 @@ body.overlay-active .header {
   /* font-size: 22px -> min = 8.8px, mid = 1.146vw, max = 22px */
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1801,16 +1801,16 @@ body.overlay-active .header {
 
 .track-group__navigation {
   position: absolute;
-  top: clamp(32px, 4.167vw, 80px);
-  right: clamp(32px, 4.167vw, 80px);
+  top: 4.167vw /* 80px */;
+  right: 4.167vw /* 80px */;
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
   background: rgba(255, 255, 255, 1);
-  border-radius: clamp(8px, 1.042vw, 20px);
-  padding: clamp(12px, 1.563vw, 30px) clamp(16.8px, 2.188vw, 42px);
-  box-shadow: 0 clamp(1.6px, 0.208vw, 4px) clamp(8px, 1.042vw, 20px)
+  border-radius: 1.042vw /* 20px */;
+  padding: 1.563vw /* 30px */ 2.188vw /* 42px */;
+  box-shadow: 0 0.208vw /* 4px */ 1.042vw /* 20px */
     rgba(0, 0, 0, 0.1);
 }
 
@@ -1825,8 +1825,8 @@ body.overlay-active .header {
 }
 
 .track-group__nav-btn img {
-  width: clamp(14.4px, 1.875vw, 36px);
-  height: clamp(14.4px, 1.875vw, 36px);
+  width: 1.875vw /* 36px */;
+  height: 1.875vw /* 36px */;
   display: block;
   filter: none;
   transition: filter 0.3s ease;
@@ -1854,7 +1854,7 @@ body.overlay-active .header {
 .track-group__nav-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1918,67 +1918,67 @@ body.overlay-active .header {
 .track-group__content {
   display: flex;
   flex-direction: column;
-  padding-right: clamp(16px, 4.167vw, 80px);
-  padding-top: clamp(28px, 3.646vw, 70px);
-  padding-left: clamp(32px, 4.167vw, 80px);
-  padding-bottom: clamp(32px, 4.167vw, 80px);
+  padding-right: 4.167vw /* 80px */;
+  padding-top: 3.646vw /* 70px */;
+  padding-left: 4.167vw /* 80px */;
+  padding-bottom: 4.167vw /* 80px */;
 }
 
 .track-group__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .track-group__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-bottom: clamp(12px, 1.563vw, 30px);
+  margin-bottom: 1.563vw /* 30px */;
 }
 
 .track-group__description {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 140%;
   letter-spacing: 0%;
   color: #494555;
-  margin-bottom: clamp(13.6px, 1.771vw, 34px);
+  margin-bottom: 1.771vw /* 34px */;
 }
 
 .track-group__list {
   list-style: none;
   padding: 0;
   margin: 0;
-  padding-left: clamp(12px, 1.563vw, 30px);
-  border-left: clamp(0.8px, 0.104vw, 2px) solid #f42534;
+  padding-left: 1.563vw /* 30px */;
+  border-left: 0.104vw /* 2px */ solid #f42534;
   margin-bottom: auto;
 }
 
 .track-group__list li {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-bottom: clamp(4px, 0.521vw, 10px);
+  margin-bottom: 0.521vw /* 10px */;
 }
 
 .track-group__list li:last-child {
@@ -1989,7 +1989,7 @@ body.overlay-active .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(8px, 1.042vw, 20px);
+  padding: 1.042vw /* 20px */;
   padding-left: 0;
 }
 
@@ -1997,22 +1997,22 @@ body.overlay-active .header {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border-radius: 3.854vw /* 74px */;
 }
 
 /* Секция Специальные предложения (Special Offers) */
 .special-offers {
   max-width: 1400px;
   margin: 0 auto;
-  margin-bottom: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 3.125vw /* 60px */;
 }
 
 .special-offers__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
-  gap: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
+  gap: 2.083vw /* 40px */;
 }
 
 .special-offers__header-text {
@@ -2022,41 +2022,41 @@ body.overlay-active .header {
 .special-offers__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: clamp(32px, 4.167vw, 80px);
-  margin-top: clamp(28px, 3.646vw, 70px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 4.167vw /* 80px */;
+  margin-top: 3.646vw /* 70px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .special-offers__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-left: 4.167vw /* 80px */;
   margin-bottom: 0;
 }
 
 .special-offers__navigation {
   display: flex;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
   flex-shrink: 0;
   align-self: flex-end;
-  margin-right: clamp(32px, 4.167vw, 80px);
+  margin-right: 4.167vw /* 80px */;
 }
 
 .special-offers__nav-btn {
-  width: clamp(14.4px, 1.875vw, 36px);
-  height: clamp(14.4px, 1.875vw, 36px);
+  width: 1.875vw /* 36px */;
+  height: 1.875vw /* 36px */;
   border: none;
   background: transparent;
   display: flex;
@@ -2100,10 +2100,10 @@ body.overlay-active .header {
 
 .special-offers__grid {
   display: flex;
-  gap: clamp(8px, 1.042vw, 20px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
   position: relative;
   overflow: hidden;
 }
@@ -2112,11 +2112,11 @@ body.overlay-active .header {
 .special-offers__grid::before {
   content: "";
   position: absolute;
-  border-radius: 0 0 0 clamp(37.6px, 4.896vw, 94px);
+  border-radius: 0 0 0 4.896vw /* 94px */;
   top: 0;
   bottom: 0;
   left: 0;
-  width: clamp(120px, 15.625vw, 300px);
+  width: 15.625vw /* 300px */;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2137,11 +2137,11 @@ body.overlay-active .header {
 .special-offers__grid::after {
   content: "";
   position: absolute;
-  border-radius: 0 0 clamp(37.6px, 4.896vw, 94px) 0;
+  border-radius: 0 0 4.896vw /* 94px */ 0;
   top: 0;
   bottom: 0;
   right: 0;
-  width: clamp(120px, 15.625vw, 300px);
+  width: 15.625vw /* 300px */;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2161,30 +2161,30 @@ body.overlay-active .header {
 .special-offers__card {
   background: transparent;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: calc((100% - (3 * clamp(8px, 1.042vw, 20px))) / 4);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-top: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(16px, 2.083vw, 40px);
+  width: calc((100% - (3 * 1.042vw /* 20px */)) / 4);
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-top: 1.042vw /* 20px */;
+  padding-bottom: 2.083vw /* 40px */;
 }
 
 .special-offers__card-image {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .special-offers__card-image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(21.6px, 2.813vw, 54px);
+  border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
 }
 
@@ -2194,44 +2194,44 @@ body.overlay-active .header {
   align-items: flex-start;
   width: 100%;
   max-width: max-content;
-  padding: 0 clamp(16px, 2.083vw, 40px);
+  padding: 0 2.083vw /* 40px */;
 }
 
 .special-offers__card-title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .special-offers__card-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .special-offers__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #f42534;
   text-decoration: none;
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-bottom: 1.042vw /* 20px */;
   transition: color 0.3s ease;
 }
 
@@ -2243,39 +2243,39 @@ body.overlay-active .header {
 .section--quick-response {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 4.167vw, 80px);
+  gap: 4.167vw /* 80px */;
   padding: 0;
 }
 
 .quick-response__content {
   display: flex;
   flex-direction: column;
-  padding-top: clamp(28px, 3.646vw, 70px);
-  padding-left: clamp(32px, 4.167vw, 80px);
+  padding-top: 3.646vw /* 70px */;
+  padding-left: 4.167vw /* 80px */;
 }
 
 .quick-response__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin: 0 0 clamp(8px, 1.042vw, 20px) 0;
+  margin: 0 0 1.042vw /* 20px */ 0;
 }
 
 .quick-response__description {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin: 0 0 clamp(24px, 3.125vw, 60px) 0;
+  margin: 0 0 3.125vw /* 60px */ 0;
 }
 
 .quick-response__form {
@@ -2288,22 +2288,22 @@ body.overlay-active .header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: clamp(4px, 0.521vw, 10px);
+  margin-bottom: 0.521vw /* 10px */;
 }
 
 .quick-response__field:nth-of-type(2) {
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .quick-response__input {
   width: 100%;
-  padding: clamp(12px, 1.563vw, 30px) clamp(16.8px, 2.188vw, 42px);
-  border: clamp(0.8px, 0.104vw, 2px) solid transparent;
-  border-radius: clamp(8px, 1.042vw, 20px);
+  padding: 1.563vw /* 30px */ 2.188vw /* 42px */;
+  border: 0.104vw /* 2px */ solid transparent;
+  border-radius: 1.042vw /* 20px */;
   background: #ededed;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   color: #1f1933;
   box-sizing: border-box;
@@ -2393,7 +2393,7 @@ body.overlay-active .header {
 .quick-response__error {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(5.6px, 0.729vw, 14px);
+  font-size: 0.729vw /* 14px */;
   font-weight: 400;
   line-height: 120%;
   color: #9d9d9d;
@@ -2409,18 +2409,18 @@ body.overlay-active .header {
 /* Показываем текст ошибки */
 .quick-response__field.has-error .quick-response__error {
   opacity: 1;
-  max-height: clamp(20px, 2.604vw, 50px);
-  margin-top: clamp(3.2px, 0.417vw, 8px);
-  padding-top: clamp(1.6px, 0.208vw, 4px);
+  max-height: 2.604vw /* 50px */;
+  margin-top: 0.417vw /* 8px */;
+  padding-top: 0.208vw /* 4px */;
   color: #ee3f3f;
 }
 
 /* Показываем текст предупреждения */
 .quick-response__field.has-warning .quick-response__error {
   opacity: 1;
-  max-height: clamp(20px, 2.604vw, 50px);
-  margin-top: clamp(3.2px, 0.417vw, 8px);
-  padding-top: clamp(1.6px, 0.208vw, 4px);
+  max-height: 2.604vw /* 50px */;
+  margin-top: 0.417vw /* 8px */;
+  padding-top: 0.208vw /* 4px */;
   color: #ffa500;
 }
 
@@ -2432,14 +2432,14 @@ body.overlay-active .header {
 .quick-response__agreement {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
   color: #9d9d9d;
-  margin-top: clamp(4px, 0.521vw, 10px);
+  margin-top: 0.521vw /* 10px */;
 }
 
 .quick-response__agreement a {
@@ -2456,7 +2456,7 @@ body.overlay-active .header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(8px, 1.042vw, 20px);
+  padding: 1.042vw /* 20px */;
   padding-left: 0;
 }
 
@@ -2464,22 +2464,22 @@ body.overlay-active .header {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border-radius: 3.854vw /* 74px */;
 }
 
 /* Секция Блог (Blog / Полезные статьи) */
 .blog {
   max-width: 1400px;
   margin: 0 auto;
-  margin-bottom: clamp(24px, 3.125vw, 60px);
+  margin-bottom: 3.125vw /* 60px */;
 }
 
 .blog__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
-  gap: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
+  gap: 2.083vw /* 40px */;
 }
 
 .blog__header-text {
@@ -2489,41 +2489,41 @@ body.overlay-active .header {
 .blog__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(19.2px, 2.5vw, 48px);
+  font-size: 2.5vw /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: clamp(32px, 4.167vw, 80px);
-  margin-top: clamp(28px, 3.646vw, 70px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: 4.167vw /* 80px */;
+  margin-top: 3.646vw /* 70px */;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .blog__subtitle {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-left: 4.167vw /* 80px */;
   margin-bottom: 0;
 }
 
 .blog__navigation {
   display: flex;
-  gap: clamp(16px, 2.083vw, 40px);
+  gap: 2.083vw /* 40px */;
   flex-shrink: 0;
   align-self: flex-end;
-  margin-right: clamp(32px, 4.167vw, 80px);
+  margin-right: 4.167vw /* 80px */;
 }
 
 .blog__nav-btn {
-  width: clamp(14.4px, 1.875vw, 36px);
-  height: clamp(14.4px, 1.875vw, 36px);
+  width: 1.875vw /* 36px */;
+  height: 1.875vw /* 36px */;
   border: none;
   background: transparent;
   display: flex;
@@ -2567,10 +2567,10 @@ body.overlay-active .header {
 
 .blog__grid {
   display: flex;
-  gap: clamp(8px, 1.042vw, 20px);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
   position: relative;
   overflow: hidden;
 }
@@ -2579,11 +2579,11 @@ body.overlay-active .header {
 .blog__grid::before {
   content: "";
   position: absolute;
-  border-radius: 0 0 0 clamp(37.6px, 4.896vw, 94px);
+  border-radius: 0 0 0 4.896vw /* 94px */;
   top: 0;
   bottom: 0;
   left: 0;
-  width: clamp(120px, 15.625vw, 300px);
+  width: 15.625vw /* 300px */;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2604,11 +2604,11 @@ body.overlay-active .header {
 .blog__grid::after {
   content: "";
   position: absolute;
-  border-radius: 0 0 clamp(37.6px, 4.896vw, 94px) 0;
+  border-radius: 0 0 4.896vw /* 94px */ 0;
   top: 0;
   bottom: 0;
   right: 0;
-  width: clamp(120px, 15.625vw, 300px);
+  width: 15.625vw /* 300px */;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2628,30 +2628,30 @@ body.overlay-active .header {
 .blog__card {
   background: transparent;
   box-sizing: border-box;
-  border: clamp(0.8px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
-  border-radius: clamp(29.6px, 3.854vw, 74px);
+  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: calc((100% - (3 * clamp(8px, 1.042vw, 20px))) / 4);
-  padding-left: clamp(8px, 1.042vw, 20px);
-  padding-right: clamp(8px, 1.042vw, 20px);
-  padding-top: clamp(8px, 1.042vw, 20px);
-  padding-bottom: clamp(16px, 2.083vw, 40px);
+  width: calc((100% - (3 * 1.042vw /* 20px */)) / 4);
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-top: 1.042vw /* 20px */;
+  padding-bottom: 2.083vw /* 40px */;
 }
 
 .blog__card-image {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: clamp(16px, 2.083vw, 40px);
+  margin-bottom: 2.083vw /* 40px */;
 }
 
 .blog__card-image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: clamp(21.6px, 2.813vw, 54px);
+  border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
 }
 
@@ -2661,14 +2661,14 @@ body.overlay-active .header {
   align-items: flex-start;
   width: 100%;
   max-width: max-content;
-  padding: 0 clamp(16px, 2.083vw, 40px);
-  gap: clamp(8px, 1.042vw, 20px);
+  padding: 0 2.083vw /* 40px */;
+  gap: 1.042vw /* 20px */;
 }
 
 .blog__card-title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -2679,7 +2679,7 @@ body.overlay-active .header {
 .blog__card-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -2690,7 +2690,7 @@ body.overlay-active .header {
 .blog__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -2710,7 +2710,7 @@ body.overlay-active .header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: clamp(3.2px, 0.417vw, 8px);
+  gap: 0.417vw /* 8px */;
   white-space: nowrap;
 }
 
@@ -2718,7 +2718,7 @@ body.overlay-active .header {
 .blog__card-date {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: clamp(6.4px, 0.833vw, 16px);
+  font-size: 0.833vw /* 16px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -2742,8 +2742,8 @@ body.overlay-active .header {
 
 /* 15. Секция: Ссылки и информация */
 .section--footer-info {
-  padding: clamp(32px, 4.167vw, 80px) clamp(32px, 4.167vw, 80px)
-    clamp(20.4px, 2.656vw, 51px);
+  padding: 4.167vw /* 80px */ 4.167vw /* 80px */
+    2.656vw /* 51px */;
 }
 
 .footer__columns {
@@ -2761,11 +2761,11 @@ body.overlay-active .header {
 .footer__column-title {
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: clamp(14.4px, 1.875vw, 36px);
+  font-size: 1.875vw /* 36px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: clamp(20px, 2.604vw, 50px);
+  margin-bottom: 2.604vw /* 50px */;
 }
 
 /* Визуально скрываем placeholder, но сохраняем пространство */
@@ -2774,7 +2774,7 @@ body.overlay-active .header {
 }
 
 .footer__section {
-  margin-bottom: clamp(20px, 2.604vw, 50px);
+  margin-bottom: 2.604vw /* 50px */;
 }
 
 .footer__section:last-child {
@@ -2784,11 +2784,11 @@ body.overlay-active .header {
 .footer__section-title {
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: clamp(11.2px, 1.458vw, 28px);
+  font-size: 1.458vw /* 28px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: clamp(12px, 1.563vw, 30px);
+  margin-bottom: 1.563vw /* 30px */;
 }
 
 .footer__list {
@@ -2797,13 +2797,13 @@ body.overlay-active .header {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
 }
 
 .footer__link {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
@@ -2818,14 +2818,14 @@ body.overlay-active .header {
 .footer__contact-info {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
 }
 
 .footer__phone,
 .footer__email {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   line-height: 100%;
   color: #494555;
   text-decoration: none;
@@ -2839,16 +2839,16 @@ body.overlay-active .header {
 
 .footer__social {
   display: flex;
-  gap: clamp(8px, 1.042vw, 20px);
-  margin-top: clamp(4px, 0.521vw, 10px);
+  gap: 1.042vw /* 20px */;
+  margin-top: 0.521vw /* 10px */;
 }
 
 .footer__social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(32px, 4.167vw, 80px);
-  height: clamp(32px, 4.167vw, 80px);
+  width: 4.167vw /* 80px */;
+  height: 4.167vw /* 80px */;
   border-radius: 100px; /* фиксированной значение px обязательно для круглой иконки! */
   background-color: #ffffff;
 }
@@ -2903,20 +2903,20 @@ body.overlay-active .header {
   /* Позиционируем под header */
   top: calc(
     var(--header-offset-top) + var(--header-height, 94px) +
-      clamp(8px, 1.042vw, 20px)
+      1.042vw /* 20px */
   );
-  left: clamp(8px, 1.042vw, 20px);
-  right: clamp(8px, 1.042vw, 20px);
+  left: 1.042vw /* 20px */;
+  right: 1.042vw /* 20px */;
   gap: 4.167vw;
-  border-radius: clamp(37.6px, 4.896vw, 94px);
+  border-radius: 4.896vw /* 94px */;
   background: #ffffff;
-  box-shadow: 0 clamp(8px, 1.042vw, 20px) clamp(40px, 5.208vw, 100px)
+  box-shadow: 0 1.042vw /* 20px */ 5.208vw /* 100px */
     rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr auto;
   justify-content: space-between;  
   /* Анимация появления */
-  transform: translateY(clamp(-8px, -1.042vw, -20px));
+  transform: translateY(-1.042vw /* -20px */);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -2938,12 +2938,12 @@ body.overlay-active .header {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  gap: clamp(32px, 4.167vw, 80px);
+  gap: 4.167vw /* 80px */;
   width: 100%;
   min-width: 0;
-  margin-top: clamp(32px, 4.167vw, 80px);
-  margin-bottom: clamp(32px, 4.167vw, 80px);
-  margin-left: clamp(32px, 4.167vw, 80px);
+  margin-top: 4.167vw /* 80px */;
+  margin-bottom: 4.167vw /* 80px */;
+  margin-left: 4.167vw /* 80px */;
 }
 
 /* Обёртка колонок (аналог footer__column) */
@@ -2956,7 +2956,7 @@ body.overlay-active .header {
 .services-popup__categories {
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.563vw, 30px);
+  gap: 1.563vw /* 30px */;
   width: 100%;
   min-width: 0;
 }
@@ -2966,7 +2966,7 @@ body.overlay-active .header {
     sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(11.2px, 1.458vw, 28px);
+  font-size: 1.458vw /* 28px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
@@ -2990,7 +2990,7 @@ body.overlay-active .header {
 .services-popup__column {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.042vw, 20px);
+  gap: 1.042vw /* 20px */;
   width: 100%;
   min-width: 0;
 }
@@ -3000,7 +3000,7 @@ body.overlay-active .header {
     sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(8.8px, 1.146vw, 22px);
+  font-size: 1.146vw /* 22px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
@@ -3021,9 +3021,9 @@ body.overlay-active .header {
   align-items: center;
   position: relative;
   overflow: hidden;
-  margin-top: clamp(8px, 1.042vw, 20px);
-  margin-right: clamp(8px, 1.042vw, 20px);
-  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-top: 1.042vw /* 20px */;
+  margin-right: 1.042vw /* 20px */;
+  margin-bottom: 1.042vw /* 20px */;
   margin-left: auto;
   width: 22vw;
   height: 22vw;
