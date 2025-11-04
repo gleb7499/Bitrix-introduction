@@ -1,6 +1,37 @@
+// Глобальный менеджер overlay для отслеживания активных компонентов
+const overlayManager = {
+  activeComponents: new Set(),
+  overlay: null,
+
+  init() {
+    this.overlay = document.getElementById("overlay");
+  },
+
+  show(componentName) {
+    this.activeComponents.add(componentName);
+    if (this.overlay && this.activeComponents.size > 0) {
+      this.overlay.classList.add("open");
+      console.log(`Overlay показан. Активные компоненты: ${Array.from(this.activeComponents).join(", ")}`);
+    }
+  },
+
+  hide(componentName) {
+    this.activeComponents.delete(componentName);
+    if (this.overlay && this.activeComponents.size === 0) {
+      this.overlay.classList.remove("open");
+      console.log("Overlay скрыт. Активных компонентов нет.");
+    } else {
+      console.log(`Overlay остаётся видимым. Активные компоненты: ${Array.from(this.activeComponents).join(", ")}`);
+    }
+  }
+};
+
 // Инициализация при загрузке страницы
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Страница загружена");
+
+  // Инициализируем менеджер overlay
+  overlayManager.init();
 
   // Устанавливаем высоту header для корректного padding-top у body
   updateHeaderHeight();
@@ -56,7 +87,6 @@ function initBurgerMenu() {
 function initServicesButton() {
   const servicesBtn = document.getElementById("servicesBtn");
   const servicesPopup = document.getElementById("servicesPopup");
-  const overlay = servicesPopup?.querySelector(".services-popup__overlay");
 
   if (!servicesBtn || !servicesPopup) {
     console.log("Services button or popup not found");
@@ -70,7 +100,8 @@ function initServicesButton() {
     isPopupOpen = true;
     servicesPopup.classList.add("active");
     servicesBtn.classList.add("active");
-    document.body.style.overflow = 'hidden';
+    overlayManager.show("servicesPopup"); // Используем менеджер
+    document.body.classList.add("menu-open"); // Блокируем прокрутку
     console.log("Services popup opened");
   }
 
@@ -79,7 +110,8 @@ function initServicesButton() {
     isPopupOpen = false;
     servicesPopup.classList.remove("active");
     servicesBtn.classList.remove("active");
-    document.body.style.overflow = '';
+    overlayManager.hide("servicesPopup"); // Используем менеджер
+    document.body.classList.remove("menu-open"); // Разблокируем прокрутку
     console.log("Services popup closed");
   }
 
@@ -99,15 +131,17 @@ function initServicesButton() {
   });
 
   // Клик по оверлею закрывает меню
-  if (overlay) {
-    overlay.addEventListener("click", closePopup);
+  if (overlayManager.overlay) {
+    overlayManager.overlay.addEventListener("click", closePopup);
   }
 
   // Клик вне меню закрывает его
   document.addEventListener("click", (e) => {
-    if (isPopupOpen && 
-        !servicesPopup.querySelector('.services-popup__container').contains(e.target) && 
-        !servicesBtn.contains(e.target)) {
+    if (
+      isPopupOpen &&
+      !servicesPopup.contains(e.target) &&
+      !servicesBtn.contains(e.target)
+    ) {
       closePopup();
     }
   });
@@ -142,12 +176,14 @@ function initAboutDropdown() {
       hideTimeout = null;
     }
     dropdown.classList.add("active");
+    overlayManager.show("aboutDropdown"); // Используем менеджер
   }
 
   // Функция для скрытия меню с задержкой
   function hideDropdown() {
     hideTimeout = setTimeout(() => {
       dropdown.classList.remove("active");
+      overlayManager.hide("aboutDropdown"); // Используем менеджер
     }, 150);
   }
 

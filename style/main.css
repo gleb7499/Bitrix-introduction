@@ -79,6 +79,18 @@ body {
   /* Динамический padding: верхний = отступ + высота header + доп. отступ, боковые = 20px (адаптивные) */
   padding: calc(var(--header-offset-top) + var(--header-height, 94px) + 20px)
     clamp(8px, 1.042vw, 20px) 0;
+  transition: none;
+}
+
+/* Блокировка прокрутки при открытом меню */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Main контейнер - содержит весь контент кроме header */
+main {
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -174,7 +186,7 @@ button {
 }
 
 .btn--services:hover {
-  background: #FA0012;
+  background: #fa0012;
 }
 
 .btn--services .btn__icon {
@@ -198,7 +210,7 @@ button {
   top: clamp(8px, 1.042vw, 20px);
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1200;
   padding: 0;
   background: #ffffff03;
   backdrop-filter: blur(100px);
@@ -281,7 +293,7 @@ button {
 }
 
 .nav__link:hover {
-  color: #FA0012;
+  color: #fa0012;
 }
 
 .nav__link:hover .nav__link-icon {
@@ -310,7 +322,7 @@ button {
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1001;
+  z-index: 2000;
 }
 
 /* Убираем CSS hover, управление только через JavaScript */
@@ -1310,7 +1322,8 @@ button {
 }
 
 .services__nav-btn:hover img {
-  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%)
+    hue-rotate(355deg) brightness(93%) contrast(117%);
 }
 
 .services__nav-btn:disabled {
@@ -1318,11 +1331,13 @@ button {
 }
 
 .services__nav-btn:disabled img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .services__nav-btn:disabled:hover img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .services__grid {
@@ -1811,7 +1826,8 @@ button {
 }
 
 .track-group__nav-btn:hover img {
-  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%)
+    hue-rotate(355deg) brightness(93%) contrast(117%);
 }
 
 .track-group__nav-btn:disabled {
@@ -1819,11 +1835,13 @@ button {
 }
 
 .track-group__nav-btn:disabled img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .track-group__nav-btn:disabled:hover img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .track-group__nav-text {
@@ -2049,7 +2067,8 @@ button {
 }
 
 .special-offers__nav-btn:hover img {
-  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%)
+    hue-rotate(355deg) brightness(93%) contrast(117%);
 }
 
 .special-offers__nav-btn:disabled {
@@ -2057,11 +2076,13 @@ button {
 }
 
 .special-offers__nav-btn:disabled img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .special-offers__nav-btn:disabled:hover img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .special-offers__nav-btn svg {
@@ -2513,7 +2534,8 @@ button {
 }
 
 .blog__nav-btn:hover img {
-  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%) hue-rotate(355deg) brightness(93%) contrast(117%);
+  filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(6967%)
+    hue-rotate(355deg) brightness(93%) contrast(117%);
 }
 
 .blog__nav-btn:disabled {
@@ -2521,11 +2543,13 @@ button {
 }
 
 .blog__nav-btn:disabled img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .blog__nav-btn:disabled:hover img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%) hue-rotate(188deg) brightness(89%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(0%) saturate(0%)
+    hue-rotate(188deg) brightness(89%) contrast(87%);
 }
 
 .blog__nav-btn svg {
@@ -2838,43 +2862,38 @@ button {
    ВСПЛЫВАЮЩЕЕ МЕНЮ УСЛУГ
    ======================================== */
 
-.services-popup {
+/* Overlay с размытием - покрывает всё, кроме header */
+.services-popup__overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999;
+  /* Размытие фона */
+  backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
+  -webkit-backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
+  /* Лёгкая тонировка (для отладки временно делай 0.2-0.4) */
+  background-color: rgba(255, 255, 255, 0.18);
+  z-index: 500; /* меньше чем у header/menu, больше чем у main */
+  cursor: pointer;
+  pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.services-popup.active {
+/* Показываем overlay при открытии */
+.services-popup__overlay.open {
   opacity: 1;
   visibility: visible;
-  pointer-events: all;
-}
-
-/* Блюр фона */
-.services-popup__overlay {
-  position: fixed;
-  border-radius: clamp(37.6px, 4.896vw, 94px);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
-  -webkit-backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
-  background-color: #ffffff03;
-  z-index: 998;
+  pointer-events: auto;
 }
 
 /* Контейнер меню */
 .services-popup__container {
-  position: absolute;
+  position: fixed;
+  /* Позиционируем под header */
   top: calc(
     var(--header-offset-top) + var(--header-height, 94px) +
       clamp(8px, 1.042vw, 20px)
@@ -2883,19 +2902,27 @@ button {
   right: clamp(8px, 1.042vw, 20px);
   border-radius: clamp(37.6px, 4.896vw, 94px);
   background: #ffffff;
+  box-shadow: 0 clamp(8px, 1.042vw, 20px) clamp(40px, 5.208vw, 100px)
+    rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(32px, 4.167vw, 80px);
+  /* Анимация появления */
   transform: translateY(clamp(-8px, -1.042vw, -20px));
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 999;
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1100;
 }
 
-.services-popup.active .services-popup__container {
+.services-popup__container.active {
   transform: translateY(0);
   opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 /* Блок со ссылками */
