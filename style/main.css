@@ -217,7 +217,15 @@ button {
   -webkit-backdrop-filter: blur(100px);
   border-radius: clamp(18.8px, 2.448vw, 47px);
   margin: 0 clamp(8px, 1.042vw, 20px);
-  transition: none;
+  transition: backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Убираем blur у header когда overlay активен */
+.services-popup__overlay.open ~ .header,
+body.overlay-active .header {
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
 }
 
 /* Header не должен блюриться когда открыто меню */
@@ -487,8 +495,7 @@ button {
 }
 
 .hero__image img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 55.83vw;
   object-fit: contain;
   border-radius: clamp(29.6px, 3.854vw, 74px);
 }
@@ -2869,9 +2876,9 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  /* Размытие фона */
-  backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
-  -webkit-backdrop-filter: blur(clamp(40px, 5.208vw, 100px));
+  /* Размытие фона (всегда 100px без clamp) */
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   /* Лёгкая тонировка (для отладки временно делай 0.2-0.4) */
   background-color: rgba(255, 255, 255, 0.18);
   z-index: 500; /* меньше чем у header/menu, больше чем у main */
@@ -2900,13 +2907,14 @@ button {
   );
   left: clamp(8px, 1.042vw, 20px);
   right: clamp(8px, 1.042vw, 20px);
+  gap: 4.167vw;
   border-radius: clamp(37.6px, 4.896vw, 94px);
   background: #ffffff;
   box-shadow: 0 clamp(8px, 1.042vw, 20px) clamp(40px, 5.208vw, 100px)
     rgba(0, 0, 0, 0.15);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 4.167vw, 80px);
+  grid-template-columns: 1fr auto;
+  justify-content: space-between;  
   /* Анимация появления */
   transform: translateY(clamp(-8px, -1.042vw, -20px));
   opacity: 0;
@@ -2927,13 +2935,21 @@ button {
 
 /* Блок со ссылками */
 .services-popup__links {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   gap: clamp(32px, 4.167vw, 80px);
-  padding-top: clamp(32px, 4.167vw, 80px);
-  padding-left: clamp(32px, 4.167vw, 80px);
-  padding-bottom: clamp(32px, 4.167vw, 80px);
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(32px, 4.167vw, 80px);
+  margin-bottom: clamp(32px, 4.167vw, 80px);
+  margin-left: clamp(32px, 4.167vw, 80px);
+}
+
+/* Обёртка колонок (аналог footer__column) */
+.services-popup__column-wrapper {
+  flex: 1;
+  min-width: 0;
 }
 
 /* Блок заголовков категорий */
@@ -2941,6 +2957,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 1.563vw, 30px);
+  width: 100%;
+  min-width: 0;
 }
 
 .services-popup__category {
@@ -2955,7 +2973,9 @@ button {
   margin: 0;
   cursor: pointer;
   transition: color 0.3s ease;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .services-popup__category:hover {
@@ -2971,6 +2991,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 1.042vw, 20px);
+  width: 100%;
+  min-width: 0;
 }
 
 .services-popup__link {
@@ -2984,6 +3006,8 @@ button {
   color: #494555;
   text-decoration: none;
   transition: color 0.3s ease;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .services-popup__link:hover {
@@ -2993,34 +3017,38 @@ button {
 /* Блок с фотографией */
 .services-popup__image {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding: clamp(8px, 1.042vw, 20px);
-  padding-left: 0;
   position: relative;
   overflow: hidden;
+  margin-top: clamp(8px, 1.042vw, 20px);
+  margin-right: clamp(8px, 1.042vw, 20px);
+  margin-bottom: clamp(8px, 1.042vw, 20px);
+  margin-left: auto;
+  width: 22vw;
+  height: 22vw;
 }
 
 .services-popup__photo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: clamp(29.6px, 3.854vw, 74px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.services-popup__photo:not(.active) {
   position: absolute;
   top: 0;
   left: 0;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 3.854vw;
+  transition: opacity 0.4s ease, transform 0.4s ease;
   opacity: 0;
   transform: scale(0.95);
+  z-index: 0;
 }
 
 .services-popup__photo.active {
-  position: relative;
   opacity: 1;
   transform: scale(1);
+  z-index: 1;
 }
 
 /* Анимация для иконки кнопки */

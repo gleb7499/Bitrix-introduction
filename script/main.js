@@ -11,6 +11,7 @@ const overlayManager = {
     this.activeComponents.add(componentName);
     if (this.overlay && this.activeComponents.size > 0) {
       this.overlay.classList.add("open");
+      document.body.classList.add("overlay-active"); // Добавляем класс на body
       console.log(`Overlay показан. Активные компоненты: ${Array.from(this.activeComponents).join(", ")}`);
     }
   },
@@ -19,6 +20,7 @@ const overlayManager = {
     this.activeComponents.delete(componentName);
     if (this.overlay && this.activeComponents.size === 0) {
       this.overlay.classList.remove("open");
+      document.body.classList.remove("overlay-active"); // Убираем класс с body
       console.log("Overlay скрыт. Активных компонентов нет.");
     } else {
       console.log(`Overlay остаётся видимым. Активные компоненты: ${Array.from(this.activeComponents).join(", ")}`);
