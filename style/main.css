@@ -348,8 +348,7 @@ body.overlay-active .header {
   display: flex;
   flex-direction: column;
   gap: 1.042vw /* 20px */;
-  box-shadow: 0 0.521vw /* 10px */ 2.604vw /* 50px */
-    rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.521vw /* 10px */ 2.604vw /* 50px */ rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
 
@@ -402,8 +401,7 @@ body.overlay-active .header {
 }
 
 .burger.active .burger__line:nth-child(1) {
-  transform: rotate(45deg)
-    translate(0.417vw /* 8px */, 0.417vw /* 8px */);
+  transform: rotate(45deg) translate(0.417vw /* 8px */, 0.417vw /* 8px */);
 }
 
 .burger.active .burger__line:nth-child(2) {
@@ -411,8 +409,7 @@ body.overlay-active .header {
 }
 
 .burger.active .burger__line:nth-child(3) {
-  transform: rotate(-45deg)
-    translate(0.365vw /* 7px */, -0.365vw /* -7px */);
+  transform: rotate(-45deg) translate(0.365vw /* 7px */, -0.365vw /* -7px */);
 }
 
 /* Основные секции */
@@ -727,8 +724,7 @@ body.overlay-active .header {
 
 .tariff-card:hover {
   transform: translateY(-0.521vw /* -10px */);
-  box-shadow: 0 0.781vw /* 15px */ 2.083vw /* 40px */
-    rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0.781vw /* 15px */ 2.083vw /* 40px */ rgba(0, 0, 0, 0.12);
 }
 
 .tariff-card__header {
@@ -814,15 +810,13 @@ body.overlay-active .header {
   font-weight: 600;
   width: 100%;
   transition: all 0.3s ease;
-  box-shadow: 0 0.208vw /* 4px */ 1.042vw /* 20px */
-    rgba(238, 63, 63, 0.3);
+  box-shadow: 0 0.208vw /* 4px */ 1.042vw /* 20px */ rgba(238, 63, 63, 0.3);
 }
 
 .tariff-card__btn:hover {
   background: #d32f2f;
   transform: translateY(-0.104vw /* -2px */);
-  box-shadow: 0 0.313vw /* 6px */ 1.302vw /* 25px */
-    rgba(238, 63, 63, 0.4);
+  box-shadow: 0 0.313vw /* 6px */ 1.302vw /* 25px */ rgba(238, 63, 63, 0.4);
 }
 
 /* Секция Преимущества */
@@ -1810,8 +1804,7 @@ body.overlay-active .header {
   background: rgba(255, 255, 255, 1);
   border-radius: 1.042vw /* 20px */;
   padding: 1.563vw /* 30px */ 2.188vw /* 42px */;
-  box-shadow: 0 0.208vw /* 4px */ 1.042vw /* 20px */
-    rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.208vw /* 4px */ 1.042vw /* 20px */ rgba(0, 0, 0, 0.1);
 }
 
 .track-group__nav-btn {
@@ -2742,8 +2735,7 @@ body.overlay-active .header {
 
 /* 15. Секция: Ссылки и информация */
 .section--footer-info {
-  padding: 4.167vw /* 80px */ 4.167vw /* 80px */
-    2.656vw /* 51px */;
+  padding: 4.167vw /* 80px */ 4.167vw /* 80px */ 2.656vw /* 51px */;
 }
 
 .footer__columns {
@@ -2880,7 +2872,7 @@ body.overlay-active .header {
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
   /* Лёгкая тонировка (для отладки временно делай 0.2-0.4) */
-  background-color: rgba(255, 255, 255, 0.18);
+  background-color: #FFFFFF03;
   z-index: 500; /* меньше чем у header/menu, больше чем у main */
   cursor: pointer;
   pointer-events: none;
@@ -2902,19 +2894,17 @@ body.overlay-active .header {
   position: fixed;
   /* Позиционируем под header */
   top: calc(
-    var(--header-offset-top) + var(--header-height, 94px) +
-      1.042vw /* 20px */
+    var(--header-offset-top) + var(--header-height, 94px) + 1.042vw /* 20px */
   );
   left: 1.042vw /* 20px */;
   right: 1.042vw /* 20px */;
   gap: 4.167vw;
   border-radius: 4.896vw /* 94px */;
   background: #ffffff;
-  box-shadow: 0 1.042vw /* 20px */ 5.208vw /* 100px */
-    rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1.042vw /* 20px */ 5.208vw /* 100px */ rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr auto;
-  justify-content: space-between;  
+  justify-content: space-between;
   /* Анимация появления */
   transform: translateY(-1.042vw /* -20px */);
   opacity: 0;
@@ -3058,4 +3048,146 @@ body.overlay-active .header {
 
 .btn--services.active .btn__icon {
   transform: rotate(180deg);
+}
+
+/* ========================================
+   МОДАЛЬНОЕ ОКНО "ЗАКАЗАТЬ ЗВОНОК"
+   ======================================== */
+
+/* Overlay для модального окна (выше всего) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Размытие фона */
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+  background-color: #FFFFFF03;
+  z-index: 2000; /* Выше services-popup (z-index: 1100) и его overlay (z-index: 500) */
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Показываем overlay при открытии модального окна */
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Контейнер модального окна */
+.modal-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100; /* Выше modal-overlay */
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-popup.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Обёртка для центрирования содержимого */
+.modal-popup__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.042vw /* 20px */;
+  width: auto;
+  height: auto;
+}
+
+/* Внутренний контейнер с формой */
+.modal-popup__container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 4.896vw /* 94px */;
+  padding: 4.167vw /* 80px */;
+  max-width: 52.083vw /* 1000px */;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 1.042vw /* 20px */ 5.208vw /* 100px */ rgba(0, 0, 0, 0.15);
+  transform: scale(0.9) translateY(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-popup.open .modal-popup__container {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Кнопка закрытия */
+.modal-popup__close {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 4.167vw /* 80px */;
+  height: 4.167vw /* 80px */;
+  border-radius: 100px;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+}
+
+.modal-popup.open .modal-popup__close {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-popup__close:hover {
+  background: #e5e5e5;
+}
+
+.modal-popup__close img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
+
+/* Адаптация контента формы внутри модального окна */
+.modal-popup .quick-response__content {
+  padding: 0;
+  width: 100%;
+}
+
+.modal-popup .quick-response__title {
+  text-align: center;
+  margin-bottom: 1.042vw /* 20px */;
+}
+
+.modal-popup .quick-response__description {
+  text-align: center;
+  margin-bottom: 2.083vw /* 40px */;
+}
+
+/* Блокировка прокрутки body при открытом модальном окне */
+body.modal-open {
+  overflow: hidden;
 }

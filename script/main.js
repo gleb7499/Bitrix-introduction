@@ -12,7 +12,11 @@ const overlayManager = {
     if (this.overlay && this.activeComponents.size > 0) {
       this.overlay.classList.add("open");
       document.body.classList.add("overlay-active"); // Добавляем класс на body
-      console.log(`Overlay показан. Активные компоненты: ${Array.from(this.activeComponents).join(", ")}`);
+      console.log(
+        `Overlay показан. Активные компоненты: ${Array.from(
+          this.activeComponents
+        ).join(", ")}`
+      );
     }
   },
 
@@ -23,9 +27,13 @@ const overlayManager = {
       document.body.classList.remove("overlay-active"); // Убираем класс с body
       console.log("Overlay скрыт. Активных компонентов нет.");
     } else {
-      console.log(`Overlay остаётся видимым. Активные компоненты: ${Array.from(this.activeComponents).join(", ")}`);
+      console.log(
+        `Overlay остаётся видимым. Активные компоненты: ${Array.from(
+          this.activeComponents
+        ).join(", ")}`
+      );
     }
-  }
+  },
 };
 
 // Инициализация при загрузке страницы
@@ -212,24 +220,80 @@ function initAboutDropdown() {
 // Кнопка "Заказать звонок"
 function initCallButton() {
   const callBtn = document.getElementById("callBtn");
+  const modal = document.getElementById("callModal");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalClose = document.getElementById("modalClose");
 
-  if (callBtn) {
-    callBtn.addEventListener("click", function () {
-      console.log('Кнопка "Заказать звонок" нажата');
+  if (!callBtn || !modal || !modalOverlay) {
+    console.log("Call button or modal elements not found");
+    return;
+  }
 
-      // Прокрутка к форме контактов
-      const contactsSection = document.getElementById("contacts");
-      if (contactsSection) {
-        contactsSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+  let isModalOpen = false;
 
-      // Или показать модальное окно с формой
-      // showCallModal();
+  // Функция открытия модального окна
+  function openModal() {
+    isModalOpen = true;
+    modal.classList.add("open");
+    modalOverlay.classList.add("open");
+    overlayManager.show("callModal"); // Регистрируем в менеджере overlay
+    document.body.classList.add("modal-open"); // Блокируем прокрутку
+    console.log("Call modal opened");
+  }
+
+  // Функция закрытия модального окна
+  function closeModal() {
+    isModalOpen = false;
+    modal.classList.remove("open");
+    modalOverlay.classList.remove("open");
+    overlayManager.hide("callModal"); // Удаляем из менеджера overlay
+    document.body.classList.remove("modal-open"); // Разблокируем прокрутку
+    console.log("Call modal closed");
+  }
+
+  // Открытие по клику на кнопку
+  callBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openModal();
+  });
+
+  // Закрытие по клику на кнопку закрытия
+  if (modalClose) {
+    modalClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeModal();
     });
   }
+
+  // Закрытие по клику на overlay
+  modalOverlay.addEventListener("click", closeModal);
+
+  // Закрытие по Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isModalOpen) {
+      closeModal();
+    }
+  });
+
+  // Предотвращаем закрытие при клике внутри модального окна
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      // Клик был по backdrop внутри modal (не по container)
+      closeModal();
+    }
+  });
+
+  const modalContainer = modal.querySelector(".modal-popup__container");
+  if (modalContainer) {
+    modalContainer.addEventListener("click", (e) => {
+      e.stopPropagation(); // Останавливаем всплытие, чтобы не закрывалось при клике внутри
+    });
+  }
+
+  // Инициализация формы модального окна
+  initCallModalForm();
+
+  console.log("Call button and modal initialized");
 }
 
 // Плавная прокрутка к секциям
@@ -567,6 +631,172 @@ function validateInput(input, field, errorText, isTyping) {
   }
 
   return true;
+}
+
+// Инициализация формы модального окна (переиспользуем логику валидации)
+function initCallModalForm() {
+  const form = document.getElementById("callModalForm");
+
+  if (!form) {
+    console.log("Call modal form not found");
+    return;
+  }
+
+  const fields = form.querySelectorAll(".quick-response__field");
+  const submitBtn = form.querySelector(".btn");
+
+  // Объект для отслеживания состояния полей
+  const fieldStates = {};
+
+  fields.forEach((field, index) => {
+    const input = field.querySelector(".quick-response__input");
+    const errorText = field.querySelector(".quick-response__error");
+
+    if (!input || !errorText) return;
+
+    const fieldId = `modal_field_${index}`;
+    fieldStates[fieldId] = {
+      touched: false,
+      valid: false,
+      empty: true,
+    };
+
+    // Обработка ввода
+    input.addEventListener("input", function () {
+      const value = this.value.trim();
+      fieldStates[fieldId].empty = !value;
+
+      if (value) {
+        this.classList.add("active");
+        fieldStates[fieldId].touched = true;
+        const isValid = validateInput(this, field, errorText, true);
+        fieldStates[fieldId].valid = isValid;
+      } else {
+        this.classList.remove("active");
+        if (fieldStates[fieldId].touched) {
+          this.classList.add("error");
+          field.classList.add("has-error");
+          errorText.textContent = "Поле обязательно для заполнения";
+          fieldStates[fieldId].valid = false;
+        } else {
+          clearFieldErrors(this, field);
+          fieldStates[fieldId].valid = false;
+        }
+      }
+
+      updateSubmitButton();
+    });
+
+    // Обработка потери фокуса
+    input.addEventListener("blur", function () {
+      const value = this.value.trim();
+
+      if (!value) {
+        if (fieldStates[fieldId].touched) {
+          this.classList.add("error");
+          field.classList.add("has-error");
+          errorText.textContent = "Поле обязательно для заполнения";
+          fieldStates[fieldId].valid = false;
+        }
+      } else {
+        fieldStates[fieldId].touched = true;
+        const isValid = validateInput(this, field, errorText, false);
+        fieldStates[fieldId].valid = isValid;
+      }
+
+      updateSubmitButton();
+    });
+
+    // Обработка получения фокуса
+    input.addEventListener("focus", function () {
+      if (
+        field.classList.contains("has-error") ||
+        field.classList.contains("has-warning")
+      ) {
+        this.classList.remove("error", "warning");
+        field.classList.remove("has-error", "has-warning");
+      }
+    });
+  });
+
+  // Функция обновления состояния кнопки
+  function updateSubmitButton() {
+    const allValid = Object.values(fieldStates).every(
+      (state) => state.valid && !state.empty
+    );
+
+    if (submitBtn) {
+      submitBtn.disabled = !allValid;
+    }
+  }
+
+  // Функция очистки ошибок поля
+  function clearFieldErrors(input, field) {
+    input.classList.remove("error", "warning", "active");
+    field.classList.remove("has-error", "has-warning");
+  }
+
+  // Инициализация - кнопка disabled по умолчанию
+  updateSubmitButton();
+
+  // Валидация формы при отправке
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    fields.forEach((field, index) => {
+      const input = field.querySelector(".quick-response__input");
+      const errorText = field.querySelector(".quick-response__error");
+      const fieldId = `modal_field_${index}`;
+
+      fieldStates[fieldId].touched = true;
+
+      if (!validateInput(input, field, errorText, false)) {
+        isValid = false;
+        fieldStates[fieldId].valid = false;
+      }
+    });
+
+    if (isValid) {
+      console.log("Форма модального окна отправлена");
+      alert(
+        "Спасибо! Ваш запрос принят. Мы свяжемся с вами в течение 15 минут."
+      );
+
+      // Закрываем модальное окно
+      const modal = document.getElementById("callModal");
+      const modalOverlay = document.getElementById("modalOverlay");
+      if (modal && modalOverlay) {
+        modal.classList.remove("open");
+        modalOverlay.classList.remove("open");
+        overlayManager.hide("callModal");
+        document.body.classList.remove("modal-open");
+      }
+
+      // Сброс формы
+      form.reset();
+
+      // Сброс всех состояний
+      fields.forEach((field, index) => {
+        const input = field.querySelector(".quick-response__input");
+        const fieldId = `modal_field_${index}`;
+
+        input.classList.remove("active", "error", "warning");
+        field.classList.remove("has-error", "has-warning");
+
+        fieldStates[fieldId] = {
+          touched: false,
+          valid: false,
+          empty: true,
+        };
+      });
+
+      updateSubmitButton();
+    }
+  });
+
+  console.log("Call modal form initialized");
 }
 
 // Интерактивность для элементов портфолио
