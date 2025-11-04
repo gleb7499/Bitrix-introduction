@@ -248,6 +248,16 @@ function initCallButton() {
     modalOverlay.classList.remove("open");
     overlayManager.hide("callModal"); // Удаляем из менеджера overlay
     document.body.classList.remove("modal-open"); // Разблокируем прокрутку
+    
+    // Возвращаем форму и скрываем сообщение об успехе
+    const formContent = document.querySelector(".quick-response__content");
+    const successContent = document.querySelector(".modal-success");
+    
+    if (formContent && successContent) {
+      formContent.style.display = "block";
+      successContent.style.display = "none";
+    }
+    
     console.log("Call modal closed");
   }
 
@@ -760,18 +770,14 @@ function initCallModalForm() {
 
     if (isValid) {
       console.log("Форма модального окна отправлена");
-      alert(
-        "Спасибо! Ваш запрос принят. Мы свяжемся с вами в течение 15 минут."
-      );
-
-      // Закрываем модальное окно
-      const modal = document.getElementById("callModal");
-      const modalOverlay = document.getElementById("modalOverlay");
-      if (modal && modalOverlay) {
-        modal.classList.remove("open");
-        modalOverlay.classList.remove("open");
-        overlayManager.hide("callModal");
-        document.body.classList.remove("modal-open");
+      
+      // Скрываем форму и показываем сообщение об успехе
+      const formContent = document.querySelector(".quick-response__content");
+      const successContent = document.querySelector(".modal-success");
+      
+      if (formContent && successContent) {
+        formContent.style.display = "none";
+        successContent.style.display = "flex";
       }
 
       // Сброс формы
