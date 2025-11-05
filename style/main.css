@@ -1858,6 +1858,7 @@ body.overlay-active .header {
   position: relative;
   width: 100%;
   overflow: hidden; /* скрываем выходящие части слайдов */
+  transition: height 0.3s ease; /* плавное изменение высоты */
 }
 
 /* Базовые стили слайдов для анимации */

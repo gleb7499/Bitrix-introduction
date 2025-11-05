@@ -971,6 +971,21 @@ function initTrackGroupCarousel() {
     );
   }
 
+  // Функция для ожидания загрузки всех изображений в карточке
+  function waitForImages(card) {
+    const images = card.querySelectorAll('img');
+    const promises = Array.from(images).map(img => {
+      if (img.complete) {
+        return Promise.resolve();
+      }
+      return new Promise((resolve) => {
+        img.addEventListener('load', resolve);
+        img.addEventListener('error', resolve); // Обрабатываем и ошибки
+      });
+    });
+    return Promise.all(promises);
+  }
+
   function goTo(newIndex, direction) {
     if (
       isAnimating ||
@@ -1034,8 +1049,12 @@ function initTrackGroupCarousel() {
       current.style.width = "";
 
       currentIndex = newIndex;
-      updateUI();
-      isAnimating = false;
+      
+      // Ждём загрузки изображений новой карточки и затем обновляем высоту
+      waitForImages(next).then(() => {
+        updateUI();
+        isAnimating = false;
+      });
     };
 
     // Когда текущий слайд закончит уходить — завершаем переход
@@ -1069,12 +1088,21 @@ function initTrackGroupCarousel() {
       card.classList.remove("track-group__card--active");
     }
   });
-  updateUI();
+
+  // Ждём загрузки изображений первой карточки перед установкой высоты
+  const firstCard = cards[0];
+  if (firstCard) {
+    waitForImages(firstCard).then(() => {
+      updateUI();
+      console.log("Карусель Track Group инициализирована (изображения загружены)");
+    });
+  } else {
+    updateUI();
+    console.log("Карусель Track Group инициализирована (без изображений)");
+  }
 
   // Поддерживаем корректную высоту контейнера при ресайзе
   window.addEventListener("resize", debounce(setContainerHeight, 250));
-
-  console.log("Карусель Track Group инициализирована (с анимацией)");
 }
 
 // Дополнительные функции, которые можно использовать
