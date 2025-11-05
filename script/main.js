@@ -52,6 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Проверяем URL на наличие параметра для показа 404
   checkPageMode();
 
+  // Инициализация обработчика ошибок для изображений
+  initImageErrorHandler();
+
   // Инициализация всех обработчиков
   initBurgerMenu();
   initSmoothScroll();
@@ -1469,3 +1472,34 @@ function toggle404Mode() {
 // Делаем функции доступными глобально для вызова из HTML
 window.goToHome = goToHome;
 window.toggle404Mode = toggle404Mode;
+
+// ========================================
+//    ОБРАБОТЧИК ОШИБОК ДЛЯ ИЗОБРАЖЕНИЙ
+// ========================================
+
+/**
+ * Инициализация обработчика ошибок загрузки изображений
+ * При ошибке загрузки изображение заменяется на error.png
+ */
+function initImageErrorHandler() {
+  const images = document.querySelectorAll('img');
+  
+  images.forEach((img) => {
+    img.addEventListener('error', function() {
+      // Проверяем, что это не уже fallback изображение
+      if (!this.src.includes('error.png')) {
+        console.warn(`Ошибка загрузки изображения: ${this.src}`);
+        
+        // Заменяем на error.png
+        this.src = 'assets/img/error.png';
+        this.alt = 'Ошибка загрузки изображения';
+        
+        // Добавляем класс для стилизации
+        this.classList.add('image-error');
+      }
+    });
+  });
+  
+  console.log(`Инициализирован обработчик ошибок для ${images.length} изображений`);
+}
+
