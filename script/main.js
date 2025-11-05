@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Обновляем высоту при изменении размера окна
   window.addEventListener("resize", debounce(updateHeaderHeight, 250));
 
+  // Проверяем URL на наличие параметра для показа 404
+  checkPageMode();
+
   // Инициализация всех обработчиков
   initBurgerMenu();
   initSmoothScroll();
@@ -1367,3 +1370,102 @@ function initBlogCarousel() {
     name: "Blog",
   });
 }
+
+// ========================================
+//    СИСТЕМА УПРАВЛЕНИЯ СТРАНИЦЕЙ 404
+// ========================================
+
+/**
+ * Проверка URL на наличие параметра для показа страницы 404
+ * При загрузке страницы проверяет ?mode=404 в URL
+ */
+function checkPageMode() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const mode = urlParams.get('mode');
+  
+  if (mode === '404') {
+    show404Page();
+  } else {
+    showMainContent();
+  }
+}
+
+/**
+ * Показывает страницу 404 вместо основного контента
+ */
+function show404Page() {
+  const mainContent = document.getElementById('mainContent');
+  const page404Content = document.getElementById('page404Content');
+  
+  if (mainContent && page404Content) {
+    mainContent.style.display = 'none';
+    page404Content.style.display = 'block';
+    console.log('Показана страница 404');
+  }
+}
+
+/**
+ * Показывает основной контент (скрывает 404)
+ */
+function showMainContent() {
+  const mainContent = document.getElementById('mainContent');
+  const page404Content = document.getElementById('page404Content');
+  
+  if (mainContent && page404Content) {
+    mainContent.style.display = 'block';
+    page404Content.style.display = 'none';
+    console.log('Показан основной контент');
+  }
+}
+
+/**
+ * Возврат на главную страницу с страницы 404
+ * Используется в кнопке "На главную"
+ */
+function goToHome() {
+  // Удаляем параметр mode из URL
+  const url = new URL(window.location);
+  url.searchParams.delete('mode');
+  window.history.pushState({}, '', url);
+  
+  // Показываем основной контент
+  showMainContent();
+  
+  // Прокручиваем страницу наверх
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+  
+  console.log('Возврат на главную страницу');
+}
+
+/**
+ * Переключение на страницу 404 (для тестирования)
+ * Можно вызвать из консоли браузера: toggle404Mode()
+ */
+function toggle404Mode() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentMode = urlParams.get('mode');
+  
+  if (currentMode === '404') {
+    // Если уже на 404, переключаемся на обычную страницу
+    goToHome();
+  } else {
+    // Переключаемся на 404
+    const url = new URL(window.location);
+    url.searchParams.set('mode', '404');
+    window.history.pushState({}, '', url);
+    show404Page();
+    
+    // Прокручиваем страницу наверх
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// Делаем функции доступными глобально для вызова из HTML
+window.goToHome = goToHome;
+window.toggle404Mode = toggle404Mode;

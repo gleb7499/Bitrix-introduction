@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Название сайта</title>
-    <link rel="stylesheet" href="style/main.css" />
-  </head>
-  <body>
-    <!-- Overlay для размытия main (для services-popup) -->
-    <div class="services-popup__overlay" id="overlay"></div>
 
-    <!-- Overlay для модального окна (выше всех элементов) -->
-    <div class="modal-overlay" id="modalOverlay"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Название сайта</title>
+  <link rel="stylesheet" href="style/main.css" />
+</head>
 
-    <!-- Модальное окно с формой -->
-    <div class="modal-popup" id="callModal">
-      <div class="modal-popup__wrapper">
-        <div class="modal-popup__container">
-          <!-- Контент формы (переиспользуем стили quick-response) -->
-          <div class="quick-response__content">
+<body>
+  <!-- Overlay для размытия main (для services-popup) -->
+  <div class="services-popup__overlay" id="overlay"></div>
+
+  <!-- Overlay для модального окна (выше всех элементов) -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <!-- Модальное окно с формой -->
+  <div class="modal-popup" id="callModal">
+    <div class="modal-popup__wrapper">
+      <div class="modal-popup__container">
+        <!-- Контент формы (переиспользуем стили quick-response) -->
+        <div class="quick-response__content">
           <h2 class="quick-response__title">Получить ответ за 15 минут</h2>
           <p class="quick-response__description">
             Заполните форму с актуальными данными
           </p>
           <form class="quick-response__form" id="callModalForm">
             <div class="quick-response__field">
-              <input
-                type="text"
-                class="quick-response__input"
-                placeholder="Имя"
-                required
-              />
+              <input type="text" class="quick-response__input" placeholder="Имя" required />
               <span class="quick-response__error">Additional text</span>
             </div>
             <div class="quick-response__field">
-              <input
-                type="tel"
-                class="quick-response__input"
-                placeholder="+7 __ __ __"
-                required
-              />
+              <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" required />
               <span class="quick-response__error">Additional text</span>
             </div>
             <button type="submit" class="btn btn--primary">Отправить</button>
@@ -51,7 +43,7 @@
             </p>
           </form>
         </div>
-        
+
         <!-- Контент успешной отправки (скрыт по умолчанию) -->
         <div class="modal-success" style="display: none;">
           <img src="assets/img/successfully-done.png" alt="Успешно" class="modal-success__image">
@@ -63,286 +55,180 @@
           </div>
         </div>
       </div>
-        
-        <!-- Кнопка закрытия справа от контейнера -->
-        <button class="modal-popup__close" id="modalClose" aria-label="Закрыть">
-          <img src="assets/img/close.png" alt="Закрыть">
+
+      <!-- Кнопка закрытия справа от контейнера -->
+      <button class="modal-popup__close" id="modalClose" aria-label="Закрыть">
+        <img src="assets/img/close.png" alt="Закрыть">
+      </button>
+    </div>
+  </div>
+
+  <!-- Всплывающее меню услуг -->
+  <div class="services-popup__container" id="servicesPopup">
+    <div class="services-popup__links">
+      <!-- Колонка с категориями -->
+      <div class="services-popup__column-wrapper">
+        <!-- Блок заголовков категорий -->
+        <div class="services-popup__categories">
+          <h3 class="services-popup__category active" data-category="1c">
+            Услуги 1С
+          </h3>
+          <h3 class="services-popup__category" data-category="bitrix24">
+            Услуги Битрикс 24
+          </h3>
+          <h3 class="services-popup__category" data-category="it-infrastructure">
+            ИТ-инфраструктура и оборудование
+          </h3>
+          <h3 class="services-popup__category" data-category="server-solutions">
+            Серверные решения и сети
+          </h3>
+        </div>
+      </div>
+
+      <!-- Колонка 1 -->
+      <div class="services-popup__column-wrapper">
+        <div class="services-popup__column" data-column="1">
+          <!-- Услуги 1С - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="1c">Внедрение 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Доработка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Техническая поддержка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Сопровождение 1С</a>
+
+          <!-- Услуги Битрикс 24 - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Внедрение Битрикс
+            24</a>
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Обслуживание Битрикс
+            24</a>
+
+          <!-- ИТ-инфраструктура и оборудование - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Создание ИТ
+            инфраструктуры</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Установка
+            серверного оборудования и ПО</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure"
+            style="display: none">ИТ-обслуживание ПК и серверов</a>
+
+          <!-- Серверные решения и сети - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none">Внедрение
+            хранилищ данных</a>
+          <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none">Внедрение
+            почтового сервера</a>
+        </div>
+      </div>
+
+      <!-- Колонка 2 -->
+      <div class="services-popup__column-wrapper">
+        <div class="services-popup__column" data-column="2">
+          <!-- Услуги 1С - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="1c">Обновление 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Настройка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Разработка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Аренда 1С</a>
+
+          <!-- Услуги Битрикс 24 - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Настройка Битрикс
+            24</a>
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Разработка Битрикс
+            24</a>
+
+          <!-- ИТ-инфраструктура и оборудование - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Монтаж
+            локальных сетей</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Монтаж
+            СКС</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Установка
+            систем видеонаблюдения</a>
+
+          <!-- Серверные решения и сети - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none">Корпоративный
+            VPN</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Блок с фотографией -->
+    <div class="services-popup__image">
+      <img src="assets/img/popup-menu-1c.png" alt="Услуги 1С" data-image="1c" class="services-popup__photo active" />
+      <img src="assets/img/popup-menu-bitrix-24.png" alt="Услуги Битрикс 24" data-image="bitrix24"
+        class="services-popup__photo" />
+      <img src="assets/img/popup-menu-IT-solutions-and-equipment.png" alt="ИТ-инфраструктура и оборудование"
+        data-image="it-infrastructure" class="services-popup__photo" />
+      <img src="assets/img/popup-menu-server-solutions-and-networks.png" alt="Серверные решения и сети"
+        data-image="server-solutions" class="services-popup__photo" />
+    </div>
+  </div>
+  </div>
+
+  <!-- Шапка сайта -->
+  <header class="header">
+    <div class="container">
+      <div class="header__content">
+        <img src="assets/img/logo-header-desktop.png" alt="IntezGroup Logo" class="header__logo" />
+
+        <button class="btn btn--services" id="servicesBtn">
+          Услуги
+          <img src="assets/img/show-more.png" alt="" class="btn__icon" />
+        </button>
+
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item nav__item--has-dropdown">
+              <a href="#about" class="nav__link">
+                О компании
+                <img src="assets/img/show-more.png" alt="" class="nav__link-icon" />
+              </a>
+              <!-- Всплывающее меню "О компании" -->
+              <div class="nav-dropdown" id="aboutDropdown">
+                <div class="nav-dropdown__container">
+                  <a href="#" class="nav-dropdown__link">О компании</a>
+                  <a href="#" class="nav-dropdown__link">Вакансии</a>
+                  <a href="#" class="nav-dropdown__link">Отзывы</a>
+                  <a href="#" class="nav-dropdown__link">Вопрос-ответ</a>
+                  <a href="#" class="nav-dropdown__link">Акции и скидки</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav__item">
+              <a href="#prices" class="nav__link">Цены</a>
+            </li>
+            <li class="nav__item">
+              <a href="#projects" class="nav__link">Проекты</a>
+            </li>
+            <li class="nav__item">
+              <a href="#blog" class="nav__link">Блог</a>
+            </li>
+            <li class="nav__item">
+              <a href="#contacts" class="nav__link">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__actions">
+          <a href="tel:+74954765464" class="header__phone">+7 495 476-54-64</a>
+          <button class="btn btn--secondary" id="callBtn">
+            Заказать звонок
+          </button>
+          <!-- Кнопка для тестирования страницы 404 (можно скрыть в production) -->
+          <button class="btn btn--test-404" id="test404Btn" onclick="toggle404Mode()"
+            title="Переключить режим 404 (для тестирования)"
+            style="opacity: 0.5; font-size: 0.8em; padding: 0.5vw 0.8vw;">
+            404
+          </button>
+        </div>
+
+        <button class="burger" id="burger">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
         </button>
       </div>
     </div>
+  </header>
 
-    <!-- Всплывающее меню услуг -->
-    <div class="services-popup__container" id="servicesPopup">
-      <div class="services-popup__links">
-        <!-- Колонка с категориями -->
-        <div class="services-popup__column-wrapper">
-          <!-- Блок заголовков категорий -->
-          <div class="services-popup__categories">
-            <h3 class="services-popup__category active" data-category="1c">
-              Услуги 1С
-            </h3>
-            <h3 class="services-popup__category" data-category="bitrix24">
-              Услуги Битрикс 24
-            </h3>
-            <h3
-              class="services-popup__category"
-              data-category="it-infrastructure"
-            >
-              ИТ-инфраструктура и оборудование
-            </h3>
-            <h3
-              class="services-popup__category"
-              data-category="server-solutions"
-            >
-              Серверные решения и сети
-            </h3>
-          </div>
-        </div>
-
-        <!-- Колонка 1 -->
-        <div class="services-popup__column-wrapper">
-          <div class="services-popup__column" data-column="1">
-            <!-- Услуги 1С - Колонка 1 -->
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Внедрение 1С</a
-            >
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Доработка 1С</a
-            >
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Техническая поддержка 1С</a
-            >
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Сопровождение 1С</a
-            >
-
-            <!-- Услуги Битрикс 24 - Колонка 1 -->
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="bitrix24"
-              style="display: none"
-              >Внедрение Битрикс 24</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="bitrix24"
-              style="display: none"
-              >Обслуживание Битрикс 24</a
-            >
-
-            <!-- ИТ-инфраструктура и оборудование - Колонка 1 -->
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="it-infrastructure"
-              style="display: none"
-              >Создание ИТ инфраструктуры</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="it-infrastructure"
-              style="display: none"
-              >Установка серверного оборудования и ПО</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="it-infrastructure"
-              style="display: none"
-              >ИТ-обслуживание ПК и серверов</a
-            >
-
-            <!-- Серверные решения и сети - Колонка 1 -->
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="server-solutions"
-              style="display: none"
-              >Внедрение хранилищ данных</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="server-solutions"
-              style="display: none"
-              >Внедрение почтового сервера</a
-            >
-          </div>
-        </div>
-
-        <!-- Колонка 2 -->
-        <div class="services-popup__column-wrapper">
-          <div class="services-popup__column" data-column="2">
-            <!-- Услуги 1С - Колонка 2 -->
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Обновление 1С</a
-            >
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Настройка 1С</a
-            >
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Разработка 1С</a
-            >
-            <a href="#" class="services-popup__link" data-category="1c"
-              >Аренда 1С</a
-            >
-
-            <!-- Услуги Битрикс 24 - Колонка 2 -->
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="bitrix24"
-              style="display: none"
-              >Настройка Битрикс 24</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="bitrix24"
-              style="display: none"
-              >Разработка Битрикс 24</a
-            >
-
-            <!-- ИТ-инфраструктура и оборудование - Колонка 2 -->
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="it-infrastructure"
-              style="display: none"
-              >Монтаж локальных сетей</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="it-infrastructure"
-              style="display: none"
-              >Монтаж СКС</a
-            >
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="it-infrastructure"
-              style="display: none"
-              >Установка систем видеонаблюдения</a
-            >
-
-            <!-- Серверные решения и сети - Колонка 2 -->
-            <a
-              href="#"
-              class="services-popup__link"
-              data-category="server-solutions"
-              style="display: none"
-              >Корпоративный VPN</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Блок с фотографией -->
-      <div class="services-popup__image">
-          <img
-            src="assets/img/popup-menu-1c.png"
-            alt="Услуги 1С"
-            data-image="1c"
-            class="services-popup__photo active"
-          />
-          <img
-            src="assets/img/popup-menu-bitrix-24.png"
-            alt="Услуги Битрикс 24"
-            data-image="bitrix24"
-            class="services-popup__photo"
-          />
-          <img
-            src="assets/img/popup-menu-IT-solutions-and-equipment.png"
-            alt="ИТ-инфраструктура и оборудование"
-            data-image="it-infrastructure"
-            class="services-popup__photo"
-          />
-          <img
-            src="assets/img/popup-menu-server-solutions-and-networks.png"
-            alt="Серверные решения и сети"
-            data-image="server-solutions"
-            class="services-popup__photo"
-          />
-        </div>
-      </div>
-    </div>
-
-    <!-- Шапка сайта -->
-    <header class="header">
-      <div class="container">
-        <div class="header__content">
-          <img
-            src="assets/img/logo-header-desktop.png"
-            alt="IntezGroup Logo"
-            class="header__logo"
-          />
-
-          <button class="btn btn--services" id="servicesBtn">
-            Услуги
-            <img src="assets/img/show-more.png" alt="" class="btn__icon" />
-          </button>
-
-          <nav class="nav">
-            <ul class="nav__list">
-              <li class="nav__item nav__item--has-dropdown">
-                <a href="#about" class="nav__link">
-                  О компании
-                  <img
-                    src="assets/img/show-more.png"
-                    alt=""
-                    class="nav__link-icon"
-                  />
-                </a>
-                <!-- Всплывающее меню "О компании" -->
-                <div class="nav-dropdown" id="aboutDropdown">
-                  <div class="nav-dropdown__container">
-                    <a href="#" class="nav-dropdown__link">О компании</a>
-                    <a href="#" class="nav-dropdown__link">Вакансии</a>
-                    <a href="#" class="nav-dropdown__link">Отзывы</a>
-                    <a href="#" class="nav-dropdown__link">Вопрос-ответ</a>
-                    <a href="#" class="nav-dropdown__link">Акции и скидки</a>
-                  </div>
-                </div>
-              </li>
-              <li class="nav__item">
-                <a href="#prices" class="nav__link">Цены</a>
-              </li>
-              <li class="nav__item">
-                <a href="#projects" class="nav__link">Проекты</a>
-              </li>
-              <li class="nav__item">
-                <a href="#blog" class="nav__link">Блог</a>
-              </li>
-              <li class="nav__item">
-                <a href="#contacts" class="nav__link">Контакты</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div class="header__actions">
-            <a href="tel:+74954765464" class="header__phone"
-              >+7 495 476-54-64</a
-            >
-            <button class="btn btn--secondary" id="callBtn">
-              Заказать звонок
-            </button>
-          </div>
-
-          <button class="burger" id="burger">
-            <span class="burger__line"></span>
-            <span class="burger__line"></span>
-            <span class="burger__line"></span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Основной контент страницы -->
-    <main>
+  <!-- Основной контент страницы -->
+  <main>
+    <!-- Обертка для основного контента (можно скрывать при показе 404) -->
+    <div id="mainContent">
       <!-- 1. Секция: ИТ-инфраструктура нового уровня -->
       <section class="section section--hero">
         <div class="hero__content">
@@ -356,10 +242,7 @@
           <button class="btn btn--primary">Заказать консультацию</button>
         </div>
         <div class="hero__image">
-          <img
-            src="assets/img/a-new-level-of-IT-infrastructure.png"
-            alt="ИТ-инфраструктура нового уровня"
-          />
+          <img src="assets/img/a-new-level-of-IT-infrastructure.png" alt="ИТ-инфраструктура нового уровня" />
         </div>
       </section>
 
@@ -374,10 +257,7 @@
           <!-- Карточка 1: Оперативное решение задач -->
           <div class="advantage-card">
             <div class="advantage-card__image">
-              <img
-                src="assets/img/fast-solution-section-advantages.png"
-                alt="Оперативное решение задач"
-              />
+              <img src="assets/img/fast-solution-section-advantages.png" alt="Оперативное решение задач" />
             </div>
             <h3 class="advantage-card__title">Оперативное решение задач</h3>
           </div>
@@ -385,10 +265,7 @@
           <!-- Карточка 2: Индивидуальный подход -->
           <div class="advantage-card">
             <div class="advantage-card__image">
-              <img
-                src="assets/img/individual-approach-section-advantages.png"
-                alt="Индивидуальный подход"
-              />
+              <img src="assets/img/individual-approach-section-advantages.png" alt="Индивидуальный подход" />
             </div>
             <h3 class="advantage-card__title">Индивидуальный подход</h3>
           </div>
@@ -396,10 +273,7 @@
           <!-- Карточка 3: Оптимизация ИТ-расходов -->
           <div class="advantage-card">
             <div class="advantage-card__image">
-              <img
-                src="assets/img/optimizing-IT-costs-section-advantages.png"
-                alt="Оптимизация ИТ-расходов"
-              />
+              <img src="assets/img/optimizing-IT-costs-section-advantages.png" alt="Оптимизация ИТ-расходов" />
             </div>
             <h3 class="advantage-card__title">Оптимизация ИТ-расходов</h3>
           </div>
@@ -407,10 +281,7 @@
           <!-- Карточка 4: Комплекс ИТ-услуг -->
           <div class="advantage-card">
             <div class="advantage-card__image">
-              <img
-                src="assets/img/range-of-IT-services-section-advantages.png"
-                alt="Комплекс ИТ-услуг"
-              />
+              <img src="assets/img/range-of-IT-services-section-advantages.png" alt="Комплекс ИТ-услуг" />
             </div>
             <h3 class="advantage-card__title">Комплекс ИТ-услуг</h3>
           </div>
@@ -429,25 +300,11 @@
             </p>
           </div>
           <div class="services__navigation">
-            <button
-              class="services__nav-btn services__nav-btn--prev"
-              id="servicesPrev"
-            >
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Предыдущий"
-                style="transform: rotate(180deg)"
-              />
+            <button class="services__nav-btn services__nav-btn--prev" id="servicesPrev">
+              <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" />
             </button>
-            <button
-              class="services__nav-btn services__nav-btn--next"
-              id="servicesNext"
-            >
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Следующий"
-                style="transform: rotate(0deg)"
-              />
+            <button class="services__nav-btn services__nav-btn--next" id="servicesNext">
+              <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" />
             </button>
           </div>
         </div>
@@ -456,10 +313,7 @@
           <!-- Карточка 1: Услуги 1С -->
           <div class="services__card">
             <div class="services__card-image">
-              <img
-                src="assets/img/1C-services-section-service.png"
-                alt="Услуги 1С"
-              />
+              <img src="assets/img/1C-services-section-service.png" alt="Услуги 1С" />
             </div>
             <h3 class="services__card-title">Услуги 1С</h3>
             <ul class="services__card-menu">
@@ -477,10 +331,7 @@
           <!-- Карточка 2: Битрикс 24 -->
           <div class="services__card">
             <div class="services__card-image">
-              <img
-                src="assets/img/bitrix-24-section-service.png"
-                alt="Битрикс 24"
-              />
+              <img src="assets/img/bitrix-24-section-service.png" alt="Битрикс 24" />
             </div>
             <h3 class="services__card-title">Битрикс 24</h3>
             <ul class="services__card-menu">
@@ -494,10 +345,7 @@
           <!-- Карточка 3: ИТ-решения и оборудование -->
           <div class="services__card">
             <div class="services__card-image">
-              <img
-                src="assets/img/IT-solutions-and-equipment-section-service.png"
-                alt="ИТ-решения и оборудование"
-              />
+              <img src="assets/img/IT-solutions-and-equipment-section-service.png" alt="ИТ-решения и оборудование" />
             </div>
             <h3 class="services__card-title">ИТ-решения и оборудование</h3>
             <ul class="services__card-menu">
@@ -513,10 +361,7 @@
           <!-- Карточка 4: Серверные решения и сети -->
           <div class="services__card">
             <div class="services__card-image">
-              <img
-                src="assets/img/server-solutions-and-networks-section-service.png"
-                alt="Серверные решения и сети"
-              />
+              <img src="assets/img/server-solutions-and-networks-section-service.png" alt="Серверные решения и сети" />
             </div>
             <h3 class="services__card-title">Серверные решения и сети</h3>
             <ul class="services__card-menu">
@@ -529,10 +374,7 @@
           <!-- Карточка 4: Серверные решения и сети -->
           <div class="services__card">
             <div class="services__card-image">
-              <img
-                src="assets/img/server-solutions-and-networks-section-service.png"
-                alt="Серверные решения и сети"
-              />
+              <img src="assets/img/server-solutions-and-networks-section-service.png" alt="Серверные решения и сети" />
             </div>
             <h3 class="services__card-title">Серверные решения и сети</h3>
             <ul class="services__card-menu">
@@ -545,10 +387,7 @@
           <!-- Карточка 4: Серверные решения и сети -->
           <div class="services__card">
             <div class="services__card-image">
-              <img
-                src="assets/img/server-solutions-and-networks-section-service.png"
-                alt="Серверные решения и сети"
-              />
+              <img src="assets/img/server-solutions-and-networks-section-service.png" alt="Серверные решения и сети" />
             </div>
             <h3 class="services__card-title">Серверные решения и сети</h3>
             <ul class="services__card-menu">
@@ -582,10 +421,7 @@
           <!-- Карточка 2: Внедрение и настройка -->
           <div class="work-process-card">
             <div class="work-process-card__image">
-              <img
-                src="assets/img/implem-section-crm-proces.png"
-                alt="Внедрение и настройка"
-              />
+              <img src="assets/img/implem-section-crm-proces.png" alt="Внедрение и настройка" />
             </div>
             <h3 class="work-process-card__title">Внедрение и настройка</h3>
             <p class="work-process-card__text">
@@ -596,10 +432,7 @@
           <!-- Карточка 3: Интеграция -->
           <div class="work-process-card">
             <div class="work-process-card__image">
-              <img
-                src="assets/img/integration-section-crm-proces.png"
-                alt="Интеграция"
-              />
+              <img src="assets/img/integration-section-crm-proces.png" alt="Интеграция" />
             </div>
             <h3 class="work-process-card__title">Интеграция</h3>
             <p class="work-process-card__text">
@@ -610,10 +443,7 @@
           <!-- Карточка 4: Сопровождение -->
           <div class="work-process-card">
             <div class="work-process-card__image">
-              <img
-                src="assets/img/escort-section-crm-proces.png"
-                alt="Сопровождение"
-              />
+              <img src="assets/img/escort-section-crm-proces.png" alt="Сопровождение" />
             </div>
             <h3 class="work-process-card__title">Сопровождение</h3>
             <p class="work-process-card__text">
@@ -693,40 +523,25 @@
           <div class="clients__carousel">
             <div class="clients__track">
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/kessebohmer.png"
-                  alt="Kessebohmer"
-                />
+                <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" />
               </div>
               <div class="clients__logo">
                 <img src="assets/img/partners/ternus.png" alt="Ternus" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/trans-atlantic.png"
-                  alt="Trans Atlantic"
-                />
+                <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/eka-center.png"
-                  alt="Eka Center"
-                />
+                <img src="assets/img/partners/eka-center.png" alt="Eka Center" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/city-krovla.png"
-                  alt="City Krovla"
-                />
+                <img src="assets/img/partners/city-krovla.png" alt="City Krovla" />
               </div>
               <div class="clients__logo">
                 <img src="assets/img/partners/belka.png" alt="Belka" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/abs-service.png"
-                  alt="ABS Service"
-                />
+                <img src="assets/img/partners/abs-service.png" alt="ABS Service" />
               </div>
               <div class="clients__logo">
                 <img src="assets/img/partners/chapurin.png" alt="Chapurin" />
@@ -738,65 +553,38 @@
                 <img src="assets/img/partners/lsc.png" alt="LSC" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/mediacontact.png"
-                  alt="Media Contact"
-                />
+                <img src="assets/img/partners/mediacontact.png" alt="Media Contact" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/presna-finans.png"
-                  alt="Presna Finans"
-                />
+                <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/smartlamps.png"
-                  alt="Smart Lamps"
-                />
+                <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/tract-group.png"
-                  alt="Tract Group"
-                />
+                <img src="assets/img/partners/tract-group.png" alt="Tract Group" />
               </div>
               <!-- Дублирование для бесшовной прокрутки -->
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/kessebohmer.png"
-                  alt="Kessebohmer"
-                />
+                <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" />
               </div>
               <div class="clients__logo">
                 <img src="assets/img/partners/ternus.png" alt="Ternus" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/trans-atlantic.png"
-                  alt="Trans Atlantic"
-                />
+                <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/eka-center.png"
-                  alt="Eka Center"
-                />
+                <img src="assets/img/partners/eka-center.png" alt="Eka Center" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/city-krovla.png"
-                  alt="City Krovla"
-                />
+                <img src="assets/img/partners/city-krovla.png" alt="City Krovla" />
               </div>
               <div class="clients__logo">
                 <img src="assets/img/partners/belka.png" alt="Belka" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/abs-service.png"
-                  alt="ABS Service"
-                />
+                <img src="assets/img/partners/abs-service.png" alt="ABS Service" />
               </div>
               <div class="clients__logo">
                 <img src="assets/img/partners/chapurin.png" alt="Chapurin" />
@@ -808,28 +596,16 @@
                 <img src="assets/img/partners/lsc.png" alt="LSC" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/mediacontact.png"
-                  alt="Media Contact"
-                />
+                <img src="assets/img/partners/mediacontact.png" alt="Media Contact" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/presna-finans.png"
-                  alt="Presna Finans"
-                />
+                <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/smartlamps.png"
-                  alt="Smart Lamps"
-                />
+                <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" />
               </div>
               <div class="clients__logo">
-                <img
-                  src="assets/img/partners/tract-group.png"
-                  alt="Tract Group"
-                />
+                <img src="assets/img/partners/tract-group.png" alt="Tract Group" />
               </div>
             </div>
           </div>
@@ -841,24 +617,14 @@
         <div class="track-group__carousel">
           <!-- Навигация карусели -->
           <div class="track-group__navigation">
-            <button
-              class="track-group__nav-btn track-group__nav-btn--prev"
-              id="trackGroupPrev"
-            >
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Назад"
-                style="transform: rotate(180deg)"
-              />
+            <button class="track-group__nav-btn track-group__nav-btn--prev" id="trackGroupPrev">
+              <img src="assets/img/arrow-left.png" alt="Назад" style="transform: rotate(180deg)" />
             </button>
             <span class="track-group__nav-text">
               <span class="track-group__nav-current">1</span> /
               <span class="track-group__nav-total">3</span>
             </span>
-            <button
-              class="track-group__nav-btn track-group__nav-btn--next"
-              id="trackGroupNext"
-            >
+            <button class="track-group__nav-btn track-group__nav-btn--next" id="trackGroupNext">
               <img src="assets/img/arrow-left.png" alt="Вперед" />
             </button>
           </div>
@@ -890,10 +656,7 @@
                 <button class="btn btn--primary">Хочу так же</button>
               </div>
               <div class="track-group__image">
-                <img
-                  src="assets/img/IT-truck-group-section-track-group.png"
-                  alt="ИТ для Трак Групп"
-                />
+                <img src="assets/img/IT-truck-group-section-track-group.png" alt="ИТ для Трак Групп" />
               </div>
             </div>
 
@@ -921,10 +684,7 @@
                 <button class="btn btn--primary">Хочу так же</button>
               </div>
               <div class="track-group__image">
-                <img
-                  src="assets/img/IT-video-studio-section-track-group.png"
-                  alt="ИТ для видеостудии"
-                />
+                <img src="assets/img/IT-video-studio-section-track-group.png" alt="ИТ для видеостудии" />
               </div>
             </div>
 
@@ -951,10 +711,8 @@
                 <button class="btn btn--primary">Хочу так же</button>
               </div>
               <div class="track-group__image">
-                <img
-                  src="assets/img/IT-consulting-logistics-section-track-group.png"
-                  alt="ИТ для Консалтинг Логистики"
-                />
+                <img src="assets/img/IT-consulting-logistics-section-track-group.png"
+                  alt="ИТ для Консалтинг Логистики" />
               </div>
             </div>
           </div>
@@ -975,11 +733,7 @@
             <!-- Отзыв 1: Анна Иванова (первая карточка) -->
             <div class="reviews__card">
               <div class="reviews__card-header">
-                <img
-                  src="assets/img/test-avatar-1.jpg"
-                  alt="Анна Иванова"
-                  class="reviews__card-photo"
-                />
+                <img src="assets/img/test-avatar-1.jpg" alt="Анна Иванова" class="reviews__card-photo" />
                 <div class="reviews__card-info">
                   <div class="reviews__card-name">Анна Иванова</div>
                   <div class="reviews__card-meta">
@@ -999,11 +753,7 @@
             <!-- Отзыв 2: Елена Петрова -->
             <div class="reviews__card">
               <div class="reviews__card-header">
-                <img
-                  src="assets/img/test-avatar-2.jpg"
-                  alt="Елена Петрова"
-                  class="reviews__card-photo"
-                />
+                <img src="assets/img/test-avatar-2.jpg" alt="Елена Петрова" class="reviews__card-photo" />
                 <div class="reviews__card-info">
                   <div class="reviews__card-name">Елена Петрова</div>
                   <div class="reviews__card-meta">
@@ -1021,11 +771,7 @@
             <!-- Отзыв 3: Дмитрий Сидоров -->
             <div class="reviews__card">
               <div class="reviews__card-header">
-                <img
-                  src="assets/img/test-avatar-3.jpg"
-                  alt="Дмитрий Сидоров"
-                  class="reviews__card-photo"
-                />
+                <img src="assets/img/test-avatar-3.jpg" alt="Дмитрий Сидоров" class="reviews__card-photo" />
                 <div class="reviews__card-info">
                   <div class="reviews__card-name">Дмитрий Сидоров</div>
                   <div class="reviews__card-meta">
@@ -1044,11 +790,7 @@
             <!-- Отзыв 4: Анна Иванова (вторая карточка) -->
             <div class="reviews__card">
               <div class="reviews__card-header">
-                <img
-                  src="assets/img/test-avatar-1.jpg"
-                  alt="Анна Иванова"
-                  class="reviews__card-photo"
-                />
+                <img src="assets/img/test-avatar-1.jpg" alt="Анна Иванова" class="reviews__card-photo" />
                 <div class="reviews__card-info">
                   <div class="reviews__card-name">Анна Иванова</div>
                   <div class="reviews__card-meta">
@@ -1067,11 +809,7 @@
             <!-- Отзыв 5: Елена Петрова (третья карточка) -->
             <div class="reviews__card">
               <div class="reviews__card-header">
-                <img
-                  src="assets/img/test-avatar-2.jpg"
-                  alt="Елена Петрова"
-                  class="reviews__card-photo"
-                />
+                <img src="assets/img/test-avatar-2.jpg" alt="Елена Петрова" class="reviews__card-photo" />
                 <div class="reviews__card-info">
                   <div class="reviews__card-name">Елена Петрова</div>
                   <div class="reviews__card-meta">
@@ -1089,11 +827,7 @@
             <!-- Отзыв 6: Елена Петрова (четвёртая карточка) -->
             <div class="reviews__card">
               <div class="reviews__card-header">
-                <img
-                  src="assets/img/test-avatar-3.jpg"
-                  alt="Елена Петрова"
-                  class="reviews__card-photo"
-                />
+                <img src="assets/img/test-avatar-3.jpg" alt="Елена Петрова" class="reviews__card-photo" />
                 <div class="reviews__card-info">
                   <div class="reviews__card-name">Елена Петрова</div>
                   <div class="reviews__card-meta">
@@ -1145,25 +879,11 @@
             </p>
           </div>
           <div class="special-offers__navigation">
-            <button
-              class="special-offers__nav-btn special-offers__nav-btn--prev"
-              id="specialOffersPrev"
-            >
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Предыдущий"
-                style="transform: rotate(180deg)"
-              />
+            <button class="special-offers__nav-btn special-offers__nav-btn--prev" id="specialOffersPrev">
+              <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" />
             </button>
-            <button
-              class="special-offers__nav-btn special-offers__nav-btn--next"
-              id="specialOffersNext"
-            >
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Следующий"
-                style="transform: rotate(0deg)"
-              />
+            <button class="special-offers__nav-btn special-offers__nav-btn--next" id="specialOffersNext">
+              <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" />
             </button>
           </div>
         </div>
@@ -1172,10 +892,7 @@
           <!-- Карточка 1: Готовая 1С за 2 дня -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/1c-section-special-offers.png"
-                alt="Готовая 1С за 2 дня"
-              />
+              <img src="assets/img/1c-section-special-offers.png" alt="Готовая 1С за 2 дня" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">Готовая 1С за 2 дня</h3>
@@ -1189,10 +906,7 @@
           <!-- Карточка 2: Битрикс 24 со скидкой до 50% -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/24-bitrix-section-special-offers.png"
-                alt="Битрикс 24 со скидкой до 50%"
-              />
+              <img src="assets/img/24-bitrix-section-special-offers.png" alt="Битрикс 24 со скидкой до 50%" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">
@@ -1208,10 +922,7 @@
           <!-- Карточка 3: Бесплатный аудит -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/free-audit-section-special-offers.png"
-                alt="Бесплатный аудит"
-              />
+              <img src="assets/img/free-audit-section-special-offers.png" alt="Бесплатный аудит" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">Бесплатный аудит</h3>
@@ -1225,10 +936,7 @@
           <!-- Карточка 4: Установка в подарок -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/installation-section-special-offers.png"
-                alt="Установка в подарок"
-              />
+              <img src="assets/img/installation-section-special-offers.png" alt="Установка в подарок" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">Установка в подарок</h3>
@@ -1242,10 +950,7 @@
           <!-- Карточка 4: Установка в подарок -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/installation-section-special-offers.png"
-                alt="Установка в подарок"
-              />
+              <img src="assets/img/installation-section-special-offers.png" alt="Установка в подарок" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">Установка в подарок</h3>
@@ -1259,10 +964,7 @@
           <!-- Карточка 4: Установка в подарок -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/installation-section-special-offers.png"
-                alt="Установка в подарок"
-              />
+              <img src="assets/img/installation-section-special-offers.png" alt="Установка в подарок" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">Установка в подарок</h3>
@@ -1276,10 +978,7 @@
           <!-- Карточка 4: Установка в подарок -->
           <div class="special-offers__card">
             <div class="special-offers__card-image">
-              <img
-                src="assets/img/installation-section-special-offers.png"
-                alt="Установка в подарок"
-              />
+              <img src="assets/img/installation-section-special-offers.png" alt="Установка в подарок" />
             </div>
             <div class="special-offers__card-content">
               <h3 class="special-offers__card-title">Установка в подарок</h3>
@@ -1431,21 +1130,11 @@
           </p>
           <form class="quick-response__form">
             <div class="quick-response__field">
-              <input
-                type="text"
-                class="quick-response__input"
-                placeholder="Имя"
-                required
-              />
+              <input type="text" class="quick-response__input" placeholder="Имя" required />
               <span class="quick-response__error">Additional text</span>
             </div>
             <div class="quick-response__field">
-              <input
-                type="tel"
-                class="quick-response__input"
-                placeholder="+7 __ __ __"
-                required
-              />
+              <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" required />
               <span class="quick-response__error">Additional text</span>
             </div>
             <button type="submit" class="btn btn--primary">Отправить</button>
@@ -1457,10 +1146,7 @@
           </form>
         </div>
         <div class="quick-response__image">
-          <img
-            src="assets/img/get-answer-section-quick-response.png"
-            alt="Получить ответ за 15 минут"
-          />
+          <img src="assets/img/get-answer-section-quick-response.png" alt="Получить ответ за 15 минут" />
         </div>
       </section>
 
@@ -1475,18 +1161,10 @@
           </div>
           <div class="blog__navigation">
             <button class="blog__nav-btn blog__nav-btn--prev" id="blogPrev">
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Предыдущий"
-                style="transform: rotate(180deg)"
-              />
+              <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" />
             </button>
             <button class="blog__nav-btn blog__nav-btn--next" id="blogNext">
-              <img
-                src="assets/img/arrow-left.png"
-                alt="Следующий"
-                style="transform: rotate(0deg)"
-              />
+              <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" />
             </button>
           </div>
         </div>
@@ -1495,10 +1173,7 @@
           <!-- Карточка 1: Как ускорить работу в 1С -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/fast-1c-section-blog.png"
-                alt="Как ускорить работу в 1С"
-              />
+              <img src="assets/img/fast-1c-section-blog.png" alt="Как ускорить работу в 1С" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">Как ускорить работу в 1С</h3>
@@ -1516,10 +1191,7 @@
           <!-- Карточка 2: 5 инструментов Битрикс 24 -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/5-bitrixs-instruments-section-blog.png"
-                alt="5 инструментов Битрикс 24"
-              />
+              <img src="assets/img/5-bitrixs-instruments-section-blog.png" alt="5 инструментов Битрикс 24" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">5 инструментов Битрикс 24</h3>
@@ -1537,19 +1209,14 @@
           <!-- Карточка 3: Как выбрать ИТ-инфраструктуру -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/it-infrastructure-section-blog.png"
-                alt="Как выбрать ИТ-инфраструктуру"
-              />
+              <img src="assets/img/it-infrastructure-section-blog.png" alt="Как выбрать ИТ-инфраструктуру" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">Как выбрать ИТ-инфраструктуру</h3>
               <p class="blog__card-text">Советы по подбору оборудования</p>
               <a href="#" class="blog__card-link">Подробнее</a>
               <div class="blog__card-meta">
-                <span class="blog__card-category"
-                  >ИТ-инфраструктура и оборудование</span
-                >
+                <span class="blog__card-category">ИТ-инфраструктура и оборудование</span>
                 <span class="blog__card-date">5 июн</span>
               </div>
             </div>
@@ -1558,19 +1225,14 @@
           <!-- Карточка 4: Безопасность: что нужно знать -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/safety-section-blog.png"
-                alt="Безопасность: что нужно знать"
-              />
+              <img src="assets/img/safety-section-blog.png" alt="Безопасность: что нужно знать" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">Безопасность: что нужно знать</h3>
               <p class="blog__card-text">Как избежать утечек информации</p>
               <a href="#" class="blog__card-link">Подробнее</a>
               <div class="blog__card-meta">
-                <span class="blog__card-category"
-                  >Серверные решения и сети</span
-                >
+                <span class="blog__card-category">Серверные решения и сети</span>
                 <span class="blog__card-date">1 сен</span>
               </div>
             </div>
@@ -1579,19 +1241,14 @@
           <!-- Карточка 4: Безопасность: что нужно знать -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/safety-section-blog.png"
-                alt="Безопасность: что нужно знать"
-              />
+              <img src="assets/img/safety-section-blog.png" alt="Безопасность: что нужно знать" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">Безопасность: что нужно знать</h3>
               <p class="blog__card-text">Как избежать утечек информации</p>
               <a href="#" class="blog__card-link">Подробнее</a>
               <div class="blog__card-meta">
-                <span class="blog__card-category"
-                  >Серверные решения и сети</span
-                >
+                <span class="blog__card-category">Серверные решения и сети</span>
                 <span class="blog__card-date">1 сен</span>
               </div>
             </div>
@@ -1600,19 +1257,14 @@
           <!-- Карточка 4: Безопасность: что нужно знать -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/safety-section-blog.png"
-                alt="Безопасность: что нужно знать"
-              />
+              <img src="assets/img/safety-section-blog.png" alt="Безопасность: что нужно знать" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">Безопасность: что нужно знать</h3>
               <p class="blog__card-text">Как избежать утечек информации</p>
               <a href="#" class="blog__card-link">Подробнее</a>
               <div class="blog__card-meta">
-                <span class="blog__card-category"
-                  >Серверные решения и сети</span
-                >
+                <span class="blog__card-category">Серверные решения и сети</span>
                 <span class="blog__card-date">1 сен</span>
               </div>
             </div>
@@ -1621,189 +1273,178 @@
           <!-- Карточка 4: Безопасность: что нужно знать -->
           <div class="blog__card">
             <div class="blog__card-image">
-              <img
-                src="assets/img/safety-section-blog.png"
-                alt="Безопасность: что нужно знать"
-              />
+              <img src="assets/img/safety-section-blog.png" alt="Безопасность: что нужно знать" />
             </div>
             <div class="blog__card-content">
               <h3 class="blog__card-title">Безопасность: что нужно знать</h3>
               <p class="blog__card-text">Как избежать утечек информации</p>
               <a href="#" class="blog__card-link">Подробнее</a>
               <div class="blog__card-meta">
-                <span class="blog__card-category"
-                  >Серверные решения и сети</span
-                >
+                <span class="blog__card-category">Серверные решения и сети</span>
                 <span class="blog__card-date">1 сен</span>
               </div>
             </div>
           </div>
         </div>
       </section>
+    </div>
+    <!-- Конец обертки основного контента -->
 
-      <!-- 15. Секция: Ссылки и информация -->
-      <section class="section section--footer-info">
-        <div class="footer__columns">
-          <!-- Колонка 1: О компании -->
-          <div class="footer__column">
-            <h3 class="footer__column-title">О компании</h3>
+    <!-- Секция 404: Страница не найдена (скрыта по умолчанию) -->
+    <div id="page404Content" style="display: none;">
+      <section class="section section--hero section--404">
+        <div class="hero__content">
+          <div class="hero__text-group">
+            <h1 class="hero__title">Страница не найдена</h1>
+            <p class="hero__description">
+              Независимо от сложности задачи — мы решим ваши ИТ-проблемы. Доверьтесь нам!
+            </p>
+          </div>
+          <button class="btn btn--primary" onclick="goToHome()">На главную</button>
+        </div>
+        <div class="hero__image">
+          <img src="assets/img/404.png" alt="Страница не найдена" />
+        </div>
+      </section>
+    </div>
+    <!-- Конец секции 404 -->
+  </main>
+  <!-- Конец основного контента -->
 
-            <div class="footer__section">
-              <h4 class="footer__section-title">Компания</h4>
-              <ul class="footer__list">
-                <li><a href="#" class="footer__link">О компании</a></li>
-                <li><a href="#" class="footer__link">Вакансии</a></li>
-                <li><a href="#" class="footer__link">Отзывы</a></li>
-                <li><a href="#" class="footer__link">FAQ</a></li>
-                <li><a href="#" class="footer__link">Акции и скидки</a></li>
-                <li><a href="#" class="footer__link">Цены</a></li>
-                <li><a href="#" class="footer__link">Проекты</a></li>
-                <li><a href="#" class="footer__link">Контакты</a></li>
-              </ul>
-            </div>
+  <!-- Подвал -->
+  <footer class="footer">
+    <!-- Секция: Ссылки и информация -->
+    <section class="section section--footer-info">
+      <div class="footer__columns">
+        <!-- Колонка 1: О компании -->
+        <div class="footer__column">
+          <h3 class="footer__column-title">О компании</h3>
 
-            <div class="footer__section">
-              <h4 class="footer__section-title">Контакты</h4>
-              <div class="footer__contact-info">
-                <a href="tel:+74954765464" class="footer__phone"
-                  >+7 495 476-54-64</a
-                >
-                <a href="mailto:sales@intezgroup.ru" class="footer__email"
-                  >sales@intezgroup.ru</a
-                >
-                <div class="footer__social">
-                  <a
-                    href="#"
-                    class="footer__social-link footer__social-link--telegram"
-                    aria-label="Telegram"
-                  >
-                    <img src="assets/img/TG.png" alt="Telegram" />
-                  </a>
-                  <a
-                    href="#"
-                    class="footer__social-link footer__social-link--whatsapp"
-                    aria-label="WhatsApp"
-                  >
-                    <img src="assets/img/WA.png" alt="WhatsApp" />
-                  </a>
-                </div>
+          <div class="footer__section">
+            <h4 class="footer__section-title">Компания</h4>
+            <ul class="footer__list">
+              <li><a href="#" class="footer__link">О компании</a></li>
+              <li><a href="#" class="footer__link">Вакансии</a></li>
+              <li><a href="#" class="footer__link">Отзывы</a></li>
+              <li><a href="#" class="footer__link">FAQ</a></li>
+              <li><a href="#" class="footer__link">Акции и скидки</a></li>
+              <li><a href="#" class="footer__link">Цены</a></li>
+              <li><a href="#" class="footer__link">Проекты</a></li>
+              <li><a href="#" class="footer__link">Контакты</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h4 class="footer__section-title">Контакты</h4>
+            <div class="footer__contact-info">
+              <a href="tel:+74954765464" class="footer__phone">+7 495 476-54-64</a>
+              <a href="mailto:sales@intezgroup.ru" class="footer__email">sales@intezgroup.ru</a>
+              <div class="footer__social">
+                <a href="#" class="footer__social-link footer__social-link--telegram" aria-label="Telegram">
+                  <img src="assets/img/TG.png" alt="Telegram" />
+                </a>
+                <a href="#" class="footer__social-link footer__social-link--whatsapp" aria-label="WhatsApp">
+                  <img src="assets/img/WA.png" alt="WhatsApp" />
+                </a>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Колонка 2: Услуги -->
-          <div class="footer__column">
-            <h3 class="footer__column-title">Услуги</h3>
+        <!-- Колонка 2: Услуги -->
+        <div class="footer__column">
+          <h3 class="footer__column-title">Услуги</h3>
 
-            <div class="footer__section">
-              <h4 class="footer__section-title">Услуги 1С</h4>
-              <ul class="footer__list">
-                <li><a href="#" class="footer__link">Внедрение 1С</a></li>
-                <li><a href="#" class="footer__link">Доработка 1С</a></li>
-                <li>
-                  <a href="#" class="footer__link">Техническая поддержка 1С</a>
-                </li>
-                <li><a href="#" class="footer__link">Сопровождение 1С</a></li>
-                <li><a href="#" class="footer__link">Обновление 1С</a></li>
-                <li><a href="#" class="footer__link">Настройка 1С</a></li>
-                <li><a href="#" class="footer__link">Разработка 1С</a></li>
-                <li><a href="#" class="footer__link">Аренда 1С</a></li>
-              </ul>
-            </div>
-
-            <div class="footer__section">
-              <h4 class="footer__section-title">Серверные решения и сети</h4>
-              <ul class="footer__list">
-                <li>
-                  <a href="#" class="footer__link">Внедрение хранилищ данных</a>
-                </li>
-                <li>
-                  <a href="#" class="footer__link"
-                    >Внедрение почтового сервера</a
-                  >
-                </li>
-                <li><a href="#" class="footer__link">Корпоративный ВПН</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Колонка 3: Услуги Битрикс 24 -->
-          <div class="footer__column">
-            <h3
-              class="footer__column-title footer__column-title--placeholder"
-              aria-hidden="true"
-            >
-              Placeholder
-            </h3>
-            <h4 class="footer__section-title">Услуги Битрикс 24</h4>
+          <div class="footer__section">
+            <h4 class="footer__section-title">Услуги 1С</h4>
             <ul class="footer__list">
-              <li><a href="#" class="footer__link">Внедрение Битрикс 24</a></li>
+              <li><a href="#" class="footer__link">Внедрение 1С</a></li>
+              <li><a href="#" class="footer__link">Доработка 1С</a></li>
               <li>
-                <a href="#" class="footer__link">Обслуживание Битрикс 24</a>
+                <a href="#" class="footer__link">Техническая поддержка 1С</a>
               </li>
-              <li><a href="#" class="footer__link">Настройка Битрикс 24</a></li>
-              <li>
-                <a href="#" class="footer__link">Разработка Битрикс 24</a>
-              </li>
+              <li><a href="#" class="footer__link">Сопровождение 1С</a></li>
+              <li><a href="#" class="footer__link">Обновление 1С</a></li>
+              <li><a href="#" class="footer__link">Настройка 1С</a></li>
+              <li><a href="#" class="footer__link">Разработка 1С</a></li>
+              <li><a href="#" class="footer__link">Аренда 1С</a></li>
             </ul>
           </div>
 
-          <!-- Колонка 4: IT-инфраструктура -->
-          <div class="footer__column">
-            <h3
-              class="footer__column-title footer__column-title--placeholder"
-              aria-hidden="true"
-            >
-              Placeholder
-            </h3>
-            <h4 class="footer__section-title">
-              IT-инфраструктура и оборудование
-            </h4>
+          <div class="footer__section">
+            <h4 class="footer__section-title">Серверные решения и сети</h4>
             <ul class="footer__list">
               <li>
-                <a href="#" class="footer__link">Создание ИТ инфраструктуры</a>
+                <a href="#" class="footer__link">Внедрение хранилищ данных</a>
               </li>
               <li>
-                <a href="#" class="footer__link"
-                  >Установка серверного оборудования и ПО</a
-                >
+                <a href="#" class="footer__link">Внедрение почтового сервера</a>
               </li>
-              <li>
-                <a href="#" class="footer__link"
-                  >ИТ-обслуживание ПК и серверов</a
-                >
-              </li>
-              <li>
-                <a href="#" class="footer__link">Монтаж локальных сетей</a>
-              </li>
-              <li><a href="#" class="footer__link">Монтаж СКС</a></li>
-              <li>
-                <a href="#" class="footer__link"
-                  >Установка систем видеонаблюдения</a
-                >
-              </li>
+              <li><a href="#" class="footer__link">Корпоративный ВПН</a></li>
             </ul>
           </div>
         </div>
-      </section>
-    </main>
-    <!-- Конец основного контента -->
 
-    <!-- Подвал -->
-    <footer class="footer">
-      <div class="footer__container">
-        <p class="footer__copyright">
-          © 2025 «Intez Group» Все права защищены.
-        </p>
-        <div class="footer__legal">
-          <a href="#" class="footer__legal-link">Пользовательское соглашение</a>
-          <a href="#" class="footer__legal-link"
-            >Политика обработки персональных данных</a
-          >
+        <!-- Колонка 3: Услуги Битрикс 24 -->
+        <div class="footer__column">
+          <h3 class="footer__column-title footer__column-title--placeholder" aria-hidden="true">
+            Placeholder
+          </h3>
+          <h4 class="footer__section-title">Услуги Битрикс 24</h4>
+          <ul class="footer__list">
+            <li><a href="#" class="footer__link">Внедрение Битрикс 24</a></li>
+            <li>
+              <a href="#" class="footer__link">Обслуживание Битрикс 24</a>
+            </li>
+            <li><a href="#" class="footer__link">Настройка Битрикс 24</a></li>
+            <li>
+              <a href="#" class="footer__link">Разработка Битрикс 24</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Колонка 4: IT-инфраструктура -->
+        <div class="footer__column">
+          <h3 class="footer__column-title footer__column-title--placeholder" aria-hidden="true">
+            Placeholder
+          </h3>
+          <h4 class="footer__section-title">
+            IT-инфраструктура и оборудование
+          </h4>
+          <ul class="footer__list">
+            <li>
+              <a href="#" class="footer__link">Создание ИТ инфраструктуры</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">Установка серверного оборудования и ПО</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">ИТ-обслуживание ПК и серверов</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">Монтаж локальных сетей</a>
+            </li>
+            <li><a href="#" class="footer__link">Монтаж СКС</a></li>
+            <li>
+              <a href="#" class="footer__link">Установка систем видеонаблюдения</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="script/main.js"></script>
-  </body>
+    <div class="footer__container">
+      <p class="footer__copyright">
+        © 2025 «Intez Group» Все права защищены.
+      </p>
+      <div class="footer__legal">
+        <a href="#" class="footer__legal-link">Пользовательское соглашение</a>
+        <a href="#" class="footer__legal-link">Политика обработки персональных данных</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script/main.js"></script>
+</body>
+
 </html>

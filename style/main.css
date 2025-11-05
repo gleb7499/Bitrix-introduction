@@ -417,7 +417,7 @@ body.overlay-active .header {
   width: 100%;
   background-color: #ffffff;
   border-radius: 4.896vw /* 94px */;
-  margin: 0 0 1.042vw /* 20px */ 0;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 /* Секция Hero (ИТ-инфраструктура нового уровня) */
@@ -452,7 +452,7 @@ body.overlay-active .header {
   padding-top: 3.646vw /* 70px */;
   padding-left: 4.167vw /* 80px */;
   padding-bottom: 4.167vw /* 80px */;
-  padding-right: 0.677vw /* 13px */;
+  padding-right: 2.083vw /* 40px */;
 }
 
 .hero__text-group {
@@ -1731,15 +1731,14 @@ body.overlay-active .header {
 
 /* Подвал */
 .footer {
-  padding-top: 1.042vw /* 20px */;
-  padding-bottom: 2.083vw /* 40px */;
-  padding-left: 4.167vw /* 80px */;
-  padding-right: 4.167vw /* 80px */;
+  padding-top: 0;
+  gap: 1.042vw /* 20px */;
 }
 
 .footer__container {
   display: flex;
   justify-content: space-between;
+  padding: 2.083vw /* 40px */ 4.167vw /* 80px */;
 }
 
 .footer__copyright {
@@ -2736,6 +2735,7 @@ body.overlay-active .header {
 /* 15. Секция: Ссылки и информация */
 .section--footer-info {
   padding: 4.167vw /* 80px */ 4.167vw /* 80px */ 2.656vw /* 51px */;
+  margin: 0;
 }
 
 .footer__columns {
@@ -3241,4 +3241,24 @@ body.overlay-active .header {
 /* Блокировка прокрутки body при открытом модальном окне */
 body.modal-open {
   overflow: hidden;
+}
+
+/* ========================================
+   СТРАНИЦА 404
+   ======================================== */
+
+/* Обертка страницы 404 */
+#page404Content {
+  /* Дополнительные стили при необходимости */
+}
+
+/* Специальные стили для секции 404 */
+.section--404 {
+  /* Можно добавить особенности отображения, если нужно */
+}
+
+/* Адаптация изображения 404 */
+.section--404 .hero__image img {
+  /* Можно настроить размер изображения 404 */
+  max-width: 55.83vw;
 }
