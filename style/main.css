@@ -57,6 +57,9 @@
   --header-offset-top: 1.042vw /* 20px */;
   --header-padding-vertical: 1.042vw /* 20px */;
   --header-border-radius: 2.448vw /* 47px */;
+  /* Для мобильной версии (переопределяется в медиа-запросе) */
+  --header-mobile-offset: 10px;
+  --header-mobile-height: 82px; /* padding 20px * 2 + примерная высота контента 42px */
 }
 
 * {
@@ -72,7 +75,6 @@ html {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
-  font-size: 0.833vw /* 16px */;
   line-height: 1.6;
   color: #333;
   background-color: #e5e5e5;
@@ -113,13 +115,6 @@ button {
   background: none;
   cursor: pointer;
   font-family: inherit;
-}
-
-/* Контейнер */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
 }
 
 /* ========================================
@@ -205,7 +200,11 @@ button {
   color: #222;
 }
 
-.header {
+/* ========================================
+   HEADER DESKTOP (базовые стили для десктопа)
+   ======================================== */
+
+.header--desktop {
   position: fixed;
   top: 1.042vw /* 20px */;
   left: 0;
@@ -222,16 +221,16 @@ button {
 }
 
 /* Убираем blur у header когда overlay активен */
-.services-popup__overlay.open ~ .header,
-body.overlay-active .header {
+.services-popup__overlay.open ~ .header--desktop,
+body.overlay-active .header--desktop {
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
 }
 
 /* Header не должен блюриться когда открыто меню */
-.header .container {
-  max-width: 100%;
-  padding: 1.042vw /* 20px */ 1.563vw /* 30px */;
+.header--desktop .container {
+  width: 100%;
+  padding: 1.042vw /* 20px */ 1.042vw /* 20px */ 1.042vw /* 20px */ 2.083vw /* 40px */;
 }
 
 .header__content {
@@ -244,7 +243,6 @@ body.overlay-active .header {
 .header__logo {
   width: 11.766vw /* 225.9px */;
   height: 2.813vw /* 54px */;
-  margin-left: 2.083vw /* 40px */;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -422,9 +420,10 @@ body.overlay-active .header {
 
 /* Секция Hero (ИТ-инфраструктура нового уровня) */
 .section--hero {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   align-items: center;
-  justify-content: space-between;
   padding: 0;
 }
 
@@ -445,7 +444,8 @@ body.overlay-active .header {
 }
 
 .hero__content {
-  flex: 1;
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: 8.49vw /* 163px */;
@@ -484,6 +484,10 @@ body.overlay-active .header {
 }
 
 .hero__image {
+  grid-column: 2;
+  grid-row: 1;
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -492,9 +496,31 @@ body.overlay-active .header {
 }
 
 .hero__image img {
-  max-width: 55.83vw;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 3.854vw /* 74px */;
+}
+
+/* Кнопки hero-секции */
+.hero__button {
+  display: block; /* Показываем на десктопе */
+}
+
+.hero__button-mobile {
+  display: none; /* Скрываем на десктопе */
+}
+
+.about-company__button-mobile {
+  display: none; /* Скрываем на десктопе */
+}
+
+.ready-to-start__button-mobile {
+  display: none; /* Скрываем на десктопе */
+}
+
+.track-group__button-mobile {
+  display: none; /* Скрываем на десктопе */
 }
 
 /* Секция Узнайте больше о нашей компании (About Company) */
@@ -534,9 +560,7 @@ body.overlay-active .header {
 }
 
 .about-company__image img {
-  max-width: 100%;
-  height: auto;
-  max-height: 37.292vw /* 716px */;
+  width: 100%;
   object-fit: contain;
   border-radius: 3.854vw /* 74px */;
   display: block;
@@ -618,6 +642,10 @@ body.overlay-active .header {
   padding-bottom: 1.042vw /* 20px */;
 }
 
+.work-process__navigation {
+  display: none;
+}
+
 .work-process-card {
   background: transparent;
   box-sizing: border-box;
@@ -638,8 +666,8 @@ body.overlay-active .header {
 }
 
 .work-process-card__image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
@@ -885,8 +913,8 @@ body.overlay-active .header {
 }
 
 .advantage-card__image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
@@ -915,14 +943,6 @@ body.overlay-active .header {
   color: #494555;
   margin-left: 3.125vw /* 60px */;
   margin-bottom: 1.042vw /* 20px */;
-}
-
-/* Удаляем старые модификаторы цветов */
-.advantage-card--purple,
-.advantage-card--pink,
-.advantage-card--beige,
-.advantage-card--yellow {
-  background: transparent;
 }
 
 /* Секция Отзывы */
@@ -1101,6 +1121,36 @@ body.overlay-active .header {
   color: #d32030;
 }
 
+/* Desktop: кнопки навигации скрыты */
+.reviews__navigation {
+  display: none;
+}
+
+.reviews__nav-btn {
+  border-radius: 50%;
+  background: rgba(31, 25, 51, 1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.reviews__nav-btn:hover:not(:disabled) {
+  background: rgba(31, 25, 51, 0.8);
+  transform: scale(1.1);
+}
+
+.reviews__nav-btn:disabled {
+  background: rgba(31, 25, 51, 0.3);
+  cursor: not-allowed;
+}
+
+.reviews__nav-btn img {
+  object-fit: contain;
+}
+
 /* Секция Готовы начать? (Ready to Start) */
 .section--ready-to-start {
   display: grid;
@@ -1138,8 +1188,8 @@ body.overlay-active .header {
 }
 
 .ready-to-start__image img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   max-height: 37.292vw /* 716px */;
   object-fit: contain;
   border-radius: 3.854vw /* 74px */;
@@ -1254,14 +1304,20 @@ body.overlay-active .header {
 
 .section--services {
   padding-top: 3.646vw /* 70px */;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "header nav"
+    "grid grid";
+  gap: 3.125vw /* 60px */ 2.083vw /* 40px */;
 }
 
 .services__header {
+  grid-area: header;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3.125vw /* 60px */;
-  gap: 2.083vw /* 40px */;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .services__header-text {
@@ -1295,6 +1351,7 @@ body.overlay-active .header {
 }
 
 .services__navigation {
+  grid-area: nav;
   display: flex;
   gap: 2.083vw /* 40px */;
   flex-shrink: 0;
@@ -1342,6 +1399,7 @@ body.overlay-active .header {
 }
 
 .services__grid {
+  grid-area: grid;
   display: flex;
   gap: 1.042vw /* 20px */;
   padding-left: 1.042vw /* 20px */;
@@ -1626,10 +1684,11 @@ body.overlay-active .header {
   overflow: hidden;
 }
 
-.clients {
+.clients__header {
   max-width: 1400px;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 3.125vw /* 60px */;
 }
 
 .clients__title {
@@ -1655,58 +1714,19 @@ body.overlay-active .header {
   letter-spacing: 0%;
   text-align: center;
   color: #504d5d;
-  margin-bottom: 3.125vw /* 60px */;
+  margin: 0;
 }
 
-.clients__carousel-wrapper {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 3.646vw /* 70px */;
-}
-
-/* Затухание по краям */
-.clients__carousel-wrapper::before,
-.clients__carousel-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 7.813vw /* 150px */;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.clients__carousel-wrapper::before {
-  left: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.clients__carousel-wrapper::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.clients__carousel {
-  overflow: hidden;
-  padding: 1.042vw /* 20px */ 0;
-}
-
-.clients__track {
+/* Desktop: бесконечная анимация */
+.clients__grid {
   display: flex;
   gap: 2.083vw /* 40px */;
-  animation: scroll 40s linear infinite;
+  animation: clientsScroll 40s linear infinite;
   width: max-content;
+  padding-bottom: 3.646vw /* 70px */;
 }
 
-@keyframes scroll {
+@keyframes clientsScroll {
   0% {
     transform: translateX(0);
   }
@@ -1718,15 +1738,22 @@ body.overlay-active .header {
 .clients__logo {
   flex-shrink: 0;
   width: 22.917vw /* 440px */;
+  height: 10.417vw /* 200px */;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.042vw /* 20px */;
 }
 
 .clients__logo img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+}
+
+/* Desktop: кнопки скрыты */
+.clients__navigation {
+  display: none;
 }
 
 /* Подвал */
@@ -1987,13 +2014,24 @@ body.overlay-active .header {
 }
 
 .track-group__image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 3.854vw /* 74px */;
 }
 
 /* Секция Специальные предложения (Special Offers) */
+.section--special-offers {
+  padding-top: 3.646vw /* 70px */;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "header nav"
+    "grid grid";
+  gap: 3.125vw /* 60px */ 2.083vw /* 40px */;
+}
+
 .special-offers {
   max-width: 1400px;
   margin: 0 auto;
@@ -2001,11 +2039,10 @@ body.overlay-active .header {
 }
 
 .special-offers__header {
+  grid-area: header;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 2.083vw /* 40px */;
-  gap: 2.083vw /* 40px */;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .special-offers__header-text {
@@ -2040,6 +2077,7 @@ body.overlay-active .header {
 }
 
 .special-offers__navigation {
+  grid-area: nav;
   display: flex;
   gap: 2.083vw /* 40px */;
   flex-shrink: 0;
@@ -2092,6 +2130,7 @@ body.overlay-active .header {
 }
 
 .special-offers__grid {
+  grid-area: grid;
   display: flex;
   gap: 1.042vw /* 20px */;
   padding-left: 1.042vw /* 20px */;
@@ -2174,8 +2213,8 @@ body.overlay-active .header {
 }
 
 .special-offers__card-image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
@@ -2454,10 +2493,21 @@ body.overlay-active .header {
 }
 
 .quick-response__image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 3.854vw /* 74px */;
+}
+
+.section--blog {
+  padding-top: 3.646vw /* 70px */;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "header nav"
+    "grid grid";
+  gap: 3.125vw /* 60px */ 2.083vw /* 40px */;
 }
 
 /* Секция Блог (Blog / Полезные статьи) */
@@ -2468,11 +2518,10 @@ body.overlay-active .header {
 }
 
 .blog__header {
+  grid-area: header;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 2.083vw /* 40px */;
-  gap: 2.083vw /* 40px */;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .blog__header-text {
@@ -2507,6 +2556,7 @@ body.overlay-active .header {
 }
 
 .blog__navigation {
+  grid-area: nav;
   display: flex;
   gap: 2.083vw /* 40px */;
   flex-shrink: 0;
@@ -2559,6 +2609,7 @@ body.overlay-active .header {
 }
 
 .blog__grid {
+  grid-area: grid;
   display: flex;
   gap: 1.042vw /* 20px */;
   padding-left: 1.042vw /* 20px */;
@@ -2641,8 +2692,8 @@ body.overlay-active .header {
 }
 
 .blog__card-image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 2.813vw /* 54px */;
   background: rgba(244, 244, 244, 1);
@@ -2873,7 +2924,7 @@ body.overlay-active .header {
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
   /* Лёгкая тонировка (для отладки временно делай 0.2-0.4) */
-  background-color: #FFFFFF03;
+  background-color: #ffffff03;
   z-index: 500; /* меньше чем у header/menu, больше чем у main */
   cursor: pointer;
   pointer-events: none;
@@ -3065,7 +3116,7 @@ body.overlay-active .header {
   /* Размытие фона */
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
-  background-color: #FFFFFF03;
+  background-color: #ffffff03;
   z-index: 2000; /* Выше services-popup (z-index: 1100) и его overlay (z-index: 500) */
   cursor: pointer;
   pointer-events: none;
@@ -3261,7 +3312,7 @@ body.modal-open {
 /* Адаптация изображения 404 */
 .section--404 .hero__image img {
   /* Можно настроить размер изображения 404 */
-  max-width: 55.83vw;
+  width: 55.83vw;
 }
 
 /* ========================================
@@ -3302,4 +3353,898 @@ img {
   max-width: 100%;
   height: auto;
   image-rendering: high-quality;
+}
+
+/* ========================================
+   ПОКАЗЫВАЕМ МОБИЛЬНУЮ ШАПКУ ТОЛЬКО НА МОБИЛКАХ
+   ПО УМОЛЧАНИЮ СКРЫТА НА ДЕСКТОПЕ
+   ======================================== */
+
+.header--mobile {
+  display: none;
+}
+
+/* ========================================
+   МЕДИА-ЗАПРОСЫ (MOBILE)
+   Breakpoint: 1023px и меньше
+   ======================================== */
+
+@media screen and (max-width: 1023px) {
+  /* ========================================
+     ПЕРЕОПРЕДЕЛЕНИЕ CSS ПЕРЕМЕННЫХ ДЛЯ МОБИЛКИ
+     ======================================== */
+
+  :root {
+    --header-mobile-offset: 10px;
+    --header-mobile-height: 82px; /* padding 20px * 2 + высота контента ~42px */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ========================================
+     УПРАВЛЕНИЕ ВИДИМОСТЬЮ HEADER
+     ======================================== */
+
+  /* Скрываем десктопную версию шапки */
+  .header--desktop {
+    display: none;
+  }
+
+  /* Динамический padding для body (аналогично десктопу) */
+  body {
+    /* Верхний padding: отступ мобильной шапки + её высота + дополнительный отступ */
+    padding: calc(
+        var(--header-mobile-offset) + var(--header-mobile-height) + 10px
+      )
+      0px;
+  }
+
+  /* ========================================
+     МОБИЛЬНАЯ ШАПКА (HEADER MOBILE)
+     ======================================== */
+
+  .header--mobile {
+    display: block;
+    position: fixed;
+    top: var(--header-mobile-offset);
+    left: 0;
+    right: 0;
+    z-index: 1200;
+    padding: 20px;
+    background: #ffffff1a;
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+    border-radius: 20px;
+    margin: 0 var(--header-mobile-offset);
+    transition: backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Убираем blur у header когда overlay активен */
+  .services-popup__overlay.open ~ .header--mobile,
+  body.overlay-active .header--mobile {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+
+  /* Контейнер мобильной шапки */
+  .header__mobile-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Логотип мобильной шапки */
+  .header__mobile-logo {
+    flex-shrink: 0;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Контейнер для кнопок справа */
+  .header__mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  /* ========================================
+     КНОПКА "УСЛУГИ" (МОБИЛЬНАЯ)
+     ======================================== */
+
+  .btn--mobile-services {
+    width: 92px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    border-radius: 20px;
+    background: #f42534;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #ffffff;
+    border: none;
+  }
+
+  /* ========================================
+     КНОПКА-ИКОНКА (ПЕРЕИСПОЛЬЗУЕМЫЙ КОМПОНЕНТ)
+     ======================================== */
+
+  .btn-icon {
+    width: 56px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    gap: 10px;
+    padding: 9px 16px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: none;
+  }
+
+  .btn-icon img {
+    object-fit: contain;
+  }
+
+  .section {
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+    align-items: start;
+  }
+
+  /* ========================================
+     HERO СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → описание → картинка → кнопка
+     ======================================== */
+
+  .section--hero {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 20px;
+    order: 1;
+  }
+
+  .hero__text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero__title {
+    font-size: 32px;
+  }
+
+  .hero__description {
+    font-size: 18px;
+  }
+
+  .hero__image {
+    width: 320px;
+    height: 214px;
+    margin: 20px 0;
+    padding: 0;
+    order: 2;
+  }
+
+  .hero__image img {
+    width: 320px;
+    height: 214px;
+    border-radius: 10px;
+  }
+
+  /* Управление видимостью кнопок */
+  .hero__button {
+    display: none; /* Скрываем десктопную кнопку */
+  }
+
+  .hero__button-mobile {
+    display: block; /* Показываем мобильную кнопку */
+    order: 3;
+    width: 100%;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20;
+    padding: 20px 0px 20px 0px;
+    border-radius: 20px;
+    font-size: 18px;
+  }
+
+  /* ========================================
+     ABOUT-COMPANY СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → текст → картинка → кнопка
+     ======================================== */
+
+  .section--about-company {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 0px;
+  }
+
+  .about-company__title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    order: 1;
+  }
+
+  .about-company__text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .about-company__content {
+    order: 2;
+
+    margin: 0;
+  }
+
+  .about-company__text {
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .about-company__text p {
+    font-size: 18px;
+  }
+
+  .about-company__image {
+    order: 3;
+    margin: 0 0 20px 0;
+    width: 100%;
+  }
+
+  .about-company__image img {
+    border-radius: 10px;
+  }
+
+  /* Управление видимостью кнопок */
+  .about-company__button {
+    display: none; /* Скрываем десктопную кнопку */
+  }
+
+  .about-company__button-mobile {
+    display: block; /* Показываем мобильную кнопку */
+    order: 4;
+    width: 100%;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20;
+    padding: 20px 0px 20px 0px;
+    border-radius: 20px;
+    font-size: 18px;
+  }
+
+  /* ========================================
+     READY-TO-START СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → текст → картинка → кнопка
+     ======================================== */
+
+  .section--ready-to-start {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .ready-to-start__title {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    order: 1;
+  }
+
+  .ready-to-start__content {
+    order: 2;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ready-to-start__text {
+    margin-bottom: 20px;
+  }
+
+  .ready-to-start__text p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .ready-to-start__image {
+    order: 3;
+    margin: 0 0 20px 0;
+    padding: 20px 0;
+  }
+
+  .ready-to-start__image img {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  /* Управление видимостью кнопок */
+  .ready-to-start__button {
+    display: none; /* Скрываем десктопную кнопку */
+  }
+
+  .ready-to-start__button-mobile {
+    display: block; /* Показываем мобильную кнопку */
+    order: 4;
+    width: 100%;
+  }
+
+  /* ========================================
+     ADVANTAGES СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     ======================================== */
+
+  .advantages__title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .advantages__subtitle {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+  }
+
+  .advantages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0;
+  }
+
+  .advantage-card {
+    border: 2px solid rgba(191, 191, 191, 1);
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .advantage-card__image {
+    margin-bottom: 20px;
+  }
+
+  .advantage-card__image img {
+    border-radius: 10px;
+  }
+
+  .advantage-card__title {
+    font-size: 18px;
+    text-align: start;
+  }
+
+  /* секция 3 - section--services */
+  .section--services {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "grid"
+      "nav";
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .services__header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .services__header-text {
+    order: 1;
+  }
+
+  .services__title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .services__subtitle {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .services__navigation {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .services__nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .services__grid {
+    grid-area: grid;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .services__grid::before,
+  .services__grid::after {
+    display: none; /* Убираем градиенты на мобилке */
+  }
+
+  .services__card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+
+  /* ========================================
+     TRACK-GROUP КАРТОЧКИ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → описание → картинка → кнопка
+     ======================================== */
+
+  .track-group__card {
+    display: flex;
+    flex-direction: column;
+    position: static;
+    opacity: 1;
+    transform: none;
+  }
+
+  .track-group__card--active {
+    position: static;
+  }
+
+  .track-group__content {
+    order: 1;
+    padding: 0;
+  }
+
+  .track-group__title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .track-group__subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .track-group__description {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .track-group__list {
+    margin-bottom: 20px;
+  }
+
+  .track-group__image {
+    order: 2;
+    margin: 0 0 20px 0;
+    padding: 20px 0;
+  }
+
+  .track-group__image img {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  /* Управление видимостью кнопок */
+  .track-group__button {
+    display: none; /* Скрываем десктопную кнопку */
+  }
+
+  .track-group__button-mobile {
+    display: block; /* Показываем мобильную кнопку */
+    order: 3;
+    width: 100%;
+  }
+
+  /* ========================================
+     SPECIAL-OFFERS СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → описание → карусель → кнопки
+     ======================================== */
+
+  .section--special-offers {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "grid"
+      "nav";
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .special-offers {
+    margin-bottom: 0;
+  }
+
+  .special-offers__header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .special-offers__title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .special-offers__subtitle {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .special-offers__navigation {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .special-offers__nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .special-offers__grid {
+    grid-area: grid;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .special-offers__grid::before,
+  .special-offers__grid::after {
+    display: none; /* Убираем градиенты на мобилке */
+  }
+
+  .special-offers__card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+
+  /* ========================================
+     BLOG СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → описание → карусель → кнопки
+     ======================================== */
+
+  .section--blog {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "grid"
+      "nav";
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .blog {
+    margin-bottom: 0;
+  }
+
+  .blog__header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .blog__title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .blog__subtitle {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .blog__navigation {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .blog__nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .blog__grid {
+    grid-area: grid;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .blog__grid::before,
+  .blog__grid::after {
+    display: none; /* Убираем градиенты на мобилке */
+  }
+
+  .blog__card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+
+  /* ========================================
+     WORK-PROCESS СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → описание → карусель → кнопки
+     ======================================== */
+
+  .section--work-process {
+    padding: 20px;
+  }
+
+  .work-process__title {
+    font-size: 24px;
+    margin: 0 0 10px 0 0 20px;
+  }
+
+  .work-process__subtitle {
+    font-size: 18px;
+    margin: 0 0 20px 20px;
+  }
+
+  .work-process__navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .work-process__nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .work-process__grid {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .work-process-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+
+  /* ========================================
+     CLIENTS СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Карусель вместо бесконечной анимации
+     ======================================== */
+
+  .section--clients {
+    padding: 20px;
+    overflow: visible;
+  }
+
+  .clients__header {
+    margin-bottom: 20px;
+  }
+
+  .clients__title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .clients__subtitle {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+  }
+
+  /* Убираем анимацию, делаем карусель */
+  .clients__grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory; /* Включаем snap для центрирования */
+    -webkit-overflow-scrolling: touch;
+    animation: none;
+    width: auto;
+    padding-bottom: 0; /* Убираем padding-bottom т.к. полоса прокрутки скрыта */
+
+    /* Добавляем padding слева и справа для центрирования первого/последнего элемента */
+    /* Формула: (ширина контейнера - ширина карточки) / 2 */
+    /* Контейнер = 100vw - 40px (padding секции 20px * 2) */
+    /* Центрирование = ((100vw - 40px) - 200px) / 2 = (100vw - 240px) / 2 */
+    padding-left: calc((100vw - 240px) / 2);
+    padding-right: calc((100vw - 240px) / 2);
+
+    /* Убираем полосу прокрутки */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  /* Убираем полосу прокрутки для Webkit */
+  .clients__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .clients__logo {
+    flex: 0 0 200px;
+    width: 200px;
+    height: 120px;
+    scroll-snap-align: center; /* Центрируем элемент */
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  /* Показываем кнопки */
+  .clients__navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .clients__nav-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .clients__nav-btn img {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ========================================
+     REVIEWS СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Карусель вместо column-count
+     ======================================== */
+
+  .section--reviews {
+    padding: 20px;
+  }
+
+  .reviews__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .reviews__left-block {
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .reviews__title {
+    font-size: 24px;
+    margin: 0 0 20px 0;
+  }
+
+  /* Превращаем в карусель */
+  .reviews__cards-block {
+    column-count: 1;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Убираем градиент на мобилке */
+  .reviews__cards-block::after {
+    display: none;
+  }
+
+  .reviews__card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    padding: 20px;
+    gap: 15px;
+    margin-bottom: 0;
+    border-radius: 20px;
+  }
+
+  .reviews__card-header {
+    gap: 10px;
+  }
+
+  .reviews__card-photo {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .reviews__card-name {
+    font-size: 16px;
+  }
+
+  .reviews__card-company,
+  .reviews__card-date {
+    font-size: 12px;
+  }
+
+  .reviews__card-text {
+    font-size: 14px;
+  }
+
+  .reviews__card-link {
+    font-size: 14px;
+  }
+
+  /* Показываем кнопки */
+  .reviews__navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .reviews__nav-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .reviews__nav-btn img {
+    width: 16px;
+    height: 16px;
+  }
 }

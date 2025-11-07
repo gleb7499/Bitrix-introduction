@@ -160,8 +160,8 @@
   </div>
   </div>
 
-  <!-- Шапка сайта -->
-  <header class="header">
+  <!-- Шапка сайта (десктоп версия) -->
+  <header class="header header--desktop">
     <div class="container">
       <div class="header__content">
         <img src="assets/img/logo-header-desktop.svg" alt="IntezGroup Logo" class="header__logo" loading="lazy" />
@@ -209,12 +209,6 @@
           <button class="btn btn--secondary" id="callBtn">
             Заказать звонок
           </button>
-          <!-- Кнопка для тестирования страницы 404 (можно скрыть в production) -->
-          <button class="btn btn--test-404" id="test404Btn" onclick="toggle404Mode()"
-            title="Переключить режим 404 (для тестирования)"
-            style="opacity: 0.5; font-size: 0.8em; padding: 0.5vw 0.8vw;">
-            404
-          </button>
         </div>
 
         <button class="burger" id="burger">
@@ -261,12 +255,13 @@
               безопасность и создавать ИТ-инфраструктуру
             </p>
           </div>
-          <button class="btn btn--primary">Заказать консультацию</button>
+          <button class="btn btn--primary hero__button">Заказать консультацию</button>
         </div>
         <div class="hero__image">
           <img src="assets/img/a-new-level-of-IT-infrastructure.png" alt="ИТ-инфраструктура нового уровня"
             loading="lazy" />
         </div>
+        <button class="btn btn--primary hero__button-mobile">Заказать консультацию</button>
       </section>
 
       <!-- 2. Секция: Преимущества работы с нами -->
@@ -326,14 +321,15 @@
               Откройте новые возможности с нашими услугами
             </p>
           </div>
-          <div class="services__navigation">
-            <button class="services__nav-btn services__nav-btn--prev" id="servicesPrev">
-              <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
-            </button>
-            <button class="services__nav-btn services__nav-btn--next" id="servicesNext">
-              <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
-            </button>
-          </div>
+        </div>
+
+        <div class="services__navigation">
+          <button class="services__nav-btn services__nav-btn--prev" id="servicesPrev">
+            <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
+          </button>
+          <button class="services__nav-btn services__nav-btn--next" id="servicesNext">
+            <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
         </div>
 
         <div class="services__grid">
@@ -482,6 +478,15 @@
             </p>
           </div>
         </div>
+
+        <div class="work-process__navigation">
+          <button class="work-process__nav-btn work-process__nav-btn--prev" id="workProcessPrev">
+            <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
+          </button>
+          <button class="work-process__nav-btn work-process__nav-btn--next" id="workProcessNext">
+            <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
+        </div>
       </section>
 
       <!-- 5. Секция: Узнайте больше о нашей компании -->
@@ -504,8 +509,9 @@
               команды и улучшите управление проектами с Битрикс 24!
             </p>
           </div>
-          <button class="btn btn--primary">Связаться с нами</button>
+          <button class="btn btn--primary about-company__button">Связаться с нами</button>
         </div>
+        <button class="btn btn--primary about-company__button-mobile">Связаться с нами</button>
       </section>
 
       <!-- 6. Секция: Наши достижения и результаты -->
@@ -545,101 +551,109 @@
 
       <!-- 7. Секция: Более 50 постоянных клиентов с нами -->
       <section class="section section--clients">
-        <h2 class="clients__title">Более 50 постоянных клиентов с нами</h2>
-        <p class="clients__subtitle">
-          Доверие 50+ клиентов подтверждает качество нашего обслуживания
-        </p>
+        <div class="clients__header">
+          <h2 class="clients__title">Более 50 постоянных клиентов с нами</h2>
+          <p class="clients__subtitle">
+            Доверие 50+ клиентов подтверждает качество нашего обслуживания
+          </p>
+        </div>
 
-        <div class="clients__carousel-wrapper">
-          <div class="clients__carousel">
-            <div class="clients__track">
-              <div class="clients__logo">
-                <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/ternus.png" alt="Ternus" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/eka-center.png" alt="Eka Center" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/city-krovla.png" alt="City Krovla" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/belka.png" alt="Belka" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/abs-service.png" alt="ABS Service" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/chapurin.png" alt="Chapurin" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/geomon.png" alt="Geomon" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/lsc.png" alt="LSC" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/mediacontact.png" alt="Media Contact" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/tract-group.png" alt="Tract Group" loading="lazy" />
-              </div>
-              <!-- Дублирование для бесшовной прокрутки -->
-              <div class="clients__logo">
-                <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/ternus.png" alt="Ternus" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/eka-center.png" alt="Eka Center" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/city-krovla.png" alt="City Krovla" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/belka.png" alt="Belka" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/abs-service.png" alt="ABS Service" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/chapurin.png" alt="Chapurin" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/geomon.png" alt="Geomon" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/lsc.png" alt="LSC" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/mediacontact.png" alt="Media Contact" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" loading="lazy" />
-              </div>
-              <div class="clients__logo">
-                <img src="assets/img/partners/tract-group.png" alt="Tract Group" loading="lazy" />
-              </div>
-            </div>
+        <div class="clients__grid">
+          <div class="clients__logo">
+            <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" loading="lazy" />
           </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/ternus.png" alt="Ternus" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/eka-center.png" alt="Eka Center" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/city-krovla.png" alt="City Krovla" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/belka.png" alt="Belka" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/abs-service.png" alt="ABS Service" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/chapurin.png" alt="Chapurin" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/geomon.png" alt="Geomon" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/lsc.png" alt="LSC" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/mediacontact.png" alt="Media Contact" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/tract-group.png" alt="Tract Group" loading="lazy" />
+          </div>
+
+          <!-- Дубликаты для бесшовной анимации на desktop -->
+          <div class="clients__logo">
+            <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/ternus.png" alt="Ternus" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/eka-center.png" alt="Eka Center" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/city-krovla.png" alt="City Krovla" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/belka.png" alt="Belka" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/abs-service.png" alt="ABS Service" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/chapurin.png" alt="Chapurin" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/geomon.png" alt="Geomon" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/lsc.png" alt="LSC" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/mediacontact.png" alt="Media Contact" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/tract-group.png" alt="Tract Group" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="clients__navigation">
+          <button class="clients__nav-btn clients__nav-btn--prev" id="clientsPrev">
+            <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
+          </button>
+          <button class="clients__nav-btn clients__nav-btn--next" id="clientsNext">
+            <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
         </div>
       </section>
 
@@ -684,11 +698,12 @@
                   <li>Внедрены 1С, Exchange и Project Server</li>
                   <li>Повышена эффективность управления проектами</li>
                 </ul>
-                <button class="btn btn--primary">Хочу так же</button>
+                <button class="btn btn--primary track-group__button">Хочу так же</button>
               </div>
               <div class="track-group__image">
                 <img src="assets/img/IT-truck-group-section-track-group.png" alt="ИТ для Трак Групп" loading="lazy" />
               </div>
+              <button class="btn btn--primary track-group__button-mobile">Хочу так же</button>
             </div>
 
             <!-- Карточка 2: ИТ для видеостудии -->
@@ -712,11 +727,12 @@
                   </li>
                   <li>Обеспечен безопасный и стабильный доступ к данным</li>
                 </ul>
-                <button class="btn btn--primary">Хочу так же</button>
+                <button class="btn btn--primary track-group__button">Хочу так же</button>
               </div>
               <div class="track-group__image">
                 <img src="assets/img/IT-video-studio-section-track-group.png" alt="ИТ для видеостудии" loading="lazy" />
               </div>
+              <button class="btn btn--primary track-group__button-mobile">Хочу так же</button>
             </div>
 
             <!-- Карточка 3: ИТ для Консалтинг Логистики -->
@@ -739,12 +755,13 @@
                   <li>Внедрены 1С, Exchange и Project Server</li>
                   <li>Ускорено управление проектами и документооборотом</li>
                 </ul>
-                <button class="btn btn--primary">Хочу так же</button>
+                <button class="btn btn--primary track-group__button">Хочу так же</button>
               </div>
               <div class="track-group__image">
                 <img src="assets/img/IT-consulting-logistics-section-track-group.png" alt="ИТ для Консалтинг Логистики"
                   loading="lazy" />
               </div>
+              <button class="btn btn--primary track-group__button-mobile">Хочу так же</button>
             </div>
           </div>
         </div>
@@ -878,6 +895,15 @@
             </div>
           </div>
         </div>
+
+        <div class="reviews__navigation">
+          <button class="reviews__nav-btn reviews__nav-btn--prev" id="reviewsPrev">
+            <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
+          </button>
+          <button class="reviews__nav-btn reviews__nav-btn--next" id="reviewsNext">
+            <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
+        </div>
       </section>
 
       <!-- 10. Секция: Готовы начать? Узнайте, как мы можем помочь! -->
@@ -900,8 +926,9 @@
               трансформацию.
             </p>
           </div>
-          <button class="btn btn--primary">Получить консультацию</button>
+          <button class="btn btn--primary ready-to-start__button">Получить консультацию</button>
         </div>
+        <button class="btn btn--primary ready-to-start__button-mobile">Получить консультацию</button>
       </section>
 
       <!-- 11. Секция: Специальные предложения -->
@@ -913,14 +940,15 @@
               Скидки акции и предложения на ИТ-инфраструктуру
             </p>
           </div>
-          <div class="special-offers__navigation">
-            <button class="special-offers__nav-btn special-offers__nav-btn--prev" id="specialOffersPrev">
-              <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
-            </button>
-            <button class="special-offers__nav-btn special-offers__nav-btn--next" id="specialOffersNext">
-              <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
-            </button>
-          </div>
+        </div>
+
+        <div class="special-offers__navigation">
+          <button class="special-offers__nav-btn special-offers__nav-btn--prev" id="specialOffersPrev">
+            <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
+          </button>
+          <button class="special-offers__nav-btn special-offers__nav-btn--next" id="specialOffersNext">
+            <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
         </div>
 
         <div class="special-offers__grid">
@@ -1195,14 +1223,15 @@
               Материалы об ИТ, автоматизации и развитии бизнеса
             </p>
           </div>
-          <div class="blog__navigation">
-            <button class="blog__nav-btn blog__nav-btn--prev" id="blogPrev">
-              <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
-            </button>
-            <button class="blog__nav-btn blog__nav-btn--next" id="blogNext">
-              <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
-            </button>
-          </div>
+        </div>
+
+        <div class="blog__navigation">
+          <button class="blog__nav-btn blog__nav-btn--prev" id="blogPrev">
+            <img src="assets/img/arrow-left.png" alt="Предыдущий" style="transform: rotate(180deg)" loading="lazy" />
+          </button>
+          <button class="blog__nav-btn blog__nav-btn--next" id="blogNext">
+            <img src="assets/img/arrow-left.png" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
         </div>
 
         <div class="blog__grid">

@@ -70,6 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initSpecialOffersCarousel();
   initTrackGroupCarousel();
   initBlogCarousel();
+  initWorkProcessCarousel();
+  initClientsCarousel();
+  initReviewsCarousel();
 });
 
 // Функция для обновления высоты header
@@ -254,16 +257,16 @@ function initCallButton() {
     modalOverlay.classList.remove("open");
     overlayManager.hide("callModal"); // Удаляем из менеджера overlay
     document.body.classList.remove("modal-open"); // Разблокируем прокрутку
-    
+
     // Возвращаем форму и скрываем сообщение об успехе
     const formContent = document.querySelector(".quick-response__content");
     const successContent = document.querySelector(".modal-success");
-    
+
     if (formContent && successContent) {
       formContent.style.display = "block";
       successContent.style.display = "none";
     }
-    
+
     console.log("Call modal closed");
   }
 
@@ -776,11 +779,11 @@ function initCallModalForm() {
 
     if (isValid) {
       console.log("Форма модального окна отправлена");
-      
+
       // Скрываем форму и показываем сообщение об успехе
       const formContent = document.querySelector(".quick-response__content");
       const successContent = document.querySelector(".modal-success");
-      
+
       if (formContent && successContent) {
         formContent.style.display = "none";
         successContent.style.display = "flex";
@@ -973,14 +976,14 @@ function initTrackGroupCarousel() {
 
   // Функция для ожидания загрузки всех изображений в карточке
   function waitForImages(card) {
-    const images = card.querySelectorAll('img');
-    const promises = Array.from(images).map(img => {
+    const images = card.querySelectorAll("img");
+    const promises = Array.from(images).map((img) => {
       if (img.complete) {
         return Promise.resolve();
       }
       return new Promise((resolve) => {
-        img.addEventListener('load', resolve);
-        img.addEventListener('error', resolve); // Обрабатываем и ошибки
+        img.addEventListener("load", resolve);
+        img.addEventListener("error", resolve); // Обрабатываем и ошибки
       });
     });
     return Promise.all(promises);
@@ -1049,7 +1052,7 @@ function initTrackGroupCarousel() {
       current.style.width = "";
 
       currentIndex = newIndex;
-      
+
       // Ждём загрузки изображений новой карточки и затем обновляем высоту
       waitForImages(next).then(() => {
         updateUI();
@@ -1094,7 +1097,9 @@ function initTrackGroupCarousel() {
   if (firstCard) {
     waitForImages(firstCard).then(() => {
       updateUI();
-      console.log("Карусель Track Group инициализирована (изображения загружены)");
+      console.log(
+        "Карусель Track Group инициализирована (изображения загружены)"
+      );
     });
   } else {
     updateUI();
@@ -1189,14 +1194,21 @@ window.addEventListener(
   }, 250)
 );
 
-// Универсальная функция инициализации карусели
-function initCarousel(config) {
+// ========================================
+//    УНИВЕРСАЛЬНАЯ УМНАЯ КАРУСЕЛЬ
+//    Автоматически определяет режим работы:
+//    - Desktop: transform + индекс карточек
+//    - Mobile: нативный scroll + scrollLeft
+// ========================================
+
+function initUniversalCarousel(config) {
   const {
     prevBtnId,
     nextBtnId,
     gridSelector,
     cardSelector,
-    cardsPerView = 4,
+    desktopCardsPerView = 4,
+    infiniteLoop = false, // Бесконечная прокрутка (только для Mobile)
     name = "carousel",
   } = config;
 
@@ -1218,35 +1230,169 @@ function initCarousel(config) {
 
   let currentIndex = 0;
   const totalCards = cards.length;
-  const hasMoreCards = totalCards > cardsPerView;
+  let isMobileMode = false;
+  let isDesktopInteractive = true; // Флаг: можно ли управлять каруселью на desktop
+  let scrollHandler = null;
+  let isInfiniteScrolling = false; // Флаг для предотвращения множественных срабатываний
 
-  // Функция обновления градиентов
-  function updateGradients() {
-    // Левый градиент: показываем, если не в начале и есть больше карточек
-    if (currentIndex > 0 && hasMoreCards) {
-      grid.classList.add("show-left-gradient");
-    } else {
-      grid.classList.remove("show-left-gradient");
+  /**
+   * Настройка бесконечной прокрутки (клонирование карточек для мобилки)
+   */
+  function setupInfiniteLoop() {
+    if (!infiniteLoop || !isMobileMode) return;
+
+    // Клонируем первые и последние карточки
+    const clonesToAdd = 3; // Количество клонов с каждой стороны
+    const originalCards = Array.from(cards);
+
+    // Клонируем последние карточки в начало
+    for (
+      let i = originalCards.length - clonesToAdd;
+      i < originalCards.length;
+      i++
+    ) {
+      const clone = originalCards[i].cloneNode(true);
+      clone.classList.add("clone-start");
+      grid.insertBefore(clone, grid.firstChild);
     }
 
-    // Правый градиент: показываем, если не в конце и есть больше карточек
-    const isAtEnd = currentIndex >= totalCards - cardsPerView;
-    if (!isAtEnd && hasMoreCards) {
-      grid.classList.add("show-right-gradient");
-    } else {
-      grid.classList.remove("show-right-gradient");
+    // Клонируем первые карточки в конец
+    for (let i = 0; i < clonesToAdd; i++) {
+      const clone = originalCards[i].cloneNode(true);
+      clone.classList.add("clone-end");
+      grid.appendChild(clone);
     }
 
-    console.log(
-      `${name}: градиенты обновлены. Index: ${currentIndex}, Left: ${
-        currentIndex > 0 && hasMoreCards
-      }, Right: ${!isAtEnd && hasMoreCards}`
-    );
+    // Устанавливаем начальную позицию (после клонов в начале)
+    const cardWidth = originalCards[0].offsetWidth;
+    const gap = 20;
+    grid.scrollLeft = clonesToAdd * (cardWidth + gap);
   }
 
-  function updateCarousel() {
+  /**
+   * Удаление клонов при переходе в desktop режим
+   */
+  function removeInfiniteLoop() {
+    const clones = grid.querySelectorAll(".clone-start, .clone-end");
+    clones.forEach((clone) => clone.remove());
+    grid.scrollLeft = 0;
+  }
+
+  /**
+   * Обработчик для бесконечной прокрутки
+   */
+  function handleInfiniteScroll() {
+    if (!infiniteLoop || !isMobileMode || isInfiniteScrolling) return;
+
+    const scrollLeft = grid.scrollLeft;
+    const scrollWidth = grid.scrollWidth;
+    const clientWidth = grid.clientWidth;
     const cardWidth = cards[0].offsetWidth;
-    const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+    const gap = 20;
+    const clonesToAdd = 3;
+    const threshold = cardWidth / 2;
+
+    // Прокрутили в начало (видим клоны слева)
+    if (scrollLeft < threshold) {
+      isInfiniteScrolling = true;
+      const originalStart = clonesToAdd * (cardWidth + gap);
+      grid.scrollLeft = originalStart + scrollLeft;
+      setTimeout(() => {
+        isInfiniteScrolling = false;
+      }, 50);
+    }
+    // Прокрутили в конец (видим клоны справа)
+    else if (scrollLeft + clientWidth > scrollWidth - threshold) {
+      isInfiniteScrolling = true;
+      const originalStart = clonesToAdd * (cardWidth + gap);
+      const offset = scrollLeft + clientWidth - scrollWidth;
+      grid.scrollLeft = originalStart + offset;
+      setTimeout(() => {
+        isInfiniteScrolling = false;
+      }, 50);
+    }
+  }
+
+  /**
+   * Определяет режим работы карусели на основе CSS
+   * Mobile: overflow-x: auto
+   * Desktop: grid или другой layout (или CSS animation для clients)
+   */
+  function detectMode() {
+    const gridStyle = getComputedStyle(grid);
+    const hasOverflowScroll =
+      gridStyle.overflowX === "auto" || gridStyle.overflowX === "scroll";
+
+    const previousMode = isMobileMode;
+    isMobileMode = hasOverflowScroll;
+
+    // Проверяем интерактивность десктопа (нет animation/column-count)
+    if (!isMobileMode) {
+      // animation возвращает полную строку типа "none 0s ease..." или "40s linear ... clientsScroll"
+      // Проверяем, что анимация НЕ начинается с "none" (то есть реально задана)
+      const hasAnimation =
+        gridStyle.animation && !gridStyle.animation.startsWith("none");
+      const hasColumnCount =
+        gridStyle.columnCount !== "auto" && gridStyle.columnCount !== "1";
+      isDesktopInteractive = !hasAnimation && !hasColumnCount;
+    } else {
+      // На мобилке всегда интерактивно
+      isDesktopInteractive = true;
+    }
+
+    // Если режим изменился, нужно сбросить стили
+    if (previousMode !== isMobileMode) {
+      if (isMobileMode) {
+        // Переход в мобильный режим - убираем transform и animation
+        cards.forEach((card) => {
+          card.style.transform = "";
+          card.style.transition = "";
+        });
+        // Останавливаем CSS animation (для clients)
+        grid.style.animation = "none";
+        currentIndex = 0;
+
+        // Убираем градиенты на мобилке
+        grid.classList.remove("show-left-gradient", "show-right-gradient");
+
+        // Настраиваем бесконечную прокрутку для мобилки
+        setupInfiniteLoop();
+      } else {
+        // Переход в десктоп режим - сбрасываем scroll
+        removeInfiniteLoop();
+        grid.scrollLeft = 0;
+        currentIndex = 0;
+
+        // Убираем inline стиль animation, чтобы вернулась CSS animation
+        grid.style.animation = "";
+      }
+
+      // Обновляем состояние кнопок и градиентов
+      updateButtonStates();
+    }
+
+    return isMobileMode;
+  }
+
+  /**
+   * Desktop режим: использует transform для прокрутки
+   * Для неинтерактивных каруселей (animation/column-count) только обновляет кнопки
+   */
+  function updateDesktopCarousel() {
+    // Если десктоп не интерактивен (есть CSS animation или column-count)
+    if (!isDesktopInteractive) {
+      // Просто обновляем кнопки (они скрыты через CSS display: none)
+      updateButtonStates();
+      return;
+    }
+
+    // Стандартная логика с transform для интерактивных каруселей
+    const cardWidth = cards[0].offsetWidth;
+    const gridComputedStyle = getComputedStyle(grid);
+    const gap =
+      parseFloat(gridComputedStyle.gap) ||
+      parseFloat(gridComputedStyle.columnGap) ||
+      0;
     const offset = -(currentIndex * (cardWidth + gap));
 
     cards.forEach((card) => {
@@ -1254,9 +1400,37 @@ function initCarousel(config) {
       card.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
     });
 
-    // Обновляем состояние кнопок
-    const isAtStart = currentIndex === 0;
-    const isAtEnd = currentIndex >= totalCards - cardsPerView;
+    updateButtonStates();
+  }
+
+  /**
+   * Mobile режим: использует нативный scrollLeft
+   */
+  function updateMobileCarousel() {
+    updateButtonStates();
+  }
+
+  /**
+   * Обновление состояния кнопок (универсально для обоих режимов)
+   */
+  function updateButtonStates() {
+    let isAtStart, isAtEnd;
+
+    if (isMobileMode) {
+      // Для бесконечной прокрутки кнопки всегда активны
+      if (infiniteLoop) {
+        isAtStart = false;
+        isAtEnd = false;
+      } else {
+        // Mobile: проверяем scrollLeft
+        isAtStart = grid.scrollLeft <= 1;
+        isAtEnd = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 1;
+      }
+    } else {
+      // Desktop: проверяем индекс
+      isAtStart = currentIndex === 0;
+      isAtEnd = currentIndex >= totalCards - desktopCardsPerView;
+    }
 
     prevBtn.disabled = isAtStart;
     nextBtn.disabled = isAtEnd;
@@ -1268,49 +1442,191 @@ function initCarousel(config) {
     nextBtn.style.cursor = isAtEnd ? "not-allowed" : "pointer";
 
     // Обновляем градиенты
-    updateGradients();
+    updateGradients(isAtStart, isAtEnd);
+  }
+
+  /**
+   * Управление градиентами по бокам карусели (только Desktop + Interactive)
+   * @param {boolean} isAtStart - находимся ли в начале
+   * @param {boolean} isAtEnd - находимся ли в конце
+   */
+  function updateGradients(isAtStart, isAtEnd) {
+    // Градиенты только для Desktop интерактивных каруселей
+    if (isMobileMode || !isDesktopInteractive) {
+      grid.classList.remove("show-left-gradient", "show-right-gradient");
+      return;
+    }
+
+    // Левый градиент: показываем, если НЕ в начале
+    if (isAtStart) {
+      grid.classList.remove("show-left-gradient");
+    } else {
+      grid.classList.add("show-left-gradient");
+    }
+
+    // Правый градиент: показываем, если НЕ в конце
+    if (isAtEnd) {
+      grid.classList.remove("show-right-gradient");
+    } else {
+      grid.classList.add("show-right-gradient");
+    }
+  }
+
+  /**
+   * Обработчик кнопки "Назад"
+   */
+  function handlePrev() {
+    if (isMobileMode) {
+      // Mobile: прокручиваем на одну карточку влево
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 20; // стандартный gap для мобилки
+      const scrollDistance = cardWidth + gap;
+
+      grid.scrollBy({
+        left: -scrollDistance,
+        behavior: "smooth",
+      });
+
+      // Обновляем состояние кнопок после анимации
+      setTimeout(updateButtonStates, 300);
+    } else {
+      // Desktop: проверяем, интерактивна ли карусель
+      if (!isDesktopInteractive) {
+        return;
+      }
+
+      // Desktop: уменьшаем индекс
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateDesktopCarousel();
+      }
+    }
+  }
+
+  /**
+   * Обработчик кнопки "Вперёд"
+   */
+  function handleNext() {
+    if (isMobileMode) {
+      // Mobile: прокручиваем на одну карточку вправо
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 20; // стандартный gap для мобилки
+      const scrollDistance = cardWidth + gap;
+
+      grid.scrollBy({
+        left: scrollDistance,
+        behavior: "smooth",
+      });
+
+      // Обновляем состояние кнопок после анимации
+      setTimeout(updateButtonStates, 300);
+    } else {
+      // Desktop: проверяем, интерактивна ли карусель
+      if (!isDesktopInteractive) {
+        return;
+      }
+
+      // Desktop: увеличиваем индекс
+      if (currentIndex < totalCards - desktopCardsPerView) {
+        currentIndex++;
+        updateDesktopCarousel();
+      }
+    }
+  }
+
+  /**
+   * Инициализация карусели
+   */
+  function init() {
+    // Определяем режим
+    detectMode();
+
+    // Настраиваем обработчики кнопок
+    prevBtn.addEventListener("click", handlePrev);
+    nextBtn.addEventListener("click", handleNext);
+
+    // В мобильном режиме отслеживаем событие scroll
+    if (isMobileMode) {
+      scrollHandler = debounce(updateButtonStates, 100);
+      grid.addEventListener("scroll", scrollHandler);
+
+      // Добавляем обработчик бесконечной прокрутки
+      if (infiniteLoop) {
+        grid.addEventListener("scroll", handleInfiniteScroll);
+        setupInfiniteLoop();
+      }
+
+      updateMobileCarousel();
+    } else {
+      updateDesktopCarousel();
+    }
+
+    // Обработчик изменения размера окна
+    const resizeHandler = debounce(() => {
+      const wasMobile = isMobileMode;
+      detectMode();
+
+      // Если режим изменился, переинициализируем
+      if (wasMobile !== isMobileMode) {
+        if (scrollHandler) {
+          grid.removeEventListener("scroll", scrollHandler);
+          scrollHandler = null;
+        }
+
+        // Удаляем обработчик бесконечной прокрутки если он был
+        if (infiniteLoop) {
+          grid.removeEventListener("scroll", handleInfiniteScroll);
+        }
+
+        if (isMobileMode) {
+          scrollHandler = debounce(updateButtonStates, 100);
+          grid.addEventListener("scroll", scrollHandler);
+
+          // Добавляем обработчик бесконечной прокрутки
+          if (infiniteLoop) {
+            grid.addEventListener("scroll", handleInfiniteScroll);
+          }
+
+          updateMobileCarousel();
+        } else {
+          updateDesktopCarousel();
+        }
+      } else {
+        // Режим не изменился, просто обновляем
+        if (isMobileMode) {
+          updateMobileCarousel();
+        } else {
+          // Проверяем корректность индекса для desktop
+          if (
+            currentIndex >= totalCards - desktopCardsPerView &&
+            currentIndex > 0
+          ) {
+            currentIndex = Math.max(0, totalCards - desktopCardsPerView);
+          }
+          updateDesktopCarousel();
+        }
+      }
+    }, 250);
+
+    window.addEventListener("resize", resizeHandler);
 
     console.log(
-      `${name}: показаны карточки ${currentIndex + 1}-${Math.min(
-        currentIndex + cardsPerView,
-        totalCards
-      )} из ${totalCards}`
+      `${name}: карусель инициализирована (${totalCards} карточек, режим: ${
+        isMobileMode ? "Mobile" : "Desktop"
+      }, интерактивность: ${isDesktopInteractive})`
     );
   }
 
-  prevBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-      console.log(`${name}: переход назад`);
-    }
+  // Запускаем инициализацию
+  init();
+}
+
+// Старая функция для обратной совместимости (использует новую универсальную)
+function initCarousel(config) {
+  initUniversalCarousel({
+    ...config,
+    desktopCardsPerView: config.cardsPerView || 4,
   });
-
-  nextBtn.addEventListener("click", () => {
-    if (currentIndex < totalCards - cardsPerView) {
-      currentIndex++;
-      updateCarousel();
-      console.log(`${name}: переход вперёд`);
-    }
-  });
-
-  // Обновляем при изменении размера окна
-  const resizeHandler = debounce(() => {
-    // Сбрасываем индекс если он стал недопустимым
-    if (currentIndex >= totalCards - cardsPerView && currentIndex > 0) {
-      currentIndex = Math.max(0, totalCards - cardsPerView);
-    }
-    updateCarousel();
-  }, 250);
-
-  window.addEventListener("resize", resizeHandler);
-
-  // Инициализация
-  updateCarousel();
-
-  console.log(
-    `${name}: карусель инициализирована (${totalCards} карточек, показываем ${cardsPerView}, есть больше карточек: ${hasMoreCards})`
-  );
 }
 
 // Инициализация переключения категорий во всплывающем меню услуг
@@ -1402,6 +1718,43 @@ function initBlogCarousel() {
   });
 }
 
+// Инициализация карусели процесса работы
+function initWorkProcessCarousel() {
+  initUniversalCarousel({
+    prevBtnId: "workProcessPrev",
+    nextBtnId: "workProcessNext",
+    gridSelector: ".work-process__grid",
+    cardSelector: ".work-process-card",
+    desktopCardsPerView: 4,
+    name: "Work Process",
+  });
+}
+
+// Инициализация карусели клиентов
+function initClientsCarousel() {
+  initUniversalCarousel({
+    prevBtnId: "clientsPrev",
+    nextBtnId: "clientsNext",
+    gridSelector: ".clients__grid",
+    cardSelector: ".clients__logo",
+    desktopCardsPerView: 4,
+    infiniteLoop: true, // Бесконечная прокрутка на мобилке
+    name: "Clients",
+  });
+}
+
+// Инициализация карусели отзывов
+function initReviewsCarousel() {
+  initUniversalCarousel({
+    prevBtnId: "reviewsPrev",
+    nextBtnId: "reviewsNext",
+    gridSelector: ".reviews__cards-block",
+    cardSelector: ".reviews__card",
+    desktopCardsPerView: 3,
+    name: "Reviews",
+  });
+}
+
 // ========================================
 //    СИСТЕМА УПРАВЛЕНИЯ СТРАНИЦЕЙ 404
 // ========================================
@@ -1412,9 +1765,9 @@ function initBlogCarousel() {
  */
 function checkPageMode() {
   const urlParams = new URLSearchParams(window.location.search);
-  const mode = urlParams.get('mode');
-  
-  if (mode === '404') {
+  const mode = urlParams.get("mode");
+
+  if (mode === "404") {
     show404Page();
   } else {
     showMainContent();
@@ -1425,13 +1778,13 @@ function checkPageMode() {
  * Показывает страницу 404 вместо основного контента
  */
 function show404Page() {
-  const mainContent = document.getElementById('mainContent');
-  const page404Content = document.getElementById('page404Content');
-  
+  const mainContent = document.getElementById("mainContent");
+  const page404Content = document.getElementById("page404Content");
+
   if (mainContent && page404Content) {
-    mainContent.style.display = 'none';
-    page404Content.style.display = 'block';
-    console.log('Показана страница 404');
+    mainContent.style.display = "none";
+    page404Content.style.display = "block";
+    console.log("Показана страница 404");
   }
 }
 
@@ -1439,13 +1792,13 @@ function show404Page() {
  * Показывает основной контент (скрывает 404)
  */
 function showMainContent() {
-  const mainContent = document.getElementById('mainContent');
-  const page404Content = document.getElementById('page404Content');
-  
+  const mainContent = document.getElementById("mainContent");
+  const page404Content = document.getElementById("page404Content");
+
   if (mainContent && page404Content) {
-    mainContent.style.display = 'block';
-    page404Content.style.display = 'none';
-    console.log('Показан основной контент');
+    mainContent.style.display = "block";
+    page404Content.style.display = "none";
+    console.log("Показан основной контент");
   }
 }
 
@@ -1456,19 +1809,19 @@ function showMainContent() {
 function goToHome() {
   // Удаляем параметр mode из URL
   const url = new URL(window.location);
-  url.searchParams.delete('mode');
-  window.history.pushState({}, '', url);
-  
+  url.searchParams.delete("mode");
+  window.history.pushState({}, "", url);
+
   // Показываем основной контент
   showMainContent();
-  
+
   // Прокручиваем страницу наверх
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: "smooth",
   });
-  
-  console.log('Возврат на главную страницу');
+
+  console.log("Возврат на главную страницу");
 }
 
 /**
@@ -1477,22 +1830,22 @@ function goToHome() {
  */
 function toggle404Mode() {
   const urlParams = new URLSearchParams(window.location.search);
-  const currentMode = urlParams.get('mode');
-  
-  if (currentMode === '404') {
+  const currentMode = urlParams.get("mode");
+
+  if (currentMode === "404") {
     // Если уже на 404, переключаемся на обычную страницу
     goToHome();
   } else {
     // Переключаемся на 404
     const url = new URL(window.location);
-    url.searchParams.set('mode', '404');
-    window.history.pushState({}, '', url);
+    url.searchParams.set("mode", "404");
+    window.history.pushState({}, "", url);
     show404Page();
-    
+
     // Прокручиваем страницу наверх
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 }
@@ -1510,24 +1863,25 @@ window.toggle404Mode = toggle404Mode;
  * При ошибке загрузки изображение заменяется на error.png
  */
 function initImageErrorHandler() {
-  const images = document.querySelectorAll('img');
-  
+  const images = document.querySelectorAll("img");
+
   images.forEach((img) => {
-    img.addEventListener('error', function() {
+    img.addEventListener("error", function () {
       // Проверяем, что это не уже fallback изображение
-      if (!this.src.includes('error.png')) {
+      if (!this.src.includes("error.png")) {
         console.warn(`Ошибка загрузки изображения: ${this.src}`);
-        
+
         // Заменяем на error.png
-        this.src = 'assets/img/error.png';
-        this.alt = 'Ошибка загрузки изображения';
-        
+        this.src = "assets/img/error.png";
+        this.alt = "Ошибка загрузки изображения";
+
         // Добавляем класс для стилизации
-        this.classList.add('image-error');
+        this.classList.add("image-error");
       }
     });
   });
-  
-  console.log(`Инициализирован обработчик ошибок для ${images.length} изображений`);
-}
 
+  console.log(
+    `Инициализирован обработчик ошибок для ${images.length} изображений`
+  );
+}
