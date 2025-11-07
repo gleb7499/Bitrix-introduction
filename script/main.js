@@ -55,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Инициализация обработчика ошибок для изображений
   initImageErrorHandler();
 
+  // Инициализация аккордеона футера (только для мобильной версии)
+  initFooterAccordion();
+
   // Инициализация всех обработчиков
   initBurgerMenu();
   initSmoothScroll();
@@ -936,178 +939,105 @@ function initServicesCarousel() {
 
 // Инициализация карусели Track Group
 function initTrackGroupCarousel() {
-  const prevBtn = document.getElementById("trackGroupPrev");
-  const nextBtn = document.getElementById("trackGroupNext");
+  // Используем универсальную систему карусели
+  initUniversalCarousel({
+    prevBtnId: "trackGroupPrev",
+    nextBtnId: "trackGroupNext",
+    gridSelector: ".track-group__cards",
+    cardSelector: ".track-group__card",
+    desktopCardsPerView: 1, // Всегда показываем только 1 карточку
+    name: "Track Group",
+  });
+
+  // Обновляем счетчик навигации (1/3, 2/3, и т.д.)
   const navCurrent = document.querySelector(".track-group__nav-current");
-  const container = document.querySelector(".track-group__cards");
-  const cards = container
-    ? container.querySelectorAll(".track-group__card")
-    : [];
+  const navTotal = document.querySelector(".track-group__nav-total");
+  const grid = document.querySelector(".track-group__cards");
+  const cards = document.querySelectorAll(".track-group__card");
 
-  if (!prevBtn || !nextBtn || !navCurrent || !container || cards.length === 0) {
-    console.log("Track Group carousel elements not found");
-    return;
+  if (navTotal && cards.length > 0) {
+    navTotal.textContent = cards.length;
   }
 
-  let currentIndex = 0;
-  let isAnimating = false;
+  if (grid && navCurrent) {
+    /**
+     * Функция для подсчета текущего индекса
+     * Работает как для Desktop (transform), так и для Mobile (scrollLeft)
+     */
+    const updateCounter = () => {
+      if (!grid || cards.length === 0) return;
 
-  function setContainerHeight() {
-    const active = cards[currentIndex];
-    if (active) {
-      // Устанавливаем высоту контейнера равной высоте активной карточки
-      container.style.height = active.offsetHeight + "px";
-    }
-  }
+      const gridStyle = getComputedStyle(grid);
+      const isMobileMode =
+        gridStyle.overflowX === "auto" || gridStyle.overflowX === "scroll";
 
-  function updateUI() {
-    // Обновляем текст навигации
-    navCurrent.textContent = currentIndex + 1;
+      let currentIndex = 0;
 
-    // Обновляем состояние кнопок
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex === cards.length - 1;
+      if (isMobileMode) {
+        // Mobile: считаем индекс по scrollLeft
+        const firstCard = cards[0];
+        if (!firstCard) return;
 
-    setContainerHeight();
-    console.log(
-      `Track Group carousel updated: card ${currentIndex + 1}/${cards.length}`
-    );
-  }
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 20; // Стандартный gap для мобилки
+        const itemWidth = cardWidth + gap;
 
-  // Функция для ожидания загрузки всех изображений в карточке
-  function waitForImages(card) {
-    const images = card.querySelectorAll("img");
-    const promises = Array.from(images).map((img) => {
-      if (img.complete) {
-        return Promise.resolve();
+        // Вычисляем индекс с учетом половины ширины карточки для правильного округления
+        currentIndex = Math.round(grid.scrollLeft / itemWidth);
+
+        // Ограничиваем индекс максимальным значением
+        currentIndex = Math.min(currentIndex, cards.length - 1);
+      } else {
+        // Desktop: считаем индекс по transform
+        const firstCard = cards[0];
+        if (!firstCard) return;
+
+        const transform = firstCard.style.transform;
+        if (transform) {
+          // Извлекаем значение translateX из transform
+          const match = transform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+          if (match) {
+            const offset = parseFloat(match[1]);
+            const cardWidth = firstCard.offsetWidth;
+            currentIndex = Math.round(Math.abs(offset) / cardWidth);
+          }
+        }
       }
-      return new Promise((resolve) => {
-        img.addEventListener("load", resolve);
-        img.addEventListener("error", resolve); // Обрабатываем и ошибки
-      });
-    });
-    return Promise.all(promises);
-  }
 
-  function goTo(newIndex, direction) {
-    if (
-      isAnimating ||
-      newIndex === currentIndex ||
-      newIndex < 0 ||
-      newIndex >= cards.length
-    )
-      return;
-    isAnimating = true;
-
-    const current = cards[currentIndex];
-    const next = cards[newIndex];
-
-    // Сначала делаем текущую карточку absolute, чтобы она могла уплыть
-    current.style.position = "absolute";
-    current.style.inset = "0";
-    current.style.width = "100%";
-
-    // Подготовка следующего слайда к входу
-    next.classList.remove(
-      "track-group__card--animate-out-left",
-      "track-group__card--animate-out-right",
-      "track-group__card--pre-enter-from-left",
-      "track-group__card--pre-enter-from-right",
-      "track-group__card--active"
-    );
-    next.classList.add(
-      direction === "next"
-        ? "track-group__card--pre-enter-from-right"
-        : "track-group__card--pre-enter-from-left"
-    );
-
-    // Принудительный рефлоу, чтобы браузер применил стартовое положение
-    // перед запуском анимации входа
-    // eslint-disable-next-line no-unused-expressions
-    next.offsetWidth;
-
-    // Запускаем анимации
-    next.classList.add("track-group__card--active");
-    current.classList.add(
-      direction === "next"
-        ? "track-group__card--animate-out-left"
-        : "track-group__card--animate-out-right"
-    );
-
-    const onDone = () => {
-      // Завершаем анимацию, чистим классы
-      current.classList.remove(
-        "track-group__card--active",
-        "track-group__card--animate-out-left",
-        "track-group__card--animate-out-right"
-      );
-      next.classList.remove(
-        "track-group__card--pre-enter-from-left",
-        "track-group__card--pre-enter-from-right"
-      );
-
-      // Сбрасываем inline-стили у текущей карточки
-      current.style.position = "";
-      current.style.inset = "";
-      current.style.width = "";
-
-      currentIndex = newIndex;
-
-      // Ждём загрузки изображений новой карточки и затем обновляем высоту
-      waitForImages(next).then(() => {
-        updateUI();
-        isAnimating = false;
-      });
+      navCurrent.textContent = currentIndex + 1;
     };
 
-    // Когда текущий слайд закончит уходить — завершаем переход
-    current.addEventListener("transitionend", onDone, { once: true });
+    // Обновляем счетчик при клике на кнопки
+    const prevBtn = document.getElementById("trackGroupPrev");
+    const nextBtn = document.getElementById("trackGroupNext");
 
-    // Фолбэк на случай, если transitionend не сработает
-    setTimeout(() => {
-      if (isAnimating) onDone();
-    }, 700);
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        setTimeout(updateCounter, 50);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        setTimeout(updateCounter, 50);
+      });
+    }
+
+    // Для мобильной версии добавляем слушатель на scroll событие
+    // (так как scrollBy не вызывает transitionend)
+    if (grid) {
+      let scrollTimeout;
+      grid.addEventListener("scroll", () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateCounter, 50);
+      });
+    }
+
+    // Начальное обновление
+    updateCounter();
+
+    console.log("Track Group carousel counter initialized");
   }
-
-  prevBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      console.log("Prev button clicked");
-      goTo(currentIndex - 1, "prev");
-    }
-  });
-
-  nextBtn.addEventListener("click", () => {
-    if (currentIndex < cards.length - 1) {
-      console.log("Next button clicked");
-      goTo(currentIndex + 1, "next");
-    }
-  });
-
-  // Инициализация: показываем первый слайд
-  cards.forEach((card, i) => {
-    if (i === 0) {
-      card.classList.add("track-group__card--active");
-    } else {
-      card.classList.remove("track-group__card--active");
-    }
-  });
-
-  // Ждём загрузки изображений первой карточки перед установкой высоты
-  const firstCard = cards[0];
-  if (firstCard) {
-    waitForImages(firstCard).then(() => {
-      updateUI();
-      console.log(
-        "Карусель Track Group инициализирована (изображения загружены)"
-      );
-    });
-  } else {
-    updateUI();
-    console.log("Карусель Track Group инициализирована (без изображений)");
-  }
-
-  // Поддерживаем корректную высоту контейнера при ресайзе
-  window.addEventListener("resize", debounce(setContainerHeight, 250));
 }
 
 // Дополнительные функции, которые можно использовать
@@ -1885,3 +1815,104 @@ function initImageErrorHandler() {
     `Инициализирован обработчик ошибок для ${images.length} изображений`
   );
 }
+
+// ========================================
+//    АККОРДЕОН ФУТЕРА (МОБИЛЬНАЯ ВЕРСИЯ)
+// ========================================
+
+/**
+ * Инициализация аккордеона в футере для мобильной версии
+ * При клике на заголовок секции происходит плавное раскрытие/закрытие списка
+ */
+function initFooterAccordion() {
+  // Проверяем, что мы в мобильной версии (ширина <= 1023px)
+  const isMobile = window.innerWidth <= 1023;
+
+  if (!isMobile) {
+    return; // На десктопе аккордеон не нужен
+  }
+
+  const sectionTitles = document.querySelectorAll(".footer__section-title");
+
+  sectionTitles.forEach((title) => {
+    // Удаляем предыдущие обработчики (если были)
+    title.replaceWith(title.cloneNode(true));
+  });
+
+  // Получаем обновленные элементы после replaceWith
+  const updatedTitles = document.querySelectorAll(".footer__section-title");
+
+  updatedTitles.forEach((title) => {
+    title.addEventListener("click", function () {
+      // Сначала ищем footer__section (для нормальной структуры)
+      let section = this.closest(".footer__section");
+      let contentElement = null;
+
+      // Если footer__section не найден (колонки 3 и 4),
+      // ищем следующий элемент с классом footer__list
+      if (!section) {
+        // Создаём виртуальную "секцию" из заголовка и следующего списка
+        contentElement = this.nextElementSibling;
+
+        // Проверяем, что это действительно footer__list или footer__contact-info
+        if (
+          contentElement &&
+          (contentElement.classList.contains("footer__list") ||
+            contentElement.classList.contains("footer__contact-info"))
+        ) {
+          // Используем родительский элемент (footer__column) как контейнер
+          section = this.parentElement;
+        }
+      } else {
+        // Для нормальной структуры ищем контент внутри секции
+        contentElement = section.querySelector(
+          ".footer__list, .footer__contact-info"
+        );
+      }
+
+      if (!section || !contentElement) {
+        console.warn(
+          "Не удалось найти секцию или контент для аккордеона",
+          this
+        );
+        return;
+      }
+
+      const isActive = section.classList.contains("active");
+
+      // Закрываем все остальные секции
+      document
+        .querySelectorAll(".footer__section, .footer__column")
+        .forEach((s) => {
+          if (s !== section && s.classList.contains("active")) {
+            s.classList.remove("active");
+            const otherTitle = s.querySelector(".footer__section-title");
+            if (otherTitle) {
+              otherTitle.classList.remove("active");
+            }
+          }
+        });
+
+      // Переключаем текущую секцию
+      if (isActive) {
+        section.classList.remove("active");
+        this.classList.remove("active");
+      } else {
+        section.classList.add("active");
+        this.classList.add("active");
+      }
+    });
+  });
+
+  console.log(
+    `Инициализирован аккордеон футера для ${updatedTitles.length} секций`
+  );
+}
+
+// Инициализируем аккордеон при загрузке и при изменении размера окна
+window.addEventListener(
+  "resize",
+  debounce(function () {
+    initFooterAccordion();
+  }, 250)
+);
