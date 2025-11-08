@@ -241,6 +241,17 @@
     </div>
   </header>
 
+  <!-- Overlay для мобильного меню (содержит меню внутри) -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <!-- Кнопка закрытия меню (вернуться назад) -->
+    <button class="btn-icon mobile-menu-back" id="mobileMenuBack" aria-label="Назад">
+      <img src="assets/img/back.svg" alt="" loading="lazy" />
+    </button>
+
+    <!-- Контент меню будет клонирован сюда из footer через JS -->
+    <div class="mobile-menu-content" id="mobileMenuContent"></div>
+  </div>
+
   <!-- Основной контент страницы -->
   <main>
     <!-- Обертка для основного контента (можно скрывать при показе 404) -->

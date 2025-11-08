@@ -58,6 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Инициализация аккордеона футера (только для мобильной версии)
   initFooterAccordion();
 
+  // Инициализация мобильного меню (footer как выпадающее меню)
+  initMobileMenu();
+
   // Инициализация всех обработчиков
   initBurgerMenu();
   initSmoothScroll();
@@ -1822,6 +1825,7 @@ function initImageErrorHandler() {
 
 /**
  * Инициализация аккордеона в футере для мобильной версии
+ * Работает как для оригинального footer, так и для клонированного в overlay
  * При клике на заголовок секции происходит плавное раскрытие/закрытие списка
  */
 function initFooterAccordion() {
@@ -1880,18 +1884,25 @@ function initFooterAccordion() {
 
       const isActive = section.classList.contains("active");
 
-      // Закрываем все остальные секции
-      document
-        .querySelectorAll(".footer__section, .footer__column")
-        .forEach((s) => {
-          if (s !== section && s.classList.contains("active")) {
-            s.classList.remove("active");
-            const otherTitle = s.querySelector(".footer__section-title");
-            if (otherTitle) {
-              otherTitle.classList.remove("active");
+      // 🔑 ВАЖНО: Получаем контейнер (оригинальный footer или мобильный overlay)
+      // чтобы закрывать только секции в пределах одного контейнера
+      const footerContainer =
+        this.closest(".footer") || this.closest(".mobile-menu-content");
+
+      if (footerContainer) {
+        // Закрываем все остальные секции ТОЛЬКО в этом контейнере
+        footerContainer
+          .querySelectorAll(".footer__section, .footer__column")
+          .forEach((s) => {
+            if (s !== section && s.classList.contains("active")) {
+              s.classList.remove("active");
+              const otherTitle = s.querySelector(".footer__section-title");
+              if (otherTitle) {
+                otherTitle.classList.remove("active");
+              }
             }
-          }
-        });
+          });
+      }
 
       // Переключаем текущую секцию
       if (isActive) {
@@ -1916,3 +1927,352 @@ window.addEventListener(
     initFooterAccordion();
   }, 250)
 );
+
+/* ========================================
+   МОБИЛЬНОЕ МЕНЮ (FOOTER КАК ВЫПАДАЮЩЕЕ МЕНЮ)
+   ======================================== */
+
+/**
+ * Инициализация мобильного меню
+ * - #mobileMenuBtn показывает полный контент футера в overlay с анимацией гамбургер→крестик
+ * - #mobileServicesBtn показывает контент футера БЕЗ первой колонки
+ * - #mobileCallBtn показывает модальное окно звонка
+ * - Контент клонируется из footer в overlay
+ * - Все слои появляются с плавной анимацией
+ */
+function initMobileMenu() {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const mobileServicesBtn = document.getElementById("mobileServicesBtn");
+  const mobileCallBtn = document.getElementById("mobileCallBtn");
+  const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+  const mobileMenuContent = document.getElementById("mobileMenuContent");
+  const footer = document.querySelector(".footer");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const callModal = document.getElementById("callModal");
+  const mobileMenuBack = document.getElementById("mobileMenuBack");
+
+  console.log("🔍 Инициализация мобильного меню:");
+  console.log("mobileMenuBtn:", mobileMenuBtn);
+  console.log("mobileServicesBtn:", mobileServicesBtn);
+  console.log("mobileCallBtn:", mobileCallBtn);
+  console.log("mobileMenuOverlay:", mobileMenuOverlay);
+  console.log("mobileMenuContent:", mobileMenuContent);
+  console.log("footer:", footer);
+  console.log("mobileMenuBack:", mobileMenuBack);
+
+  if (!footer || !mobileMenuOverlay || !mobileMenuContent) {
+    console.warn("Элементы мобильного меню не найдены");
+    return;
+  }
+
+  if (!mobileMenuBtn || !mobileServicesBtn || !mobileCallBtn) {
+    console.warn("Кнопки мобильного меню не найдены");
+    return;
+  }
+
+  // 🔑 АРХИТЕКТУРА: Типы контента для мобильного оверлея
+  const CONTENT_TYPES = {
+    MENU: "menu", // Полное меню (footer)
+    SERVICES: "services", // Только услуги (footer без первой колонки)
+    FORM: "form", // Форма обратной связи (quick-response__content)
+  };
+
+  // 🔑 Переменная для отслеживания текущего типа контента
+  let currentContentType = null; // null = закрыто, или один из CONTENT_TYPES
+
+  /**
+   * 🎯 АРХИТЕКТУРНАЯ ФУНКЦИЯ: Открывает мобильное меню с указанным типом контента
+   * @param {string} contentType - Тип контента из CONTENT_TYPES
+   */
+  function openMobileMenuWithContent(contentType) {
+    // Очищаем предыдущий контент
+    mobileMenuContent.innerHTML = "";
+
+    // 🔑 РАЗДЕЛЕНИЕ ОТВЕТСТВЕННОСТИ: Выбор контента в зависимости от типа
+    switch (contentType) {
+      case CONTENT_TYPES.MENU:
+        renderFullMenu();
+        break;
+
+      case CONTENT_TYPES.SERVICES:
+        renderServicesMenu();
+        break;
+
+      case CONTENT_TYPES.FORM:
+        renderCallForm();
+        break;
+
+      default:
+        console.warn("Неизвестный тип контента:", contentType);
+        return;
+    }
+
+    // Показываем overlay с плавной анимацией
+    mobileMenuOverlay.classList.add("active");
+
+    // Анимируем кнопку меню (гамбургер → крестик) только для полного меню
+    if (contentType === CONTENT_TYPES.MENU && mobileMenuBtn) {
+      mobileMenuBtn.classList.add("menu-active");
+    }
+
+    // 🔑 Сохраняем текущий тип контента
+    currentContentType = contentType;
+
+    // Блокируем прокрутку body
+    document.body.style.overflow = "hidden";
+
+    console.log(`Мобильное меню открыто. Тип контента: ${contentType}`);
+  }
+
+  /**
+   * 📋 РЕНДЕР: Полное меню (footer целиком)
+   */
+  function renderFullMenu() {
+    const footerClone = footer.cloneNode(true);
+    mobileMenuContent.appendChild(footerClone);
+    initFooterAccordion();
+  }
+
+  /**
+   * 📋 РЕНДЕР: Меню только с услугами (footer без первой колонки)
+   */
+  function renderServicesMenu() {
+    const footerClone = footer.cloneNode(true);
+
+    // Удаляем первую колонку "О компании"
+    const firstColumn = footerClone.querySelector(
+      ".footer__column:first-child"
+    );
+    if (firstColumn) {
+      firstColumn.remove();
+    }
+
+    // 🔑 АРХИТЕКТУРНОЕ РЕШЕНИЕ: Реорганизация порядка элементов
+    // После удаления первой колонки нужно переупорядочить секции
+    const columns = footerClone.querySelectorAll(".footer__column");
+
+    if (columns.length >= 3) {
+      // Колонка 1 (бывшая 2): Услуги 1С + Серверные решения
+      // Колонка 2 (бывшая 3): Услуги Битрикс 24
+      // Колонка 3 (бывшая 4): IT-инфраструктура
+
+      const col1 = columns[0]; // Услуги (с заголовком)
+      const col2 = columns[1]; // Битрикс 24
+      const col3 = columns[2]; // IT-инфраструктура
+
+      // Получаем заголовок "Услуги" из первой колонки
+      const servicesTitle = col1.querySelector(".footer__column-title");
+
+      // Получаем все секции из первой колонки
+      const allSections = col1.querySelectorAll(".footer__section");
+      const services1CSection = allSections[0]; // Первая секция - Услуги 1С
+      const serversSection = allSections[1]; // Вторая секция - Серверные решения
+
+      // Получаем секцию Битрикс 24 (у неё нет обёртки footer__section)
+      const bitrix24Title = col2.querySelector(".footer__section-title");
+      const bitrix24List = col2.querySelector(".footer__list");
+
+      // Получаем секцию IT-инфраструктуры
+      const itTitle = col3.querySelector(".footer__section-title");
+      const itList = col3.querySelector(".footer__list");
+
+      // Создаём новую структуру в правильном порядке
+      const footerColumns = footerClone.querySelector(".footer__columns");
+      if (footerColumns && servicesTitle) {
+        // Очищаем существующие колонки
+        footerColumns.innerHTML = "";
+
+        // Создаём единую колонку с правильным порядком
+        const newColumn = document.createElement("div");
+        newColumn.className = "footer__column";
+
+        // 1. Заголовок "Услуги"
+        newColumn.appendChild(servicesTitle.cloneNode(true));
+
+        // 2. Услуги 1С (первая секция из col1)
+        if (services1CSection) {
+          newColumn.appendChild(services1CSection.cloneNode(true));
+        }
+
+        // 3. Услуги Битрикс 24 (создаём секцию с правильной структурой)
+        if (bitrix24Title && bitrix24List) {
+          const bitrixSection = document.createElement("div");
+          bitrixSection.className = "footer__section";
+          bitrixSection.appendChild(bitrix24Title.cloneNode(true));
+          bitrixSection.appendChild(bitrix24List.cloneNode(true));
+          newColumn.appendChild(bitrixSection);
+        }
+
+        // 4. IT-инфраструктура (создаём секцию с правильной структурой)
+        if (itTitle && itList) {
+          const itSection = document.createElement("div");
+          itSection.className = "footer__section";
+          itSection.appendChild(itTitle.cloneNode(true));
+          itSection.appendChild(itList.cloneNode(true));
+          newColumn.appendChild(itSection);
+        }
+
+        // 5. Серверные решения (вторая секция из col1)
+        if (serversSection) {
+          newColumn.appendChild(serversSection.cloneNode(true));
+        }
+
+        // Добавляем новую колонку в контейнер
+        footerColumns.appendChild(newColumn);
+      }
+    }
+
+    // Вставляем обработанный клон в контейнер
+    mobileMenuContent.appendChild(footerClone);
+    initFooterAccordion();
+  }
+
+  /**
+   * 📋 РЕНДЕР: Форма обратной связи (quick-response__content)
+   */
+  function renderCallForm() {
+    // Находим оригинальную форму в секции quick-response
+    const originalForm = document.querySelector(
+      ".section--quick-response .quick-response__content"
+    );
+
+    if (!originalForm) {
+      console.warn("Форма quick-response__content не найдена");
+      return;
+    }
+
+    // Клонируем форму
+    const formClone = originalForm.cloneNode(true);
+
+    // Добавляем специальный класс для мобильной адаптации
+    formClone.classList.add("quick-response__content--mobile");
+
+    // Вставляем клонированную форму
+    mobileMenuContent.appendChild(formClone);
+  }
+
+  /**
+   * 🔒 Закрывает мобильное меню
+   */
+  function closeMobileMenu() {
+    // Скрываем overlay с плавной анимацией
+    mobileMenuOverlay.classList.remove("active");
+
+    // Анимируем кнопку меню обратно (крестик → гамбургер)
+    if (mobileMenuBtn) {
+      mobileMenuBtn.classList.remove("menu-active");
+    }
+
+    // 🔑 Очищаем тип контента
+    currentContentType = null;
+
+    // Восстанавливаем прокрутку body
+    document.body.style.overflow = "";
+
+    // Очищаем контент после завершения анимации
+    setTimeout(() => {
+      mobileMenuContent.innerHTML = "";
+    }, 300); // Совпадает с CSS transition
+
+    console.log("Мобильное меню закрыто");
+  }
+
+  // 🎯 Обработчик кнопки "Меню" - показывает полное меню
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Закрываем если уже открыто полное меню, иначе открываем
+      if (currentContentType === CONTENT_TYPES.MENU) {
+        closeMobileMenu();
+      } else {
+        // Закрываем текущее содержимое (если открыто) и открываем новое
+        if (currentContentType !== null) {
+          closeMobileMenu();
+          // Небольшая задержка для плавности
+          setTimeout(() => {
+            openMobileMenuWithContent(CONTENT_TYPES.MENU);
+          }, 350);
+        } else {
+          openMobileMenuWithContent(CONTENT_TYPES.MENU);
+        }
+      }
+    });
+  }
+
+  // 🎯 Обработчик кнопки "Услуги" - показывает меню услуг
+  if (mobileServicesBtn) {
+    mobileServicesBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Закрываем текущее содержимое (если открыто) и открываем услуги
+      if (
+        currentContentType !== null &&
+        currentContentType !== CONTENT_TYPES.SERVICES
+      ) {
+        closeMobileMenu();
+        setTimeout(() => {
+          openMobileMenuWithContent(CONTENT_TYPES.SERVICES);
+        }, 350);
+      } else if (currentContentType === null) {
+        openMobileMenuWithContent(CONTENT_TYPES.SERVICES);
+      }
+      // Если уже открыты услуги - ничего не делаем
+    });
+  }
+
+  // 🎯 Обработчик кнопки "Позвонить" - показывает форму
+  if (mobileCallBtn) {
+    mobileCallBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Закрываем текущее содержимое (если открыто) и открываем форму
+      if (
+        currentContentType !== null &&
+        currentContentType !== CONTENT_TYPES.FORM
+      ) {
+        closeMobileMenu();
+        setTimeout(() => {
+          openMobileMenuWithContent(CONTENT_TYPES.FORM);
+        }, 350);
+      } else if (currentContentType === null) {
+        openMobileMenuWithContent(CONTENT_TYPES.FORM);
+      }
+      // Если уже открыта форма - ничего не делаем
+    });
+  }
+
+  // 🎯 Обработчик кнопки "Назад" - всегда закрывает меню
+  if (mobileMenuBack) {
+    mobileMenuBack.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeMobileMenu();
+    });
+  }
+
+  // 🎯 Обработчик клика по overlay - закрывает ТОЛЬКО полное меню
+  mobileMenuOverlay.addEventListener("click", function (e) {
+    // Закрываем только если:
+    // 1. Клик по самому overlay (не по контенту)
+    // 2. Открыто полное меню (не услуги и не форма)
+    if (
+      e.target === mobileMenuOverlay &&
+      currentContentType === CONTENT_TYPES.MENU
+    ) {
+      closeMobileMenu();
+    }
+  });
+
+  // 🎯 Закрытие по Escape - только для полного меню
+  document.addEventListener("keydown", function (e) {
+    if (
+      e.key === "Escape" &&
+      mobileMenuOverlay.classList.contains("active") &&
+      currentContentType === CONTENT_TYPES.MENU
+    ) {
+      closeMobileMenu();
+    }
+  });
+
+  console.log("Мобильное меню инициализировано");
+}
