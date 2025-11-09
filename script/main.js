@@ -1035,11 +1035,11 @@ function initFAQ() {
 
       if (isActive) {
         card.classList.remove("active");
-        icon.src = "assets/img/plus.png";
+        icon.src = "assets/img/icons/plus.svg";
         icon.alt = "Показать ответ";
       } else {
         card.classList.add("active");
-        icon.src = "assets/img/minus.png";
+        icon.src = "assets/img/icons/minus.svg";
         icon.alt = "Скрыть ответ";
       }
 
@@ -1995,7 +1995,7 @@ function initImageErrorHandler() {
         console.warn(`Ошибка загрузки изображения: ${this.src}`);
 
         // Заменяем на error.png
-        this.src = "assets/img/error.png";
+        this.src = "assets/img/content/error.png";
         this.alt = "Ошибка загрузки изображения";
 
         // Добавляем класс для стилизации

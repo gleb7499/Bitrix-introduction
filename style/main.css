@@ -3740,13 +3740,13 @@ img {
 
   /* Контейнер для изображения крестика - показываем при активности */
   .btn-icon#mobileMenuBtn::after {
-    content: url("../assets/img/close.png");
+    content: url("../assets/img/icons/close.svg");
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transform: rotate(-90deg) scale(0.15);
+    transform: rotate(-90deg) scale(0.5);
     transition: all 0.3s ease;
     line-height: 1;
     filter: brightness(0);
@@ -3754,7 +3754,7 @@ img {
 
   .btn-icon#mobileMenuBtn.menu-active::after {
     opacity: 1;
-    transform: rotate(0deg) scale(0.5);
+    transform: rotate(0deg) scale(1.0);
   }
 
   .section {
@@ -4287,10 +4287,12 @@ img {
     padding: 0;
     padding-top: 20px; /* Минимальный отступ сверху */
     flex-shrink: 0; /* Изображение не сжимается */
+    align-items: start;
+    justify-content: start;
   }
 
   .track-group__image img {
-    max-width: 100%;
+    width: 300px;
     border-radius: 20px;
   }
 
@@ -4921,6 +4923,7 @@ img {
   .quick-response__content {
     order: 2;
     padding: 0;
+    width: 100%;
   }
 
   .quick-response__title {
@@ -5071,7 +5074,7 @@ img {
     content: "";
     width: 9px;
     height: 4.5px;
-    background-image: url("../assets/img/show-more.svg");
+    background-image: url("../assets/img/icons/show-more.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
