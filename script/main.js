@@ -2149,6 +2149,197 @@ function initMobileMenu() {
 
     // Вставляем клонированную форму
     mobileMenuContent.appendChild(formClone);
+
+    // 🔑 ВАЖНО: Инициализируем обработчик формы в мобильном оверлее
+    initMobileCallForm(formClone);
+  }
+
+  /**
+   * 🎯 Инициализация обработчика формы в мобильном оверлее
+   * @param {HTMLElement} formContainer - Контейнер с формой (.quick-response__content--mobile)
+   */
+  function initMobileCallForm(formContainer) {
+    const form = formContainer.querySelector(".quick-response__form");
+
+    if (!form) {
+      console.warn("Форма внутри мобильного меню не найдена");
+      return;
+    }
+
+    const fields = form.querySelectorAll(".quick-response__field");
+    const submitBtn = form.querySelector(".btn");
+
+    // Объект для отслеживания состояния полей
+    const fieldStates = {};
+
+    fields.forEach((field, index) => {
+      const input = field.querySelector(".quick-response__input");
+      const errorText = field.querySelector(".quick-response__error");
+
+      if (!input || !errorText) return;
+
+      const fieldId = `mobile_form_field_${index}`;
+      fieldStates[fieldId] = {
+        touched: false,
+        valid: false,
+        empty: true,
+      };
+
+      // Обработка ввода
+      input.addEventListener("input", function () {
+        const value = this.value.trim();
+        fieldStates[fieldId].empty = !value;
+
+        if (value) {
+          this.classList.add("active");
+          fieldStates[fieldId].touched = true;
+          const isValid = validateInput(this, field, errorText, true);
+          fieldStates[fieldId].valid = isValid;
+        } else {
+          this.classList.remove("active");
+          if (fieldStates[fieldId].touched) {
+            this.classList.add("error");
+            field.classList.add("has-error");
+            errorText.textContent = "Поле обязательно для заполнения";
+            fieldStates[fieldId].valid = false;
+          } else {
+            clearFieldErrors(this, field);
+            fieldStates[fieldId].valid = false;
+          }
+        }
+
+        updateSubmitButton();
+      });
+
+      // Обработка потери фокуса
+      input.addEventListener("blur", function () {
+        const value = this.value.trim();
+
+        if (!value) {
+          if (fieldStates[fieldId].touched) {
+            this.classList.add("error");
+            field.classList.add("has-error");
+            errorText.textContent = "Поле обязательно для заполнения";
+            fieldStates[fieldId].valid = false;
+          }
+        } else {
+          fieldStates[fieldId].touched = true;
+          const isValid = validateInput(this, field, errorText, false);
+          fieldStates[fieldId].valid = isValid;
+        }
+
+        updateSubmitButton();
+      });
+
+      // Обработка получения фокуса
+      input.addEventListener("focus", function () {
+        if (
+          field.classList.contains("has-error") ||
+          field.classList.contains("has-warning")
+        ) {
+          this.classList.remove("error", "warning");
+          field.classList.remove("has-error", "has-warning");
+        }
+      });
+    });
+
+    // Функция обновления состояния кнопки
+    function updateSubmitButton() {
+      const allValid = Object.values(fieldStates).every(
+        (state) => state.valid && !state.empty
+      );
+
+      if (submitBtn) {
+        submitBtn.disabled = !allValid;
+      }
+    }
+
+    // Функция очистки ошибок поля
+    function clearFieldErrors(input, field) {
+      input.classList.remove("error", "warning", "active");
+      field.classList.remove("has-error", "has-warning");
+    }
+
+    // Инициализация - кнопка disabled по умолчанию
+    updateSubmitButton();
+
+    // 🎯 КЛЮЧЕВАЯ ЛОГИКА: Обработка отправки формы в мобильном оверлее
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let isValid = true;
+
+      fields.forEach((field, index) => {
+        const input = field.querySelector(".quick-response__input");
+        const errorText = field.querySelector(".quick-response__error");
+        const fieldId = `mobile_form_field_${index}`;
+
+        fieldStates[fieldId].touched = true;
+
+        if (!validateInput(input, field, errorText, false)) {
+          isValid = false;
+          fieldStates[fieldId].valid = false;
+        }
+      });
+
+      if (isValid) {
+        console.log("Форма мобильного оверлея успешно отправлена");
+
+        // 🔑 АРХИТЕКТУРНОЕ РЕШЕНИЕ: Заменяем форму на сообщение об успехе
+        showMobileSuccessMessage();
+      }
+    });
+
+    console.log("Обработчик мобильной формы инициализирован");
+  }
+
+  /**
+   * 🎉 Показывает сообщение об успешной отправке формы в мобильном оверлее
+   * Заменяет содержимое #mobileMenuContent на блок .modal-success из #callModal
+   */
+  function showMobileSuccessMessage() {
+    // Находим оригинальное сообщение об успехе в модальном окне
+    const originalSuccess = document.querySelector("#callModal .modal-success");
+
+    if (!originalSuccess) {
+      console.warn("Блок .modal-success не найден в #callModal");
+      // Fallback: показываем простое сообщение
+      mobileMenuContent.innerHTML = `
+        <div class="modal-success" style="display: flex;">
+          <div class="modal-success__content">
+            <h2 class="modal-success__title">Спасибо за обращение!</h2>
+            <p class="modal-success__text">
+              Мы уже получили вашу заявку. Ожидайте звонка — специалист свяжется с вами в ближайшее время
+            </p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    // Клонируем сообщение об успехе
+    const successClone = originalSuccess.cloneNode(true);
+
+    // Убираем inline style display: none (если есть)
+    successClone.style.display = "flex";
+
+    // 🔑 БЕЗОПАСНОСТЬ: Плавная замена контента с анимацией
+    // 1. Добавляем класс для fade-out текущего контента
+    mobileMenuContent.style.opacity = "0";
+    mobileMenuContent.style.transition = "opacity 0.3s ease";
+
+    // 2. После анимации заменяем контент
+    setTimeout(() => {
+      mobileMenuContent.innerHTML = "";
+      mobileMenuContent.appendChild(successClone);
+
+      // 3. Плавно показываем новый контент
+      requestAnimationFrame(() => {
+        mobileMenuContent.style.opacity = "1";
+      });
+
+      console.log("Сообщение об успехе показано в мобильном оверлее");
+    }, 300); // Совпадает с transition
   }
 
   /**
