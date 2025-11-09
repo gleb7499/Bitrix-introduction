@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initCallButton();
   initHeroButton();
   initContactForm();
-  initQuickResponseForm();
+  initQuickResponseForm(); // Инициализация формы в секции
   initPortfolioItems();
   initFAQ();
   initServicesCarousel();
@@ -201,6 +201,7 @@ function initAboutDropdown() {
       hideTimeout = null;
     }
     dropdown.classList.add("active");
+    navItem.classList.add("active"); // ✅ Добавляем класс для анимации иконки
     overlayManager.show("aboutDropdown"); // Используем менеджер
   }
 
@@ -208,6 +209,7 @@ function initAboutDropdown() {
   function hideDropdown() {
     hideTimeout = setTimeout(() => {
       dropdown.classList.remove("active");
+      navItem.classList.remove("active"); // ✅ Убираем класс для анимации иконки
       overlayManager.hide("aboutDropdown"); // Используем менеджер
     }, 150);
   }
@@ -424,13 +426,26 @@ function initContactForm() {
 }
 
 // Обработка формы Quick Response с валидацией
+/**
+ * 📝 Инициализация формы Quick Response в секции (НЕ модальное окно!)
+ * Модальное окно инициализируется отдельно в initCallModal()
+ */
 function initQuickResponseForm() {
-  const form = document.querySelector(".quick-response__form");
+  // Выбираем форму именно в секции, а не в модальном окне
+  const section = document.querySelector(".section--quick-response");
+  if (!section) {
+    console.warn("Секция .section--quick-response не найдена");
+    return;
+  }
 
-  if (!form) return;
+  const form = section.querySelector(".quick-response__form");
+  if (!form) {
+    console.warn("Форма в секции .section--quick-response не найдена");
+    return;
+  }
 
   const fields = form.querySelectorAll(".quick-response__field");
-  const submitBtn = form.querySelector(".quick-response__btn");
+  const submitBtn = form.querySelector(".btn[type='submit']"); // Исправлен селектор кнопки
 
   // Объект для отслеживания состояния полей
   const fieldStates = {};
@@ -580,7 +595,14 @@ function initQuickResponseForm() {
   });
 }
 
-// Функция валидации input
+/**
+ * 🔐 Жёсткая валидация полей формы с защитой от всех возможных случаев
+ * @param {HTMLInputElement} input - Поле ввода
+ * @param {HTMLElement} field - Родительский контейнер поля
+ * @param {HTMLElement} errorText - Элемент для вывода ошибки
+ * @param {boolean} isTyping - Флаг процесса ввода (true = в процессе, false = потеря фокуса)
+ * @returns {boolean} - Валидность поля
+ */
 function validateInput(input, field, errorText, isTyping) {
   const value = input.value.trim();
   const type = input.type;
@@ -589,72 +611,224 @@ function validateInput(input, field, errorText, isTyping) {
   input.classList.remove("error", "warning");
   field.classList.remove("has-error", "has-warning");
 
+  // Пустое поле - не валидно
   if (!value) {
     return false;
   }
 
-  // Валидация имени
+  // ==================== ВАЛИДАЦИЯ ИМЕНИ ====================
   if (type === "text") {
-    if (value.length < 2) {
-      input.classList.add("error");
-      field.classList.add("has-error");
-      errorText.textContent = "Имя должно содержать минимум 2 символа";
-      return false;
-    }
-
-    if (!/^[а-яА-ЯёЁa-zA-Z\s-]+$/.test(value)) {
-      input.classList.add("error");
-      field.classList.add("has-error");
-      errorText.textContent = "Имя может содержать только буквы";
-      return false;
-    }
-
-    // Если всё корректно - убираем все сообщения
-    field.classList.remove("has-error", "has-warning");
-    return true;
+    return validateName(value, input, field, errorText);
   }
 
-  // Валидация телефона
+  // ==================== ВАЛИДАЦИЯ ТЕЛЕФОНА ====================
   if (type === "tel") {
-    // Убираем все нецифровые символы
-    const phoneDigits = value.replace(/\D/g, "");
-
-    if (phoneDigits.length === 0) {
-      return false;
-    }
-
-    // При вводе показываем warning если номер неполный
-    if (phoneDigits.length < 11) {
-      if (isTyping) {
-        // При вводе не показываем ошибку, только если пользователь покинул поле
-        return false;
-      } else {
-        input.classList.add("warning");
-        field.classList.add("has-warning");
-        errorText.textContent = "Неполный номер телефона";
-        return false;
-      }
-    }
-
-    if (phoneDigits.length > 11) {
-      input.classList.add("error");
-      field.classList.add("has-error");
-      errorText.textContent = "Номер телефона слишком длинный";
-      return false;
-    }
-
-    if (!phoneDigits.startsWith("7") && !phoneDigits.startsWith("8")) {
-      input.classList.add("error");
-      field.classList.add("has-error");
-      errorText.textContent = "Номер должен начинаться с +7 или 8";
-      return false;
-    }
-
-    // Если всё корректно - убираем все сообщения
-    field.classList.remove("has-error", "has-warning");
-    return true;
+    return validatePhone(value, input, field, errorText, isTyping);
   }
 
+  return true;
+}
+
+/**
+ * 📝 Строгая валидация имени пользователя
+ */
+function validateName(value, input, field, errorText) {
+  // 1. Защита от XSS - проверка на опасные символы
+  if (/<|>|&lt;|&gt;|script|javascript|onerror|onclick/i.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя содержит недопустимые символы";
+    return false;
+  }
+
+  // 2. Минимальная длина
+  if (value.length < 2) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя должно содержать минимум 2 символа";
+    return false;
+  }
+
+  // 3. Максимальная длина
+  if (value.length > 50) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя не может быть длиннее 50 символов";
+    return false;
+  }
+
+  // 4. Только буквы (кириллица/латиница), пробелы и дефисы
+  if (!/^[а-яА-ЯёЁa-zA-Z\s-]+$/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent =
+      "Имя может содержать только буквы, пробелы и дефисы";
+    return false;
+  }
+
+  // 5. Запрет цифр
+  if (/\d/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя не может содержать цифры";
+    return false;
+  }
+
+  // 6. Запрет спецсимволов (кроме дефиса)
+  if (/[!@#$%^&*()_+=\[\]{}|\\:;"'<>,.?/~`№]/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя содержит недопустимые спецсимволы";
+    return false;
+  }
+
+  // 7. Запрет множественных пробелов подряд
+  if (/\s{2,}/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя не может содержать множественные пробелы";
+    return false;
+  }
+
+  // 8. Запрет множественных дефисов подряд
+  if (/-{2,}/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя не может содержать множественные дефисы";
+    return false;
+  }
+
+  // 9. Запрет начала/конца с пробела или дефиса
+  if (/^[\s-]|[\s-]$/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent =
+      "Имя не может начинаться или заканчиваться пробелом/дефисом";
+    return false;
+  }
+
+  // 10. Запрет только одной буквы с дефисом (например: "А-")
+  if (/^[а-яА-ЯёЁa-zA-Z]-?$/.test(value)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Имя слишком короткое";
+    return false;
+  }
+
+  // ✅ Все проверки пройдены
+  field.classList.remove("has-error", "has-warning");
+  return true;
+}
+
+/**
+ * 📞 Строгая валидация российского номера телефона
+ */
+function validatePhone(value, input, field, errorText, isTyping) {
+  // Убираем все нецифровые символы
+  const phoneDigits = value.replace(/\D/g, "");
+
+  // 1. Пустой номер
+  if (phoneDigits.length === 0) {
+    return false;
+  }
+
+  // 2. Длина номера должна быть ровно 11 цифр
+  if (phoneDigits.length < 11) {
+    if (isTyping) {
+      // При вводе не показываем ошибку
+      return false;
+    } else {
+      input.classList.add("warning");
+      field.classList.add("has-warning");
+      errorText.textContent = "Неполный номер телефона";
+      return false;
+    }
+  }
+
+  if (phoneDigits.length > 11) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Номер телефона слишком длинный";
+    return false;
+  }
+
+  // 3. Номер должен начинаться с +7 или 8
+  if (!phoneDigits.startsWith("7") && !phoneDigits.startsWith("8")) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Номер должен начинаться с +7 или 8";
+    return false;
+  }
+
+  // 4. Проверка кода оператора (второй, третий, четвёртый символы после 7/8)
+  // Российские мобильные коды: 9XX (900-999)
+  const operatorCode = phoneDigits.substring(1, 4);
+
+  // Код оператора должен начинаться с 9
+  if (!operatorCode.startsWith("9")) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent =
+      "Некорректный код оператора (должен начинаться с 9)";
+    return false;
+  }
+
+  // 5. Запрет на полностью одинаковые цифры (например: 77777777777)
+  const uniqueDigits = new Set(phoneDigits).size;
+  if (uniqueDigits === 1) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Номер телефона выглядит нереалистично";
+    return false;
+  }
+
+  // 6. Запрет на подозрительные паттерны (типа 79111111111)
+  // Проверяем основную часть номера (7 последних цифр)
+  const mainPart = phoneDigits.substring(4);
+  const uniqueInMain = new Set(mainPart).size;
+
+  if (uniqueInMain === 1) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent = "Номер телефона выглядит нереалистично";
+    return false;
+  }
+
+  // 7. Запрет на последовательные одинаковые цифры (более 4 подряд)
+  if (/(\d)\1{4,}/.test(phoneDigits)) {
+    input.classList.add("error");
+    field.classList.add("has-error");
+    errorText.textContent =
+      "Номер содержит слишком много повторяющихся цифр подряд";
+    return false;
+  }
+
+  // 8. Запрет на простые последовательности (123456, 987654)
+  const sequences = [
+    "012345",
+    "123456",
+    "234567",
+    "345678",
+    "456789",
+    "567890",
+    "098765",
+    "987654",
+    "876543",
+    "765432",
+    "654321",
+    "543210",
+  ];
+  for (let seq of sequences) {
+    if (phoneDigits.includes(seq)) {
+      input.classList.add("error");
+      field.classList.add("has-error");
+      errorText.textContent = "Номер телефона выглядит нереалистично";
+      return false;
+    }
+  }
+
+  // ✅ Все проверки пройдены
+  field.classList.remove("has-error", "has-warning");
   return true;
 }
 
@@ -839,6 +1013,10 @@ function initPortfolioItems() {
 }
 
 // Инициализация FAQ аккордеона
+/**
+ * 🎯 Инициализация FAQ аккордеона
+ * Поддерживает клик как по всей карточке, так и по кнопке внутри
+ */
 function initFAQ() {
   const faqCards = document.querySelectorAll(".faq__card");
 
@@ -847,33 +1025,45 @@ function initFAQ() {
     const answer = card.querySelector(".faq__answer");
     const icon = toggleBtn ? toggleBtn.querySelector("img") : null;
 
-    if (answer && icon) {
-      // Клик по всей карточке
-      card.addEventListener("click", (e) => {
-        // Предотвращаем двойное срабатывание, если клик был по кнопке
-        if (e.target.closest(".faq__toggle-btn") && e.target !== card) {
-          return;
-        }
+    if (!answer || !icon || !toggleBtn) return;
 
-        const isActive = card.classList.contains("active");
+    /**
+     * Функция переключения состояния карточки
+     */
+    function toggleCard() {
+      const isActive = card.classList.contains("active");
 
-        // Переключить текущую карточку
-        if (isActive) {
-          card.classList.remove("active");
-          icon.src = "assets/img/plus.png";
-          icon.alt = "Показать ответ";
-        } else {
-          card.classList.add("active");
-          icon.src = "assets/img/minus.png";
-          icon.alt = "Скрыть ответ";
-        }
+      if (isActive) {
+        card.classList.remove("active");
+        icon.src = "assets/img/plus.png";
+        icon.alt = "Показать ответ";
+      } else {
+        card.classList.add("active");
+        icon.src = "assets/img/minus.png";
+        icon.alt = "Скрыть ответ";
+      }
 
-        console.log("FAQ карточка переключена");
-      });
-
-      // Добавляем курсор pointer для всей карточки
-      card.style.cursor = "pointer";
+      console.log("FAQ карточка переключена");
     }
+
+    // ✅ Клик по кнопке
+    toggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Предотвращаем всплытие к card
+      toggleCard();
+    });
+
+    // ✅ Клик по всей карточке (но не по кнопке, чтобы избежать двойного срабатывания)
+    card.addEventListener("click", (e) => {
+      // Если клик был непосредственно по кнопке или её содержимому - игнорируем
+      if (e.target.closest(".faq__toggle-btn")) {
+        return;
+      }
+      toggleCard();
+    });
+
+    // Добавляем курсор pointer
+    card.style.cursor = "pointer";
+    toggleBtn.style.cursor = "pointer";
   });
 }
 

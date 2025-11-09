@@ -291,12 +291,13 @@ body.overlay-active .header--desktop {
 }
 
 .nav__link-icon {
+  display: inline-block; /* ✅ Необходимо для transform на SVG */
   width: 0.469vw /* 9px */;
   height: 0.234vw /* 4.5px */;
   /* Фильтр для цвета #494555 */
   filter: brightness(0) saturate(100%) invert(29%) sepia(8%) saturate(705%)
     hue-rotate(222deg) brightness(94%) contrast(88%);
-  transition: filter 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* ✅ Transform без transition - transition добавляется только при hover/active */
 }
 
 .nav__link:hover {
@@ -308,9 +309,21 @@ body.overlay-active .header--desktop {
     hue-rotate(346deg) brightness(95%) contrast(93%);
 }
 
-/* Поворот иконки при наведении на элемент с dropdown */
+/* ✅ Плавная анимация поворота при наведении */
 .nav__item--has-dropdown:hover .nav__link-icon {
   transform: rotate(180deg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ✅ Плавная анимация поворота обратно при уходе */
+.nav__item--has-dropdown .nav__link-icon {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Поворот иконки когда dropdown активен (для программного управления) */
+.nav__item--has-dropdown.active .nav__link-icon {
+  transform: rotate(180deg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ========================================
@@ -1550,6 +1563,47 @@ body.overlay-active .header--desktop {
 .section--clients {
   padding-top: 3.646vw /* 70px */;
   overflow: hidden;
+  position: relative;
+}
+
+/* 🎯 Градиент слева бесконечной карусели клиентов */
+.section--clients::before {
+  content: "";
+  position: absolute;
+  border-radius: 0 0 0 4.896vw /* 94px */;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 15.625vw /* 300px */;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 1;
+}
+
+/* 🎯 Градиент справа бесконечной карусели клиентов */
+.section--clients::after {
+  content: "";
+  position: absolute;
+  border-radius: 0 0 4.896vw /* 94px */ 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 15.625vw /* 300px */;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 1;
 }
 
 .clients__header {
@@ -1588,6 +1642,8 @@ body.overlay-active .header--desktop {
   animation: clientsScroll 40s linear infinite;
   width: max-content;
   padding-bottom: 3.646vw /* 70px */;
+  position: relative;
+  overflow: hidden;
 }
 
 @keyframes clientsScroll {
@@ -4589,6 +4645,12 @@ img {
   .clients__subtitle {
     font-size: 18px;
     margin: 0 0 20px 0;
+  }
+
+  /* Скрываем градиенты на мобильной версии */
+  .section--clients::before,
+  .section--clients::after {
+    display: none;
   }
 
   /* Убираем анимацию, делаем карусель */
