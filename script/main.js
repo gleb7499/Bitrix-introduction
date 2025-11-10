@@ -1754,7 +1754,9 @@ function initCarousel(config) {
 
 // Инициализация переключения категорий во всплывающем меню услуг
 function initServicesPopupCategories() {
-  const categories = document.querySelectorAll(".services-popup__category");
+  const categories = document.querySelectorAll(
+    ".services-popup__categories > h3"
+  );
   const allLinks = document.querySelectorAll(".services-popup__link");
   const photos = document.querySelectorAll(".services-popup__photo");
 
@@ -2026,7 +2028,9 @@ function initFooterAccordion() {
     return; // На десктопе аккордеон не нужен
   }
 
-  const sectionTitles = document.querySelectorAll(".footer__section-title");
+  const sectionTitles = document.querySelectorAll(
+    ".footer__section > h4, .footer__column > h4"
+  );
 
   sectionTitles.forEach((title) => {
     // Удаляем предыдущие обработчики (если были)
@@ -2034,7 +2038,9 @@ function initFooterAccordion() {
   });
 
   // Получаем обновленные элементы после replaceWith
-  const updatedTitles = document.querySelectorAll(".footer__section-title");
+  const updatedTitles = document.querySelectorAll(
+    ".footer__section > h4, .footer__column > h4"
+  );
 
   updatedTitles.forEach((title) => {
     title.addEventListener("click", function () {
@@ -2086,21 +2092,15 @@ function initFooterAccordion() {
           .forEach((s) => {
             if (s !== section && s.classList.contains("active")) {
               s.classList.remove("active");
-              const otherTitle = s.querySelector(".footer__section-title");
-              if (otherTitle) {
-                otherTitle.classList.remove("active");
-              }
             }
           });
       }
 
-      // Переключаем текущую секцию
+      // Переключаем текущую секцию (класс active на родителе, не на h4)
       if (isActive) {
         section.classList.remove("active");
-        this.classList.remove("active");
       } else {
         section.classList.add("active");
-        this.classList.add("active");
       }
     });
   });
@@ -2251,7 +2251,7 @@ function initMobileMenu() {
       const col3 = columns[2]; // IT-инфраструктура
 
       // Получаем заголовок "Услуги" из первой колонки
-      const servicesTitle = col1.querySelector(".footer__column-title");
+      const servicesTitle = col1.querySelector(".footer__column > h3");
 
       // Получаем все секции из первой колонки
       const allSections = col1.querySelectorAll(".footer__section");
@@ -2259,11 +2259,11 @@ function initMobileMenu() {
       const serversSection = allSections[1]; // Вторая секция - Серверные решения
 
       // Получаем секцию Битрикс 24 (у неё нет обёртки footer__section)
-      const bitrix24Title = col2.querySelector(".footer__section-title");
+      const bitrix24Title = col2.querySelector("h4");
       const bitrix24List = col2.querySelector(".footer__list");
 
       // Получаем секцию IT-инфраструктуры
-      const itTitle = col3.querySelector(".footer__section-title");
+      const itTitle = col3.querySelector("h4");
       const itList = col3.querySelector(".footer__list");
 
       // Создаём новую структуру в правильном порядке
@@ -2497,10 +2497,8 @@ function initMobileMenu() {
       mobileMenuContent.innerHTML = `
         <div class="modal-success" style="display: flex;">
           <div class="modal-success__content">
-            <h2 class="modal-success__title">Спасибо за обращение!</h2>
-            <p class="modal-success__text">
-              Мы уже получили вашу заявку. Ожидайте звонка — специалист свяжется с вами в ближайшее время
-            </p>
+            <h2>Спасибо за обращение!</h2>
+            <p>Мы уже получили вашу заявку. Ожидайте звонка — специалист свяжется с вами в ближайшее время</p>
           </div>
         </div>
       `;

@@ -475,7 +475,7 @@ body.overlay-active .header--desktop {
   gap: 2.083vw /* 40px */;
 }
 
-.hero__title {
+.hero__text-group > h1 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 3.333vw /* 64px */;
@@ -486,7 +486,7 @@ body.overlay-active .header--desktop {
   color: #1f1933;
 }
 
-.hero__description {
+.hero__text-group > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -546,7 +546,7 @@ body.overlay-active .header--desktop {
   padding: 0;
 }
 
-.about-company__title {
+.section--about-company > h2 {
   grid-column: 1;
   grid-row: 1;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -597,7 +597,7 @@ body.overlay-active .header--desktop {
   gap: 1.042vw /* 20px */;
 }
 
-.about-company__text p {
+.about-company__text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -619,7 +619,7 @@ body.overlay-active .header--desktop {
   margin: 0 auto;
 }
 
-.work-process__title {
+.section--work-process > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -634,7 +634,7 @@ body.overlay-active .header--desktop {
   margin-left: 4.167vw /* 80px */;
 }
 
-.work-process__subtitle {
+.section--work-process > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -687,7 +687,7 @@ body.overlay-active .header--desktop {
   background: transparent;
 }
 
-.work-process-card__title {
+.work-process-card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -700,7 +700,7 @@ body.overlay-active .header--desktop {
   margin-left: 3.125vw /* 60px */;
 }
 
-.work-process-card__text {
+.work-process-card > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.146vw /* 22px */;
@@ -723,7 +723,7 @@ body.overlay-active .header--desktop {
   padding-top: 3.646vw /* 70px */;
 }
 
-.advantages__title {
+.section--advantages > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -736,7 +736,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.advantages__subtitle {
+.section--advantages > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -786,7 +786,7 @@ body.overlay-active .header--desktop {
   background: rgba(244, 244, 244, 1);
 }
 
-.advantage-card__title {
+.advantage-card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -834,7 +834,7 @@ body.overlay-active .header--desktop {
   padding-bottom: 4.167vw /* 80px */;
 }
 
-.reviews__title {
+.reviews__left-block > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -959,7 +959,7 @@ body.overlay-active .header--desktop {
 }
 
 /* Текст отзыва */
-.reviews__card-text {
+.reviews__card > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.146vw /* 22px */;
@@ -1039,7 +1039,7 @@ body.overlay-active .header--desktop {
   padding: 0;
 }
 
-.ready-to-start__title {
+.section--ready-to-start > h2 {
   grid-column: 1;
   grid-row: 1;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -1094,7 +1094,7 @@ body.overlay-active .header--desktop {
   gap: 1.042vw /* 20px */;
 }
 
-.ready-to-start__text p {
+.ready-to-start__text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -1111,7 +1111,7 @@ body.overlay-active .header--desktop {
   padding-top: 3.646vw /* 70px */;
 }
 
-.achievements__title {
+.section--achievements > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -1205,7 +1205,7 @@ body.overlay-active .header--desktop {
   flex: 1;
 }
 
-.services__title {
+.services__header-text > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -1218,7 +1218,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.services__subtitle {
+.services__header-text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -1370,7 +1370,7 @@ body.overlay-active .header--desktop {
   background: transparent;
 }
 
-.services__card-title {
+.services__card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -1441,7 +1441,7 @@ body.overlay-active .header--desktop {
   padding-bottom: 4.167vw /* 80px */;
 }
 
-.faq__title {
+.faq__left-block > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -1613,7 +1613,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 3.125vw /* 60px */;
 }
 
-.clients__title {
+.clients__header > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -1625,7 +1625,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.clients__subtitle {
+.clients__header > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -1703,7 +1703,7 @@ body.overlay-active .header--desktop {
   padding: 2.083vw /* 40px */ 4.167vw /* 80px */;
 }
 
-.footer__copyright {
+.footer__container > p {
   /* font-size: 22px -> min = 8.8px, mid = 1.146vw, max = 22px */
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
@@ -1844,7 +1844,7 @@ body.overlay-active .header--desktop {
   padding-bottom: 4.167vw /* 80px */;
 }
 
-.track-group__title {
+.track-group__content > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -1856,7 +1856,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 2.083vw /* 40px */;
 }
 
-.track-group__subtitle {
+.track-group__content > p:nth-of-type(1) {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -1868,7 +1868,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.563vw /* 30px */;
 }
 
-.track-group__description {
+.track-group__content > p:nth-of-type(2) {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.146vw /* 22px */;
@@ -1948,7 +1948,7 @@ body.overlay-active .header--desktop {
   flex: 1;
 }
 
-.special-offers__title {
+.special-offers__header-text > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -1962,7 +1962,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.special-offers__subtitle {
+.special-offers__header-text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -2130,7 +2130,7 @@ body.overlay-active .header--desktop {
   padding: 0 2.083vw /* 40px */;
 }
 
-.special-offers__card-title {
+.special-offers__card-content > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -2142,7 +2142,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.special-offers__card-text {
+.special-offers__card-content > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.146vw /* 22px */;
@@ -2188,7 +2188,7 @@ body.overlay-active .header--desktop {
   padding-left: 4.167vw /* 80px */;
 }
 
-.quick-response__title {
+.quick-response__content > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -2200,7 +2200,7 @@ body.overlay-active .header--desktop {
   margin: 0 0 1.042vw /* 20px */ 0;
 }
 
-.quick-response__description {
+.quick-response__content > p:first-of-type {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -2363,7 +2363,7 @@ body.overlay-active .header--desktop {
   width: 100%;
 }
 
-.quick-response__agreement {
+.quick-response__form > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 0.833vw /* 16px */;
@@ -2430,7 +2430,7 @@ body.overlay-active .header--desktop {
   flex: 1;
 }
 
-.blog__title {
+.blog__header-text > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 2.5vw /* 48px */;
@@ -2444,7 +2444,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.blog__subtitle {
+.blog__header-text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -2613,7 +2613,7 @@ body.overlay-active .header--desktop {
   gap: 1.042vw /* 20px */;
 }
 
-.blog__card-title {
+.blog__card-content > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.875vw /* 36px */;
@@ -2624,7 +2624,7 @@ body.overlay-active .header--desktop {
   color: #1f1933;
 }
 
-.blog__card-text {
+.blog__card-content > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-size: 1.146vw /* 22px */;
@@ -2709,7 +2709,7 @@ body.overlay-active .header--desktop {
   min-width: 0;
 }
 
-.footer__column-title {
+.footer__column > h3 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 1.875vw /* 36px */;
@@ -2732,7 +2732,8 @@ body.overlay-active .header--desktop {
   margin-bottom: 0;
 }
 
-.footer__section-title {
+.footer__section > h4,
+.footer__column > h4 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 1.458vw /* 28px */;
@@ -2910,7 +2911,7 @@ body.overlay-active .header--desktop {
   min-width: 0;
 }
 
-.services-popup__category {
+.services-popup__categories > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   font-weight: 700;
@@ -2927,11 +2928,11 @@ body.overlay-active .header--desktop {
   word-break: break-word;
 }
 
-.services-popup__category:hover {
+.services-popup__categories > h3:hover {
   color: #fa0012;
 }
 
-.services-popup__category.active {
+.services-popup__categories > h3.active {
   color: #fa0012;
 }
 
@@ -3136,12 +3137,12 @@ body.overlay-active .header--desktop {
   width: 100%;
 }
 
-.modal-popup .quick-response__title {
+.modal-popup .quick-response__content > h2 {
   text-align: center;
   margin-bottom: 1.042vw /* 20px */;
 }
 
-.modal-popup .quick-response__description {
+.modal-popup .quick-response__content > p:first-of-type {
   text-align: center;
   margin-bottom: 2.083vw /* 40px */;
 }
@@ -3175,7 +3176,7 @@ body.overlay-active .header--desktop {
   padding: 0 3.854 /* 74px */;
 }
 
-.modal-success__title {
+.modal-success__content > h2 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -3186,7 +3187,7 @@ body.overlay-active .header--desktop {
   margin-bottom: 0.521vw /* 10px */;
 }
 
-.modal-success__text {
+.modal-success__content > p {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -3520,7 +3521,7 @@ img {
     padding: 0;
   }
 
-  .mobile-menu-content .quick-response__description {
+  .mobile-menu-content .quick-response__content > p:first-of-type {
     font-size: 16px;
     margin-bottom: 20px;
   }
@@ -3568,7 +3569,7 @@ img {
     padding: 0 20px;
   }
 
-  .mobile-menu-content .modal-success__title {
+  .mobile-menu-content .modal-success__content > h2 {
     font-family: "Inter", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -3578,7 +3579,7 @@ img {
     margin-bottom: 10px;
   }
 
-  .mobile-menu-content .modal-success__text {
+  .mobile-menu-content .modal-success__content > p {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -3801,11 +3802,11 @@ img {
     gap: 10px;
   }
 
-  .hero__title {
+  .hero__text-group > h1 {
     font-size: 32px;
   }
 
-  .hero__description {
+  .hero__text-group > p {
     font-size: 18px;
   }
 
@@ -3863,11 +3864,11 @@ img {
     gap: 10px;
   }
 
-  .section--404 .hero__title {
+  .section--404 .hero__text-group > h1 {
     font-size: 32px;
   }
 
-  .section--404 .hero__description {
+  .section--404 .hero__text-group > p {
     font-size: 18px;
   }
 
@@ -3911,7 +3912,7 @@ img {
     gap: 0px;
   }
 
-  .about-company__title {
+  .section--about-company > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
     order: 1;
@@ -3934,7 +3935,7 @@ img {
     gap: 10px;
   }
 
-  .about-company__text p {
+  .about-company__text > p {
     font-size: 18px;
   }
 
@@ -3974,7 +3975,7 @@ img {
      и результаты)
      ======================================== */
 
-  .achievements__title {
+  .section--achievements > h2 {
     font-size: 24px;
     margin: 0 0 20px 0;
     text-align: start;
@@ -4019,7 +4020,7 @@ img {
     gap: 0;
   }
 
-  .ready-to-start__title {
+  .section--ready-to-start > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
     order: 1;
@@ -4036,7 +4037,7 @@ img {
     gap: 10px;
   }
 
-  .ready-to-start__text p {
+  .ready-to-start__text > p {
     font-size: 18px;
     margin-bottom: 10px;
   }
@@ -4072,12 +4073,12 @@ img {
      ADVANTAGES СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
      ======================================== */
 
-  .advantages__title {
+  .section--advantages > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
   }
 
-  .advantages__subtitle {
+  .section--advantages > p {
     font-size: 18px;
     margin: 0 0 20px 0;
   }
@@ -4103,7 +4104,7 @@ img {
     border-radius: 10px;
   }
 
-  .advantage-card__title {
+  .advantage-card > h3 {
     font-size: 18px;
     text-align: start;
   }
@@ -4132,12 +4133,12 @@ img {
     order: 1;
   }
 
-  .services__title {
+  .services__header-text > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
   }
 
-  .services__subtitle {
+  .services__header-text > p {
     font-size: 18px;
     margin: 0;
   }
@@ -4190,7 +4191,7 @@ img {
     border-radius: 10px;
   }
 
-  .services__card-title {
+  .services__card > h3 {
     font-size: 18px;
     margin: 0px;
     margin-bottom: 20px;
@@ -4263,17 +4264,17 @@ img {
     flex-shrink: 0; /* Контент не сжимается */
   }
 
-  .track-group__title {
+  .track-group__content > h2 {
     font-size: 24px;
     margin-bottom: 10px;
   }
 
-  .track-group__subtitle {
+  .track-group__content > p:nth-of-type(1) {
     font-size: 18px;
     margin-bottom: 10px;
   }
 
-  .track-group__description {
+  .track-group__content > p:nth-of-type(2) {
     font-size: 18px;
     margin-bottom: 10px;
   }
@@ -4373,12 +4374,12 @@ img {
     margin-bottom: 0;
   }
 
-  .special-offers__title {
+  .special-offers__header-text > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
   }
 
-  .special-offers__subtitle {
+  .special-offers__header-text > p {
     font-size: 18px;
     margin: 0;
   }
@@ -4436,12 +4437,12 @@ img {
     padding: 0;
   }
 
-  .special-offers__card-title {
+  .special-offers__card-content > h3 {
     font-size: 18px;
     margin-bottom: 10px;
   }
 
-  .special-offers__card-text {
+  .special-offers__card-content > p {
     font-size: 16px;
     margin-bottom: 20px;
     flex-grow: 1;
@@ -4480,12 +4481,12 @@ img {
     margin-bottom: 20px;
   }
 
-  .blog__title {
+  .blog__header-text > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
   }
 
-  .blog__subtitle {
+  .blog__header-text > p {
     font-size: 18px;
     margin: 0;
   }
@@ -4546,12 +4547,12 @@ img {
     gap: 0;
   }
 
-  .blog__card-title {
+  .blog__card-content > h3 {
     font-size: 18px;
     margin-bottom: 10px;
   }
 
-  .blog__card-text {
+  .blog__card-content > p {
     font-size: 16px;
     margin-bottom: 20px;
     flex-grow: 1;
@@ -4580,13 +4581,13 @@ img {
     padding: 20px;
   }
 
-  .work-process__title {
+  .section--work-process > h2 {
     font-size: 24px;
     margin: 0;
     margin-bottom: 10px;
   }
 
-  .work-process__subtitle {
+  .section--work-process > p {
     font-size: 18px;
     margin: 0;
     margin-bottom: 20px;
@@ -4633,13 +4634,13 @@ img {
     border-radius: 10px;
   }
 
-  .work-process-card__title {
+  .work-process-card > h3 {
     font-size: 18px;
     margin: 0px;
     margin-bottom: 10px;
   }
 
-  .work-process-card__text {
+  .work-process-card > p {
     font-size: 16px;
     margin: 0px;
   }
@@ -4659,12 +4660,12 @@ img {
     margin-bottom: 20px;
   }
 
-  .clients__title {
+  .clients__header > h2 {
     font-size: 24px;
     margin: 0 0 10px 0;
   }
 
-  .clients__subtitle {
+  .clients__header > p {
     font-size: 18px;
     margin: 0 0 20px 0;
   }
@@ -4756,7 +4757,7 @@ img {
     display: contents; /* Делаем детей этого блока прямыми детьми container */
   }
 
-  .reviews__title {
+  .reviews__left-block > h2 {
     font-size: 24px;
     order: 1; /* Заголовок первый */
   }
@@ -4818,7 +4819,7 @@ img {
     font-size: 16px;
   }
 
-  .reviews__card-text {
+  .reviews__card > p {
     font-size: 16px;
   }
 
@@ -4864,7 +4865,7 @@ img {
     display: contents; /* Делаем детей этого блока прямыми детьми container */
   }
 
-  .faq__title {
+  .faq__left-block > h2 {
     font-size: 24px;
     margin: 0;
     order: 1; /* Заголовок первый */
@@ -4946,12 +4947,12 @@ img {
     width: 100%;
   }
 
-  .quick-response__title {
+  .quick-response__content > h2 {
     font-size: 32px;
     margin-bottom: 20px;
   }
 
-  .quick-response__description {
+  .quick-response__content > p:first-of-type {
     font-size: 18px;
     margin-bottom: 20px;
   }
@@ -4982,7 +4983,7 @@ img {
     padding-top: 3px;
   }
 
-  .quick-response__agreement {
+  .quick-response__form > p {
     font-size: 14px;
     margin-top: 10px;
   }
@@ -5022,7 +5023,7 @@ img {
   }
 
   /* Заголовок "Услуги" из колонки 2 (order: 2) */
-  .footer__column:nth-child(2) > .footer__column-title {
+  .footer__column:nth-child(2) > h3 {
     order: 2;
   }
 
@@ -5055,7 +5056,7 @@ img {
   }
 
   /* Основные заголовки "О компании" и "Услуги" */
-  .footer__column-title {
+  .footer__column > h3 {
     font-size: 32px;
     margin: 20px;
     visibility: visible;
@@ -5067,7 +5068,8 @@ img {
   }
 
   /* Заголовок секции становится кнопкой */
-  .footer__section-title {
+  .footer__section > h4,
+  .footer__column > h4 {
     width: 100%;
     padding: 20px;
     border-radius: 20px;
@@ -5084,13 +5086,13 @@ img {
   }
 
   /* Активное состояние кнопки - углы становятся прямыми ПЛАВНО */
-  .footer__section-title.active {
+  .footer__section.active > h4 {
     border-radius: 20px 20px 0 0; /* Верхние углы скруглены, нижние прямые */
     transition: border-radius 0.4s ease;
   }
 
   /* Иконка стрелки */
-  .footer__section-title::after {
+  .footer__section > h4::after {
     content: "";
     width: 9px;
     height: 4.5px;
@@ -5103,7 +5105,7 @@ img {
   }
 
   /* Поворот иконки при активном состоянии */
-  .footer__section-title.active::after {
+  .footer__section.active > h4::after {
     transform: rotate(180deg);
   }
 
@@ -5133,7 +5135,7 @@ img {
     font-size: 18px;
   }
 
-  /* Для колонок 3 и 4 (где footer__section-title вне footer__section) */
+  /* Для колонок 3 и 4 (где h4 вне footer__section) */
   .footer__columns .footer__column > .footer__list {
     max-height: 0 !important;
     overflow: hidden;
@@ -5210,7 +5212,7 @@ img {
     align-items: center;
   }
 
-  .footer__copyright {
+  .footer__container > p {
     font-size: 16px;
     text-align: center;
   }
