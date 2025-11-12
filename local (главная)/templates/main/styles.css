@@ -1,0 +1,18 @@
+/* 
+ * Основные стили шаблона IntezGroup
+ * Этот файл автоматически подключается Bitrix
+ * Основные стили находятся в template_styles.css
+ */
+
+/* Базовая нормализация для совместимости с Bitrix */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Обёртка для контента Bitrix */
+#workarea {
+  width: 100%;
+  min-height: 400px;
+}

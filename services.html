@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Название сайта</title>
+  <link rel="stylesheet" href="style/main.css" />
+</head>
+
+<body>
+  <!-- Overlay для размытия main (для services-popup) -->
+  <div class="services-popup__overlay" id="overlay"></div>
+
+  <!-- Overlay для модального окна (выше всех элементов) -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <!-- Модальное окно с формой -->
+  <div class="modal-popup" id="callModal">
+    <div class="modal-popup__wrapper">
+      <div class="modal-popup__container">
+        <!-- Контент формы (переиспользуем стили quick-response) -->
+        <div class="quick-response__content">
+          <h2>Получить ответ за 15 минут</h2>
+          <p>
+            Заполните форму с актуальными данными
+          </p>
+          <form class="quick-response__form" id="callModalForm">
+            <div class="quick-response__field">
+              <input type="text" class="quick-response__input" placeholder="Имя" />
+              <span class="quick-response__error">Additional text</span>
+            </div>
+            <div class="quick-response__field">
+              <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" />
+              <span class="quick-response__error">Additional text</span>
+            </div>
+            <button type="submit" class="btn btn--primary">Отправить</button>
+            <p>
+              Отправляя форму, вы соглашаетесь с условиями
+              <a href="#">пользовательского соглашения</a> и
+              <a href="#">обработкой персональных данных</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Контент успешной отправки (скрыт по умолчанию) -->
+        <div class="modal-success" style="display: none;">
+          <img src="assets/img/content/successfully-done.png" alt="Успешно" class="modal-success__image" loading="lazy">
+          <div class="modal-success__content">
+            <h2>Спасибо за обращение!</h2>
+            <p>
+              Мы уже получили вашу заявку. Ожидайте звонка — специалист свяжется с вами в ближайшее время
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопка закрытия справа от контейнера -->
+      <button class="modal-popup__close" id="modalClose" aria-label="Закрыть">
+        <img src="assets/img/icons/close.svg" alt="Закрыть" loading="lazy">
+      </button>
+    </div>
+  </div>
+
+  <!-- Всплывающее меню услуг -->
+  <div class="services-popup__container" id="servicesPopup">
+    <div class="services-popup__links">
+      <!-- Колонка с категориями -->
+      <div class="services-popup__column-wrapper">
+        <!-- Блок заголовков категорий -->
+        <div class="services-popup__categories">
+          <h3 class="active" data-category="1c">
+            Услуги 1С
+          </h3>
+          <h3 data-category="bitrix24">
+            Услуги Битрикс 24
+          </h3>
+          <h3 data-category="it-infrastructure">
+            ИТ-инфраструктура и оборудование
+          </h3>
+          <h3 data-category="server-solutions">
+            Серверные решения и сети
+          </h3>
+        </div>
+      </div>
+
+      <!-- Колонка 1 -->
+      <div class="services-popup__column-wrapper">
+        <div class="services-popup__column" data-column="1">
+          <!-- Услуги 1С - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="1c">Внедрение 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Доработка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Техническая поддержка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Сопровождение 1С</a>
+
+          <!-- Услуги Битрикс 24 - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Внедрение Битрикс
+            24</a>
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Обслуживание Битрикс
+            24</a>
+
+          <!-- ИТ-инфраструктура и оборудование - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Создание ИТ
+            инфраструктуры</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Установка
+            серверного оборудования и ПО</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure"
+            style="display: none">ИТ-обслуживание ПК и серверов</a>
+
+          <!-- Серверные решения и сети - Колонка 1 -->
+          <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none">Внедрение
+            хранилищ данных</a>
+          <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none">Внедрение
+            почтового сервера</a>
+        </div>
+      </div>
+
+      <!-- Колонка 2 -->
+      <div class="services-popup__column-wrapper">
+        <div class="services-popup__column" data-column="2">
+          <!-- Услуги 1С - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="1c">Обновление 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Настройка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Разработка 1С</a>
+          <a href="#" class="services-popup__link" data-category="1c">Аренда 1С</a>
+
+          <!-- Услуги Битрикс 24 - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Настройка Битрикс
+            24</a>
+          <a href="#" class="services-popup__link" data-category="bitrix24" style="display: none">Разработка Битрикс
+            24</a>
+
+          <!-- ИТ-инфраструктура и оборудование - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Монтаж
+            локальных сетей</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Монтаж
+            СКС</a>
+          <a href="#" class="services-popup__link" data-category="it-infrastructure" style="display: none">Установка
+            систем видеонаблюдения</a>
+
+          <!-- Серверные решения и сети - Колонка 2 -->
+          <a href="#" class="services-popup__link" data-category="server-solutions" style="display: none">Корпоративный
+            VPN</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Блок с фотографией -->
+    <div class="services-popup__image">
+      <img src="assets/img/content/popup-menu-1c.png" alt="Услуги 1С" data-image="1c"
+        class="services-popup__photo active" loading="lazy" />
+      <img src="assets/img/content/popup-menu-bitrix-24.png" alt="Услуги Битрикс 24" data-image="bitrix24"
+        class="services-popup__photo" loading="lazy" />
+      <img src="assets/img/content/popup-menu-IT-solutions-and-equipment.png" alt="ИТ-инфраструктура и оборудование"
+        data-image="it-infrastructure" class="services-popup__photo" loading="lazy" />
+      <img src="assets/img/content/popup-menu-server-solutions-and-networks.png" alt="Серверные решения и сети"
+        data-image="server-solutions" class="services-popup__photo" loading="lazy" />
+    </div>
+  </div>
+  </div>
+
+  <!-- Шапка сайта (десктоп версия) -->
+  <header class="header header--desktop">
+    <div class="container">
+      <div class="header__content">
+        <img src="assets/img/icons/logo-header-desktop.svg" alt="IntezGroup Logo" class="header__logo" loading="lazy" />
+
+        <button class="btn btn--services" id="servicesBtn">
+          Услуги
+          <img src="assets/img/icons/show-more.svg" alt="" class="btn__icon" loading="lazy" />
+        </button>
+
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item nav__item--has-dropdown">
+              <a href="#about" class="nav__link">
+                О компании
+                <img src="assets/img/icons/show-more.svg" alt="" class="nav__link-icon" loading="lazy" />
+              </a>
+              <!-- Всплывающее меню "О компании" -->
+              <div class="nav-dropdown" id="aboutDropdown">
+                <div class="nav-dropdown__container">
+                  <a href="#" class="nav-dropdown__link">О компании</a>
+                  <a href="#" class="nav-dropdown__link">Вакансии</a>
+                  <a href="#" class="nav-dropdown__link">Отзывы</a>
+                  <a href="#" class="nav-dropdown__link">Вопрос-ответ</a>
+                  <a href="#" class="nav-dropdown__link">Акции и скидки</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav__item">
+              <a href="#prices" class="nav__link">Цены</a>
+            </li>
+            <li class="nav__item">
+              <a href="#projects" class="nav__link">Проекты</a>
+            </li>
+            <li class="nav__item">
+              <a href="#blog" class="nav__link">Блог</a>
+            </li>
+            <li class="nav__item">
+              <a href="#contacts" class="nav__link">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__actions">
+          <a href="tel:+74954765464" class="header__phone">+7 495 476-54-64</a>
+          <button class="btn btn--secondary" id="callBtn">
+            Заказать звонок
+          </button>
+        </div>
+
+        <button class="burger" id="burger">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Шапка сайта (мобильная версия для <= 1023px) -->
+  <header class="header header--mobile">
+    <div class="header__mobile-container">
+      <img src="assets/img/icons/logo-header-mobile.svg" alt="IntezGroup Logo" class="header__mobile-logo"
+        loading="lazy" />
+
+      <div class="header__mobile-actions">
+        <button class="btn btn--mobile-services" id="mobileServicesBtn">
+          Услуги
+        </button>
+
+        <button class="btn-icon" id="mobileCallBtn" aria-label="Позвонить">
+          <img src="assets/img/icons/phone-mobile.svg" alt="" loading="lazy" />
+        </button>
+
+        <button class="btn-icon" id="mobileMenuBtn" aria-label="Меню">
+          <img src="assets/img/icons/menu-mobile.svg" alt="" loading="lazy" />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overlay для мобильного меню (содержит меню внутри) -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <!-- Кнопка закрытия меню (вернуться назад) -->
+    <button class="btn-icon mobile-menu-back" id="mobileMenuBack" aria-label="Назад">
+      <img src="assets/img/icons/back.svg" alt="" loading="lazy" />
+    </button>
+
+    <!-- Контент меню будет клонирован сюда из footer через JS -->
+    <div class="mobile-menu-content" id="mobileMenuContent"></div>
+  </div>
+
+  <!-- Основной контент страницы -->
+  <main>
+    <!-- Обертка для основного контента (можно скрывать при показе 404) -->
+    <div id="mainContent">
+      <!-- 1. Секция: ИТ-инфраструктура нового уровня -->
+      <section class="section section--hero">
+        <div class="hero__content">
+          <div class="hero__text-group">
+            <h1>ИТ-инфраструктура нового уровня</h1>
+            <p>
+              Мы помогаем бизнесу автоматизировать процессы, обеспечивать
+              безопасность и создавать ИТ-инфраструктуру
+            </p>
+          </div>
+          <button class="btn btn--primary hero__button">Заказать консультацию</button>
+        </div>
+        <div class="hero__image">
+          <img src="assets/img/content/a-new-level-of-IT-infrastructure.png" alt="ИТ-инфраструктура нового уровня"
+            loading="lazy" />
+        </div>
+        <button class="btn btn--primary hero__button-mobile">Заказать консультацию</button>
+      </section>
+
+      <!-- 2. Секция: Преимущества работы с нами -->
+      <section class="section section--about-company">
+        <h2>
+          Узнайте больше о внедрении Битрикс 24
+        </h2>
+        <div class="about-company__image">
+          <img src="assets/img/content/section-learn-more.png" alt="Битрикс 24" loading="lazy" />
+        </div>
+        <div class="about-company__content">
+          <div class="about-company__text">
+            <p>
+              Внедрение Битрикс 24 — решение для автоматизации бизнес-процессов.
+              Мы настраиваем систему под ваши задачи и интегрируем с другими
+              сервисами.
+            </p>
+            <p>
+              Обучаем сотрудников для эффективной работы. Повысьте эффективность
+              команды и улучшите управление проектами с Битрикс 24!
+            </p>
+          </div>
+          <button class="btn btn--primary about-company__button">Связаться с нами</button>
+        </div>
+        <button class="btn btn--primary about-company__button-mobile">Связаться с нами</button>
+      </section>
+
+      <!-- 6. Секция: Наши достижения и результаты -->
+      <section class="section section--work-process">
+        <h2>Как проходит внедрение CRM?</h2>
+        <p>
+          Анализ, настройка, интеграция и обучение для эффективности
+        </p>
+
+        <div class="work-process__grid">
+          <!-- Карточка 1: Аудит -->
+          <div class="work-process-card">
+            <div class="work-process-card__image">
+              <img src="assets/img/content/audit-section-crm-proces.png" alt="Аудит" loading="lazy" />
+            </div>
+            <h3>Аудит</h3>
+            <p>
+              Проводим максимально подробный анализ текущего бизнеса
+            </p>
+          </div>
+
+          <!-- Карточка 2: Внедрение и настройка -->
+          <div class="work-process-card">
+            <div class="work-process-card__image">
+              <img src="assets/img/content/implem-section-crm-proces.png" alt="Внедрение и настройка" loading="lazy" />
+            </div>
+            <h3>Внедрение и настройка</h3>
+            <p>
+              Настройка в соответствии с написанным ТЗ
+            </p>
+          </div>
+
+          <!-- Карточка 3: Интеграция -->
+          <div class="work-process-card">
+            <div class="work-process-card__image">
+              <img src="assets/img/content/integration-section-crm-proces.png" alt="Интеграция" loading="lazy" />
+            </div>
+            <h3>Интеграция</h3>
+            <p>
+              Мессенджеры, телефония, социальные сети, 1С, МойСклад
+            </p>
+          </div>
+
+          <!-- Карточка 4: Сопровождение -->
+          <div class="work-process-card">
+            <div class="work-process-card__image">
+              <img src="assets/img/content/escort-section-crm-proces.png" alt="Сопровождение" loading="lazy" />
+            </div>
+            <h3>Сопровождение</h3>
+            <p>
+              Сопровождение, развитие и добавление нового функционала
+            </p>
+          </div>
+        </div>
+
+        <div class="work-process__navigation">
+          <button class="work-process__nav-btn work-process__nav-btn--prev" id="workProcessPrev">
+            <img src="assets/img/icons/arrow-left.svg" alt="Предыдущий" style="transform: rotate(180deg)"
+              loading="lazy" />
+          </button>
+          <button class="work-process__nav-btn work-process__nav-btn--next" id="workProcessNext">
+            <img src="assets/img/icons/arrow-left.svg" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
+        </div>
+      </section>
+
+      <!-- 5. Секция: Узнайте больше о нашей компании -->
+      <!-- 4. Секция: Тарифы -->
+      <section class="section section--pricing">
+        <h2>Тарифы</h2>
+      </section>
+
+      <section class="section section--advantages">
+        <h2>Преимущества работы с нами</h2>
+        <p>
+          Надёжность, скорость, контроль и безопасность ваших бизнес-процессов
+        </p>
+
+        <div class="advantages__grid">
+          <!-- Карточка 1: Оперативное решение задач -->
+          <div class="advantage-card">
+            <div class="advantage-card__image">
+              <img src="assets/img/content/fast-solution-section-advantages.png" alt="Оперативное решение задач"
+                loading="lazy" />
+            </div>
+            <h3>Оперативное решение задач</h3>
+          </div>
+
+          <!-- Карточка 2: Индивидуальный подход -->
+          <div class="advantage-card">
+            <div class="advantage-card__image">
+              <img src="assets/img/content/individual-approach-section-advantages.png" alt="Индивидуальный подход"
+                loading="lazy" />
+            </div>
+            <h3>Индивидуальный подход</h3>
+          </div>
+
+          <!-- Карточка 3: Оптимизация ИТ-расходов -->
+          <div class="advantage-card">
+            <div class="advantage-card__image">
+              <img src="assets/img/content/optimizing-IT-costs-section-advantages.png" alt="Оптимизация ИТ-расходов"
+                loading="lazy" />
+            </div>
+            <h3>Оптимизация ИТ-расходов</h3>
+          </div>
+
+          <!-- Карточка 4: Комплекс ИТ-услуг -->
+          <div class="advantage-card">
+            <div class="advantage-card__image">
+              <img src="assets/img/content/range-of-IT-services-section-advantages.png" alt="Комплекс ИТ-услуг"
+                loading="lazy" />
+            </div>
+            <h3>Комплекс ИТ-услуг</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Секция: Услуги, открывающие новые возможности -->
+      <section class="section section--reviews">
+        <div class="reviews__container">
+          <!-- Блок слева: Заголовок и кнопка -->
+          <div class="reviews__left-block">
+            <h2>Отзывы</h2>
+            <button class="btn btn--primary">Все отзывы</button>
+          </div>
+
+          <!-- Блок справа: Карточки отзывов -->
+          <div class="reviews__cards-block">
+            <!-- Отзыв 1: Анна Иванова (первая карточка) -->
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <img src="assets/img/content/test-avatar-1.jpg" alt="Анна Иванова" class="reviews__card-photo"
+                  loading="lazy" />
+                <div class="reviews__card-info">
+                  <div class="reviews__card-name">Анна Иванова</div>
+                  <div class="reviews__card-meta">
+                    <span class="reviews__card-company">ТехноПро</span>
+                    <span class="reviews__card-date">28 мая</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                Потрясающая компания! Работать с вами — одно удовольствие.
+                Быстрое реагирование на запросы, качественная работа и внимание
+                к деталям. Рек..
+              </p>
+              <a href="#" class="reviews__card-link">Весь отзыв</a>
+            </div>
+
+            <!-- Отзыв 2: Елена Петрова -->
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <img src="assets/img/content/test-avatar-2.jpg" alt="Елена Петрова" class="reviews__card-photo"
+                  loading="lazy" />
+                <div class="reviews__card-info">
+                  <div class="reviews__card-name">Елена Петрова</div>
+                  <div class="reviews__card-meta">
+                    <span class="reviews__card-company">РекордТех</span>
+                    <span class="reviews__card-date">18 июн</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                Мы в полном восторге от вашего сервиса!
+              </p>
+              <a href="#" class="reviews__card-link">Весь отзыв</a>
+            </div>
+
+            <!-- Отзыв 3: Дмитрий Сидоров -->
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <img src="assets/img/content/test-avatar-3.jpg" alt="Дмитрий Сидоров" class="reviews__card-photo"
+                  loading="lazy" />
+                <div class="reviews__card-info">
+                  <div class="reviews__card-name">Дмитрий Сидоров</div>
+                  <div class="reviews__card-meta">
+                    <span class="reviews__card-company">ИнфоСистемы</span>
+                    <span class="reviews__card-date">1 сент</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                Компания, которая всегда находит время для каждого клиента.
+                Качество услуг всегда на высоте!
+              </p>
+              <a href="#" class="reviews__card-link">Весь отзыв</a>
+            </div>
+
+            <!-- Отзыв 4: Анна Иванова (вторая карточка) -->
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <img src="assets/img/content/test-avatar-1.jpg" alt="Анна Иванова" class="reviews__card-photo"
+                  loading="lazy" />
+                <div class="reviews__card-info">
+                  <div class="reviews__card-name">Анна Иванова</div>
+                  <div class="reviews__card-meta">
+                    <span class="reviews__card-company">ТехноПро</span>
+                    <span class="reviews__card-date">28 мая</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                С вами легко работать! Приятно видеть, как компания заботится о
+                клиентах, постоянно улучшая сервис и предлагая гибкие решен..
+              </p>
+              <a href="#" class="reviews__card-link">Весь отзыв</a>
+            </div>
+
+            <!-- Отзыв 5: Елена Петрова (третья карточка) -->
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <img src="assets/img/content/test-avatar-2.jpg" alt="Елена Петрова" class="reviews__card-photo"
+                  loading="lazy" />
+                <div class="reviews__card-info">
+                  <div class="reviews__card-name">Елена Петрова</div>
+                  <div class="reviews__card-meta">
+                    <span class="reviews__card-company">РекордТех</span>
+                    <span class="reviews__card-date">18 июн</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                Не раз обращались к вам, и каждый раз убеждаемся..
+              </p>
+              <a href="#" class="reviews__card-link">Весь отзыв</a>
+            </div>
+
+            <!-- Отзыв 6: Елена Петрова (четвёртая карточка) -->
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <img src="assets/img/content/test-avatar-3.jpg" alt="Елена Петрова" class="reviews__card-photo"
+                  loading="lazy" />
+                <div class="reviews__card-info">
+                  <div class="reviews__card-name">Елена Петрова</div>
+                  <div class="reviews__card-meta">
+                    <span class="reviews__card-company">РекордТех</span>
+                    <span class="reviews__card-date">18 июн</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                каждый раз удивляемся качеству работы и оперативности)
+              </p>
+              <a href="#" class="reviews__card-link">Весь отзыв</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews__navigation">
+          <button class="reviews__nav-btn reviews__nav-btn--prev" id="reviewsPrev">
+            <img src="assets/img/icons/arrow-left.svg" alt="Предыдущий" style="transform: rotate(180deg)"
+              loading="lazy" />
+          </button>
+          <button class="reviews__nav-btn reviews__nav-btn--next" id="reviewsNext">
+            <img src="assets/img/icons/arrow-left.svg" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
+        </div>
+      </section>
+
+      <!-- 10. Секция: Готовы начать? Узнайте, как мы можем помочь! -->
+      <section class="section section--ready-to-start">
+        <h2>
+          Готовы начать? Узнайте, как мы можем помочь!
+        </h2>
+        <div class="ready-to-start__image">
+          <img src="assets/img/content/ready-to-start-img.png" alt="Готовы начать?" loading="lazy" />
+        </div>
+        <div class="ready-to-start__content">
+          <div class="ready-to-start__text">
+            <p>
+              Получите консультацию по автоматизации и внедрению ИТ-решений. Мы
+              подберём оптимальные инструменты для управления и роста.
+            </p>
+            <p>
+              Наши эксперты проанализируют задачи, предложат решения и покажут,
+              как технологии снизят издержки и ускорят бизнес. Начните цифровую
+              трансформацию.
+            </p>
+          </div>
+          <button class="btn btn--primary ready-to-start__button">Получить консультацию</button>
+        </div>
+        <button class="btn btn--primary ready-to-start__button-mobile">Получить консультацию</button>
+      </section>
+
+      <!-- 11. Секция: Специальные предложения -->
+      <section class="section section--clients">
+        <div class="clients__header">
+          <h2>Более 50 постоянных клиентов с нами</h2>
+          <p>
+            Доверие 50+ клиентов подтверждает качество нашего обслуживания
+          </p>
+        </div>
+
+        <div class="clients__grid">
+          <div class="clients__logo">
+            <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/ternus.png" alt="Ternus" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/eka-center.png" alt="Eka Center" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/city-krovla.png" alt="City Krovla" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/belka.png" alt="Belka" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/abs-service.png" alt="ABS Service" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/chapurin.png" alt="Chapurin" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/geomon.png" alt="Geomon" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/lsc.png" alt="LSC" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/mediacontact.png" alt="Media Contact" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/tract-group.png" alt="Tract Group" loading="lazy" />
+          </div>
+
+          <!-- Дубликаты для бесшовной анимации на desktop -->
+          <div class="clients__logo">
+            <img src="assets/img/partners/kessebohmer.png" alt="Kessebohmer" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/ternus.png" alt="Ternus" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/trans-atlantic.png" alt="Trans Atlantic" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/eka-center.png" alt="Eka Center" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/city-krovla.png" alt="City Krovla" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/belka.png" alt="Belka" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/abs-service.png" alt="ABS Service" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/chapurin.png" alt="Chapurin" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/geomon.png" alt="Geomon" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/lsc.png" alt="LSC" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/mediacontact.png" alt="Media Contact" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/presna-finans.png" alt="Presna Finans" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/smartlamps.png" alt="Smart Lamps" loading="lazy" />
+          </div>
+          <div class="clients__logo">
+            <img src="assets/img/partners/tract-group.png" alt="Tract Group" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="clients__navigation">
+          <button class="clients__nav-btn clients__nav-btn--prev" id="clientsPrev">
+            <img src="assets/img/icons/arrow-left.svg" alt="Предыдущий" style="transform: rotate(180deg)"
+              loading="lazy" />
+          </button>
+          <button class="clients__nav-btn clients__nav-btn--next" id="clientsNext">
+            <img src="assets/img/icons/arrow-left.svg" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
+        </div>
+      </section>
+
+      <!-- 8. Секция: ИТ для Трак Групп -->
+      <section class="section section--faq">
+        <div class="faq__container">
+          <!-- Блок слева: Заголовок и кнопка -->
+          <div class="faq__left-block">
+            <h2>Вопрос-ответ</h2>
+            <button class="btn btn--primary">Задать вопрос</button>
+          </div>
+
+          <!-- Блок справа: Карточки FAQ -->
+          <div class="faq__cards-block">
+            <!-- Вопрос 1 -->
+            <div class="faq__card">
+              <div class="faq__card-header">
+                <div class="faq__question-text">
+                  Зачем CRM-система нужна моему бизнесу?
+                </div>
+                <button class="faq__toggle-btn">
+                  <img src="assets/img/icons/plus.svg" alt="Показать ответ" loading="lazy" />
+                </button>
+              </div>
+              <div class="faq__answer">
+                CRM-система помогает систематизировать работу с клиентами,
+                автоматизировать бизнес-процессы и увеличить продажи. Она
+                позволяет хранить всю историю взаимодействия с клиентами в одном
+                месте, отслеживать сделки на всех этапах воронки продаж и
+                анализировать эффективность вашей команды.
+              </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div class="faq__card">
+              <div class="faq__card-header">
+                <div class="faq__question-text">
+                  Сколько времени занимает внедрение CRM?
+                </div>
+                <button class="faq__toggle-btn">
+                  <img src="assets/img/icons/plus.svg" alt="Показать ответ" loading="lazy" />
+                </button>
+              </div>
+              <div class="faq__answer">
+                Сроки внедрения CRM зависят от масштаба вашего бизнеса,
+                сложности интеграций и объема персональных данных. В среднем,
+                процесс занимает от нескольких недель до нескольких месяцев. Мы
+                проводим предварительный анализ ваших задач и бизнес-процессов,
+                чтобы определить наиболее оптимальные сроки и предоставить вам
+                план внедрения
+              </div>
+            </div>
+
+            <!-- Вопрос 3 -->
+            <div class="faq__card">
+              <div class="faq__card-header">
+                <div class="faq__question-text">
+                  Как проходит обучение по работе в CRM?
+                </div>
+                <button class="faq__toggle-btn">
+                  <img src="assets/img/icons/plus.svg" alt="Показать ответ" loading="lazy" />
+                </button>
+              </div>
+              <div class="faq__answer">
+                Мы проводим комплексное обучение для вашей команды, включающее
+                теоретические занятия и практические тренинги. Обучение
+                адаптируется под специфику вашего бизнеса и включает в себя
+                работу с основными модулями системы, настройку воронок продаж и
+                автоматизацию процессов. После обучения мы предоставляем
+                техническую поддержку.
+              </div>
+            </div>
+
+            <!-- Вопрос 4 -->
+            <div class="faq__card">
+              <div class="faq__card-header">
+                <div class="faq__question-text">
+                  Из чего складывается стоимость?
+                </div>
+                <button class="faq__toggle-btn">
+                  <img src="assets/img/icons/plus.svg" alt="Показать ответ" loading="lazy" />
+                </button>
+              </div>
+              <div class="faq__answer">
+                Стоимость внедрения CRM складывается из нескольких компонентов:
+                лицензия на использование системы, работы по настройке и
+                кастомизации под ваши бизнес-процессы, интеграция с другими
+                сервисами, обучение сотрудников и техническая поддержка. Мы
+                предлагаем гибкие тарифные планы, чтобы вы могли выбрать
+                оптимальный вариант.
+              </div>
+            </div>
+
+            <!-- Вопрос 5 -->
+            <div class="faq__card">
+              <div class="faq__card-header">
+                <div class="faq__question-text">
+                  Что делать после внедрения?
+                </div>
+                <button class="faq__toggle-btn">
+                  <img src="assets/img/icons/plus.svg" alt="Показать ответ" loading="lazy" />
+                </button>
+              </div>
+              <div class="faq__answer">
+                После внедрения CRM мы остаемся на связи для технической
+                поддержки и консультаций. Рекомендуем регулярно анализировать
+                эффективность использования системы, оптимизировать
+                бизнес-процессы и обучать новых сотрудников. Мы также предлагаем
+                услуги по доработке функционала и масштабированию системы по
+                мере роста вашего бизнеса.
+              </div>
+            </div>
+
+            <!-- Вопрос 6 -->
+            <div class="faq__card">
+              <div class="faq__card-header">
+                <div class="faq__question-text">Какую CRM выбрать?</div>
+                <button class="faq__toggle-btn">
+                  <img src="assets/img/icons/plus.svg" alt="Показать ответ" loading="lazy" />
+                </button>
+              </div>
+              <div class="faq__answer">
+                Выбор CRM зависит от специфики вашего бизнеса, количества
+                сотрудников и задач, которые необходимо решить. Мы работаем с
+                Bitrix24 — это мощная российская платформа, которая включает
+                CRM, задачи и проекты, телефонию, чаты и многое другое. Проведем
+                аудит и поможем определить оптимальное решение именно для вас.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. Секция: Получить ответ за 15 минут -->
+      <section class="section section--special-offers">
+        <div class="special-offers__header">
+          <div class="special-offers__header-text">
+            <h2>Специальные предложения</h2>
+            <p>
+              Скидки акции и предложения на ИТ-инфраструктуру
+            </p>
+          </div>
+        </div>
+
+        <div class="special-offers__navigation">
+          <button class="special-offers__nav-btn special-offers__nav-btn--prev" id="specialOffersPrev">
+            <img src="assets/img/icons/arrow-left.svg" alt="Предыдущий" style="transform: rotate(180deg)"
+              loading="lazy" />
+          </button>
+          <button class="special-offers__nav-btn special-offers__nav-btn--next" id="specialOffersNext">
+            <img src="assets/img/icons/arrow-left.svg" alt="Следующий" style="transform: rotate(0deg)" loading="lazy" />
+          </button>
+        </div>
+
+        <div class="special-offers__grid">
+          <!-- Карточка 1: Готовая 1С за 2 дня -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/1c-section-special-offers.png" alt="Готовая 1С за 2 дня" loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>Готовая 1С за 2 дня</h3>
+              <p>
+                Быстрое внедрение 1С под ключ
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+
+          <!-- Карточка 2: Битрикс 24 со скидкой до 50% -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/24-bitrix-section-special-offers.png" alt="Битрикс 24 со скидкой до 50%"
+                loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>
+                Битрикс 24 со скидкой до 50%
+              </h3>
+              <p>
+                Внедрение CRM для автоматизации продаж
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+
+          <!-- Карточка 3: Бесплатный аудит -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/free-audit-section-special-offers.png" alt="Бесплатный аудит"
+                loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>Бесплатный аудит</h3>
+              <p>
+                Анализ оборудования, серверов и сетей
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+
+          <!-- Карточка 4: Установка в подарок -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/installation-section-special-offers.png" alt="Установка в подарок"
+                loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>Установка в подарок</h3>
+              <p>
+                Система видеонаблюдения — установка бесплатно
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+
+          <!-- Карточка 4: Установка в подарок -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/installation-section-special-offers.png" alt="Установка в подарок"
+                loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>Установка в подарок</h3>
+              <p>
+                Система видеонаблюдения — установка бесплатно
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+
+          <!-- Карточка 4: Установка в подарок -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/installation-section-special-offers.png" alt="Установка в подарок"
+                loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>Установка в подарок</h3>
+              <p>
+                Система видеонаблюдения — установка бесплатно
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+
+          <!-- Карточка 4: Установка в подарок -->
+          <div class="special-offers__card">
+            <div class="special-offers__card-image">
+              <img src="assets/img/content/installation-section-special-offers.png" alt="Установка в подарок"
+                loading="lazy" />
+            </div>
+            <div class="special-offers__card-content">
+              <h3>Установка в подарок</h3>
+              <p>
+                Система видеонаблюдения — установка бесплатно
+              </p>
+              <a href="#" class="special-offers__card-link">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- Конец обертки основного контента -->
+  </main>
+  <!-- Конец основного контента -->
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <!-- Секция: Ссылки и информация -->
+    <section class="section section--footer-info">
+      <div class="footer__columns">
+        <!-- Колонка 1: О компании -->
+        <div class="footer__column">
+          <h3>О компании</h3>
+
+          <div class="footer__section">
+            <h4>Компания</h4>
+            <ul class="footer__list">
+              <li><a href="#" class="footer__link">О компании</a></li>
+              <li><a href="#" class="footer__link">Вакансии</a></li>
+              <li><a href="#" class="footer__link">Отзывы</a></li>
+              <li><a href="#" class="footer__link">FAQ</a></li>
+              <li><a href="#" class="footer__link">Акции и скидки</a></li>
+              <li><a href="#" class="footer__link">Цены</a></li>
+              <li><a href="#" class="footer__link">Проекты</a></li>
+              <li><a href="#" class="footer__link">Контакты</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h4>Контакты</h4>
+            <div class="footer__contact-info">
+              <a href="tel:+74954765464" class="footer__phone">+7 495 476-54-64</a>
+              <a href="mailto:sales@intezgroup.ru" class="footer__email">sales@intezgroup.ru</a>
+              <div class="footer__social">
+                <a href="#" class="footer__social-link footer__social-link--telegram" aria-label="Telegram">
+                  <img src="assets/img/icons/TG.svg" alt="Telegram" loading="lazy" />
+                </a>
+                <a href="#" class="footer__social-link footer__social-link--whatsapp" aria-label="WhatsApp">
+                  <img src="assets/img/icons/WA.svg" alt="WhatsApp" loading="lazy" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Колонка 2: Услуги -->
+        <div class="footer__column">
+          <h3>Услуги</h3>
+
+          <div class="footer__section">
+            <h4>Услуги 1С</h4>
+            <ul class="footer__list">
+              <li><a href="#" class="footer__link">Внедрение 1С</a></li>
+              <li><a href="#" class="footer__link">Доработка 1С</a></li>
+              <li>
+                <a href="#" class="footer__link">Техническая поддержка 1С</a>
+              </li>
+              <li><a href="#" class="footer__link">Сопровождение 1С</a></li>
+              <li><a href="#" class="footer__link">Обновление 1С</a></li>
+              <li><a href="#" class="footer__link">Настройка 1С</a></li>
+              <li><a href="#" class="footer__link">Разработка 1С</a></li>
+              <li><a href="#" class="footer__link">Аренда 1С</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__section">
+            <h4>Серверные решения и сети</h4>
+            <ul class="footer__list">
+              <li>
+                <a href="#" class="footer__link">Внедрение хранилищ данных</a>
+              </li>
+              <li>
+                <a href="#" class="footer__link">Внедрение почтового сервера</a>
+              </li>
+              <li><a href="#" class="footer__link">Корпоративный ВПН</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Колонка 3: Услуги Битрикс 24 -->
+        <div class="footer__column">
+          <h3 class="footer__column-title--placeholder" aria-hidden="true">
+            Placeholder
+          </h3>
+          <h4>Услуги Битрикс 24</h4>
+          <ul class="footer__list">
+            <li><a href="#" class="footer__link">Внедрение Битрикс 24</a></li>
+            <li>
+              <a href="#" class="footer__link">Обслуживание Битрикс 24</a>
+            </li>
+            <li><a href="#" class="footer__link">Настройка Битрикс 24</a></li>
+            <li>
+              <a href="#" class="footer__link">Разработка Битрикс 24</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Колонка 4: IT-инфраструктура -->
+        <div class="footer__column">
+          <h3 class="footer__column-title--placeholder" aria-hidden="true">
+            Placeholder
+          </h3>
+          <h4>IT-инфраструктура и оборудование</h4>
+          <ul class="footer__list">
+            <li>
+              <a href="#" class="footer__link">Создание ИТ инфраструктуры</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">Установка серверного оборудования и ПО</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">ИТ-обслуживание ПК и серверов</a>
+            </li>
+            <li>
+              <a href="#" class="footer__link">Монтаж локальных сетей</a>
+            </li>
+            <li><a href="#" class="footer__link">Монтаж СКС</a></li>
+            <li>
+              <a href="#" class="footer__link">Установка систем видеонаблюдения</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer__container">
+      <p>
+        © 2025 «Intez Group» Все права защищены.
+      </p>
+      <div class="footer__legal">
+        <a href="#" class="footer__legal-link">Пользовательское соглашение</a>
+        <a href="#" class="footer__legal-link">Политика обработки персональных данных</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script/main.js"></script>
+</body>
+
+</html>
