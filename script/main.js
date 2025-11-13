@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initFAQ();
   initServicesCarousel();
   initSpecialOffersCarousel();
+  initServicesOpportunitiesCarousel();
   initTrackGroupCarousel();
   initBlogCarousel();
   initWorkProcessCarousel();
@@ -1829,6 +1830,18 @@ function initSpecialOffersCarousel() {
     cardSelector: ".special-offers__card",
     cardsPerView: 4,
     name: "Special Offers",
+  });
+}
+
+// Инициализация карусели услуг (без изображений)
+function initServicesOpportunitiesCarousel() {
+  initCarousel({
+    prevBtnId: "servicesOpportunitiesPrev",
+    nextBtnId: "servicesOpportunitiesNext",
+    gridSelector: ".services-opportunities__grid",
+    cardSelector: ".services-opportunities__card",
+    cardsPerView: 4,
+    name: "Services Opportunities",
   });
 }
 
