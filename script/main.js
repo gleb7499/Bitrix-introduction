@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initTrackGroupCarousel();
   initBlogCarousel();
   initWorkProcessCarousel();
+  initPricingCarousel();
   initClientsCarousel();
   initReviewsCarousel();
 });
@@ -1852,6 +1853,18 @@ function initWorkProcessCarousel() {
     cardSelector: ".work-process-card",
     desktopCardsPerView: 4,
     name: "Work Process",
+  });
+}
+
+// Инициализация карусели тарифов
+function initPricingCarousel() {
+  initUniversalCarousel({
+    prevBtnId: "pricingPrev",
+    nextBtnId: "pricingNext",
+    gridSelector: ".pricing__cards-container",
+    cardSelector: ".pricing-card",
+    desktopCardsPerView: 3,
+    name: "Pricing",
   });
 }
 
