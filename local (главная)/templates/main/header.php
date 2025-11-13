@@ -199,28 +199,16 @@ $curPage = $APPLICATION->GetCurPage();
                         loading="lazy" />
                 </button>
 
-                <nav class="nav">
-                    <?php
-                    // Подключение компонента меню
-                    $APPLICATION->IncludeComponent(
-                        "bitrix:menu",
-                        "top_menu",
-                        array(
-                            "ROOT_MENU_TYPE" => "top",
-                            "MENU_CACHE_TYPE" => "A",
-                            "MENU_CACHE_TIME" => "3600",
-                            "MENU_CACHE_USE_GROUPS" => "Y",
-                            "MENU_CACHE_GET_VARS" => array(),
-                            "MAX_LEVEL" => "2",
-                            "CHILD_MENU_TYPE" => "left",
-                            "USE_EXT" => "Y",
-                            "DELAY" => "N",
-                            "ALLOW_MULTI_SELECT" => "N",
-                        ),
-                        false
-                    );
-                    ?>
-                </nav>
+                <? $APPLICATION->IncludeComponent(
+                    "bitrix:main.include",
+                    "",
+                    array(
+                        "AREA_FILE_SHOW" => "file",
+                        "AREA_FILE_SUFFIX" => "inc",
+                        "EDIT_TEMPLATE" => "",
+                        "PATH" => "/include/top-menu.php"
+                    )
+                ); ?><br>
 
                 <div class="header__actions">
                     <a href="tel:+74954765464" class="header__phone">+7 495 476-54-64</a>
