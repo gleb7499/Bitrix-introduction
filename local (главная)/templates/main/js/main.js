@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Обновляем высоту при изменении размера окна
   window.addEventListener("resize", debounce(updateHeaderHeight, 250));
 
-  // ОТКЛЮЧЕНО: Проверка URL на наличие параметра для показа 404
-  // checkPageMode(); // Bitrix сам управляет 404 через 404.php
+  // Проверяем URL на наличие параметра для показа 404
+  checkPageMode();
 
   // Инициализация обработчика ошибок для изображений
   initImageErrorHandler();
@@ -74,9 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
   initFAQ();
   initServicesCarousel();
   initSpecialOffersCarousel();
+  initServicesOpportunitiesCarousel();
   initTrackGroupCarousel();
   initBlogCarousel();
   initWorkProcessCarousel();
+  initPricingCarousel();
   initClientsCarousel();
   initReviewsCarousel();
 });
@@ -1035,11 +1037,11 @@ function initFAQ() {
 
       if (isActive) {
         card.classList.remove("active");
-        icon.src = "/local/templates/main/image/icons/plus.svg";
+        icon.src = "assets/img/icons/plus.svg";
         icon.alt = "Показать ответ";
       } else {
         card.classList.add("active");
-        icon.src = "/local/templates/main/image/icons/minus.svg";
+        icon.src = "assets/img/icons/minus.svg";
         icon.alt = "Скрыть ответ";
       }
 
@@ -1831,6 +1833,18 @@ function initSpecialOffersCarousel() {
   });
 }
 
+// Инициализация карусели услуг (без изображений)
+function initServicesOpportunitiesCarousel() {
+  initCarousel({
+    prevBtnId: "servicesOpportunitiesPrev",
+    nextBtnId: "servicesOpportunitiesNext",
+    gridSelector: ".services-opportunities__grid",
+    cardSelector: ".services-opportunities__card",
+    cardsPerView: 4,
+    name: "Services Opportunities",
+  });
+}
+
 // Инициализация карусели блога
 function initBlogCarousel() {
   initCarousel({
@@ -1852,6 +1866,18 @@ function initWorkProcessCarousel() {
     cardSelector: ".work-process-card",
     desktopCardsPerView: 4,
     name: "Work Process",
+  });
+}
+
+// Инициализация карусели тарифов
+function initPricingCarousel() {
+  initUniversalCarousel({
+    prevBtnId: "pricingPrev",
+    nextBtnId: "pricingNext",
+    gridSelector: ".pricing__cards-container",
+    cardSelector: ".pricing-card",
+    desktopCardsPerView: 3,
+    name: "Pricing",
   });
 }
 
@@ -1997,7 +2023,7 @@ function initImageErrorHandler() {
         console.warn(`Ошибка загрузки изображения: ${this.src}`);
 
         // Заменяем на error.png
-        this.src = "/local/templates/main/image/content/error.png";
+        this.src = "assets/img/content/error.png";
         this.alt = "Ошибка загрузки изображения";
 
         // Добавляем класс для стилизации

@@ -34,40 +34,48 @@ $APPLICATION->SetTitle("Главная");
             </p>
 
             <div class="advantages__grid">
-                <!-- Карточка 1: Оперативное решение задач -->
+                <!-- Карточка 1: Защита данных -->
                 <div class="advantage-card">
                     <div class="advantage-card__image">
                         <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/fast-solution-section-advantages.png"
-                            alt="Оперативное решение задач" loading="lazy" />
+                            alt="Защита данных" loading="lazy" />
                     </div>
-                    <h3>Оперативное решение задач</h3>
+                    <div class="advantage-card__content">
+                        <h3>Защита данных</h3>
+                    </div>
                 </div>
 
-                <!-- Карточка 2: Индивидуальный подход -->
+                <!-- Карточка 2: Оперативность -->
                 <div class="advantage-card">
                     <div class="advantage-card__image">
                         <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/individual-approach-section-advantages.png"
-                            alt="Индивидуальный подход" loading="lazy" />
+                            alt="Оперативность" loading="lazy" />
                     </div>
-                    <h3>Индивидуальный подход</h3>
+                    <div class="advantage-card__content">
+                        <h3>Оперативность</h3>
+                    </div>
                 </div>
 
-                <!-- Карточка 3: Оптимизация ИТ-расходов -->
+                <!-- Карточка 3: Полный контроль -->
                 <div class="advantage-card">
                     <div class="advantage-card__image">
                         <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/optimizing-IT-costs-section-advantages.png"
-                            alt="Оптимизация ИТ-расходов" loading="lazy" />
+                            alt="Полный контроль" loading="lazy" />
                     </div>
-                    <h3>Оптимизация ИТ-расходов</h3>
+                    <div class="advantage-card__content">
+                        <h3>Полный контроль</h3>
+                    </div>
                 </div>
 
-                <!-- Карточка 4: Комплекс ИТ-услуг -->
+                <!-- Карточка 4: Аудит и подход -->
                 <div class="advantage-card">
                     <div class="advantage-card__image">
                         <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/range-of-IT-services-section-advantages.png"
-                            alt="Комплекс ИТ-услуг" loading="lazy" />
+                            alt="Аудит и подход" loading="lazy" />
                     </div>
-                    <h3>Комплекс ИТ-услуг</h3>
+                    <div class="advantage-card__content">
+                        <h3>Аудит и подход</h3>
+                    </div>
                 </div>
             </div>
         </section>
@@ -162,33 +170,6 @@ $APPLICATION->SetTitle("Главная");
                     </ul>
                 </div>
 
-                <!-- Карточка 4: Серверные решения и сети -->
-                <div class="services__card">
-                    <div class="services__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/server-solutions-and-networks-section-service.png"
-                            alt="Серверные решения и сети" loading="lazy" />
-                    </div>
-                    <h3>Серверные решения и сети</h3>
-                    <ul class="services__card-menu">
-                        <li><a href="#">Внедрение хранилищ данных</a></li>
-                        <li><a href="#">Внедрение почтового сервера</a></li>
-                        <li><a href="#">Корпоративный VPN</a></li>
-                    </ul>
-                </div>
-
-                <!-- Карточка 4: Серверные решения и сети -->
-                <div class="services__card">
-                    <div class="services__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/server-solutions-and-networks-section-service.png"
-                            alt="Серверные решения и сети" loading="lazy" />
-                    </div>
-                    <h3>Серверные решения и сети</h3>
-                    <ul class="services__card-menu">
-                        <li><a href="#">Внедрение хранилищ данных</a></li>
-                        <li><a href="#">Внедрение почтового сервера</a></li>
-                        <li><a href="#">Корпоративный VPN</a></li>
-                    </ul>
-                </div>
             </div>
         </section>
 
@@ -200,52 +181,58 @@ $APPLICATION->SetTitle("Главная");
             </p>
 
             <div class="work-process__grid">
-                <!-- Карточка 1: Аудит -->
+                <!-- Карточка 1: Консультация -->
                 <div class="work-process-card">
                     <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/audit-section-crm-proces.png" alt="Аудит"
+                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/consultation.png" alt="Консультация"
                             loading="lazy" />
                     </div>
-                    <h3>Аудит</h3>
-                    <p>
-                        Проводим максимально подробный анализ текущего бизнеса
-                    </p>
+                    <div class="work-process-card__content">
+                        <h3>Консультация</h3>
+                        <p>Проведём аудит процессов и определим ключевые задачи для оптимизации</p>
+                    </div>
                 </div>
 
-                <!-- Карточка 2: Внедрение и настройка -->
+                <!-- Карточка 2: Выбор решения -->
                 <div class="work-process-card">
                     <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/implem-section-crm-proces.png"
-                            alt="Внедрение и настройка" loading="lazy" />
+                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/choosing-solution.png" alt="Выбор решения"
+                            loading="lazy" />
                     </div>
-                    <h3>Внедрение и настройка</h3>
-                    <p>
-                        Настройка в соответствии с написанным ТЗ
-                    </p>
+                    <div class="work-process-card__content">
+                        <h3>Выбор решения</h3>
+                        <p>
+                            Предложим оптимальные варианты внедрения и обслуживания ИТ-инфраструктуры
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Карточка 3: Интеграция -->
+                <!-- Карточка 3: Заключение договора -->
                 <div class="work-process-card">
                     <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/integration-section-crm-proces.png"
-                            alt="Интеграция" loading="lazy" />
+                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/conclusion-of-an-agreement.png"
+                            alt="Заключение договора" loading="lazy" />
                     </div>
-                    <h3>Интеграция</h3>
-                    <p>
-                        Мессенджеры, телефония, социальные сети, 1С, МойСклад
-                    </p>
+                    <div class="work-process-card__content">
+                        <h3>Заключение договора</h3>
+                        <p>
+                            Согласуем объём работ, сроки, стоимость и условия сотрудничества
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Карточка 4: Сопровождение -->
+                <!-- Карточка 4: Внедрение -->
                 <div class="work-process-card">
                     <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/escort-section-crm-proces.png"
-                            alt="Сопровождение" loading="lazy" />
+                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/integration.png" alt="Внедрение"
+                            loading="lazy" />
                     </div>
-                    <h3>Сопровождение</h3>
-                    <p>
-                        Сопровождение, развитие и добавление нового функционала
-                    </p>
+                    <div class="work-process-card__content">
+                        <h3>Внедрение</h3>
+                        <p>
+                            Установим оборудование, настроим ПО и проверим работу системы
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -264,27 +251,27 @@ $APPLICATION->SetTitle("Главная");
         <!-- 5. Секция: Узнайте больше о нашей компании -->
         <section class="section section--about-company">
             <h2>
-                Узнайте больше о внедрении Битрикс 24
+                Узнайте больше о нашей компании
             </h2>
             <div class="about-company__image">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/section-learn-more.png" alt="Битрикс 24"
-                    loading="lazy" />
+                <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/more-about-the-company.png"
+                    alt="Узнайте больше о нашей компании" loading="lazy" />
             </div>
             <div class="about-company__content">
                 <div class="about-company__text">
                     <p>
-                        Внедрение Битрикс 24 — решение для автоматизации бизнес-процессов.
-                        Мы настраиваем систему под ваши задачи и интегрируем с другими
-                        сервисами.
+                        Мы — команда профессионалов, предлагающих полный спектр ИТ-услуг для
+                        вашего бизнеса.
                     </p>
                     <p>
-                        Обучаем сотрудников для эффективной работы. Повысьте эффективность
-                        команды и улучшите управление проектами с Битрикс 24!
+                        Наши решения позволяют оптимизировать процессы и повысить эффективность работы.
+                        Мы работаем с компаниями всех размеров и отраслей, обеспечивая высококачественное
+                        внедрение и поддержку систем.
                     </p>
                 </div>
-                <button class="btn btn--primary about-company__button">Связаться с нами</button>
+                <button class="btn btn--primary about-company__button">Подробнее о компании</button>
             </div>
-            <button class="btn btn--primary about-company__button-mobile">Связаться с нами</button>
+            <button class="btn btn--primary about-company__button-mobile">Подробнее о компании</button>
         </section>
 
         <!-- 6. Секция: Наши достижения и результаты -->
@@ -817,50 +804,6 @@ $APPLICATION->SetTitle("Главная");
                     </div>
                 </div>
 
-                <!-- Карточка 4: Установка в подарок -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/installation-section-special-offers.png"
-                            alt="Установка в подарок" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>Установка в подарок</h3>
-                        <p>
-                            Система видеонаблюдения — установка бесплатно
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
-
-                <!-- Карточка 4: Установка в подарок -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/installation-section-special-offers.png"
-                            alt="Установка в подарок" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>Установка в подарок</h3>
-                        <p>
-                            Система видеонаблюдения — установка бесплатно
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
-
-                <!-- Карточка 4: Установка в подарок -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/installation-section-special-offers.png"
-                            alt="Установка в подарок" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>Установка в подарок</h3>
-                        <p>
-                            Система видеонаблюдения — установка бесплатно
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -879,7 +822,7 @@ $APPLICATION->SetTitle("Главная");
                     <div class="faq__card">
                         <div class="faq__card-header">
                             <div class="faq__question-text">
-                                Зачем CRM-система нужна моему бизнесу?
+                                Зачем бизнесу нужна автоматизация процессов?
                             </div>
                             <button class="faq__toggle-btn">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
@@ -887,11 +830,11 @@ $APPLICATION->SetTitle("Главная");
                             </button>
                         </div>
                         <div class="faq__answer">
-                            CRM-система помогает систематизировать работу с клиентами,
-                            автоматизировать бизнес-процессы и увеличить продажи. Она
-                            позволяет хранить всю историю взаимодействия с клиентами в одном
-                            месте, отслеживать сделки на всех этапах воронки продаж и
-                            анализировать эффективность вашей команды.
+                            Автоматизация бизнес-процессов повышает эффективность работы,
+                            снижает затраты на рутинные операции и минимизирует риск ошибок.
+                            Она позволяет вашей команде сосредоточиться на стратегических
+                            задачах, увеличивает производительность и улучшает качество
+                            обслуживания клиентов.
                         </div>
                     </div>
 
@@ -899,7 +842,7 @@ $APPLICATION->SetTitle("Главная");
                     <div class="faq__card">
                         <div class="faq__card-header">
                             <div class="faq__question-text">
-                                Сколько времени занимает внедрение CRM?
+                                Сколько времени занимает внедрение ИТ-решений?
                             </div>
                             <button class="faq__toggle-btn">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
@@ -907,12 +850,10 @@ $APPLICATION->SetTitle("Главная");
                             </button>
                         </div>
                         <div class="faq__answer">
-                            Сроки внедрения CRM зависят от масштаба вашего бизнеса,
-                            сложности интеграций и объема персональных данных. В среднем,
-                            процесс занимает от нескольких недель до нескольких месяцев. Мы
-                            проводим предварительный анализ ваших задач и бизнес-процессов,
-                            чтобы определить наиболее оптимальные сроки и предоставить вам
-                            план внедрения
+                            Срок зависит от масштаба и сложности проекта. В среднем — от 5 дней до 1 месяца.
+                            Простые решения настраиваются за несколько рабочих дней. Более сложные системы
+                            требуют тщательного анализа, интеграций и тестирования. Мы предоставляем подробный
+                            план внедрения с четкими сроками на начальном этапе.
                         </div>
                     </div>
 
@@ -920,7 +861,7 @@ $APPLICATION->SetTitle("Главная");
                     <div class="faq__card">
                         <div class="faq__card-header">
                             <div class="faq__question-text">
-                                Как проходит обучение по работе в CRM?
+                                Как обеспечивается безопасность данных?
                             </div>
                             <button class="faq__toggle-btn">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
@@ -928,12 +869,11 @@ $APPLICATION->SetTitle("Главная");
                             </button>
                         </div>
                         <div class="faq__answer">
-                            Мы проводим комплексное обучение для вашей команды, включающее
-                            теоретические занятия и практические тренинги. Обучение
-                            адаптируется под специфику вашего бизнеса и включает в себя
-                            работу с основными модулями системы, настройку воронок продаж и
-                            автоматизацию процессов. После обучения мы предоставляем
-                            техническую поддержку.
+                            Безопасность данных — приоритет для нас. Мы используем
+                            современные технологии шифрования, регулярные резервные копии,
+                            многоуровневую аутентификацию и мониторинг доступа. Наши системы
+                            соответствуют требованиям законодательства РФ по защите
+                            персональных данных. Проводим регулярные аудиты безопасности.
                         </div>
                     </div>
 
@@ -941,7 +881,7 @@ $APPLICATION->SetTitle("Главная");
                     <div class="faq__card">
                         <div class="faq__card-header">
                             <div class="faq__question-text">
-                                Из чего складывается стоимость?
+                                Оказываете ли вы техническую поддержку после внедрения?
                             </div>
                             <button class="faq__toggle-btn">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
@@ -949,12 +889,11 @@ $APPLICATION->SetTitle("Главная");
                             </button>
                         </div>
                         <div class="faq__answer">
-                            Стоимость внедрения CRM складывается из нескольких компонентов:
-                            лицензия на использование системы, работы по настройке и
-                            кастомизации под ваши бизнес-процессы, интеграция с другими
-                            сервисами, обучение сотрудников и техническая поддержка. Мы
-                            предлагаем гибкие тарифные планы, чтобы вы могли выбрать
-                            оптимальный вариант.
+                            Да, мы предоставляем полный спектр услуг технической поддержки
+                            после внедрения. Включает консультации по использованию системы,
+                            устранение проблем, обновления и доработку функционала. Доступна
+                            поддержка на разных уровнях в зависимости от ваших потребностей
+                            и тарифного плана.
                         </div>
                     </div>
 
@@ -962,7 +901,7 @@ $APPLICATION->SetTitle("Главная");
                     <div class="faq__card">
                         <div class="faq__card-header">
                             <div class="faq__question-text">
-                                Что делать после внедрения?
+                                Можно ли получить бесплатную консультацию?
                             </div>
                             <button class="faq__toggle-btn">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
@@ -970,30 +909,29 @@ $APPLICATION->SetTitle("Главная");
                             </button>
                         </div>
                         <div class="faq__answer">
-                            После внедрения CRM мы остаемся на связи для технической
-                            поддержки и консультаций. Рекомендуем регулярно анализировать
-                            эффективность использования системы, оптимизировать
-                            бизнес-процессы и обучать новых сотрудников. Мы также предлагаем
-                            услуги по доработке функционала и масштабированию системы по
-                            мере роста вашего бизнеса.
+                            Конечно! Мы предлагаем бесплатную первичную консультацию для
+                            оценки ваших потребностей и определения наиболее подходящих решений.
+                            На этой встрече мы проанализируем вашу текущую ситуацию,
+                            обсудим ваши задачи и предложим оптимальный план действий.
+                            Свяжитесь с нами через форму обратной связи.
                         </div>
                     </div>
 
                     <!-- Вопрос 6 -->
                     <div class="faq__card">
                         <div class="faq__card-header">
-                            <div class="faq__question-text">Какую CRM выбрать?</div>
+                            <div class="faq__question-text">Можно ли интегрировать 1С и Битрикс 24?</div>
                             <button class="faq__toggle-btn">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
                                     loading="lazy" />
                             </button>
                         </div>
                         <div class="faq__answer">
-                            Выбор CRM зависит от специфики вашего бизнеса, количества
-                            сотрудников и задач, которые необходимо решить. Мы работаем с
-                            Bitrix24 — это мощная российская платформа, которая включает
-                            CRM, задачи и проекты, телефонию, чаты и многое другое. Проведем
-                            аудит и поможем определить оптимальное решение именно для вас.
+                            Да, интеграция 1С и Битрикс 24 полностью возможна и очень
+                            эффективна. Это позволяет синхронизировать данные о клиентах,
+                            товарах, заказах и платежах между системами. Мы выполняем все
+                            необходимые работы по настройке интеграции и обеспечиваем
+                            бесперебойное взаимодействие обеих платформ.
                         </div>
                     </div>
                 </div>
@@ -1125,56 +1063,6 @@ $APPLICATION->SetTitle("Главная");
                     </div>
                 </div>
 
-                <!-- Карточка 4: Безопасность: что нужно знать -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/safety-section-blog.png"
-                            alt="Безопасность: что нужно знать" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>Безопасность: что нужно знать</h3>
-                        <p>Как избежать утечек информации</p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">Серверные решения и сети</span>
-                            <span class="blog__card-date">1 сен</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Карточка 4: Безопасность: что нужно знать -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/safety-section-blog.png"
-                            alt="Безопасность: что нужно знать" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>Безопасность: что нужно знать</h3>
-                        <p>Как избежать утечек информации</p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">Серверные решения и сети</span>
-                            <span class="blog__card-date">1 сен</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Карточка 4: Безопасность: что нужно знать -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/safety-section-blog.png"
-                            alt="Безопасность: что нужно знать" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>Безопасность: что нужно знать</h3>
-                        <p>Как избежать утечек информации</p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">Серверные решения и сети</span>
-                            <span class="blog__card-date">1 сен</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     </div>
