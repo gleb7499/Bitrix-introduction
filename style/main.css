@@ -746,6 +746,7 @@ body.overlay-active .header--desktop {
   border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
+  padding-bottom: 2.083vw /* 40px */;
 }
 
 .work-process-card__image {
@@ -766,6 +767,40 @@ body.overlay-active .header--desktop {
   background: transparent;
 }
 
+.work-process-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.042vw /* 20px */;
+  padding-left: 3.125vw /* 60px */;
+  padding-right: 3.125vw /* 60px */;
+  text-align: left;
+}
+
+.work-process-card__content h3 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.875vw /* 36px */;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  margin: 0;
+}
+
+.work-process-card__content p {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.146vw /* 22px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+  margin: 0;
+}
+
+/* Старые селекторы оставляю для совместимости */
 .work-process-card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
@@ -796,10 +831,6 @@ body.overlay-active .header--desktop {
 .section--pricing {
   display: flex;
   gap: 4.167vw /* 80px */;
-  padding-top: 3.646vw /* 70px */;
-  padding-left: 4.167vw /* 80px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
 }
 
 /* Контейнер для текста */
@@ -809,7 +840,9 @@ body.overlay-active .header--desktop {
   justify-content: space-between;
   padding-top: 3.646vw /* 70px */;
   padding-bottom: 4.167vw /* 80px */;
-  flex-shrink: 0;
+  padding-left: 4.167vw /* 80px */;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .pricing__text-container > h2 {
@@ -831,11 +864,13 @@ body.overlay-active .header--desktop {
   font-size: 1.875vw /* 36px */;
   font-weight: 400;
   font-style: normal;
-  line-height: 100%;
+  line-height: 120%;
   letter-spacing: 0%;
   text-align: start;
   color: #494555;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Контейнер для карточек */
@@ -1000,6 +1035,12 @@ body.overlay-active .header--desktop {
   color: #494555;
 }
 
+/* Кнопка в карточке тарифа (прижата к низу) */
+.pricing-card .btn--primary {
+  margin-top: auto;
+  width: 100%;
+}
+
 /* Секция Преимущества */
 .advantages {
   max-width: 1400px;
@@ -1052,8 +1093,8 @@ body.overlay-active .header--desktop {
   border-radius: 3.854vw /* 74px */;
   display: flex;
   flex-direction: column;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 1.042vw /* 20px */;
   padding-bottom: 2.083vw /* 40px */;
 }
@@ -1063,6 +1104,8 @@ body.overlay-active .header--desktop {
   align-items: flex-start;
   justify-content: center;
   margin-bottom: 2.083vw /* 40px */;
+  padding-left: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
 }
 
 .advantage-card__image img {
@@ -1073,6 +1116,40 @@ body.overlay-active .header--desktop {
   background: rgba(244, 244, 244, 1);
 }
 
+.advantage-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.042vw /* 20px */;
+  padding-left: 2.865vw /* 57.5px */;
+  padding-right: 2.865vw /* 57.5px */;
+  text-align: left;
+}
+
+.advantage-card__content h3 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.875vw /* 36px */;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1f1933;
+  margin: 0;
+}
+
+.advantage-card__content > p {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.146vw /* 22px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #494555;
+  margin: 0;
+}
+
+/* Старые селекторы оставляю для совместимости */
 .advantage-card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
@@ -1083,6 +1160,7 @@ body.overlay-active .header--desktop {
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
+  margin-bottom: 1.042vw /* 20px */;
 }
 
 .advantage-card__text {
@@ -4396,6 +4474,7 @@ img {
     flex-direction: column;
     gap: 10px;
     padding: 0;
+    min-width: 0;
   }
 
   .pricing__text-container > h2 {
@@ -4406,6 +4485,9 @@ img {
   .pricing__text-container > p {
     font-size: 18px;
     margin: 0;
+    line-height: 120%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   /* Карусель карточек тарифов */
@@ -4478,6 +4560,11 @@ img {
     font-size: 16px;
   }
 
+  .pricing-card .btn--primary {
+    margin-top: auto;
+    width: 100%;
+  }
+
   /* ========================================
      ADVANTAGES СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
      ======================================== */
@@ -4502,20 +4589,41 @@ img {
   .advantage-card {
     border: 2px solid rgba(191, 191, 191, 1);
     border-radius: 20px;
-    padding: 20px;
+    padding: 0;
   }
 
   .advantage-card__image {
     margin-bottom: 20px;
+    padding: 0 20px 0 20px;
   }
 
   .advantage-card__image img {
     border-radius: 10px;
   }
 
+  .advantage-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 60px;
+    text-align: center;
+  }
+
+  .advantage-card__content h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .advantage-card__content > p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  /* Старые селекторы для совместимости */
   .advantage-card > h3 {
     font-size: 18px;
     text-align: start;
+    margin-bottom: 20px;
   }
 
   /* секция 3 - section--services */
@@ -5030,12 +5138,12 @@ img {
     flex: 0 0 280px;
     border: 2px solid rgba(191, 191, 191, 1);
     border-radius: 20px;
-    padding: 20px;
+    padding: 0;
     scroll-snap-align: start;
   }
 
   .work-process-card__image {
-    padding: 0;
+    padding: 20px;
     margin-bottom: 20px;
   }
 
@@ -5043,6 +5151,25 @@ img {
     border-radius: 10px;
   }
 
+  .work-process-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 60px 20px 60px;
+    text-align: left;
+  }
+
+  .work-process-card__content h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .work-process-card__content p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  /* Старые селекторы для совместимости */
   .work-process-card > h3 {
     font-size: 18px;
     margin: 0px;
