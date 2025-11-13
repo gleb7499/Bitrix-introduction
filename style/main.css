@@ -792,6 +792,214 @@ body.overlay-active .header--desktop {
   margin-bottom: 1.042vw /* 20px */;
 }
 
+/* Секция Тарифы */
+.section--pricing {
+  display: flex;
+  gap: 4.167vw /* 80px */;
+  padding-top: 3.646vw /* 70px */;
+  padding-left: 4.167vw /* 80px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
+}
+
+/* Контейнер для текста */
+.pricing__text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 3.646vw /* 70px */;
+  padding-bottom: 4.167vw /* 80px */;
+  flex-shrink: 0;
+}
+
+.pricing__text-container > h2 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 2.5vw /* 48px */;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: start;
+  color: #1f1933;
+  margin: 0;
+}
+
+.pricing__text-container > p {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.875vw /* 36px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: start;
+  color: #494555;
+  margin: 0;
+}
+
+/* Контейнер для карточек */
+.pricing__cards-container {
+  display: flex;
+  gap: 1.042vw /* 20px */;
+  padding-top: 1.042vw /* 20px */;
+  padding-right: 1.042vw /* 20px */;
+  padding-bottom: 1.042vw /* 20px */;
+}
+
+/* Базовая карточка тарифа */
+.pricing-card {
+  background: transparent;
+  box-sizing: border-box;
+  border: 0.104vw /* 2px */ solid;
+  border-radius: 3.854vw /* 74px */;
+  display: flex;
+  flex-direction: column;
+  gap: 2.083vw /* 40px */;
+  padding: 3.125vw /* 60px */;
+  flex: 1;
+}
+
+/* Модификаторы для разных цветов границ */
+.pricing-card--green {
+  border-color: rgba(142, 255, 119, 1);
+}
+
+.pricing-card--orange {
+  border-color: rgba(255, 225, 121, 1);
+}
+
+.pricing-card--red {
+  border-color: rgba(255, 166, 166, 1);
+}
+
+/* Заголовок карточки */
+.pricing-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.781vw /* 15px */;
+}
+
+/* Название тарифа */
+.pricing-card__title {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.875vw /* 36px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #494555;
+}
+
+/* Цена */
+.pricing-card__price {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.875vw /* 36px */;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #1f1933;
+}
+
+/* Обертка для бейджа и зачеркнутого текста */
+.pricing-card__badge-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.521vw /* 10px */;
+}
+
+/* Бейдж (флаг) */
+.pricing-card__badge {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.521vw /* 10px */;
+  padding: 0.521vw /* 10px */ 1.042vw /* 20px */;
+  border-radius: 5.208vw /* 100px */;
+}
+
+.pricing-card__badge > span {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.146vw /* 22px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+/* Модификаторы цветов для бейджей */
+.pricing-card__badge--green {
+  background: #d3ffca;
+}
+
+.pricing-card__badge--green > span {
+  color: #1e9800;
+}
+
+.pricing-card__badge--orange {
+  background: #ffe4cd;
+}
+
+.pricing-card__badge--orange > span {
+  color: #c07700;
+}
+
+.pricing-card__badge--red {
+  background: #ffd8d8;
+}
+
+.pricing-card__badge--red > span {
+  color: #ae0000;
+}
+
+/* Зачеркнутый текст (скрыт по умолчанию) */
+.pricing-card__strikethrough {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.146vw /* 22px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: line-through;
+  color: #494555;
+  display: none;
+}
+
+/* Показываем зачеркнутый текст только для красной карточки */
+.pricing-card--red .pricing-card__strikethrough {
+  display: block;
+}
+
+/* Список функций */
+.pricing-card__features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.042vw /* 20px */;
+}
+
+/* Отдельная функция */
+.pricing-card__feature {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 1.146vw /* 22px */;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: start;
+  color: #494555;
+}
+
 /* Секция Преимущества */
 .advantages {
   max-width: 1400px;
@@ -4169,6 +4377,105 @@ img {
     display: block; /* Показываем мобильную кнопку */
     order: 4;
     width: 100%;
+  }
+
+  /* ========================================
+     PRICING СЕКЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
+     Порядок: заголовок → описание → карусель карточек
+     ======================================== */
+
+  .section--pricing {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .pricing__text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .pricing__text-container > h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .pricing__text-container > p {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  /* Карусель карточек тарифов */
+  .pricing__cards-container {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Убираем полосу прокрутки */
+  .pricing__cards-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pricing__cards-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  /* Карточка тарифа (мобильная версия) */
+  .pricing-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    border-width: 2px;
+    border-radius: 20px;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .pricing-card__header {
+    gap: 10px;
+  }
+
+  .pricing-card__title {
+    font-size: 18px;
+  }
+
+  .pricing-card__price {
+    font-size: 18px;
+  }
+
+  .pricing-card__badge-wrapper {
+    gap: 10px;
+  }
+
+  .pricing-card__badge {
+    padding: 10px 20px;
+    border-radius: 100px;
+    gap: 10px;
+  }
+
+  .pricing-card__badge > span {
+    font-size: 16px;
+  }
+
+  .pricing-card__strikethrough {
+    font-size: 16px;
+  }
+
+  .pricing-card__features {
+    gap: 10px;
+  }
+
+  .pricing-card__feature {
+    font-size: 16px;
   }
 
   /* ========================================
