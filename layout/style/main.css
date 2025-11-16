@@ -467,7 +467,7 @@ body.overlay-active .header--desktop {
   padding-top: 3.646vw /* 70px */;
   padding-left: 4.167vw /* 80px */;
   padding-bottom: 4.167vw /* 80px */;
-  padding-right: 2.083vw /* 40px */;
+  padding-right: 1.563vw /* 30px ; */;
 }
 
 .hero__text-group {

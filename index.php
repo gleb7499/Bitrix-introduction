@@ -41,7 +41,7 @@ $APPLICATION->SetTitle("Главная");
                             alt="Защита данных" loading="lazy" />
                     </div>
                     <div class="advantage-card__content">
-                        <h3>Защита данных</h3>
+                        <h3>Оперативное решение задач</h3>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@ $APPLICATION->SetTitle("Главная");
                             alt="Оперативность" loading="lazy" />
                     </div>
                     <div class="advantage-card__content">
-                        <h3>Оперативность</h3>
+                        <h3>Индивидуальный подход</h3>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@ $APPLICATION->SetTitle("Главная");
                             alt="Полный контроль" loading="lazy" />
                     </div>
                     <div class="advantage-card__content">
-                        <h3>Полный контроль</h3>
+                        <h3>Оптимизация ИТ-расходов</h3>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@ $APPLICATION->SetTitle("Главная");
                             alt="Аудит и подход" loading="lazy" />
                     </div>
                     <div class="advantage-card__content">
-                        <h3>Аудит и подход</h3>
+                        <h3>Комплекс ИТ-услуг</h3>
                     </div>
                 </div>
             </div>
@@ -84,12 +84,8 @@ $APPLICATION->SetTitle("Главная");
         <section class="section section--services">
             <div class="services__header">
                 <div class="services__header-text">
-                    <h2>
-                        Услуги, открывающие новые возможности
-                    </h2>
-                    <p>
-                        Откройте новые возможности с нашими услугами
-                    </p>
+                    <h2>Услуги, открывающие новые возможности</h2>
+                    <p>Откройте новые возможности с нашими услугами</p>
                 </div>
             </div>
 
@@ -132,11 +128,10 @@ $APPLICATION->SetTitle("Главная");
                     </div>
                     <h3>Битрикс 24</h3>
                     <ul class="services__card-menu">
-                        <li><a href="http://new.intezgroup.ru/services/bitrix24/implementation/">Внедрение Битрикс
-                                24</a></li>
-                        <li><a href="#">Обслуживание Битрикс 24</a></li>
-                        <li><a href="#">Настройка Битрикс 24</a></li>
-                        <li><a href="#">Разработка Битрикс 24</a></li>
+                        <li><a href="/services/bitrix24/implementation/">Внедрение Битрикс 24</a></li>
+                        <li><a href="/services/bitrix24/maintenance/">Обслуживание Битрикс 24</a></li>
+                        <li><a href="/services/bitrix24/configuration/">Настройка Битрикс 24</a></li>
+                        <li><a href="/services/bitrix24/development/">Разработка Битрикс 24</a></li>
                     </ul>
                 </div>
 
@@ -148,13 +143,13 @@ $APPLICATION->SetTitle("Главная");
                     </div>
                     <h3>ИТ-решения и оборудование</h3>
                     <ul class="services__card-menu">
-                        <li><a href="http://new.intezgroup.ru/services/IT-infrastructure-and-equipment//creation/">Создание
-                                ИТ инфраструктуры</a></li>
-                        <li><a href="#">Установка серверного оборудования и ПО</a></li>
-                        <li><a href="#">ИТ-обслуживание ПК и серверов</a></li>
-                        <li><a href="#">Монтаж локальных сетей</a></li>
-                        <li><a href="#">Монтаж СКС</a></li>
-                        <li><a href="#">Установка систем видеонаблюдения</a></li>
+                        <li><a href="/services/IT-infrastructure-and-equipment/creation/">Создание ИТ инфраструктуры</a>
+                        </li>
+                        <li><a href="/services/IT-infrastructure-and-equipment/server-installation/">Установка серверного оборудования и ПО</a></li>
+                        <li><a href="/services/IT-infrastructure-and-equipment/pc-support/">ИТ-обслуживание ПК и серверов</a></li>
+                        <li><a href="/services/IT-infrastructure-and-equipment/lan/">Монтаж локальных сетей</a></li>
+                        <li><a href="/services/IT-infrastructure-and-equipment/sks/">Монтаж СКС</a></li>
+                        <li><a href="/services/IT-infrastructure-and-equipment/video-surveillance/">Установка систем видеонаблюдения</a></li>
                     </ul>
                 </div>
 
@@ -166,11 +161,9 @@ $APPLICATION->SetTitle("Главная");
                     </div>
                     <h3>Серверные решения и сети</h3>
                     <ul class="services__card-menu">
-                        <li><a
-                                href="http://new.intezgroup.ru/services/server-solutions-and-networks/implementation-of-data-storage-solutions/">Внедрение
-                                хранилищ данных</a></li>
-                        <li><a href="#">Внедрение почтового сервера</a></li>
-                        <li><a href="#">Корпоративный VPN</a></li>
+                        <li><a href="/services/server-solutions-and-networks/implementation-of-data-storage-solutions/">Внедрение хранилищ данных</a></li>
+                        <li><a href="/services/server-solutions-and-networks/mail-server/">Внедрение почтового сервера</a></li>
+                        <li><a href="/services/server-solutions-and-networks/vpn/">Корпоративный VPN</a></li>
                     </ul>
                 </div>
 

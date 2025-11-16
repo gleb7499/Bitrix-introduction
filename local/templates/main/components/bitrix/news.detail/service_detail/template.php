@@ -580,7 +580,7 @@ $this->setFrameMode(true);
                     "FILTER_NAME" => "arRelatedFilter",
                     "FIELD_CODE" => array("NAME", "PREVIEW_TEXT"),
                     "PROPERTY_CODE" => array("HERO_DESCRIPTION"),
-                    "DETAIL_URL" => $arResult["SECTION"]["SECTION_PAGE_URL"] . "#CODE#/",
+                    "SET_TITLE" => "N",
                     "CACHE_TYPE" => "A",
                     "CACHE_TIME" => "3600",
                     "CACHE_FILTER" => "Y",

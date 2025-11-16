@@ -1,6 +1,6 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetTitle("Корпоративный ВПН");
+$APPLICATION->SetTitle("Корпоративный VPN");
 
 $APPLICATION->IncludeComponent(
     "bitrix:news.detail",

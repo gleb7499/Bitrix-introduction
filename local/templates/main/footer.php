@@ -69,12 +69,12 @@ use Bitrix\Main\Page\Asset;
                 <div class="footer__section">
                     <h4>Серверные решения и сети</h4>
                     <ul class="footer__list">
-                        <li><a href="services/server-solutions-and-networks/implementation-of-data-storage-solutions/"
+                        <li><a href="/services/server-solutions-and-networks/implementation-of-data-storage-solutions/"
                                 class="footer__link">Внедрение хранилищ
                                 данных</a></li>
-                        <li><a href="/services/server-solutions/mail-server/" class="footer__link">Внедрение почтового
+                        <li><a href="/services/server-solutions-and-networks/mail-server/" class="footer__link">Внедрение почтового
                                 сервера</a></li>
-                        <li><a href="/services/server-solutions/vpn/" class="footer__link">Корпоративный ВПН</a></li>
+                        <li><a href="/services/server-solutions-and-networks/vpn/" class="footer__link">Корпоративный ВПН</a></li>
                     </ul>
                 </div>
             </div>

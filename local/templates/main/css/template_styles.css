@@ -467,7 +467,7 @@ body.overlay-active .header--desktop {
   padding-top: 3.646vw /* 70px */;
   padding-left: 4.167vw /* 80px */;
   padding-bottom: 4.167vw /* 80px */;
-  padding-right: 2.083vw /* 40px */;
+  padding-right: 3.125vw /* 60px */;
 }
 
 .hero__text-group {
@@ -506,6 +506,7 @@ body.overlay-active .header--desktop {
   display: flex;
   align-items: center;
   gap: 1.042vw /* 20px */;
+  flex-wrap: wrap;
 }
 
 .breadcrumbs__logo-link {
@@ -569,6 +570,8 @@ body.overlay-active .header--desktop {
   color: rgba(157, 157, 157, 1);
   text-decoration: none;
   transition: text-decoration 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .breadcrumbs__link:hover {
@@ -1223,14 +1226,19 @@ body.overlay-active .header--desktop {
 /* Секция Отзывы */
 .section--reviews {
   gap: 4.167vw /* 80px */;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .reviews__container {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
   gap: 4.167vw /* 80px */;
   justify-content: space-between;
   margin: 0 auto;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Блок слева: Заголовок и кнопка */
@@ -1241,6 +1249,8 @@ body.overlay-active .header--desktop {
   padding-top: 3.646vw /* 70px */;
   padding-left: 4.167vw /* 80px */;
   padding-bottom: 4.167vw /* 80px */;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .reviews__left-block > h2 {
@@ -1261,10 +1271,17 @@ body.overlay-active .header--desktop {
   column-gap: 1.042vw /* 20px */;
   padding: 1.042vw /* 20px */;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Защита от FOUC - гарантируем правильный layout с первого рендера */
+  min-width: 0;
+  contain: layout style;
 }
 
 /* Градиент внизу блока с отзывами */
-.reviews__cards-block::after {
+.reviews__cards-block::before {
   content: "";
   position: absolute;
   border-radius: 4.896vw /* 94px */;
@@ -1296,6 +1313,11 @@ body.overlay-active .header--desktop {
   break-inside: avoid;
   margin-bottom: 1.042vw /* 20px */;
   min-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  /* Предотвращаем растягивание за пределы контейнера */
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 /* Хедер карточки: Фото + Инфо */
@@ -4527,9 +4549,8 @@ img {
 
   .breadcrumbs__link {
     font-size: 16px;
-    white-space: normal; /* Разрешаем перенос текста внутри ссылок */
-    word-wrap: break-word; /* Переносим длинные слова */
-    overflow-wrap: break-word; /* Дополнительная поддержка переноса */
+    white-space: nowrap; /* Запрещаем перенос текста внутри ссылки */
+    flex-shrink: 0; /* Запрещаем сжатие ссылки */
   }
 
   .hero__image {
@@ -5779,6 +5800,9 @@ img {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     order: 2; /* Карусель вторая */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* Убираем градиент на мобилке */

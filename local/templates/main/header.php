@@ -29,6 +29,38 @@ $curPage = $APPLICATION->GetCurPage();
     $APPLICATION->ShowCSS();
     ?>
 
+    <!-- Critical CSS для предотвращения FOUC в секции отзывов -->
+    <style>
+        /* Критические стили загружаются inline для мгновенного применения */
+        body {
+            overflow-x: hidden !important;
+        }
+
+        .section--reviews {
+            overflow-x: hidden !important;
+            max-width: 100% !important;
+        }
+
+        .reviews__container {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        .reviews__cards-block {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            min-width: 0 !important;
+        }
+
+        .reviews__card {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+    </style>
+
     <link rel="shortcut icon" href="<?= SITE_TEMPLATE_PATH ?>/image/icons/favicon.ico" type="image/x-icon">
 </head>
 
@@ -134,7 +166,7 @@ $curPage = $APPLICATION->GetCurPage();
                     <a href="/services/server-solutions-and-networks/implementation-of-data-storage-solutions/"
                         class="services-popup__link" data-category="server-solutions" style="display: none">Внедрение
                         хранилищ данных</a>
-                    <a href="/services/server-solutions/mail-server/" class="services-popup__link"
+                    <a href="/services/server-solutions-and-networks/mail-server/" class="services-popup__link"
                         data-category="server-solutions" style="display: none">Внедрение почтового сервера</a>
                 </div>
             </div>
@@ -164,7 +196,7 @@ $curPage = $APPLICATION->GetCurPage();
                         data-category="it-infrastructure" style="display: none">Установка систем видеонаблюдения</a>
 
                     <!-- Серверные решения и сети - Колонка 2 -->
-                    <a href="/services/server-solutions/vpn/" class="services-popup__link"
+                    <a href="/services/server-solutions-and-networks/vpn/" class="services-popup__link"
                         data-category="server-solutions" style="display: none">Корпоративный VPN</a>
                 </div>
             </div>
