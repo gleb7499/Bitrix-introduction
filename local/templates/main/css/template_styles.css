@@ -715,18 +715,18 @@ body.overlay-active .header--desktop {
 
 /* Секция Как построена наша работа? (Work Process) */
 .section--work-process {
-  padding-top: 3.646vw /* 70px */;
+  padding-top: clamp(40px, 3.646vw, 70px);
 }
 
 .work-process {
-  max-width: 1400px;
+  max-width: var(--max-section-width);
   margin: 0 auto;
 }
 
 .section--work-process > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -734,30 +734,30 @@ body.overlay-active .header--desktop {
   color: #1f1933;
   text-align: start;
   margin-top: 0;
-  margin-bottom: 1.042vw /* 20px */;
-  margin-left: 4.167vw /* 80px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px);
+  margin-left: clamp(40px, 4.167vw, 80px);
 }
 
 .section--work-process > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-bottom: 3.125vw /* 60px */;
-  margin-left: 4.167vw /* 80px */;
+  margin-bottom: clamp(40px, 3.125vw, 60px);
+  margin-left: clamp(40px, 4.167vw, 80px);
 }
 
 .work-process__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.042vw /* 20px */;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px);
+  padding-left: clamp(16px, 1.042vw, 20px);
+  padding-right: clamp(16px, 1.042vw, 20px);
+  padding-bottom: clamp(16px, 1.042vw, 20px);
 }
 
 .work-process__navigation {
@@ -767,44 +767,44 @@ body.overlay-active .header--desktop {
 .work-process-card {
   background: transparent;
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
+  border-radius: clamp(40px, 3.854vw, 74px);
   display: flex;
   flex-direction: column;
-  padding-bottom: 2.083vw /* 40px */;
+  padding-bottom: clamp(24px, 2.083vw, 40px);
 }
 
 .work-process-card__image {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-top: 1.042vw /* 20px */;
-  margin-bottom: 2.083vw /* 40px */;
+  padding-left: clamp(16px, 1.042vw, 20px);
+  padding-right: clamp(16px, 1.042vw, 20px);
+  padding-top: clamp(16px, 1.042vw, 20px);
+  margin-bottom: clamp(24px, 2.083vw, 40px);
 }
 
 .work-process-card__image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 2.813vw /* 54px */;
+  border-radius: clamp(30px, 2.813vw, 54px);
   background: transparent;
 }
 
 .work-process-card__content {
   display: flex;
   flex-direction: column;
-  gap: 1.042vw /* 20px */;
-  padding-left: 3.125vw /* 60px */;
-  padding-right: 3.125vw /* 60px */;
+  gap: clamp(16px, 1.042vw, 20px);
+  padding-left: clamp(30px, 3.125vw, 60px);
+  padding-right: clamp(30px, 3.125vw, 60px);
   text-align: left;
 }
 
 .work-process-card__content h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -816,7 +816,7 @@ body.overlay-active .header--desktop {
 .work-process-card__content p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -829,20 +829,20 @@ body.overlay-active .header--desktop {
 .work-process-card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 1.042vw /* 20px */;
-  margin-left: 3.125vw /* 60px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px);
+  margin-left: clamp(30px, 3.125vw, 60px);
 }
 
 .work-process-card > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -855,7 +855,7 @@ body.overlay-active .header--desktop {
 /* Секция Тарифы */
 .section--pricing {
   display: flex;
-  gap: 4.167vw /* 80px */;
+  gap: clamp(40px, 4.167vw, 80px);
 }
 
 /* Контейнер для текста */
@@ -863,9 +863,9 @@ body.overlay-active .header--desktop {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 3.646vw /* 70px */;
-  padding-bottom: 4.167vw /* 80px */;
-  padding-left: 4.167vw /* 80px */;
+  padding-top: clamp(40px, 3.646vw, 70px);
+  padding-bottom: clamp(40px, 4.167vw, 80px);
+  padding-left: clamp(40px, 4.167vw, 80px);
   flex: 0 1 auto;
   min-width: 0;
 }
@@ -873,7 +873,7 @@ body.overlay-active .header--desktop {
 .pricing__text-container > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -886,7 +886,7 @@ body.overlay-active .header--desktop {
 .pricing__text-container > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 400;
   font-style: normal;
   line-height: 120%;
@@ -901,22 +901,22 @@ body.overlay-active .header--desktop {
 /* Контейнер для карточек */
 .pricing__cards-container {
   display: flex;
-  gap: 1.042vw /* 20px */;
-  padding-top: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px);
+  padding-top: clamp(16px, 1.042vw, 20px);
+  padding-right: clamp(16px, 1.042vw, 20px);
+  padding-bottom: clamp(16px, 1.042vw, 20px);
 }
 
 /* Базовая карточка тарифа */
 .pricing-card {
   background: transparent;
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid;
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) solid;
+  border-radius: clamp(40px, 3.854vw, 74px);
   display: flex;
   flex-direction: column;
-  gap: 2.083vw /* 40px */;
-  padding: 3.125vw /* 60px */;
+  gap: clamp(24px, 2.083vw, 40px);
+  padding: clamp(30px, 3.125vw, 60px);
   flex: 1;
 }
 
@@ -937,14 +937,14 @@ body.overlay-active .header--desktop {
 .pricing-card__header {
   display: flex;
   flex-direction: column;
-  gap: 0.781vw /* 15px */;
+  gap: clamp(12px, 0.781vw, 15px);
 }
 
 /* Название тарифа */
 .pricing-card__title {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -957,7 +957,7 @@ body.overlay-active .header--desktop {
 .pricing-card__price {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -972,7 +972,7 @@ body.overlay-active .header--desktop {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.521vw /* 10px */;
+  gap: clamp(8px, 0.521vw, 10px);
 }
 
 /* Бейдж (флаг) */
@@ -981,15 +981,15 @@ body.overlay-active .header--desktop {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.521vw /* 10px */;
-  padding: 0.521vw /* 10px */ 1.042vw /* 20px */;
-  border-radius: 5.208vw /* 100px */;
+  gap: clamp(8px, 0.521vw, 10px);
+  padding: clamp(8px, 0.521vw, 10px) clamp(16px, 1.042vw, 20px);
+  border-radius: clamp(50px, 5.208vw, 100px);
 }
 
 .pricing-card__badge > span {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1025,7 +1025,7 @@ body.overlay-active .header--desktop {
 .pricing-card__strikethrough {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1044,14 +1044,14 @@ body.overlay-active .header--desktop {
 .pricing-card__features {
   display: flex;
   flex-direction: column;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px);
 }
 
 /* Отдельная функция */
 .pricing-card__feature {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1108,85 +1108,85 @@ body.overlay-active .header--desktop {
 
 /* Секция Преимущества */
 .advantages {
-  max-width: 1400px;
+  max-width: var(--max-section-width);
   margin: 0 auto;
 }
 
 .section--advantages {
-  padding-top: 3.646vw /* 70px */;
+  padding-top: clamp(40px, 3.646vw, 70px);
 }
 
 .section--advantages > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: 4.167vw /* 80px */;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-left: clamp(40px, 4.167vw, 80px);
+  margin-bottom: clamp(16px, 1.042vw, 20px);
 }
 
 .section--advantages > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: 4.167vw /* 80px */;
-  margin-bottom: 3.646vw /* 70px */;
+  margin-left: clamp(40px, 4.167vw, 80px);
+  margin-bottom: clamp(40px, 3.646vw, 70px);
 }
 
 .advantages__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.042vw /* 20px */;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px);
+  padding-left: clamp(16px, 1.042vw, 20px);
+  padding-right: clamp(16px, 1.042vw, 20px);
+  padding-bottom: clamp(16px, 1.042vw, 20px);
 }
 
 .advantage-card {
   background: transparent;
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
+  border-radius: clamp(40px, 3.854vw, 74px);
   display: flex;
   flex-direction: column;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 1.042vw /* 20px */;
-  padding-bottom: 2.083vw /* 40px */;
+  padding-top: clamp(16px, 1.042vw, 20px);
+  padding-bottom: clamp(24px, 2.083vw, 40px);
 }
 
 .advantage-card__image {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: 2.083vw /* 40px */;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
+  margin-bottom: clamp(24px, 2.083vw, 40px);
+  padding-left: clamp(16px, 1.042vw, 20px);
+  padding-right: clamp(16px, 1.042vw, 20px);
 }
 
 .advantage-card__image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 2.813vw /* 54px */;
+  border-radius: clamp(30px, 2.813vw, 54px);
   background: rgba(244, 244, 244, 1);
 }
 
 .advantage-card__content {
   display: flex;
   flex-direction: column;
-  gap: 1.042vw /* 20px */;
-  padding-left: 2.865vw /* 57.5px */;
-  padding-right: 2.865vw /* 57.5px */;
+  gap: clamp(16px, 1.042vw, 20px);
+  padding-left: clamp(30px, 2.865vw, 58px);
+  padding-right: clamp(30px, 2.865vw, 58px);
   text-align: center;
 }
 
@@ -1197,7 +1197,7 @@ body.overlay-active .header--desktop {
 .advantage-card__content h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -1209,7 +1209,7 @@ body.overlay-active .header--desktop {
 .advantage-card__content > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1222,20 +1222,20 @@ body.overlay-active .header--desktop {
 .advantage-card > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 700;
   font-style: normal;
   text-align: center;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px);
 }
 
 .advantage-card__text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
