@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <asd_iblock_props>
 	<props>
+		<!-- ===== СЕКЦИЯ 1: HERO (Название услуги и краткое описание) ===== -->
 		<prop>
 			<old_id>1</old_id>
-			<name><![CDATA[Заголовок Hero]]></name>
+			<name><![CDATA[1. Hero - Заголовок услуги]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>HERO_TITLE</code>
@@ -28,7 +29,7 @@
 		</prop>
 		<prop>
 			<old_id>2</old_id>
-			<name><![CDATA[Описание Hero]]></name>
+			<name><![CDATA[1. Hero - Краткое описание услуги]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>HERO_DESCRIPTION</code>
@@ -53,7 +54,7 @@
 		</prop>
 		<prop>
 			<old_id>3</old_id>
-			<name><![CDATA[Картинка Hero]]></name>
+			<name><![CDATA[1. Hero - Картинка услуги]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>HERO_IMAGE</code>
@@ -76,9 +77,11 @@
 			<user_type_settings></user_type_settings>
 			<hint></hint>
 		</prop>
+
+		<!-- ===== СЕКЦИЯ 2: ABOUT (Узнайте больше - преимущества услуги) ===== -->
 		<prop>
 			<old_id>4</old_id>
-			<name><![CDATA[Заголовок "Узнайте больше"]]></name>
+			<name><![CDATA[2. Узнайте больше - Заголовок]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>ABOUT_TITLE</code>
@@ -103,7 +106,7 @@
 		</prop>
 		<prop>
 			<old_id>5</old_id>
-			<name><![CDATA[Картинка "О компании"]]></name>
+			<name><![CDATA[2. Узнайте больше - Картинка]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>ABOUT_IMAGE</code>
@@ -128,7 +131,7 @@
 		</prop>
 		<prop>
 			<old_id>6</old_id>
-			<name><![CDATA[Описание "О компании"]]></name>
+			<name><![CDATA[2. Узнайте больше - Описание преимуществ услуги (кратко)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>ABOUT_DESCRIPTION</code>
@@ -149,11 +152,13 @@
 			<version>1</version>
 			<user_type>HTML</user_type>
 			<user_type_settings></user_type_settings>
-			<hint><![CDATA[Текст для секции "О компании" (2-3 абзаца с HTML)]]></hint>
+			<hint><![CDATA[Текст с плюсами услуги (2-3 абзаца с HTML)]]></hint>
 		</prop>
+
+		<!-- ===== СЕКЦИЯ 3: PROCESS (Этапы внедрения/разработки) ===== -->
 		<prop>
 			<old_id>7</old_id>
-			<name><![CDATA[Заголовок процесса]]></name>
+			<name><![CDATA[3. Этапы - Заголовок раздела]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>PROCESS_TITLE</code>
@@ -178,7 +183,7 @@
 		</prop>
 		<prop>
 			<old_id>8</old_id>
-			<name><![CDATA[Подзаголовок процесса]]></name>
+			<name><![CDATA[3. Этапы - Подзаголовок раздела]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>PROCESS_SUBTITLE</code>
@@ -203,7 +208,7 @@
 		</prop>
 		<prop>
 			<old_id>9</old_id>
-			<name><![CDATA[Этапы процесса (заголовки)]]></name>
+			<name><![CDATA[3. Этапы - Названия этапов (4 штуки)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>PROCESS_STEPS</code>
@@ -228,7 +233,7 @@
 		</prop>
 		<prop>
 			<old_id>10</old_id>
-			<name><![CDATA[Описания этапов процесса]]></name>
+			<name><![CDATA[3. Этапы - Описания каждого этапа (4 штуки)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>PROCESS_STEPS_DESC</code>
@@ -253,7 +258,7 @@
 		</prop>
 		<prop>
 			<old_id>11</old_id>
-			<name><![CDATA[Картинки этапов процесса]]></name>
+			<name><![CDATA[3. Этапы - Картинки каждого этапа (4 штуки)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>PROCESS_STEPS_IMAGES</code>
@@ -276,9 +281,11 @@
 			<user_type_settings></user_type_settings>
 			<hint><![CDATA[Загрузите 4 картинки для этапов работы (в том же порядке, что и названия этапов)]]></hint>
 		</prop>
+
+		<!-- ===== СЕКЦИЯ 4: TARIFFS (Тарифные планы) ===== -->
 		<prop>
 			<old_id>12</old_id>
-			<name><![CDATA[Тарифы (JSON)]]></name>
+			<name><![CDATA[4. Тарифы - Тарифные планы (JSON, 3 штуки)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>TARIFFS</code>
@@ -302,8 +309,35 @@
 			<hint></hint>
 		</prop>
 		<prop>
+			<old_id>19</old_id>
+			<name><![CDATA[4. Тарифы - Описание для раздела тарифов]]></name>
+			<active>Y</active>
+			<sort>500</sort>
+			<code>TARIFFS_DESCRIPTION</code>
+			<default_value></default_value>
+			<property_type>S</property_type>
+			<row_count>1</row_count>
+			<col_count>30</col_count>
+			<list_type>L</list_type>
+			<multiple>N</multiple>
+			<xml_id></xml_id>
+			<file_type></file_type>
+			<multiple_cnt>5</multiple_cnt>
+			<link_iblock_id>0</link_iblock_id>
+			<with_description>N</with_description>
+			<searchable>N</searchable>
+			<filtrable>N</filtrable>
+			<is_required>N</is_required>
+			<version>1</version>
+			<user_type></user_type>
+			<user_type_settings></user_type_settings>
+			<hint><![CDATA[Короткое описание под заголовком "Тарифы" (например: "От базовой настройки до полного внедрения и поддержки")]]></hint>
+		</prop>
+
+		<!-- ===== СЕКЦИЯ 7: READY-TO-START (Результаты и преимущества) ===== -->
+		<prop>
 			<old_id>13</old_id>
-			<name><![CDATA[Заголовок "Ready"]]></name>
+			<name><![CDATA[7. Результаты - Заголовок раздела]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>READY_TITLE</code>
@@ -328,7 +362,7 @@
 		</prop>
 		<prop>
 			<old_id>14</old_id>
-			<name><![CDATA[Описание "Ready"]]></name>
+			<name><![CDATA[7. Результаты - Полное описание услуги]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>READY_DESCRIPTION</code>
@@ -353,7 +387,7 @@
 		</prop>
 		<prop>
 			<old_id>15</old_id>
-			<name><![CDATA[Список преимуществ]]></name>
+			<name><![CDATA[7. Результаты - Список результатов (3 пункта)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>READY_LIST</code>
@@ -378,7 +412,7 @@
 		</prop>
 		<prop>
 			<old_id>16</old_id>
-			<name><![CDATA[Картинка "Ready"]]></name>
+			<name><![CDATA[7. Результаты - Картинка раздела]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>READY_IMAGE</code>
@@ -401,9 +435,11 @@
 			<user_type_settings></user_type_settings>
 			<hint></hint>
 		</prop>
+
+		<!-- ===== СЕКЦИЯ 9: FAQ (Вопросы и ответы) ===== -->
 		<prop>
 			<old_id>17</old_id>
-			<name><![CDATA[Вопросы FAQ]]></name>
+			<name><![CDATA[9. FAQ - Вопросы (по одному на каждый ответ)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>FAQ_QUESTIONS</code>
@@ -428,7 +464,7 @@
 		</prop>
 		<prop>
 			<old_id>18</old_id>
-			<name><![CDATA[Ответы FAQ]]></name>
+			<name><![CDATA[9. FAQ - Ответы (по одному на каждый вопрос)]]></name>
 			<active>Y</active>
 			<sort>500</sort>
 			<code>FAQ_ANSWERS</code>
@@ -450,31 +486,6 @@
 			<user_type></user_type>
 			<user_type_settings></user_type_settings>
 			<hint></hint>
-		</prop>
-		<prop>
-			<old_id>19</old_id>
-			<name><![CDATA[Описание к тарифам]]></name>
-			<active>Y</active>
-			<sort>500</sort>
-			<code>TARIFFS_DESCRIPTION</code>
-			<default_value></default_value>
-			<property_type>S</property_type>
-			<row_count>1</row_count>
-			<col_count>30</col_count>
-			<list_type>L</list_type>
-			<multiple>N</multiple>
-			<xml_id></xml_id>
-			<file_type></file_type>
-			<multiple_cnt>5</multiple_cnt>
-			<link_iblock_id>0</link_iblock_id>
-			<with_description>N</with_description>
-			<searchable>N</searchable>
-			<filtrable>N</filtrable>
-			<is_required>N</is_required>
-			<version>1</version>
-			<user_type></user_type>
-			<user_type_settings></user_type_settings>
-			<hint><![CDATA[Короткое описание под заголовком "Тарифы" (например: "От базовой настройки до полного внедрения и поддержки")]]></hint>
 		</prop>
 	</props>
 	<enums>

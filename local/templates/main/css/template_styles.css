@@ -1281,7 +1281,7 @@ body.overlay-active .header--desktop {
 }
 
 /* Градиент внизу блока с отзывами */
-.reviews__cards-block::before {
+.reviews__cards-block::after {
   content: "";
   position: absolute;
   border-radius: 4.896vw /* 94px */;
@@ -5794,15 +5794,36 @@ img {
     column-count: 1;
     display: flex;
     gap: 20px;
-    padding: 0 0 10px 0;
+    padding: 0;
+    padding-bottom: 15px;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     order: 2; /* Карусель вторая */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+
+  /* WebKit browsers (Safari, Chrome) - кастомный scrollbar для видимости */
+  .reviews__cards-block::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .reviews__cards-block::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .reviews__cards-block::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  .reviews__cards-block::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   /* Убираем градиент на мобилке */

@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initQuickResponseForm(); // Инициализация формы в секции
   initPortfolioItems();
   initFAQ();
+  initUniversalCallButtons(); // 🎯 Инициализация всех кнопок для открытия модального окна
   initServicesCarousel();
   initSpecialOffersCarousel();
   initServicesOpportunitiesCarousel();
@@ -323,6 +324,392 @@ function initCallButton() {
   initCallModalForm();
 
   console.log("Call button and modal initialized");
+
+  // 🔑 АРХИТЕКТУРНОЕ РЕШЕНИЕ: Делаем функцию openModal глобальной
+  // для использования другими кнопками на сайте
+  window.openCallModal = openModal;
+}
+
+/**
+ * 🎯 УНИВЕРСАЛЬНАЯ ФУНКЦИЯ: Открытие модального окна для всех кнопок на сайте
+ * Использует адаптивную логику:
+ * - Desktop (>1023px): Открывает модальное окно #callModal
+ * - Mobile (<=1023px): Открывает мобильный overlay с формой
+ */
+function openCallModalUniversal() {
+  // Проверяем размер экрана
+  const isMobile = window.innerWidth <= 1023;
+
+  if (isMobile) {
+    // Мобильная версия: открываем мобильный overlay с формой
+    openMobileCallForm();
+  } else {
+    // Desktop версия: открываем модальное окно
+    if (typeof window.openCallModal === "function") {
+      window.openCallModal();
+    } else {
+      console.warn("window.openCallModal не определена");
+    }
+  }
+}
+
+/**
+ * 🎯 МОБИЛЬНАЯ ФУНКЦИЯ: Открытие формы в мобильном overlay
+ * Переиспользует существующую логику из initMobileMenu
+ */
+function openMobileCallForm() {
+  // Проверяем существование функции из initMobileMenu
+  const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+  const mobileMenuContent = document.getElementById("mobileMenuContent");
+
+  if (!mobileMenuOverlay || !mobileMenuContent) {
+    console.warn("Мобильное меню не найдено");
+    return;
+  }
+
+  // Очищаем предыдущий контент
+  mobileMenuContent.innerHTML = "";
+
+  // Находим форму из #callModal и клонируем её
+  const originalForm = document.querySelector(
+    "#callModal .quick-response__content"
+  );
+
+  if (!originalForm) {
+    console.warn("Форма не найдена в #callModal");
+    return;
+  }
+
+  // Клонируем форму
+  const formClone = originalForm.cloneNode(true);
+  formClone.classList.add("quick-response__content--mobile");
+
+  // Вставляем клонированную форму
+  mobileMenuContent.appendChild(formClone);
+
+  // Инициализируем обработчик формы
+  initMobileCallFormHandler(formClone);
+
+  // Показываем overlay
+  mobileMenuOverlay.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  console.log("Мобильная форма открыта через универсальную функцию");
+}
+
+/**
+ * 🎯 Инициализация обработчика мобильной формы (упрощённая версия)
+ * @param {HTMLElement} formContainer - Контейнер с формой
+ */
+function initMobileCallFormHandler(formContainer) {
+  const form = formContainer.querySelector(".quick-response__form");
+
+  if (!form) {
+    console.warn("Форма внутри мобильного меню не найдена");
+    return;
+  }
+
+  const fields = form.querySelectorAll(".quick-response__field");
+  const submitBtn = form.querySelector(".btn");
+
+  // Объект для отслеживания состояния полей
+  const fieldStates = {};
+
+  fields.forEach((field, index) => {
+    const input = field.querySelector(".quick-response__input");
+    const errorText = field.querySelector(".quick-response__error");
+
+    if (!input || !errorText) return;
+
+    const fieldId = `universal_mobile_form_field_${index}`;
+    fieldStates[fieldId] = {
+      touched: false,
+      valid: false,
+      empty: true,
+    };
+
+    // Обработка ввода
+    input.addEventListener("input", function () {
+      const value = this.value.trim();
+      fieldStates[fieldId].empty = !value;
+
+      if (value) {
+        this.classList.add("active");
+        fieldStates[fieldId].touched = true;
+        const isValid = validateInput(this, field, errorText, true);
+        fieldStates[fieldId].valid = isValid;
+      } else {
+        this.classList.remove("active");
+        if (fieldStates[fieldId].touched) {
+          this.classList.add("error");
+          field.classList.add("has-error");
+          errorText.textContent = "Поле обязательно для заполнения";
+          fieldStates[fieldId].valid = false;
+        } else {
+          clearFieldErrors(this, field);
+          fieldStates[fieldId].valid = false;
+        }
+      }
+
+      updateSubmitButton();
+    });
+
+    // Обработка потери фокуса
+    input.addEventListener("blur", function () {
+      const value = this.value.trim();
+
+      if (!value) {
+        if (fieldStates[fieldId].touched) {
+          this.classList.add("error");
+          field.classList.add("has-error");
+          errorText.textContent = "Поле обязательно для заполнения";
+          fieldStates[fieldId].valid = false;
+        }
+      } else {
+        fieldStates[fieldId].touched = true;
+        const isValid = validateInput(this, field, errorText, false);
+        fieldStates[fieldId].valid = isValid;
+      }
+
+      updateSubmitButton();
+    });
+
+    // Обработка получения фокуса
+    input.addEventListener("focus", function () {
+      if (
+        field.classList.contains("has-error") ||
+        field.classList.contains("has-warning")
+      ) {
+        this.classList.remove("error", "warning");
+        field.classList.remove("has-error", "has-warning");
+      }
+    });
+  });
+
+  // Функция обновления состояния кнопки
+  function updateSubmitButton() {
+    const allValid = Object.values(fieldStates).every(
+      (state) => state.valid && !state.empty
+    );
+
+    if (submitBtn) {
+      submitBtn.disabled = !allValid;
+    }
+  }
+
+  // Функция очистки ошибок поля
+  function clearFieldErrors(input, field) {
+    input.classList.remove("error", "warning", "active");
+    field.classList.remove("has-error", "has-warning");
+  }
+
+  // Инициализация
+  updateSubmitButton();
+
+  // Обработка отправки формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    fields.forEach((field, index) => {
+      const input = field.querySelector(".quick-response__input");
+      const errorText = field.querySelector(".quick-response__error");
+      const fieldId = `universal_mobile_form_field_${index}`;
+
+      fieldStates[fieldId].touched = true;
+
+      if (!validateInput(input, field, errorText, false)) {
+        isValid = false;
+        fieldStates[fieldId].valid = false;
+      }
+    });
+
+    if (isValid) {
+      console.log("Универсальная мобильная форма успешно отправлена");
+
+      // Показываем сообщение об успехе
+      showMobileSuccessMessageUniversal();
+    }
+  });
+}
+
+/**
+ * 🎉 Показывает сообщение об успехе в мобильном overlay
+ */
+function showMobileSuccessMessageUniversal() {
+  const mobileMenuContent = document.getElementById("mobileMenuContent");
+  const originalSuccess = document.querySelector("#callModal .modal-success");
+
+  if (!mobileMenuContent) return;
+
+  if (!originalSuccess) {
+    console.warn("Блок .modal-success не найден в #callModal");
+    mobileMenuContent.innerHTML = `
+      <div class="modal-success" style="display: flex;">
+        <div class="modal-success__content">
+          <h2>Спасибо за обращение!</h2>
+          <p>Мы уже получили вашу заявку. Ожидайте звонка — специалист свяжется с вами в ближайшее время</p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // Клонируем сообщение об успехе
+  const successClone = originalSuccess.cloneNode(true);
+  successClone.style.display = "flex";
+
+  // Плавная замена контента
+  mobileMenuContent.style.opacity = "0";
+  mobileMenuContent.style.transition = "opacity 0.3s ease";
+
+  setTimeout(() => {
+    mobileMenuContent.innerHTML = "";
+    mobileMenuContent.appendChild(successClone);
+
+    mobileMenuContent.style.opacity = "1";
+  }, 300);
+}
+
+// Делаем функции глобально доступными
+window.openCallModalUniversal = openCallModalUniversal;
+window.openMobileCallForm = openMobileCallForm;
+
+/**
+ * 🎯 УНИВЕРСАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ: Подключение обработчиков ко всем кнопкам на сайте
+ * Автоматически находит и подключает обработчики для открытия модального окна
+ * к кнопкам на главной странице и в шаблоне услуг
+ *
+ * 🔑 АРХИТЕКТУРНАЯ ЛОГИКА:
+ * - На главной (index.php): section--about-company БЕЗ data-service - кнопка НЕ инициализируется
+ * - В шаблоне услуг (service_detail): section--about-company с data-service="true" - кнопка инициализируется
+ */
+function initUniversalCallButtons() {
+  // 📋 Список селекторов кнопок, которые должны открывать модальное окно
+  const buttonSelectors = [
+    // Главная страница (index.php)
+    ".section--hero .hero__button", // Hero секция - desktop
+    ".section--hero .hero__button-mobile", // Hero секция - mobile
+    ".section--ready-to-start .ready-to-start__button", // Готовы начать - desktop
+    ".section--ready-to-start .ready-to-start__button-mobile", // Готовы начать - mobile
+
+    // Шаблон услуг (service_detail/template.php)
+    ".section--ready-to-start-alt .ready-to-start__button", // Готовы начать ALT - desktop
+    ".section--ready-to-start-alt .ready-to-start__button-mobile", // Готовы начать ALT - mobile
+  ];
+
+  // 🔄 Проходим по всем селекторам и добавляем обработчики
+  buttonSelectors.forEach((selector) => {
+    const buttons = document.querySelectorAll(selector);
+
+    buttons.forEach((button) => {
+      // Проверяем, не добавлен ли уже обработчик
+      if (button.dataset.modalInitialized) {
+        return;
+      }
+
+      // Добавляем обработчик клика
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Открываем модальное окно через универсальную функцию
+        openCallModalUniversal();
+
+        console.log("Модальное окно открыто через кнопку:", selector);
+      });
+
+      // Помечаем кнопку как инициализированную
+      button.dataset.modalInitialized = "true";
+    });
+  });
+
+  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопки внутри карусели Track Group (главная)
+  const trackGroupCards = document.querySelectorAll(".track-group__card");
+  trackGroupCards.forEach((card) => {
+    const button = card.querySelector(".btn");
+
+    if (button && !button.dataset.modalInitialized) {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        openCallModalUniversal();
+
+        console.log(
+          "Модальное окно открыто через кнопку в карточке Track Group"
+        );
+      });
+
+      button.dataset.modalInitialized = "true";
+    }
+  });
+
+  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопка в section--about-company ТОЛЬКО в шаблоне услуг (service_detail)
+  // 🔑 Используем селектор [data-service="true"] чтобы избежать инициализации на главной странице
+  const serviceAboutButton = document.querySelector(
+    ".section--about-company[data-service='true'] .about-company__button"
+  );
+  if (serviceAboutButton && !serviceAboutButton.dataset.modalInitialized) {
+    serviceAboutButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      openCallModalUniversal();
+
+      console.log("Модальное окно открыто через кнопку о услуге в шаблоне");
+    });
+
+    serviceAboutButton.dataset.modalInitialized = "true";
+  }
+
+  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Мобильная версия кнопки в section--about-company ТОЛЬКО в шаблоне услуг
+  const serviceAboutButtonMobile = document.querySelector(
+    ".section--about-company[data-service='true'] .about-company__button-mobile"
+  );
+  if (
+    serviceAboutButtonMobile &&
+    !serviceAboutButtonMobile.dataset.modalInitialized
+  ) {
+    serviceAboutButtonMobile.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      openCallModalUniversal();
+
+      console.log(
+        "Модальное окно открыто через мобильную кнопку о услуге в шаблоне"
+      );
+    });
+
+    serviceAboutButtonMobile.dataset.modalInitialized = "true";
+  }
+
+  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопки в контейнере .pricing__cards-container (все три кнопки тарифов)
+  const pricingContainers = document.querySelectorAll(
+    ".pricing__cards-container"
+  );
+  pricingContainers.forEach((container) => {
+    const buttons = container.querySelectorAll(".btn--primary");
+
+    buttons.forEach((button) => {
+      if (button && !button.dataset.modalInitialized) {
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          openCallModalUniversal();
+
+          console.log("Модальное окно открыто через кнопку в карточке тарифа");
+        });
+
+        button.dataset.modalInitialized = "true";
+      }
+    });
+  });
+
+  console.log("✅ Универсальные обработчики кнопок инициализированы");
 }
 
 // Плавная прокрутка к секциям
@@ -2345,15 +2732,17 @@ function initMobileMenu() {
 
   /**
    * 📋 РЕНДЕР: Форма обратной связи (quick-response__content)
+   * 🔑 ВАЖНО: Клонируем из #callModal, а не из .section--quick-response,
+   * потому что секция есть только на главной странице, а callModal присутствует везде
    */
   function renderCallForm() {
-    // Находим оригинальную форму в секции quick-response
+    // Находим оригинальную форму в модальном окне #callModal
     const originalForm = document.querySelector(
-      ".section--quick-response .quick-response__content"
+      "#callModal .quick-response__content"
     );
 
     if (!originalForm) {
-      console.warn("Форма quick-response__content не найдена");
+      console.warn("Форма quick-response__content не найдена в #callModal");
       return;
     }
 

@@ -64,7 +64,8 @@ $this->setFrameMode(true);
     </section>
 
     <!-- 2. Секция: Узнайте больше об услуге -->
-    <section class="section section--about-company">
+    <!-- 🔑 data-service="true" помечает эту секцию как часть шаблона услуги для правильной инициализации обработчиков -->
+    <section class="section section--about-company" data-service="true">
         <h2><?= $arResult['PROPERTIES']['ABOUT_TITLE']['VALUE'] ?: 'Узнайте больше о ' . $arResult['NAME'] ?></h2>
         <div class="about-company__image">
             <?php if ($arResult['PROPERTIES']['ABOUT_IMAGE']['VALUE']): ?>
