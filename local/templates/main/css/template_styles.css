@@ -2425,13 +2425,13 @@ body.overlay-active .header--desktop {
   grid-template-areas:
     "header nav"
     "grid grid";
-  gap: 3.125vw /* 60px */ 2.083vw /* 40px */;
+  gap: clamp(40px, 3.125vw, 60px) /* 60px */ 2.083vw /* 40px */;
 }
 
 .special-offers {
   max-width: 1400px;
   margin: 0 auto;
-  margin-bottom: 3.125vw /* 60px */;
+  margin-bottom: clamp(40px, 3.125vw, 60px) /* 60px */;
 }
 
 .special-offers__header {
@@ -2448,42 +2448,42 @@ body.overlay-active .header--desktop {
 .special-offers__header-text > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px) /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: 4.167vw /* 80px */;
-  margin-top: 3.646vw /* 70px */;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-left: clamp(40px, 4.167vw, 80px) /* 80px */;
+  margin-top: clamp(40px, 3.646vw, 70px) /* 70px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .special-offers__header-text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: 4.167vw /* 80px */;
+  margin-left: clamp(40px, 4.167vw, 80px) /* 80px */;
   margin-bottom: 0;
 }
 
 .special-offers__navigation {
   grid-area: nav;
   display: flex;
-  gap: 2.083vw /* 40px */;
+  gap: clamp(24px, 2.083vw, 40px) /* 40px */;
   flex-shrink: 0;
   align-self: flex-end;
-  margin-right: 4.167vw /* 80px */;
+  margin-right: clamp(40px, 4.167vw, 80px) /* 80px */;
 }
 
 .special-offers__nav-btn {
-  width: 1.875vw /* 36px */;
-  height: 1.875vw /* 36px */;
+  width: clamp(28px, 1.875vw, 36px) /* 36px */;
+  height: clamp(28px, 1.875vw, 36px) /* 36px */;
   border: none;
   background: transparent;
   display: flex;
@@ -2528,10 +2528,10 @@ body.overlay-active .header--desktop {
 .special-offers__grid {
   grid-area: grid;
   display: flex;
-  gap: 1.042vw /* 20px */;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-left: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-right: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
   position: relative;
   overflow: hidden;
 }
@@ -2544,7 +2544,7 @@ body.overlay-active .header--desktop {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 15.625vw /* 300px */;
+  width: clamp(200px, 15.625vw, 300px) /* 300px */;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2569,7 +2569,7 @@ body.overlay-active .header--desktop {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 15.625vw /* 300px */;
+  width: clamp(200px, 15.625vw, 300px) /* 300px */;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2589,17 +2589,17 @@ body.overlay-active .header--desktop {
 .special-offers__card {
   background: transparent;
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: clamp(40px, 3.854vw, 74px) /* 74px */;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
   width: calc((100% - (3 * 1.042vw /* 20px */)) / 4);
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-top: 1.042vw /* 20px */;
-  padding-bottom: 2.083vw /* 40px */;
+  padding-left: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-right: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-top: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
   min-height: 100%;
 }
 
@@ -2607,14 +2607,14 @@ body.overlay-active .header--desktop {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2.083vw /* 40px */;
+  margin-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
 }
 
 .special-offers__card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 2.813vw /* 54px */;
+  border-radius: clamp(30px, 2.813vw, 54px) /* 54px */;
   background: transparent;
 }
 
@@ -2630,39 +2630,39 @@ body.overlay-active .header--desktop {
 .special-offers__card-content > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .special-offers__card-content > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
   flex-grow: 1;
 }
 
 .special-offers__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #f42534;
   text-decoration: none;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
   transition: color 0.3s ease;
 }
 
@@ -2682,7 +2682,7 @@ body.overlay-active .header--desktop {
   grid-template-areas:
     "header nav"
     "grid grid";
-  gap: 3.125vw /* 60px */ 2.083vw /* 40px */;
+  gap: clamp(40px, 3.125vw, 60px) /* 60px */ 2.083vw /* 40px */;
 }
 
 .services-opportunities__header {
@@ -2699,42 +2699,42 @@ body.overlay-active .header--desktop {
 .services-opportunities__header-text > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px) /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: 4.167vw /* 80px */;
-  margin-top: 3.646vw /* 70px */;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-left: clamp(40px, 4.167vw, 80px) /* 80px */;
+  margin-top: clamp(40px, 3.646vw, 70px) /* 70px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .services-opportunities__header-text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: 4.167vw /* 80px */;
+  margin-left: clamp(40px, 4.167vw, 80px) /* 80px */;
   margin-bottom: 0;
 }
 
 .services-opportunities__navigation {
   grid-area: nav;
   display: flex;
-  gap: 2.083vw /* 40px */;
+  gap: clamp(24px, 2.083vw, 40px) /* 40px */;
   flex-shrink: 0;
   align-self: flex-end;
-  margin-right: 4.167vw /* 80px */;
+  margin-right: clamp(40px, 4.167vw, 80px) /* 80px */;
 }
 
 .services-opportunities__nav-btn {
-  width: 1.875vw /* 36px */;
-  height: 1.875vw /* 36px */;
+  width: clamp(28px, 1.875vw, 36px) /* 36px */;
+  height: clamp(28px, 1.875vw, 36px) /* 36px */;
   border: none;
   background: transparent;
   display: flex;
@@ -2779,10 +2779,10 @@ body.overlay-active .header--desktop {
 .services-opportunities__grid {
   grid-area: grid;
   display: flex;
-  gap: 1.042vw /* 20px */;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-left: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-right: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
   position: relative;
   overflow: hidden;
 }
@@ -2795,7 +2795,7 @@ body.overlay-active .header--desktop {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 15.625vw /* 300px */;
+  width: clamp(200px, 15.625vw, 300px) /* 300px */;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2820,7 +2820,7 @@ body.overlay-active .header--desktop {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 15.625vw /* 300px */;
+  width: clamp(200px, 15.625vw, 300px) /* 300px */;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -2840,17 +2840,17 @@ body.overlay-active .header--desktop {
 .services-opportunities__card {
   background: transparent;
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: clamp(40px, 3.854vw, 74px) /* 74px */;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
   width: calc((100% - (3 * 1.042vw /* 20px */)) / 4);
-  padding-left: 3.125vw /* 60px */;
-  padding-right: 3.125vw /* 60px */;
-  padding-top: 3.125vw /* 60px */;
-  padding-bottom: 3.125vw /* 60px */;
+  padding-left: clamp(30px, 3.125vw, 60px) /* 60px */;
+  padding-right: clamp(30px, 3.125vw, 60px) /* 60px */;
+  padding-top: clamp(40px, 3.125vw, 60px) /* 60px */;
+  padding-bottom: clamp(40px, 3.125vw, 60px) /* 60px */;
   min-height: 100%;
 }
 
@@ -2873,32 +2873,32 @@ body.overlay-active .header--desktop {
 .services-opportunities__card-content > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .services-opportunities__card-content > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
   flex-grow: 1;
 }
 
 .services-opportunities__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -2917,21 +2917,21 @@ body.overlay-active .header--desktop {
 .section--quick-response {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4.167vw /* 80px */;
+  gap: clamp(40px, 4.167vw, 80px) /* 80px */;
   padding: 0;
 }
 
 .quick-response__content {
   display: flex;
   flex-direction: column;
-  padding-top: 3.646vw /* 70px */;
-  padding-left: 4.167vw /* 80px */;
+  padding-top: clamp(40px, 3.646vw, 70px) /* 70px */;
+  padding-left: clamp(40px, 4.167vw, 80px) /* 80px */;
 }
 
 .quick-response__content > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px) /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -2943,7 +2943,7 @@ body.overlay-active .header--desktop {
 .quick-response__content > p:first-of-type {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -2962,22 +2962,22 @@ body.overlay-active .header--desktop {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 0.521vw /* 10px */;
+  margin-bottom: clamp(8px, 0.521vw, 10px) /* 10px */;
 }
 
 .quick-response__field:nth-of-type(2) {
-  margin-bottom: 2.083vw /* 40px */;
+  margin-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
 }
 
 .quick-response__input {
   width: 100%;
-  padding: 1.563vw /* 30px */ 2.188vw /* 42px */;
-  border: 0.104vw /* 2px */ solid transparent;
-  border-radius: 1.042vw /* 20px */;
+  padding: clamp(20px, 1.563vw, 30px) /* 30px */ 2.188vw /* 42px */;
+  border: clamp(1px, 0.104vw, 2px) /* 2px */ solid transparent;
+  border-radius: clamp(16px, 1.042vw, 20px) /* 20px */;
   background: #ededed;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 400;
   color: #1f1933;
   box-sizing: border-box;
@@ -3067,7 +3067,7 @@ body.overlay-active .header--desktop {
 .quick-response__error {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 0.729vw /* 14px */;
+  font-size: clamp(12px, 0.729vw, 14px) /* 14px */;
   font-weight: 400;
   line-height: 120%;
   color: #9d9d9d;
@@ -3083,18 +3083,18 @@ body.overlay-active .header--desktop {
 /* Показываем текст ошибки */
 .quick-response__field.has-error .quick-response__error {
   opacity: 1;
-  max-height: 2.604vw /* 50px */;
-  margin-top: 0.417vw /* 8px */;
-  padding-top: 0.208vw /* 4px */;
+  max-height: clamp(30px, 2.604vw, 50px) /* 50px */;
+  margin-top: clamp(6px, 0.417vw, 8px) /* 8px */;
+  padding-top: clamp(3px, 0.208vw, 4px) /* 4px */;
   color: #ee3f3f;
 }
 
 /* Показываем текст предупреждения */
 .quick-response__field.has-warning .quick-response__error {
   opacity: 1;
-  max-height: 2.604vw /* 50px */;
-  margin-top: 0.417vw /* 8px */;
-  padding-top: 0.208vw /* 4px */;
+  max-height: clamp(30px, 2.604vw, 50px) /* 50px */;
+  margin-top: clamp(6px, 0.417vw, 8px) /* 8px */;
+  padding-top: clamp(3px, 0.208vw, 4px) /* 4px */;
   color: #ffa500;
 }
 
@@ -3106,14 +3106,14 @@ body.overlay-active .header--desktop {
 .quick-response__form > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 0.833vw /* 16px */;
+  font-size: clamp(12px, 0.833vw, 16px) /* 16px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
   color: #9d9d9d;
-  margin-top: 0.521vw /* 10px */;
+  margin-top: clamp(8px, 0.521vw, 10px) /* 10px */;
 }
 
 .quick-response__agreement a {
@@ -3130,7 +3130,7 @@ body.overlay-active .header--desktop {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.042vw /* 20px */;
+  padding: clamp(16px, 1.042vw, 20px) /* 20px */;
   padding-left: 0;
 }
 
@@ -3138,7 +3138,7 @@ body.overlay-active .header--desktop {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 3.854vw /* 74px */;
+  border-radius: clamp(40px, 3.854vw, 74px) /* 74px */;
 }
 
 .section--blog {
@@ -3148,14 +3148,14 @@ body.overlay-active .header--desktop {
   grid-template-areas:
     "header nav"
     "grid grid";
-  gap: 3.125vw /* 60px */ 2.083vw /* 40px */;
+  gap: clamp(40px, 3.125vw, 60px) /* 60px */ 2.083vw /* 40px */;
 }
 
 /* Секция Блог (Blog / Полезные статьи) */
 .blog {
   max-width: 1400px;
   margin: 0 auto;
-  margin-bottom: 3.125vw /* 60px */;
+  margin-bottom: clamp(40px, 3.125vw, 60px) /* 60px */;
 }
 
 .blog__header {
@@ -3172,42 +3172,42 @@ body.overlay-active .header--desktop {
 .blog__header-text > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px) /* 48px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-left: 4.167vw /* 80px */;
-  margin-top: 3.646vw /* 70px */;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-left: clamp(40px, 4.167vw, 80px) /* 80px */;
+  margin-top: clamp(40px, 3.646vw, 70px) /* 70px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .blog__header-text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #504d5d;
-  margin-left: 4.167vw /* 80px */;
+  margin-left: clamp(40px, 4.167vw, 80px) /* 80px */;
   margin-bottom: 0;
 }
 
 .blog__navigation {
   grid-area: nav;
   display: flex;
-  gap: 2.083vw /* 40px */;
+  gap: clamp(24px, 2.083vw, 40px) /* 40px */;
   flex-shrink: 0;
   align-self: flex-end;
-  margin-right: 4.167vw /* 80px */;
+  margin-right: clamp(40px, 4.167vw, 80px) /* 80px */;
 }
 
 .blog__nav-btn {
-  width: 1.875vw /* 36px */;
-  height: 1.875vw /* 36px */;
+  width: clamp(28px, 1.875vw, 36px) /* 36px */;
+  height: clamp(28px, 1.875vw, 36px) /* 36px */;
   border: none;
   background: transparent;
   display: flex;
@@ -3252,10 +3252,10 @@ body.overlay-active .header--desktop {
 .blog__grid {
   grid-area: grid;
   display: flex;
-  gap: 1.042vw /* 20px */;
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-bottom: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-left: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-right: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-bottom: clamp(16px, 1.042vw, 20px) /* 20px */;
   position: relative;
   overflow: hidden;
 }
@@ -3268,7 +3268,7 @@ body.overlay-active .header--desktop {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 15.625vw /* 300px */;
+  width: clamp(200px, 15.625vw, 300px) /* 300px */;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) 0%,
@@ -3293,7 +3293,7 @@ body.overlay-active .header--desktop {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 15.625vw /* 300px */;
+  width: clamp(200px, 15.625vw, 300px) /* 300px */;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -3313,17 +3313,17 @@ body.overlay-active .header--desktop {
 .blog__card {
   background: transparent;
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) /* 2px */ solid rgba(191, 191, 191, 1);
+  border-radius: clamp(40px, 3.854vw, 74px) /* 74px */;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
   width: calc((100% - (3 * 1.042vw /* 20px */)) / 4);
-  padding-left: 1.042vw /* 20px */;
-  padding-right: 1.042vw /* 20px */;
-  padding-top: 1.042vw /* 20px */;
-  padding-bottom: 2.083vw /* 40px */;
+  padding-left: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-right: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-top: clamp(16px, 1.042vw, 20px) /* 20px */;
+  padding-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
   min-height: 100%;
 }
 
@@ -3331,14 +3331,14 @@ body.overlay-active .header--desktop {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: 2.083vw /* 40px */;
+  margin-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
 }
 
 .blog__card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 2.813vw /* 54px */;
+  border-radius: clamp(30px, 2.813vw, 54px) /* 54px */;
   background: transparent;
 }
 
@@ -3349,13 +3349,13 @@ body.overlay-active .header--desktop {
   width: 100%;
   max-width: max-content;
   padding: 0 2.083vw /* 40px */;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .blog__card-content > h3 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -3366,7 +3366,7 @@ body.overlay-active .header--desktop {
 .blog__card-content > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -3378,7 +3378,7 @@ body.overlay-active .header--desktop {
 .blog__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -3398,7 +3398,7 @@ body.overlay-active .header--desktop {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 0.417vw /* 8px */;
+  gap: clamp(6px, 0.417vw, 8px) /* 8px */;
   white-space: nowrap;
 }
 
@@ -3406,7 +3406,7 @@ body.overlay-active .header--desktop {
 .blog__card-date {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 0.833vw /* 16px */;
+  font-size: clamp(12px, 0.833vw, 16px) /* 16px */;
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -3430,7 +3430,7 @@ body.overlay-active .header--desktop {
 
 /* 15. Секция: Ссылки и информация */
 .section--footer-info {
-  padding: 4.167vw /* 80px */ 4.167vw /* 80px */ 2.656vw /* 51px */;
+  padding: clamp(40px, 4.167vw, 80px) /* 80px */ 4.167vw /* 80px */ 2.656vw /* 51px */;
   margin: 0;
 }
 
@@ -3451,11 +3451,11 @@ body.overlay-active .header--desktop {
 .footer__column > h3 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 2.604vw /* 50px */;
+  margin-bottom: clamp(30px, 2.604vw, 50px) /* 50px */;
 }
 
 /* Визуально скрываем placeholder, но сохраняем пространство */
@@ -3464,7 +3464,7 @@ body.overlay-active .header--desktop {
 }
 
 .footer__section {
-  margin-bottom: 2.604vw /* 50px */;
+  margin-bottom: clamp(30px, 2.604vw, 50px) /* 50px */;
 }
 
 .footer__section:last-child {
@@ -3475,11 +3475,11 @@ body.overlay-active .header--desktop {
 .footer__column > h4 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: 1.458vw /* 28px */;
+  font-size: clamp(20px, 1.458vw, 28px) /* 28px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 1.563vw /* 30px */;
+  margin-bottom: clamp(20px, 1.563vw, 30px) /* 30px */;
 }
 
 .footer__list {
@@ -3488,13 +3488,13 @@ body.overlay-active .header--desktop {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .footer__link {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
@@ -3509,14 +3509,14 @@ body.overlay-active .header--desktop {
 .footer__contact-info {
   display: flex;
   flex-direction: column;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
 }
 
 .footer__phone,
 .footer__email {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   line-height: 100%;
   color: #494555;
   text-decoration: none;
@@ -3530,16 +3530,16 @@ body.overlay-active .header--desktop {
 
 .footer__social {
   display: flex;
-  gap: 1.042vw /* 20px */;
-  margin-top: 0.521vw /* 10px */;
+  gap: clamp(16px, 1.042vw, 20px) /* 20px */;
+  margin-top: clamp(8px, 0.521vw, 10px) /* 10px */;
 }
 
 .footer__social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.167vw /* 80px */;
-  height: 4.167vw /* 80px */;
+  width: clamp(60px, 4.167vw, 80px) /* 80px */;
+  height: clamp(60px, 4.167vw, 80px) /* 80px */;
   border-radius: 100px; /* фиксированной значение px обязательно для круглой иконки! */
   background-color: #ffffff;
 }
@@ -3899,8 +3899,8 @@ body.overlay-active .header--desktop {
 .modal-success__image {
   width: 100%;
   height: auto;
-  border-radius: 3.854vw /* 74px */;
-  margin-bottom: 2.083vw /* 40px */;
+  border-radius: clamp(40px, 3.854vw, 74px) /* 74px */;
+  margin-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
 }
 
 .modal-success__content {
@@ -3909,9 +3909,9 @@ body.overlay-active .header--desktop {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: 3.125vw /* 60px */;
-  margin-right: 3.125vw /* 60px */;
-  margin-bottom: 3.125vw /* 60px */;
+  margin-left: clamp(30px, 3.125vw, 60px) /* 60px */;
+  margin-right: clamp(30px, 3.125vw, 60px) /* 60px */;
+  margin-bottom: clamp(40px, 3.125vw, 60px) /* 60px */;
   padding: 0 3.854 /* 74px */;
 }
 
@@ -3919,18 +3919,18 @@ body.overlay-active .header--desktop {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px) /* 36px */;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-bottom: 0.521vw /* 10px */;
+  margin-bottom: clamp(8px, 0.521vw, 10px) /* 10px */;
 }
 
 .modal-success__content > p {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px) /* 22px */;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
