@@ -1247,7 +1247,7 @@ body.overlay-active .header--desktop {
 
 /* Секция Отзывы */
 .section--reviews {
-  gap: 4.167vw /* 80px */;
+  gap: clamp(40px, 4.167vw, 80px);
   overflow-x: hidden;
   max-width: 100%;
 }
@@ -1255,7 +1255,7 @@ body.overlay-active .header--desktop {
 .reviews__container {
   display: grid;
   grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-  gap: 4.167vw /* 80px */;
+  gap: clamp(40px, 4.167vw, 80px);
   justify-content: space-between;
   margin: 0 auto;
   max-width: 100%;
@@ -1268,9 +1268,9 @@ body.overlay-active .header--desktop {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 3.646vw /* 70px */;
-  padding-left: 4.167vw /* 80px */;
-  padding-bottom: 4.167vw /* 80px */;
+  padding-top: clamp(40px, 3.646vw, 70px);
+  padding-left: clamp(40px, 4.167vw, 80px);
+  padding-bottom: clamp(40px, 4.167vw, 80px);
   flex-shrink: 0;
   min-width: 0;
 }
@@ -1278,7 +1278,7 @@ body.overlay-active .header--desktop {
 .reviews__left-block > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -1290,8 +1290,8 @@ body.overlay-active .header--desktop {
 /* Блок справа: Карточки отзывов */
 .reviews__cards-block {
   column-count: 3;
-  column-gap: 1.042vw /* 20px */;
-  padding: 1.042vw /* 20px */;
+  column-gap: clamp(16px, 1.042vw, 20px);
+  padding: clamp(16px, 1.042vw, 20px);
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -1306,11 +1306,11 @@ body.overlay-active .header--desktop {
 .reviews__cards-block::after {
   content: "";
   position: absolute;
-  border-radius: 4.896vw /* 94px */;
+  border-radius: clamp(50px, 4.896vw, 94px);
   bottom: 0;
   left: 0;
   right: 0;
-  height: 15.625vw /* 300px */;
+  height: clamp(200px, 15.625vw, 300px);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
@@ -1327,13 +1327,13 @@ body.overlay-active .header--desktop {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1.042vw /* 20px */;
-  padding: 2.604vw /* 50px */;
+  gap: clamp(16px, 1.042vw, 20px);
+  padding: clamp(30px, 2.604vw, 50px);
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid rgba(191, 191, 191, 1);
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) solid rgba(191, 191, 191, 1);
+  border-radius: clamp(40px, 3.854vw, 74px);
   break-inside: avoid;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px);
   min-height: 100%;
   max-width: 100%;
   width: 100%;
@@ -1345,16 +1345,16 @@ body.overlay-active .header--desktop {
 /* Хедер карточки: Фото + Инфо */
 .reviews__card-header {
   display: flex;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(12px, 1.042vw, 20px);
   align-items: center;
   width: 100%;
 }
 
 /* Фото пользователя */
 .reviews__card-photo {
-  width: 4.167vw /* 80px */;
-  height: 4.167vw /* 80px */;
-  border-radius: 5.625vw /* 108px */;
+  width: clamp(50px, 4.167vw, 80px);
+  height: clamp(50px, 4.167vw, 80px);
+  border-radius: clamp(60px, 5.625vw, 108px);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -1364,7 +1364,7 @@ body.overlay-active .header--desktop {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.417vw /* 8px */;
+  gap: clamp(6px, 0.417vw, 8px);
   justify-content: center;
 }
 
@@ -1372,7 +1372,7 @@ body.overlay-active .header--desktop {
 .reviews__card-name {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -1383,14 +1383,14 @@ body.overlay-active .header--desktop {
 /* Мета-информация: компания и дата */
 .reviews__card-meta {
   display: flex;
-  gap: 0.417vw /* 8px */;
+  gap: clamp(6px, 0.417vw, 8px);
 }
 
 /* Название компании */
 .reviews__card-company {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 0.833vw /* 16px */;
+  font-size: clamp(12px, 0.833vw, 16px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1403,7 +1403,7 @@ body.overlay-active .header--desktop {
 .reviews__card-date {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 0.833vw /* 16px */;
+  font-size: clamp(12px, 0.833vw, 16px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1415,7 +1415,7 @@ body.overlay-active .header--desktop {
 .reviews__card > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1429,7 +1429,7 @@ body.overlay-active .header--desktop {
 .reviews__card-link {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 500;
   font-style: normal;
   line-height: 100%;
@@ -1488,7 +1488,7 @@ body.overlay-active .header--desktop {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  gap: 3.646vw /* 70px */;
+  gap: clamp(40px, 3.646vw, 70px);
   padding: 0;
 }
 
@@ -1497,14 +1497,14 @@ body.overlay-active .header--desktop {
   grid-row: 1;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #1f1933;
-  margin-top: 3.646vw /* 70px */;
-  margin-left: 4.167vw /* 80px */;
+  margin-top: clamp(40px, 3.646vw, 70px);
+  margin-left: clamp(40px, 4.167vw, 80px);
   margin-bottom: 0;
 }
 
@@ -1516,8 +1516,8 @@ body.overlay-active .header--desktop {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 1.042vw /* 20px */;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-left: clamp(16px, 1.042vw, 20px);
+  margin-bottom: clamp(16px, 1.042vw, 20px);
   min-width: 0;
 }
 
@@ -1526,7 +1526,7 @@ body.overlay-active .header--desktop {
   height: 100%;
 
   object-fit: contain;
-  border-radius: 3.854vw /* 74px */;
+  border-radius: clamp(40px, 3.854vw, 74px);
   display: block;
 }
 
@@ -1536,22 +1536,22 @@ body.overlay-active .header--desktop {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 3.438vw /* 66px */;
-  margin-right: 3.646vw /* 70px */;
-  margin-top: 3.646vw /* 70px */;
-  margin-bottom: 3.646vw /* 70px */;
+  gap: clamp(40px, 3.438vw, 66px);
+  margin-right: clamp(40px, 3.646vw, 70px);
+  margin-top: clamp(40px, 3.646vw, 70px);
+  margin-bottom: clamp(40px, 3.646vw, 70px);
 }
 
 .ready-to-start__text {
   display: flex;
   flex-direction: column;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px);
 }
 
 .ready-to-start__text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1562,14 +1562,14 @@ body.overlay-active .header--desktop {
 
 /* Модификатор для альтернативной версии ready-to-start с списком */
 .section--ready-to-start-alt .ready-to-start__text {
-  gap: 2.604vw /* 50px */;
+  gap: clamp(30px, 2.604vw, 50px);
 }
 
 /* Описание (первый абзац) в альтернативной версии */
 .ready-to-start__text > p {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
@@ -1583,20 +1583,20 @@ body.overlay-active .header--desktop {
   list-style: none;
   padding: 0;
   margin: 0;
-  padding-left: 1.563vw /* 30px */;
-  border-left: 0.104vw /* 2px */ solid #f42534;
+  padding-left: clamp(20px, 1.563vw, 30px);
+  border-left: clamp(1px, 0.104vw, 2px) solid #f42534;
 }
 
 .ready-to-start__text > ul li {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0%;
   color: #494555;
-  margin-bottom: 0.26vw /* 5px */;
+  margin-bottom: clamp(4px, 0.26vw, 5px);
 }
 
 .ready-to-start__text > ul li:last-child {
@@ -1917,13 +1917,13 @@ body.overlay-active .header--desktop {
 
 /* Секция FAQ */
 .section--faq {
-  gap: 4.167vw /* 80px */;
+  gap: clamp(40px, 4.167vw, 80px);
 }
 
 .faq__container {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 4.167vw /* 80px */;
+  gap: clamp(40px, 4.167vw, 80px);
   justify-content: space-between;
   margin: 0 auto;
 }
@@ -1933,15 +1933,15 @@ body.overlay-active .header--desktop {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 3.646vw /* 70px */;
-  padding-left: 4.167vw /* 80px */;
-  padding-bottom: 4.167vw /* 80px */;
+  padding-top: clamp(40px, 3.646vw, 70px);
+  padding-left: clamp(40px, 4.167vw, 80px);
+  padding-bottom: clamp(40px, 4.167vw, 80px);
 }
 
 .faq__left-block > h2 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 2.5vw /* 48px */;
+  font-size: clamp(28px, 2.5vw, 48px);
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
@@ -1953,8 +1953,8 @@ body.overlay-active .header--desktop {
 /* Блок справа: Карточки FAQ */
 .faq__cards-block {
   column-count: 2;
-  column-gap: 1.042vw /* 20px */;
-  padding: 1.042vw /* 20px */;
+  column-gap: clamp(16px, 1.042vw, 20px);
+  padding: clamp(16px, 1.042vw, 20px);
   position: relative;
 }
 
@@ -1965,12 +1965,12 @@ body.overlay-active .header--desktop {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 0;
-  padding: 2.604vw /* 50px */;
+  padding: clamp(30px, 2.604vw, 50px);
   box-sizing: border-box;
-  border: 0.104vw /* 2px */ solid #bfbfbf;
-  border-radius: 3.854vw /* 74px */;
+  border: clamp(1px, 0.104vw, 2px) solid #bfbfbf;
+  border-radius: clamp(40px, 3.854vw, 74px);
   break-inside: avoid;
-  margin-bottom: 1.042vw /* 20px */;
+  margin-bottom: clamp(16px, 1.042vw, 20px);
   transition: border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1984,7 +1984,7 @@ body.overlay-active .header--desktop {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1.042vw /* 20px */;
+  gap: clamp(16px, 1.042vw, 20px);
   width: 100%;
 }
 
@@ -1992,7 +1992,7 @@ body.overlay-active .header--desktop {
 .faq__question-text {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.875vw /* 36px */;
+  font-size: clamp(20px, 1.875vw, 36px);
   font-weight: 700;
   font-style: normal;
   line-height: 120%;
@@ -2009,8 +2009,8 @@ body.overlay-active .header--desktop {
   padding: 0;
   cursor: pointer;
   flex-shrink: 0;
-  width: 2.083vw /* 40px */;
-  height: 2.083vw /* 40px */;
+  width: clamp(32px, 2.083vw, 40px);
+  height: clamp(32px, 2.083vw, 40px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2032,7 +2032,7 @@ body.overlay-active .header--desktop {
 .faq__answer {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
-  font-size: 1.146vw /* 22px */;
+  font-size: clamp(16px, 1.146vw, 22px);
   font-weight: 400;
   font-style: normal;
   line-height: 140%;
@@ -2052,9 +2052,9 @@ body.overlay-active .header--desktop {
 
 /* Активный ответ (раскрыт) */
 .faq__card.active .faq__answer {
-  max-height: 78.125vw /* 1500px */;
+  max-height: clamp(1000px, 78.125vw, 1500px);
   opacity: 1;
-  padding-top: 1.563vw /* 30px */;
+  padding-top: clamp(20px, 1.563vw, 30px);
   transform: translateY(0);
 }
 
