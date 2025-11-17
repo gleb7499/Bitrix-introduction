@@ -58,25 +58,25 @@
   --header-offset-top: clamp(16px, 1.042vw, 20px);
   --header-padding-vertical: clamp(16px, 1.042vw, 20px);
   --header-border-radius: clamp(30px, 2.448vw, 47px);
-  
+
   /* Стандартные отступы и размеры с ограничениями */
   --spacing-xs: clamp(5px, 0.26vw, 8px);
   --spacing-sm: clamp(10px, 0.521vw, 12px);
   --spacing-md: clamp(16px, 1.042vw, 20px);
   --spacing-lg: clamp(32px, 2.083vw, 40px);
   --spacing-xl: clamp(60px, 4.167vw, 80px);
-  
+
   /* Размеры шрифтов с ограничениями */
   --font-size-base: clamp(16px, 1.146vw, 22px);
   --font-size-lg: clamp(20px, 1.354vw, 26px);
   --font-size-xl: clamp(24px, 1.875vw, 36px);
   --font-size-2xl: clamp(28px, 2.5vw, 48px);
   --font-size-3xl: clamp(36px, 3.333vw, 64px);
-  
+
   /* Максимальная ширина контента */
-  --max-content-width: 1600px;
+  --max-content-width: 1900px;
   --max-section-width: 1400px;
-  
+
   /* Для мобильной версии (переопределяется в медиа-запросе) */
   --header-mobile-offset: 10px;
   --header-mobile-height: 82px; /* padding 20px * 2 + примерная высота контента 42px */
@@ -98,9 +98,9 @@ body {
   line-height: 1.6;
   color: #333;
   background-color: #e5e5e5;
-  /* Динамический padding: верхний = отступ + высота header + доп. отступ, боковые = 20px (адаптивные) */
-  padding: calc(var(--header-offset-top) + var(--header-height, 94px) + 20px)
-    var(--spacing-md) 0;
+  /* Динамический padding: верхний = отступ + высота header + доп. отступ, боковые = 0 (отступы теперь в main) */
+  padding: calc(var(--header-offset-top) + var(--header-height, 94px) + 20px) 0
+    0;
   transition: none;
 }
 
@@ -113,6 +113,10 @@ body.menu-open {
 main {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 img {
@@ -252,7 +256,8 @@ body.overlay-active .header--desktop {
   width: 100%;
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md)
+    var(--spacing-lg);
 }
 
 .header__content {
@@ -309,6 +314,7 @@ body.overlay-active .header--desktop {
   display: inline-flex;
   align-items: center;
   gap: clamp(5px, 0.313vw, 6px);
+  white-space: nowrap;
 }
 
 .nav__link-icon {
@@ -381,7 +387,8 @@ body.overlay-active .header--desktop {
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 1.042vw, 20px);
-  box-shadow: 0 clamp(8px, 0.521vw, 10px) clamp(30px, 2.604vw, 50px) rgba(0, 0, 0, 0.1);
+  box-shadow: 0 clamp(8px, 0.521vw, 10px) clamp(30px, 2.604vw, 50px)
+    rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
 
@@ -2262,7 +2269,8 @@ body.overlay-active .header--desktop {
   background: rgba(255, 255, 255, 1);
   border-radius: clamp(16px, 1.042vw, 20px);
   padding: clamp(20px, 1.563vw, 30px) clamp(28px, 2.188vw, 42px);
-  box-shadow: 0 clamp(3px, 0.208vw, 4px) clamp(16px, 1.042vw, 20px) rgba(0, 0, 0, 0.1);
+  box-shadow: 0 clamp(3px, 0.208vw, 4px) clamp(16px, 1.042vw, 20px)
+    rgba(0, 0, 0, 0.1);
 }
 
 .track-group__nav-btn {
@@ -3430,7 +3438,8 @@ body.overlay-active .header--desktop {
 
 /* 15. Секция: Ссылки и информация */
 .section--footer-info {
-  padding: clamp(40px, 4.167vw, 80px) /* 80px */ 4.167vw /* 80px */ 2.656vw /* 51px */;
+  padding: clamp(40px, 4.167vw, 80px) /* 80px */ 4.167vw /* 80px */ 2.656vw
+    /* 51px */;
   margin: 0;
 }
 
@@ -3593,14 +3602,16 @@ body.overlay-active .header--desktop {
   position: fixed;
   /* Позиционируем под header */
   top: calc(
-    var(--header-offset-top) + var(--header-height, 94px) + clamp(16px, 1.042vw, 20px)
+    var(--header-offset-top) + var(--header-height, 94px) +
+      clamp(16px, 1.042vw, 20px)
   );
   left: clamp(16px, 1.042vw, 20px);
   right: clamp(16px, 1.042vw, 20px);
   gap: clamp(40px, 4.167vw, 80px);
   border-radius: clamp(50px, 4.896vw, 94px);
   background: #ffffff;
-  box-shadow: 0 clamp(16px, 1.042vw, 20px) clamp(60px, 5.208vw, 100px) rgba(0, 0, 0, 0.15);
+  box-shadow: 0 clamp(16px, 1.042vw, 20px) clamp(60px, 5.208vw, 100px)
+    rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr auto;
   justify-content: space-between;
@@ -3824,7 +3835,8 @@ body.overlay-active .header--desktop {
   height: auto;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 clamp(16px, 1.042vw, 20px) clamp(60px, 5.208vw, 100px) rgba(0, 0, 0, 0.15);
+  box-shadow: 0 clamp(16px, 1.042vw, 20px) clamp(60px, 5.208vw, 100px)
+    rgba(0, 0, 0, 0.15);
   transform: scale(0.9) translateY(0);
   opacity: 0;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
@@ -4025,6 +4037,12 @@ img {
     --header-mobile-offset: 10px;
     --header-mobile-height: 82px; /* padding 20px * 2 + высота контента ~42px */
     -webkit-tap-highlight-color: transparent;
+  }
+
+  .main {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   /* ========================================
