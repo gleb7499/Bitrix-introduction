@@ -11,72 +11,63 @@ $APPLICATION->SetTitle("Главная");
         <section class="section section--hero">
             <div class="hero__content">
                 <div class="hero__text-group">
-                    <h1>ИТ-инфраструктура нового уровня</h1>
-                    <p>
-                        Мы помогаем бизнесу автоматизировать процессы, обеспечивать
-                        безопасность и создавать ИТ-инфраструктуру
-                    </p>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/hero_title.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Заголовок Hero-секции"]
+                    ); ?>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/hero_description.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Описание Hero-секции"]
+                    ); ?>
                 </div>
                 <button class="btn btn--primary hero__button">Заказать консультацию</button>
             </div>
             <div class="hero__image">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/a-new-level-of-IT-infrastructure.png"
-                    alt="ИТ-инфраструктура нового уровня" loading="lazy" />
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/hero_image.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Изображение Hero-секции"]
+                ); ?>
             </div>
             <button class="btn btn--primary hero__button-mobile">Заказать консультацию</button>
         </section>
 
         <!-- 2. Секция: Преимущества работы с нами -->
         <section class="section section--advantages">
-            <h2>Преимущества работы с нами</h2>
-            <p>
-                Надёжность, скорость, контроль и безопасность ваших бизнес-процессов
-            </p>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/advantages_title.php",
+                [],
+                ["MODE" => "html", "NAME" => "Заголовок секции Преимущества"]
+            ); ?>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/advantages_subtitle.php",
+                [],
+                ["MODE" => "html", "NAME" => "Подзаголовок секции Преимущества"]
+            ); ?>
 
             <div class="advantages__grid">
-                <!-- Карточка 1: Защита данных -->
-                <div class="advantage-card">
-                    <div class="advantage-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/fast-solution-section-advantages.png"
-                            alt="Защита данных" loading="lazy" />
-                    </div>
-                    <div class="advantage-card__content">
-                        <h3>Оперативное решение задач</h3>
-                    </div>
-                </div>
-
-                <!-- Карточка 2: Оперативность -->
-                <div class="advantage-card">
-                    <div class="advantage-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/individual-approach-section-advantages.png"
-                            alt="Оперативность" loading="lazy" />
-                    </div>
-                    <div class="advantage-card__content">
-                        <h3>Индивидуальный подход</h3>
-                    </div>
-                </div>
-
-                <!-- Карточка 3: Полный контроль -->
-                <div class="advantage-card">
-                    <div class="advantage-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/optimizing-IT-costs-section-advantages.png"
-                            alt="Полный контроль" loading="lazy" />
-                    </div>
-                    <div class="advantage-card__content">
-                        <h3>Оптимизация ИТ-расходов</h3>
-                    </div>
-                </div>
-
-                <!-- Карточка 4: Аудит и подход -->
-                <div class="advantage-card">
-                    <div class="advantage-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/range-of-IT-services-section-advantages.png"
-                            alt="Аудит и подход" loading="lazy" />
-                    </div>
-                    <div class="advantage-card__content">
-                        <h3>Комплекс ИТ-услуг</h3>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/advantages_card_1.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка преимущества 1"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/advantages_card_2.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка преимущества 2"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/advantages_card_3.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка преимущества 3"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/advantages_card_4.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка преимущества 4"]
+                ); ?>
             </div>
         </section>
 
@@ -84,8 +75,16 @@ $APPLICATION->SetTitle("Главная");
         <section class="section section--services">
             <div class="services__header">
                 <div class="services__header-text">
-                    <h2>Услуги, открывающие новые возможности</h2>
-                    <p>Откройте новые возможности с нашими услугами</p>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/services_title.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Заголовок секции Услуги"]
+                    ); ?>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/services_subtitle.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Подзаголовок секции Услуги"]
+                    ); ?>
                 </div>
             </div>
 
@@ -101,136 +100,63 @@ $APPLICATION->SetTitle("Главная");
             </div>
 
             <div class="services__grid">
-                <!-- Карточка 1: Услуги 1С -->
-                <div class="services__card">
-                    <div class="services__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/1C-services-section-service.png"
-                            alt="Услуги 1С" loading="lazy" />
-                    </div>
-                    <h3>Услуги 1С</h3>
-                    <ul class="services__card-menu">
-                        <li><a href="/services/1c/implementation/">Внедрение 1С</a></li>
-                        <li><a href="/services/1c/customization/">Доработка 1С</a></li>
-                        <li><a href="/services/1c/support/">Техническая поддержка 1С</a></li>
-                        <li><a href="/services/1c/maintenance/">Сопровождение 1С</a></li>
-                        <li><a href="/services/1c/update/">Обновление 1С</a></li>
-                        <li><a href="/services/1c/setup/">Настройка 1С</a></li>
-                        <li><a href="/services/1c/development/">Разработка 1С</a></li>
-                        <li><a href="/services/1c/rent/">Аренда 1С</a></li>
-                    </ul>
-                </div>
-
-                <!-- Карточка 2: Битрикс 24 -->
-                <div class="services__card">
-                    <div class="services__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/bitrix-24-section-service.png"
-                            alt="Битрикс 24" loading="lazy" />
-                    </div>
-                    <h3>Битрикс 24</h3>
-                    <ul class="services__card-menu">
-                        <li><a href="/services/bitrix24/implementation/">Внедрение Битрикс 24</a></li>
-                        <li><a href="/services/bitrix24/maintenance/">Обслуживание Битрикс 24</a></li>
-                        <li><a href="/services/bitrix24/configuration/">Настройка Битрикс 24</a></li>
-                        <li><a href="/services/bitrix24/development/">Разработка Битрикс 24</a></li>
-                    </ul>
-                </div>
-
-                <!-- Карточка 3: ИТ-решения и оборудование -->
-                <div class="services__card">
-                    <div class="services__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/IT-solutions-and-equipment-section-service.png"
-                            alt="ИТ-решения и оборудование" loading="lazy" />
-                    </div>
-                    <h3>ИТ-решения и оборудование</h3>
-                    <ul class="services__card-menu">
-                        <li><a href="/services/IT-infrastructure-and-equipment/creation/">Создание ИТ инфраструктуры</a>
-                        </li>
-                        <li><a href="/services/IT-infrastructure-and-equipment/server-installation/">Установка серверного оборудования и ПО</a></li>
-                        <li><a href="/services/IT-infrastructure-and-equipment/pc-support/">ИТ-обслуживание ПК и серверов</a></li>
-                        <li><a href="/services/IT-infrastructure-and-equipment/lan/">Монтаж локальных сетей</a></li>
-                        <li><a href="/services/IT-infrastructure-and-equipment/sks/">Монтаж СКС</a></li>
-                        <li><a href="/services/IT-infrastructure-and-equipment/video-surveillance/">Установка систем видеонаблюдения</a></li>
-                    </ul>
-                </div>
-
-                <!-- Карточка 4: Серверные решения и сети -->
-                <div class="services__card">
-                    <div class="services__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/server-solutions-and-networks-section-service.png"
-                            alt="Серверные решения и сети" loading="lazy" />
-                    </div>
-                    <h3>Серверные решения и сети</h3>
-                    <ul class="services__card-menu">
-                        <li><a href="/services/server-solutions-and-networks/implementation-of-data-storage-solutions/">Внедрение хранилищ данных</a></li>
-                        <li><a href="/services/server-solutions-and-networks/mail-server/">Внедрение почтового сервера</a></li>
-                        <li><a href="/services/server-solutions-and-networks/vpn/">Корпоративный VPN</a></li>
-                    </ul>
-                </div>
-
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/services_card_1c.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка услуг 1С"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/services_card_bitrix24.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка услуг Битрикс 24"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/services_card_it_solutions.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка ИТ-решения и оборудование"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/services_card_server_solutions.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка Серверные решения и сети"]
+                ); ?>
             </div>
         </section>
 
         <!-- 4. Секция: Как построена наша работа? -->
         <section class="section section--work-process">
-            <h2>Как проходит внедрение CRM?</h2>
-            <p>
-                Анализ, настройка, интеграция и обучение для эффективности
-            </p>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/work_process_title.php",
+                [],
+                ["MODE" => "html", "NAME" => "Заголовок секции Процесс работы"]
+            ); ?>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/work_process_subtitle.php",
+                [],
+                ["MODE" => "html", "NAME" => "Подзаголовок секции Процесс работы"]
+            ); ?>
 
             <div class="work-process__grid">
-                <!-- Карточка 1: Консультация -->
-                <div class="work-process-card">
-                    <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/consultation.png" alt="Консультация"
-                            loading="lazy" />
-                    </div>
-                    <div class="work-process-card__content">
-                        <h3>Консультация</h3>
-                        <p>Проведём аудит процессов и определим ключевые задачи для оптимизации</p>
-                    </div>
-                </div>
-
-                <!-- Карточка 2: Выбор решения -->
-                <div class="work-process-card">
-                    <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/choosing-solution.png" alt="Выбор решения"
-                            loading="lazy" />
-                    </div>
-                    <div class="work-process-card__content">
-                        <h3>Выбор решения</h3>
-                        <p>
-                            Предложим оптимальные варианты внедрения и обслуживания ИТ-инфраструктуры
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Карточка 3: Заключение договора -->
-                <div class="work-process-card">
-                    <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/conclusion-of-an-agreement.png"
-                            alt="Заключение договора" loading="lazy" />
-                    </div>
-                    <div class="work-process-card__content">
-                        <h3>Заключение договора</h3>
-                        <p>
-                            Согласуем объём работ, сроки, стоимость и условия сотрудничества
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Карточка 4: Внедрение -->
-                <div class="work-process-card">
-                    <div class="work-process-card__image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/integration.png" alt="Внедрение"
-                            loading="lazy" />
-                    </div>
-                    <div class="work-process-card__content">
-                        <h3>Внедрение</h3>
-                        <p>
-                            Установим оборудование, настроим ПО и проверим работу системы
-                        </p>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/work_process_card_1.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка процесса 1 - Консультация"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/work_process_card_2.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка процесса 2 - Выбор решения"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/work_process_card_3.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка процесса 3 - Заключение договора"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/work_process_card_4.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка процесса 4 - Внедрение"]
+                ); ?>
             </div>
 
             <div class="work-process__navigation">
@@ -247,24 +173,25 @@ $APPLICATION->SetTitle("Главная");
 
         <!-- 5. Секция: Узнайте больше о нашей компании -->
         <section class="section section--about-company">
-            <h2>
-                Узнайте больше о нашей компании
-            </h2>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/about_company_title.php",
+                [],
+                ["MODE" => "html", "NAME" => "Заголовок секции О компании"]
+            ); ?>
             <div class="about-company__image">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/more-about-the-company.png"
-                    alt="Узнайте больше о нашей компании" loading="lazy" />
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/about_company_image.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Изображение секции О компании"]
+                ); ?>
             </div>
             <div class="about-company__content">
                 <div class="about-company__text">
-                    <p>
-                        Мы — команда профессионалов, предлагающих полный спектр ИТ-услуг для
-                        вашего бизнеса.
-                    </p>
-                    <p>
-                        Наши решения позволяют оптимизировать процессы и повысить эффективность работы.
-                        Мы работаем с компаниями всех размеров и отраслей, обеспечивая высококачественное
-                        внедрение и поддержку систем.
-                    </p>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/about_company_text.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Текст секции О компании"]
+                    ); ?>
                 </div>
                 <button class="btn btn--primary about-company__button">Подробнее о компании</button>
             </div>
@@ -273,46 +200,44 @@ $APPLICATION->SetTitle("Главная");
 
         <!-- 6. Секция: Наши достижения и результаты -->
         <section class="section section--achievements">
-            <h2>Наши достижения и результаты</h2>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/achievements_title.php",
+                [],
+                ["MODE" => "html", "NAME" => "Заголовок секции Достижения"]
+            ); ?>
 
             <div class="achievements__grid">
-                <!-- Карточка 1: 50+ -->
-                <div class="achievements__card">
-                    <div class="achievements__card-content">
-                        <div class="achievements__card-value">50+</div>
-                        <div class="achievements__card-label">Постоянных клиентов</div>
-                    </div>
-                </div>
-
-                <!-- Карточка 2: -51% -->
-                <div class="achievements__card">
-                    <div class="achievements__card-content">
-                        <div class="achievements__card-value">-51%</div>
-                        <div class="achievements__card-label">
-                            Снижение затрат бизнеса клиентов
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Карточка 3: +37% -->
-                <div class="achievements__card">
-                    <div class="achievements__card-content">
-                        <div class="achievements__card-value">+37%</div>
-                        <div class="achievements__card-label">
-                            Рост эффективности бизнеса клиентов
-                        </div>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/achievements_card_1.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка достижения 1"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/achievements_card_2.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка достижения 2"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/achievements_card_3.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка достижения 3"]
+                ); ?>
             </div>
         </section>
 
         <!-- 7. Секция: Более 50 постоянных клиентов с нами -->
         <section class="section section--clients">
             <div class="clients__header">
-                <h2>Более 50 постоянных клиентов с нами</h2>
-                <p>
-                    Доверие 50+ клиентов подтверждает качество нашего обслуживания
-                </p>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/clients_title.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Заголовок секции Клиенты"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/clients_subtitle.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Подзаголовок секции Клиенты"]
+                ); ?>
             </div>
 
             <div class="clients__grid">
@@ -455,94 +380,25 @@ $APPLICATION->SetTitle("Главная");
                 <!-- Карточки карусели -->
                 <div class="track-group__cards">
                     <!-- Карточка 1: ИТ для Трак Групп -->
-                    <div class="track-group__card track-group__card--active">
-                        <div class="track-group__content">
-                            <h2>ИТ для Трак Групп</h2>
-                            <p>
-                                Защита сети и хранилище данных
-                            </p>
-                            <p>
-                                Для компании была разработана и внедрена интегрированная
-                                система для защиты локальной сети, которая включала в себя
-                                установку надежного файервола и настройку безопасных каналов
-                                связи для всех подразделений компаний. Также была разработана
-                                система централизованного хранения данных, обеспечивающая
-                                быстрый и безопасный доступ к информации для всех сотрудников.
-                            </p>
-                            <ul class="track-group__list">
-                                <li>
-                                    Обеспечена защита сети и централизованное хранение данных
-                                </li>
-                                <li>Внедрены 1С, Exchange и Project Server</li>
-                                <li>Повышена эффективность управления проектами</li>
-                            </ul>
-                            <button class="btn btn--primary track-group__button">Хочу так же</button>
-                        </div>
-                        <div class="track-group__image">
-                            <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/IT-truck-group-section-track-group.png"
-                                alt="ИТ для Трак Групп" loading="lazy" />
-                        </div>
-                        <button class="btn btn--primary track-group__button-mobile">Хочу так же</button>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/track_group_case_1.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Кейс 1 Track Group (ИТ для Трак Групп)"]
+                    ); ?>
 
                     <!-- Карточка 2: ИТ для видеостудии -->
-                    <div class="track-group__card">
-                        <div class="track-group__content">
-                            <h2>ИТ для видеостудии</h2>
-                            <p>
-                                Высокоскоростное хранилище и GPU-серверы
-                            </p>
-                            <p>
-                                Для видеостудии была разработана система с высокоскоростным
-                                хранилищем данных объемом свыше 200 ТБ для работы с большими
-                                видеофайлами. Установлены GPU-серверы для ускоренной обработки
-                                видео и рендеринга. Все данные хранятся в зашифрованном,
-                                обеспечивающим безопасный доступ.
-                            </p>
-                            <ul class="track-group__list">
-                                <li>Создано высокоскоростное хранилище данных</li>
-                                <li>
-                                    Установлен GPU-сервер, ускоряющий обработку видео на 80 %
-                                </li>
-                                <li>Обеспечен безопасный и стабильный доступ к данным</li>
-                            </ul>
-                            <button class="btn btn--primary track-group__button">Хочу так же</button>
-                        </div>
-                        <div class="track-group__image">
-                            <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/IT-video-studio-section-track-group.png"
-                                alt="ИТ для видеостудии" loading="lazy" />
-                        </div>
-                        <button class="btn btn--primary track-group__button-mobile">Хочу так же</button>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/track_group_case_2.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Кейс 2 Track Group (ИТ для видеостудии)"]
+                    ); ?>
 
                     <!-- Карточка 3: ИТ для Консалтинг Логистики -->
-                    <div class="track-group__card">
-                        <div class="track-group__content">
-                            <h2>ИТ для Консалтинг Логистики</h2>
-                            <p>
-                                Защита сети и автоматизация процессов
-                            </p>
-                            <p>
-                                Для компании была внедрена система защиты локальной сети с
-                                установкой файервола, созданием защищённых каналов связи и
-                                даже настроено централизованное файловое хранилище для рабочих
-                                документов и данных. Внедрены решения для автоматизации
-                                работы: 1С для учёта и финансов, Exchange для корпоративной
-                                почты и Project Server для управления проектами.
-                            </p>
-                            <ul class="track-group__list">
-                                <li>Обеспечена защита сети и хранение данных</li>
-                                <li>Внедрены 1С, Exchange и Project Server</li>
-                                <li>Ускорено управление проектами и документооборотом</li>
-                            </ul>
-                            <button class="btn btn--primary track-group__button">Хочу так же</button>
-                        </div>
-                        <div class="track-group__image">
-                            <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/IT-consulting-logistics-section-track-group.png"
-                                alt="ИТ для Консалтинг Логистики" loading="lazy" />
-                        </div>
-                        <button class="btn btn--primary track-group__button-mobile">Хочу так же</button>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/track_group_case_3.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Кейс 3 Track Group (ИТ для Консалтинг Логистики)"]
+                    ); ?>
                 </div>
             </div>
         </section>
@@ -552,7 +408,11 @@ $APPLICATION->SetTitle("Главная");
             <div class="reviews__container">
                 <!-- Блок слева: Заголовок и кнопка -->
                 <div class="reviews__left-block">
-                    <h2>Отзывы</h2>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/reviews_title.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Заголовок секции Отзывы"]
+                    ); ?>
                     <button class="btn btn--primary">Все отзывы</button>
                 </div>
 
@@ -692,25 +552,22 @@ $APPLICATION->SetTitle("Главная");
 
         <!-- 10. Секция: Готовы начать? Узнайте, как мы можем помочь! -->
         <section class="section section--ready-to-start">
-            <h2>
-                Готовы начать? Узнайте, как мы можем помочь!
-            </h2>
-            <div class="ready-to-start__image">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/ready-to-start-img.png" alt="Готовы начать?"
-                    loading="lazy" />
-            </div>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/ready_to_start_title.php",
+                [],
+                ["MODE" => "html", "NAME" => "Заголовок секции Готовы начать"]
+            ); ?>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/ready_to_start_image.php",
+                [],
+                ["MODE" => "html", "NAME" => "Картинка секции Готовы начать"]
+            ); ?>
             <div class="ready-to-start__content">
-                <div class="ready-to-start__text">
-                    <p>
-                        Получите консультацию по автоматизации и внедрению ИТ-решений. Мы
-                        подберём оптимальные инструменты для управления и роста.
-                    </p>
-                    <p>
-                        Наши эксперты проанализируют задачи, предложат решения и покажут,
-                        как технологии снизят издержки и ускорят бизнес. Начните цифровую
-                        трансформацию.
-                    </p>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/ready_to_start_text.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Текст секции Готовы начать"]
+                ); ?>
                 <button class="btn btn--primary ready-to-start__button">Получить консультацию</button>
             </div>
             <button class="btn btn--primary ready-to-start__button-mobile">Получить консультацию</button>
@@ -720,10 +577,16 @@ $APPLICATION->SetTitle("Главная");
         <section class="section section--special-offers">
             <div class="special-offers__header">
                 <div class="special-offers__header-text">
-                    <h2>Специальные предложения</h2>
-                    <p>
-                        Скидки акции и предложения на ИТ-инфраструктуру
-                    </p>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/special_offers_title.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Заголовок секции Специальные предложения"]
+                    ); ?>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/special_offers_subtitle.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Подзаголовок секции Специальные предложения"]
+                    ); ?>
                 </div>
             </div>
 
@@ -740,66 +603,32 @@ $APPLICATION->SetTitle("Главная");
 
             <div class="special-offers__grid">
                 <!-- Карточка 1: Готовая 1С за 2 дня -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/1c-section-special-offers.png"
-                            alt="Готовая 1С за 2 дня" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>Готовая 1С за 2 дня</h3>
-                        <p>
-                            Быстрое внедрение 1С под ключ
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/special_offers_card_1.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка предложения 1 (Готовая 1С)"]
+                ); ?>
 
                 <!-- Карточка 2: Битрикс 24 со скидкой до 50% -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/24-bitrix-section-special-offers.png"
-                            alt="Битрикс 24 со скидкой до 50%" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>
-                            Битрикс 24 со скидкой до 50%
-                        </h3>
-                        <p>
-                            Внедрение CRM для автоматизации продаж
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/special_offers_card_2.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка предложения 2 (Битрикс 24)"]
+                ); ?>
 
                 <!-- Карточка 3: Бесплатный аудит -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/free-audit-section-special-offers.png"
-                            alt="Бесплатный аудит" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>Бесплатный аудит</h3>
-                        <p>
-                            Анализ оборудования, серверов и сетей
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/special_offers_card_3.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка предложения 3 (Бесплатный аудит)"]
+                ); ?>
 
                 <!-- Карточка 4: Установка в подарок -->
-                <div class="special-offers__card">
-                    <div class="special-offers__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/installation-section-special-offers.png"
-                            alt="Установка в подарок" loading="lazy" />
-                    </div>
-                    <div class="special-offers__card-content">
-                        <h3>Установка в подарок</h3>
-                        <p>
-                            Система видеонаблюдения — установка бесплатно
-                        </p>
-                        <a href="#" class="special-offers__card-link">Подробнее</a>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/special_offers_card_4.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка предложения 4 (Установка в подарок)"]
+                ); ?>
 
             </div>
         </section>
@@ -809,92 +638,51 @@ $APPLICATION->SetTitle("Главная");
             <div class="faq__container">
                 <!-- Блок слева: Заголовок и кнопка -->
                 <div class="faq__left-block">
-                    <h2>Вопрос-ответ</h2>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_title.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Заголовок секции FAQ (Вопрос-ответ)"]
+                    ); ?>
                     <button class="btn btn--primary">Задать вопрос</button>
                 </div>
 
                 <!-- Блок справа: Карточки FAQ -->
                 <div class="faq__cards-block">
-                    <div class="faq__card">
-                        <div class="faq__card-header">
-                            <div class="faq__question-text">Зачем бизнесу нужна автоматизация процессов?</div>
-                            <button class="faq__toggle-btn">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
-                                    loading="lazy" />
-                            </button>
-                        </div>
-                        <div class="faq__answer">Автоматизация процессов помогает ускорить рабочие операции, уменьшить
-                            вероятность ошибок, снизить затраты и повысить эффективность работы. Она позволяет бизнесу
-                            сосредоточиться на ключевых задачах, улучшая скорость принятия решений и управление
-                            ресурсами.</div>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_card_1.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "FAQ Вопрос 1: Зачем бизнесу нужна автоматизация"]
+                    ); ?>
 
-                    <div class="faq__card">
-                        <div class="faq__card-header">
-                            <div class="faq__question-text">Как обеспечивается безопасность данных?</div>
-                            <button class="faq__toggle-btn">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
-                                    loading="lazy" />
-                            </button>
-                        </div>
-                        <div class="faq__answer">Безопасность данных обеспечивается с помощью фаерволов, шифрования
-                            данных, настройки защищённых каналов связи и регулярного обновления программного
-                            обеспечения. Мы применяем передовые технологии для защиты информации от внешних угроз и
-                            утечек.</div>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_card_2.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "FAQ Вопрос 2: Как обеспечивается безопасность данных"]
+                    ); ?>
 
-                    <div class="faq__card">
-                        <div class="faq__card-header">
-                            <div class="faq__question-text">Сколько времени занимает внедрение ИТ-решений?</div>
-                            <button class="faq__toggle-btn">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
-                                    loading="lazy" />
-                            </button>
-                        </div>
-                        <div class="faq__answer">Время внедрения зависит от масштаба проекта и выбранных решений. Обычно
-                            внедрение занимает от нескольких недель до нескольких месяцев, в зависимости от сложности
-                            интеграции и необходимого обучения персонала.</div>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_card_3.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "FAQ Вопрос 3: Сколько времени занимает внедрение"]
+                    ); ?>
 
-                    <div class="faq__card">
-                        <div class="faq__card-header">
-                            <div class="faq__question-text">Оказываете ли вы техническую поддержку после внедрения?
-                            </div>
-                            <button class="faq__toggle-btn">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
-                                    loading="lazy" />
-                            </button>
-                        </div>
-                        <div class="faq__answer">Да, мы предоставляем техническую поддержку после внедрения. Мы
-                            предлагаем различные уровни обслуживания, включая помощь по устранению неисправностей,
-                            обновления и консультации по эксплуатации решений.</div>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_card_4.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "FAQ Вопрос 4: Оказываете ли техподдержку"]
+                    ); ?>
 
-                    <div class="faq__card">
-                        <div class="faq__card-header">
-                            <div class="faq__question-text">Можно ли интегрировать 1С и Битрикс 24?</div>
-                            <button class="faq__toggle-btn">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
-                                    loading="lazy" />
-                            </button>
-                        </div>
-                        <div class="faq__answer">Да, мы предоставляем услуги по интеграции 1С и Битрикс 24. Это
-                            позволяет обеспечить бесперебойный обмен данными между системами и автоматизировать
-                            различные бизнес-процессы в рамках одной платформы.</div>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_card_5.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "FAQ Вопрос 5: Можно ли интегрировать 1С и Битрикс"]
+                    ); ?>
 
-                    <div class="faq__card">
-                        <div class="faq__card-header">
-                            <div class="faq__question-text">Можно ли получить бесплатную консультацию?</div>
-                            <button class="faq__toggle-btn">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/plus.svg" alt="Показать ответ"
-                                    loading="lazy" />
-                            </button>
-                        </div>
-                        <div class="faq__answer">Да, мы предлагаем бесплатную консультацию по вопросам автоматизации и
-                            внедрения ИТ-решений. Наши эксперты помогут вам разобраться в ваших потребностях и предложат
-                            оптимальные решения.</div>
-                    </div>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/faq_card_6.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "FAQ Вопрос 6: Можно ли получить бесплатную консультацию"]
+                    ); ?>
                 </div>
             </div>
         </section>
@@ -902,10 +690,16 @@ $APPLICATION->SetTitle("Главная");
         <!-- 13. Секция: Получить ответ за 15 минут -->
         <section class="section section--quick-response">
             <div class="quick-response__content">
-                <h2>Получить ответ за 15 минут</h2>
-                <p>
-                    Заполните форму с актуальными данными
-                </p>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/quick_response_title.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Заголовок секции Получить ответ за 15 минут"]
+                ); ?>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/quick_response_subtitle.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Подзаголовок секции Получить ответ за 15 минут"]
+                ); ?>
                 <form class="quick-response__form">
                     <div class="quick-response__field">
                         <input type="text" class="quick-response__input" placeholder="Имя" />
@@ -916,27 +710,34 @@ $APPLICATION->SetTitle("Главная");
                         <span class="quick-response__error">Additional text</span>
                     </div>
                     <button type="submit" class="btn btn--primary">Отправить</button>
-                    <p>
-                        Отправляя форму, вы соглашаетесь с условиями
-                        <a href="#">пользовательского соглашения</a> и
-                        <a href="#">обработкой персональных данных</a>
-                    </p>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/quick_response_agreement_text.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Текст соглашения формы Быстрый ответ"]
+                    ); ?>
                 </form>
             </div>
-            <div class="quick-response__image">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/get-answer-section-quick-response.png"
-                    alt="Получить ответ за 15 минут" loading="lazy" />
-            </div>
+            <? $APPLICATION->IncludeFile(
+                SITE_TEMPLATE_PATH . "/include/quick_response_image.php",
+                [],
+                ["MODE" => "html", "NAME" => "Картинка секции Получить ответ за 15 минут"]
+            ); ?>
         </section>
 
         <!-- 14. Секция: Полезные статьи -->
         <section class="section section--blog">
             <div class="blog__header">
                 <div class="blog__header-text">
-                    <h2>Полезные статьи</h2>
-                    <p>
-                        Материалы об ИТ, автоматизации и развитии бизнеса
-                    </p>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/blog_title.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Заголовок секции Полезные статьи"]
+                    ); ?>
+                    <? $APPLICATION->IncludeFile(
+                        SITE_TEMPLATE_PATH . "/include/blog_subtitle.php",
+                        [],
+                        ["MODE" => "html", "NAME" => "Подзаголовок секции Полезные статьи"]
+                    ); ?>
                 </div>
             </div>
 
@@ -953,76 +754,32 @@ $APPLICATION->SetTitle("Главная");
 
             <div class="blog__grid">
                 <!-- Карточка 1: Как ускорить работу в 1С -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/fast-1c-section-blog.png"
-                            alt="Как ускорить работу в 1С" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>Как ускорить работу в 1С</h3>
-                        <p>
-                            Оптимизация базы данных и настройка серверов
-                        </p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">Услуги 1С</span>
-                            <span class="blog__card-date">28 мая</span>
-                        </div>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/blog_card_1.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка статьи 1 (Как ускорить работу в 1С)"]
+                ); ?>
 
                 <!-- Карточка 2: 5 инструментов Битрикс 24 -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/5-bitrixs-instruments-section-blog.png"
-                            alt="5 инструментов Битрикс 24" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>5 инструментов Битрикс 24</h3>
-                        <p>
-                            Разбираем функции, которые помогают в росте конверсии
-                        </p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">Услуги Битрикс 24</span>
-                            <span class="blog__card-date">12 июля</span>
-                        </div>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/blog_card_2.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка статьи 2 (5 инструментов Битрикс 24)"]
+                ); ?>
 
                 <!-- Карточка 3: Как выбрать ИТ-инфраструктуру -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/it-infrastructure-section-blog.png"
-                            alt="Как выбрать ИТ-инфраструктуру" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>Как выбрать ИТ-инфраструктуру</h3>
-                        <p>Советы по подбору оборудования</p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">ИТ-инфраструктура и оборудование</span>
-                            <span class="blog__card-date">5 июн</span>
-                        </div>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/blog_card_3.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка статьи 3 (Как выбрать ИТ-инфраструктуру)"]
+                ); ?>
 
                 <!-- Карточка 4: Безопасность: что нужно знать -->
-                <div class="blog__card">
-                    <div class="blog__card-image">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/image/content/safety-section-blog.png"
-                            alt="Безопасность: что нужно знать" loading="lazy" />
-                    </div>
-                    <div class="blog__card-content">
-                        <h3>Безопасность: что нужно знать</h3>
-                        <p>Как избежать утечек информации</p>
-                        <a href="#" class="blog__card-link">Подробнее</a>
-                        <div class="blog__card-meta">
-                            <span class="blog__card-category">Серверные решения и сети</span>
-                            <span class="blog__card-date">1 сен</span>
-                        </div>
-                    </div>
-                </div>
+                <? $APPLICATION->IncludeFile(
+                    SITE_TEMPLATE_PATH . "/include/blog_card_4.php",
+                    [],
+                    ["MODE" => "html", "NAME" => "Карточка статьи 4 (Безопасность)"]
+                ); ?>
 
             </div>
         </section>
