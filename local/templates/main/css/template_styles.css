@@ -2177,11 +2177,6 @@ body.overlay-active .header--desktop {
   object-fit: contain;
 }
 
-/* Desktop: кнопки скрыты */
-.clients__navigation {
-  display: none;
-}
-
 /* Подвал */
 /* ========================================
    МОБИЛЬНОЕ МЕНЮ - СКРЫТО НА ДЕСКТОПЕ
@@ -5765,11 +5760,6 @@ img {
     height: 120px;
     border-radius: 10px;
     padding: 10px;
-  }
-
-  /* Скрываем кнопки навигации на мобильной версии */
-  .clients__navigation {
-    display: none;
   }
 
   /* ========================================

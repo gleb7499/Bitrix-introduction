@@ -34,13 +34,17 @@ use Bitrix\Main\Page\Asset;
                 <div class="footer__section">
                     <h4>Контакты</h4>
                     <div class="footer__contact-info">
-                        <a href="tel:+74954765464" class="footer__phone">+7 495 476-54-64</a>
+                        <a href="tel:+79661153720" class="footer__phone">+7 966 115-37-20</a>
                         <a href="mailto:sales@intezgroup.ru" class="footer__email">sales@intezgroup.ru</a>
                         <div class="footer__social">
-                            <a href="#" class="footer__social-link footer__social-link--telegram" aria-label="Telegram">
+                            <a href="https://t.me/+79661153720"
+                                class="footer__social-link footer__social-link--telegram" aria-label="Telegram"
+                                target="_blank" rel="noopener">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/TG.svg" alt="Telegram" loading="lazy" />
                             </a>
-                            <a href="#" class="footer__social-link footer__social-link--whatsapp" aria-label="WhatsApp">
+                            <a href="https://wa.me/79661153720"
+                                class="footer__social-link footer__social-link--whatsapp" aria-label="WhatsApp"
+                                target="_blank" rel="noopener">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/WA.svg" alt="WhatsApp" loading="lazy" />
                             </a>
                         </div>
@@ -72,9 +76,11 @@ use Bitrix\Main\Page\Asset;
                         <li><a href="/services/server-solutions-and-networks/implementation-of-data-storage-solutions/"
                                 class="footer__link">Внедрение хранилищ
                                 данных</a></li>
-                        <li><a href="/services/server-solutions-and-networks/mail-server/" class="footer__link">Внедрение почтового
+                        <li><a href="/services/server-solutions-and-networks/mail-server/"
+                                class="footer__link">Внедрение почтового
                                 сервера</a></li>
-                        <li><a href="/services/server-solutions-and-networks/vpn/" class="footer__link">Корпоративный ВПН</a></li>
+                        <li><a href="/services/server-solutions-and-networks/vpn/" class="footer__link">Корпоративный
+                                ВПН</a></li>
                     </ul>
                 </div>
             </div>

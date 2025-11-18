@@ -627,10 +627,11 @@ function initUniversalCallButtons() {
   });
 
   // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопки внутри карусели Track Group (главная)
-  const trackGroupCards = document.querySelectorAll(".track-group__card");
-  trackGroupCards.forEach((card) => {
-    const button = card.querySelector(".btn");
-
+  // Используем специфичный селектор для обоих вариантов кнопок (desktop и mobile)
+  const trackGroupButtons = document.querySelectorAll(
+    ".section--track-group .track-group__card .track-group__button, .section--track-group .track-group__card .track-group__button-mobile"
+  );
+  trackGroupButtons.forEach((button) => {
     if (button && !button.dataset.modalInitialized) {
       button.addEventListener("click", function (e) {
         e.preventDefault();
@@ -710,22 +711,22 @@ function initUniversalCallButtons() {
     });
   });
 
-  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопка "Все отзывы" в секции reviews
+  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопка "Задать вопрос" в секции FAQ
   // Открывает разные формы в зависимости от устройства
-  const reviewsAllButton = document.querySelector(
-    ".section--reviews .reviews__left-block .btn"
+  const faqAskButton = document.querySelector(
+    ".section--faq .faq__left-block .btn"
   );
-  if (reviewsAllButton && !reviewsAllButton.dataset.modalInitialized) {
-    reviewsAllButton.addEventListener("click", function (e) {
+  if (faqAskButton && !faqAskButton.dataset.modalInitialized) {
+    faqAskButton.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
 
       openCallModalUniversal();
 
-      console.log('Модальное окно открыто через кнопку "Все отзывы"');
+      console.log('Модальное окно открыто через кнопку "Задать вопрос"');
     });
 
-    reviewsAllButton.dataset.modalInitialized = "true";
+    faqAskButton.dataset.modalInitialized = "true";
   }
 
   console.log("✅ Универсальные обработчики кнопок инициализированы");
