@@ -497,16 +497,6 @@ $this->setFrameMode(true);
             <div class="clients__logo"><img src="<?= SITE_TEMPLATE_PATH ?>/image/partners/tract-group.png"
                     alt="Tract Group" loading="lazy" /></div>
         </div>
-        <div class="clients__navigation">
-            <button class="clients__nav-btn clients__nav-btn--prev" id="clientsPrev">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/arrow-left.svg" alt="Предыдущий"
-                    style="transform: rotate(180deg)" loading="lazy" />
-            </button>
-            <button class="clients__nav-btn clients__nav-btn--next" id="clientsNext">
-                <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/arrow-left.svg" alt="Следующий"
-                    style="transform: rotate(0deg)" loading="lazy" />
-            </button>
-        </div>
     </section>
 
     <!-- 9. Секция: FAQ (Вопрос-ответ) -->

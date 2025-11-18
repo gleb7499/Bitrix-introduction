@@ -235,7 +235,7 @@ $curPage = $APPLICATION->GetCurPage();
                 </nav>
 
                 <div class="header__actions">
-                    <a href="tel:+74954765464" class="header__phone">+7 495 476-54-64</a>
+                    <a href="tel:+79661153720" class="header__phone">+7 966 115-37-20</a>
                     <button class="btn btn--secondary" id="callBtn">Заказать звонок</button>
                 </div>
 
