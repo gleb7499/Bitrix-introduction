@@ -1737,7 +1737,7 @@ body.overlay-active .header--desktop {
 
 .services__navigation {
   grid-area: nav;
-  display: flex;
+  display: none; /* Скрыто на desktop */
   gap: clamp(24px, 2.083vw, 40px);
   flex-shrink: 0;
   align-self: flex-end;
@@ -5715,7 +5715,7 @@ img {
 
   .section--clients {
     padding: 20px;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .clients__header {
@@ -5733,31 +5733,21 @@ img {
     margin: 0 0 20px 0;
   }
 
-  /* Скрываем градиенты на мобильной версии */
+  /* Показываем градиенты на мобильной версии для плавных краев */
   .section--clients::before,
   .section--clients::after {
-    display: none;
+    display: block;
+    width: 100px;
   }
 
-  /* Убираем анимацию, делаем карусель */
+  /* Включаем бесконечную анимацию на мобилке (как на desktop) */
   .clients__grid {
     display: flex;
-    gap: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory; /* Включаем snap для центрирования */
-    -webkit-overflow-scrolling: touch;
-    animation: none;
-    width: auto;
+    gap: 20px;
+    animation: clientsScroll 40s linear infinite;
+    width: max-content;
     margin-bottom: 20px;
-    padding-bottom: 0; /* Убираем padding-bottom т.к. полоса прокрутки скрыта */
-
-    /* Добавляем padding слева и справа для центрирования первого/последнего элемента */
-    /* Формула: (ширина контейнера - ширина карточки) / 2 */
-    /* Контейнер = 100vw - 40px (padding секции 20px * 2) */
-    /* Центрирование = ((100vw - 40px) - 200px) / 2 = (100vw - 240px) / 2 */
-    padding-left: calc((100vw - 240px) / 2);
-    padding-right: calc((100vw - 240px) / 2);
+    padding-bottom: 20px;
 
     /* Убираем полосу прокрутки */
     scrollbar-width: none; /* Firefox */
@@ -5770,25 +5760,16 @@ img {
   }
 
   .clients__logo {
-    flex: 0 0 200px;
+    flex-shrink: 0;
     width: 200px;
     height: 120px;
-    scroll-snap-align: center; /* Центрируем элемент */
     border-radius: 10px;
     padding: 10px;
   }
 
-  /* Показываем кнопки */
+  /* Скрываем кнопки навигации на мобильной версии */
   .clients__navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .clients__nav-btn {
-    width: 24px;
-    height: 24px;
+    display: none;
   }
 
   /* ========================================

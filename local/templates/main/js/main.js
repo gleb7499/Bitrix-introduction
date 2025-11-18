@@ -589,8 +589,9 @@ function initUniversalCallButtons() {
   // 📋 Список селекторов кнопок, которые должны открывать модальное окно
   const buttonSelectors = [
     // Главная страница (index.php)
-    ".section--hero .hero__button", // Hero секция - desktop
-    ".section--hero .hero__button-mobile", // Hero секция - mobile
+    // Исключаем .section--404 чтобы не перехватывать кнопки на странице 404
+    ".section--hero:not(.section--404) .hero__button", // Hero секция - desktop
+    ".section--hero:not(.section--404) .hero__button-mobile", // Hero секция - mobile
     ".section--ready-to-start .ready-to-start__button", // Готовы начать - desktop
     ".section--ready-to-start .ready-to-start__button-mobile", // Готовы начать - mobile
 
@@ -708,6 +709,24 @@ function initUniversalCallButtons() {
       }
     });
   });
+
+  // 🎯 СПЕЦИАЛЬНЫЙ ОБРАБОТЧИК: Кнопка "Все отзывы" в секции reviews
+  // Открывает разные формы в зависимости от устройства
+  const reviewsAllButton = document.querySelector(
+    ".section--reviews .reviews__left-block .btn"
+  );
+  if (reviewsAllButton && !reviewsAllButton.dataset.modalInitialized) {
+    reviewsAllButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      openCallModalUniversal();
+
+      console.log('Модальное окно открыто через кнопку "Все отзывы"');
+    });
+
+    reviewsAllButton.dataset.modalInitialized = "true";
+  }
 
   console.log("✅ Универсальные обработчики кнопок инициализированы");
 }
@@ -1536,10 +1555,16 @@ function initTrackGroupCarousel() {
   const navTotal = document.querySelector(".track-group__nav-total");
   const grid = document.querySelector(".track-group__cards");
   const cards = document.querySelectorAll(".track-group__card");
+  const prevBtn = document.getElementById("trackGroupPrev");
+  const nextBtn = document.getElementById("trackGroupNext");
 
   if (navTotal && cards.length > 0) {
     navTotal.textContent = cards.length;
   }
+
+  // Переменная для хранения таймера автопереключения
+  let autoSwitchTimer = null;
+  const AUTO_SWITCH_INTERVAL = 10000; // 10 секунд
 
   if (grid && navCurrent) {
     /**
@@ -1587,21 +1612,57 @@ function initTrackGroupCarousel() {
       }
 
       navCurrent.textContent = currentIndex + 1;
+      return currentIndex;
     };
 
-    // Обновляем счетчик при клике на кнопки
-    const prevBtn = document.getElementById("trackGroupPrev");
-    const nextBtn = document.getElementById("trackGroupNext");
+    /**
+     * Функция автоматического переключения на следующую карточку
+     */
+    const autoSwitch = () => {
+      if (!nextBtn || !cards.length) return;
 
+      const currentIndex = updateCounter();
+
+      // Если достигли последней карточки, возвращаемся к первой
+      if (currentIndex >= cards.length - 1) {
+        // Программно кликаем на prevBtn несколько раз для возврата к началу
+        for (let i = 0; i < cards.length - 1; i++) {
+          prevBtn.click();
+        }
+      } else {
+        // Переключаемся на следующую карточку
+        nextBtn.click();
+      }
+
+      // Обновляем счетчик после переключения
+      setTimeout(updateCounter, 100);
+    };
+
+    /**
+     * Функция сброса таймера автопереключения
+     */
+    const resetAutoSwitchTimer = () => {
+      // Очищаем предыдущий таймер
+      if (autoSwitchTimer) {
+        clearInterval(autoSwitchTimer);
+      }
+
+      // Запускаем новый таймер
+      autoSwitchTimer = setInterval(autoSwitch, AUTO_SWITCH_INTERVAL);
+    };
+
+    // Обновляем счетчик при клике на кнопки и сбрасываем таймер
     if (prevBtn) {
       prevBtn.addEventListener("click", () => {
         setTimeout(updateCounter, 50);
+        resetAutoSwitchTimer(); // Сбрасываем таймер при ручном клике
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener("click", () => {
         setTimeout(updateCounter, 50);
+        resetAutoSwitchTimer(); // Сбрасываем таймер при ручном клике
       });
     }
 
@@ -1618,7 +1679,12 @@ function initTrackGroupCarousel() {
     // Начальное обновление
     updateCounter();
 
-    console.log("Track Group carousel counter initialized");
+    // Запускаем автопереключение
+    resetAutoSwitchTimer();
+
+    console.log(
+      "Track Group carousel counter initialized with auto-switch every 10s"
+    );
   }
 }
 
@@ -2270,15 +2336,9 @@ function initPricingCarousel() {
 
 // Инициализация карусели клиентов
 function initClientsCarousel() {
-  initUniversalCarousel({
-    prevBtnId: "clientsPrev",
-    nextBtnId: "clientsNext",
-    gridSelector: ".clients__grid",
-    cardSelector: ".clients__logo",
-    desktopCardsPerView: 4,
-    infiniteLoop: true, // Бесконечная прокрутка на мобилке
-    name: "Clients",
-  });
+  // Клиенты теперь используют только CSS анимацию (на desktop и mobile)
+  // Кнопки навигации удалены из HTML, JS управление не требуется
+  console.log("Clients carousel: CSS animation only (no JS controls)");
 }
 
 // Инициализация карусели отзывов
