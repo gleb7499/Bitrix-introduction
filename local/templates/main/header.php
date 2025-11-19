@@ -273,7 +273,32 @@ $curPage = $APPLICATION->GetCurPage();
         <button class="btn-icon mobile-menu-back" id="mobileMenuBack" aria-label="Назад">
             <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/back.svg" alt="" loading="lazy" />
         </button>
-        <div class="mobile-menu-content" id="mobileMenuContent"></div>
+
+        <!-- Контент меню - переключается через JS -->
+        <div class="mobile-menu-content" id="mobileMenuContent">
+            <!-- Форма обратного звонка (аналог desktop #callModal > .quick-response__content) -->
+            <div class="quick-response__content quick-response__content--mobile" id="mobileCallForm"
+                style="display: none;">
+                <h2>Получить ответ за 15 минут</h2>
+                <p>Заполните форму с актуальными данными</p>
+                <form class="quick-response__form" id="mobileCallFormElement">
+                    <div class="quick-response__field">
+                        <input type="text" class="quick-response__input" placeholder="Имя" />
+                        <span class="quick-response__error">Additional text</span>
+                    </div>
+                    <div class="quick-response__field">
+                        <input type="tel" class="quick-response__input" id="mobilePhoneInput" placeholder="+7" />
+                        <span class="quick-response__error">Additional text</span>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Отправить</button>
+                    <p>
+                        Отправляя форму, вы соглашаетесь с условиями
+                        <a href="/terms/">пользовательского соглашения</a> и
+                        <a href="/privacy/">политикой обработки персональных данных</a>
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- Основной контент страницы -->

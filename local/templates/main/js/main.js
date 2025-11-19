@@ -36,6 +36,16 @@ const overlayManager = {
   },
 };
 
+// Константы для маски телефона
+const PHONE_MASK_TEMPLATE = "+7 ___ __ __ __";
+const PHONE_MASK_PLACEHOLDER = "_";
+const PHONE_MASK_DIGIT_POSITIONS = PHONE_MASK_TEMPLATE.split("")
+  .map((char, index) => (char === PHONE_MASK_PLACEHOLDER ? index : null))
+  .filter((pos) => pos !== null);
+const PHONE_MASK_MAX_DIGITS = PHONE_MASK_DIGIT_POSITIONS.length;
+const SUPPORTS_BEFORE_INPUT =
+  "onbeforeinput" in document.createElement("input");
+
 // Инициализация при загрузке страницы
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Страница загружена");
@@ -82,6 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
   initPricingCarousel();
   initClientsCarousel();
   initReviewsCarousel();
+  initPhoneMasks(); // 🎯 Инициализация масок телефона для всех форм
+  initMobileFormPhoneMask(); // 🎯 Инициализация маски для мобильной формы
 });
 
 // Функция для обновления высоты header
@@ -384,8 +396,19 @@ function openMobileCallForm() {
   const formClone = originalForm.cloneNode(true);
   formClone.classList.add("quick-response__content--mobile");
 
+  // Сбрасываем состояние маски для новых полей ДО вставки в DOM
+  formClone.querySelectorAll('input[type="tel"]').forEach((phoneInput) => {
+    phoneInput.removeAttribute("data-phone-mask-initialized");
+    phoneInput.value = "";
+    console.log("Сброшена маска для поля телефона (универсальная функция)");
+  });
+
   // Вставляем клонированную форму
   mobileMenuContent.appendChild(formClone);
+
+  // Переинициализируем маску телефона для динамической формы
+  console.log("Вызов initPhoneMasks для мобильной формы");
+  initPhoneMasks();
 
   // Инициализируем обработчик формы
   initMobileCallFormHandler(formClone);
@@ -2692,6 +2715,12 @@ function initMobileMenu() {
    * 📋 РЕНДЕР: Полное меню (footer целиком)
    */
   function renderFullMenu() {
+    // Скрываем форму
+    const mobileForm = document.getElementById("mobileCallForm");
+    if (mobileForm) {
+      mobileForm.style.display = "none";
+    }
+
     const footerClone = footer.cloneNode(true);
     mobileMenuContent.appendChild(footerClone);
     initFooterAccordion();
@@ -2701,6 +2730,12 @@ function initMobileMenu() {
    * 📋 РЕНДЕР: Меню только с услугами (footer без первой колонки)
    */
   function renderServicesMenu() {
+    // Скрываем форму
+    const mobileForm = document.getElementById("mobileCallForm");
+    if (mobileForm) {
+      mobileForm.style.display = "none";
+    }
+
     const footerClone = footer.cloneNode(true);
 
     // Удаляем первую колонку "О компании"
@@ -2793,31 +2828,71 @@ function initMobileMenu() {
 
   /**
    * 📋 РЕНДЕР: Форма обратной связи (quick-response__content)
-   * 🔑 ВАЖНО: Клонируем из #callModal, а не из .section--quick-response,
-   * потому что секция есть только на главной странице, а callModal присутствует везде
+   * 🔑 Показываем форму, которая уже находится в DOM (аналог desktop #callModal)
    */
   function renderCallForm() {
-    // Находим оригинальную форму в модальном окне #callModal
-    const originalForm = document.querySelector(
-      "#callModal .quick-response__content"
-    );
+    // Находим статическую форму внутри #mobileMenuContent
+    let mobileForm = document.getElementById("mobileCallForm");
 
-    if (!originalForm) {
-      console.warn("Форма quick-response__content не найдена в #callModal");
-      return;
+    if (!mobileForm) {
+      console.warn(
+        "⚠️ Форма #mobileCallForm не найдена в DOM, создаём программно"
+      );
+
+      // Создаём форму если её нет (защита от кеша)
+      mobileForm = document.createElement("div");
+      mobileForm.id = "mobileCallForm";
+      mobileForm.className =
+        "quick-response__content quick-response__content--mobile";
+
+      mobileForm.innerHTML = `
+        <h2>Получить ответ за 15 минут</h2>
+        <p>Заполните форму с актуальными данными</p>
+        <form class="quick-response__form" id="mobileCallFormElement">
+          <div class="quick-response__field">
+            <input type="text" class="quick-response__input" placeholder="Имя" />
+            <span class="quick-response__error">Additional text</span>
+          </div>
+          <div class="quick-response__field">
+            <input type="tel" class="quick-response__input" id="mobilePhoneInput" placeholder="+7" />
+            <span class="quick-response__error">Additional text</span>
+          </div>
+          <button type="submit" class="btn btn--primary">Отправить</button>
+          <p>
+            Отправляя форму, вы соглашаетесь с условиями
+            <a href="/terms/">пользовательского соглашения</a> и
+            <a href="/privacy/">политикой обработки персональных данных</a>
+          </p>
+        </form>
+      `;
+
+      mobileMenuContent.appendChild(mobileForm);
+
+      // Применяем маску к созданному полю
+      const phoneInput = mobileForm.querySelector("#mobilePhoneInput");
+      if (phoneInput) {
+        applyPhoneMask(phoneInput);
+        console.log("✅ Маска применена к созданному полю");
+      }
     }
 
-    // Клонируем форму
-    const formClone = originalForm.cloneNode(true);
+    // Скрываем все остальные элементы в #mobileMenuContent
+    Array.from(mobileMenuContent.children).forEach((child) => {
+      if (child !== mobileForm) {
+        child.style.display = "none";
+      }
+    });
 
-    // Добавляем специальный класс для мобильной адаптации
-    formClone.classList.add("quick-response__content--mobile");
+    // Показываем форму
+    mobileForm.style.display = "";
 
-    // Вставляем клонированную форму
-    mobileMenuContent.appendChild(formClone);
+    // Инициализируем обработчики формы (если ещё не инициализированы)
+    if (!mobileForm.dataset.initialized) {
+      initMobileCallForm(mobileForm);
+      mobileForm.dataset.initialized = "true";
+    }
 
-    // 🔑 ВАЖНО: Инициализируем обработчик формы в мобильном оверлее
-    initMobileCallForm(formClone);
+    console.log("✅ Мобильная форма показана");
   }
 
   /**
@@ -3024,9 +3099,19 @@ function initMobileMenu() {
     // Восстанавливаем прокрутку body
     document.body.style.overflow = "";
 
-    // Очищаем контент после завершения анимации
+    // Скрываем форму и удаляем клонированный footer
     setTimeout(() => {
-      mobileMenuContent.innerHTML = "";
+      const mobileForm = document.getElementById("mobileCallForm");
+      if (mobileForm) {
+        mobileForm.style.display = "none";
+      }
+
+      // Удаляем все дочерние элементы кроме формы
+      Array.from(mobileMenuContent.children).forEach((child) => {
+        if (child !== mobileForm) {
+          child.remove();
+        }
+      });
     }, 300); // Совпадает с CSS transition
 
     console.log("Мобильное меню закрыто");
@@ -3133,227 +3218,341 @@ function initMobileMenu() {
 }
 
 // ========================================
-// МАСКА ТЕЛЕФОНА ДЛЯ ПОЛЕЙ ВВОДА
+// МАСКА ТЕЛЕФОНА ДЛЯ ВСЕХ ФОРМ ЗАЯВКИ
 // ========================================
 
 /**
- * Инициализация маски телефона для указанных полей
- * Формат: +7 (___) ___-__-__
- *
- * Особенности:
- * - "+7" всегда статичен и не может быть удалён
- * - Подчёркивания исчезают по мере ввода цифр
- * - Автоматическая расстановка скобок, пробелов и тире
- * - Минимальная позиция каретки — после "+7 "
+ * Применяет маску телефона "+7 ___ __ __ __" к полю ввода
+ * @param {HTMLInputElement} input
+ * @returns {boolean} true, если поле было инициализировано впервые
  */
-// Phone mask for two fields: modal and quick-response
-(function () {
-  "use strict";
+function applyPhoneMask(input) {
+  if (!input || input.dataset.phoneMaskInitialized === "true") {
+    return false;
+  }
 
-  function initPhoneMask() {
-    const phoneSelectors = [
-      "#callModalForm > div:nth-child(2) > input",
-      "#mainContent > section.section.section--quick-response > div.quick-response__content > form > div:nth-child(2) > input",
-    ];
+  console.log(
+    "🎭 Инициализация маски для поля:",
+    input,
+    "Класс родителя:",
+    input.closest(".quick-response__content")?.className
+  );
 
-    const template = "+7 (___) ___-__-__";
-    const prefixMinPos = 4; // caret must not go before this index
+  input.dataset.phoneMaskInitialized = "true";
+  input.autocomplete = "off";
 
-    phoneSelectors.forEach((sel) => {
-      const input = document.querySelector(sel);
-      if (!input) return;
+  const digits = new Array(PHONE_MASK_MAX_DIGITS).fill(null);
+  const maskLength = PHONE_MASK_TEMPLATE.length;
+  let isRendering = false;
 
-      // helpers
-      const onlyDigits = (s) => (s || "").replace(/\D/g, "");
-      const buildFromDigits = (digits) => {
-        // digits = string of up to 10 digits (without leading 7)
-        let out = "";
-        let di = 0;
-        for (let i = 0; i < template.length; i++) {
-          const ch = template[i];
-          if (ch === "_") {
-            out += di < digits.length ? digits[di++] : "_";
-          } else {
-            out += ch;
-          }
-        }
-        return out;
-      };
-      const firstPlaceholderPos = (str) => str.indexOf("_");
-      const setCaretSafe = (el, pos) => {
-        if (pos < prefixMinPos) pos = prefixMinPos;
-        // clamp to [0, length]
-        pos = Math.max(0, Math.min(pos, el.value.length));
-        try {
-          el.setSelectionRange(pos, pos);
-        } catch (err) {
-          // ignore for older browsers
-        }
-      };
+  const extractDigits = (value = "") => {
+    if (!value) {
+      return [];
+    }
+    const normalized = value.replace(/[^\d]/g, "");
+    const withoutSeven = normalized.startsWith("7")
+      ? normalized.slice(1)
+      : normalized;
+    return withoutSeven.slice(0, PHONE_MASK_MAX_DIGITS).split("");
+  };
 
-      // initialize
-      input.value = template;
+  const syncDigitsFromValue = (value) => {
+    const extracted = extractDigits(value);
+    digits.fill(null);
+    extracted.forEach((digit, index) => {
+      digits[index] = digit;
+    });
+  };
 
-      // ensure on focus caret at first placeholder if coming from untouched
-      input.addEventListener("focus", function () {
-        // always keep template if empty or user erased something
-        if (!this.value || this.value.trim() === "" || this.value === "+7") {
-          this.value = template;
-        } else {
-          // normalize to template form in case something weird happened
-          const nums = onlyDigits(this.value);
-          // ensure leading 7
-          let normalized = nums;
-          if (!normalized.startsWith("7")) normalized = "7" + normalized;
-          normalized = normalized.substring(1, 11); // up to 10 digits after leading 7
-          this.value = buildFromDigits(normalized);
-        }
-        setTimeout(() => {
-          const pos = firstPlaceholderPos(this.value);
-          setCaretSafe(this, pos === -1 ? this.value.length : pos);
-        }, 0);
-      });
+  const formatValue = () => {
+    let formatted = "";
+    let slotIndex = 0;
 
-      // prevent click moving caret before prefix
-      input.addEventListener("click", function (e) {
-        setTimeout(() => {
-          if (this.selectionStart < prefixMinPos) {
-            setCaretSafe(this, prefixMinPos);
-          }
-        }, 0);
-      });
+    for (const char of PHONE_MASK_TEMPLATE) {
+      if (char === PHONE_MASK_PLACEHOLDER) {
+        formatted += digits[slotIndex] ?? PHONE_MASK_PLACEHOLDER;
+        slotIndex++;
+      } else {
+        formatted += char;
+      }
+    }
 
-      // keydown: block non-digit keys except navigation and control
-      input.addEventListener("keydown", function (e) {
-        const allowed = [
-          "Backspace",
-          "Delete",
-          "Tab",
-          "Escape",
-          "Enter",
-          "ArrowLeft",
-          "ArrowRight",
-          "ArrowUp",
-          "ArrowDown",
-          "Home",
-          "End",
-          "Shift",
-          "Control",
-          "Meta",
-          "Alt",
-        ];
+    return formatted;
+  };
 
-        // allow Ctrl/Cmd combos (e.g. Ctrl+C)
-        if (e.ctrlKey || e.metaKey) return;
+  const render = () => {
+    isRendering = true;
+    input.value = formatValue();
+    isRendering = false;
+  };
 
-        // block attempts to move caret before prefix with ArrowLeft/Home
-        if ((e.key === "ArrowLeft" || e.key === "Home") && this.selectionStart <= prefixMinPos) {
-          e.preventDefault();
-          setCaretSafe(this, prefixMinPos);
-          return;
-        }
+  const getFirstEmptySlot = () => {
+    const emptyIndex = digits.findIndex((digit) => digit === null);
+    return emptyIndex === -1 ? PHONE_MASK_MAX_DIGITS : emptyIndex;
+  };
 
-        // prevent deletion of prefix
-        if ((e.key === "Backspace" || e.key === "Delete") && this.selectionStart <= prefixMinPos) {
-          e.preventDefault();
-          setCaretSafe(this, prefixMinPos);
-          return;
-        }
+  const getSlotIndexAtOrAfter = (position) => {
+    for (let i = 0; i < PHONE_MASK_DIGIT_POSITIONS.length; i++) {
+      if (PHONE_MASK_DIGIT_POSITIONS[i] >= position) {
+        return i;
+      }
+    }
+    return PHONE_MASK_MAX_DIGITS;
+  };
 
-        if (allowed.includes(e.key)) return;
+  const getSlotIndexBefore = (position) => {
+    for (let i = PHONE_MASK_DIGIT_POSITIONS.length - 1; i >= 0; i--) {
+      if (PHONE_MASK_DIGIT_POSITIONS[i] < position) {
+        return i;
+      }
+    }
+    return -1;
+  };
 
-        // if not digit -> prevent
-        if (!/^[0-9]$/.test(e.key)) {
-          e.preventDefault();
-        }
-      });
+  const getSelectionSlotRange = () => {
+    const start = input.selectionStart ?? 0;
+    const end = input.selectionEnd ?? start;
+    const startSlot = getSlotIndexAtOrAfter(start);
+    const endSlot = getSlotIndexAtOrAfter(end);
 
-      // paste handling
-      input.addEventListener("paste", function (e) {
-        e.preventDefault();
-        const raw = (e.clipboardData || window.clipboardData).getData("text") || "";
-        let nums = onlyDigits(raw);
-        if (!nums) return;
+    if (startSlot < endSlot) {
+      return { start: startSlot, end: endSlot };
+    }
+    return null;
+  };
 
-        // if starts with 8 or 7, drop first digit (we keep country code separately)
-        if (nums.startsWith("8") || nums.startsWith("7")) nums = nums.substring(1);
+  const clearSlots = (start, end) => {
+    for (let i = start; i < end; i++) {
+      digits[i] = null;
+    }
+  };
 
-        nums = nums.substring(0, 10);
-        this.value = buildFromDigits(nums);
-        // place caret at first placeholder or end
-        const pos = firstPlaceholderPos(this.value);
-        setTimeout(() => setCaretSafe(this, pos === -1 ? this.value.length : pos), 0);
-      });
+  const moveCaretToSlot = (slotIndex) => {
+    const clamped = Math.max(0, Math.min(slotIndex, PHONE_MASK_MAX_DIGITS));
 
-      // input event: reconstruct from digits, robust to selection and editing
-      input.addEventListener("input", function (e) {
-        // Extract digits from current value
-        let nums = onlyDigits(this.value);
+    if (clamped >= PHONE_MASK_MAX_DIGITS) {
+      input.setSelectionRange(maskLength, maskLength);
+      return;
+    }
 
-        // If nothing, reset to template
-        if (!nums) {
-          this.value = template;
-          setTimeout(() => setCaretSafe(this, firstPlaceholderPos(this.value)), 0);
-          return;
-        }
+    const position = PHONE_MASK_DIGIT_POSITIONS[clamped];
+    input.setSelectionRange(position, position);
+  };
 
-        // Ensure leading 7 (country code). If user pasted/typed a leading 8 -> convert to 7
-        if (!nums.startsWith("7")) {
-          nums = "7" + nums;
-        } else {
-          // ensure leading is '7' (if starts with '8' it was handled above)
-        }
+  const insertDigitSequence = (sequence) => {
+    if (!sequence) {
+      return;
+    }
 
-        // remove leading 7 for the 10-digit local part
-        nums = nums.substring(1);
+    const digitsOnly = sequence.replace(/\D/g, "").split("");
+    if (!digitsOnly.length) {
+      return;
+    }
 
-        // limit to 10 digits
-        nums = nums.substring(0, 10);
+    const selectionRange = getSelectionSlotRange();
+    let targetSlot;
 
-        // rebuild formatted value
-        const formatted = buildFromDigits(nums);
-        this.value = formatted;
+    if (selectionRange) {
+      clearSlots(selectionRange.start, selectionRange.end);
+      targetSlot = selectionRange.start;
+    } else {
+      targetSlot = getSlotIndexAtOrAfter(input.selectionStart ?? 0);
+    }
 
-        // Determine caret position:
-        // Place at first underscore (next placeholder). If none, put at end.
-        let pos = firstPlaceholderPos(formatted);
-        if (pos === -1) pos = formatted.length;
+    for (const digit of digitsOnly) {
+      if (targetSlot >= PHONE_MASK_MAX_DIGITS) {
+        break;
+      }
+      digits[targetSlot] = digit;
+      targetSlot++;
+    }
 
-        // If inputType indicates deletion, move caret to first placeholder as well.
-        // This makes delete/backspace predictable.
-        setTimeout(() => setCaretSafe(this, pos), 0);
-      });
+    render();
+    moveCaretToSlot(targetSlot);
+  };
 
-      // protect programmatic attempts to set selection before prefix
-      input.addEventListener("select", function (e) {
-        if (this.selectionStart < prefixMinPos) {
-          setCaretSafe(this, prefixMinPos);
-        }
-      });
+  const handleBackspace = () => {
+    const selectionRange = getSelectionSlotRange();
+    if (selectionRange) {
+      clearSlots(selectionRange.start, selectionRange.end);
+      render();
+      moveCaretToSlot(selectionRange.start);
+      return;
+    }
 
-      // ensure when form is reset/cleared, mask is restored
-      input.form && input.form.addEventListener("reset", function () {
-        setTimeout(() => {
-          phoneSelectors.forEach((s) => {
-            const el = document.querySelector(s);
-            if (el) el.value = template;
-          });
-        }, 0);
-      });
+    const slotIndex = getSlotIndexBefore(input.selectionStart ?? 0);
+    if (slotIndex >= 0) {
+      digits[slotIndex] = null;
+      render();
+      moveCaretToSlot(slotIndex);
+    } else {
+      moveCaretToSlot(0);
+    }
+  };
 
-      // ensure initial caret not before prefix on load
-      input.addEventListener("DOMContentLoaded", function () {
-        if (this.selectionStart < prefixMinPos) setCaretSafe(this, prefixMinPos);
-      });
+  const handleDelete = () => {
+    const selectionRange = getSelectionSlotRange();
+    if (selectionRange) {
+      clearSlots(selectionRange.start, selectionRange.end);
+      render();
+      moveCaretToSlot(selectionRange.start);
+      return;
+    }
 
-      // mark init
-      // console.log(`Phone mask initialized for: ${sel}`);
+    const slotIndex = getSlotIndexAtOrAfter(input.selectionStart ?? 0);
+    if (slotIndex < PHONE_MASK_MAX_DIGITS) {
+      digits[slotIndex] = null;
+      render();
+      moveCaretToSlot(slotIndex);
+    }
+  };
+
+  const handlePasteText = (text) => {
+    if (!text) {
+      return;
+    }
+    const digitsOnly = text.replace(/\D/g, "");
+    if (!digitsOnly) {
+      return;
+    }
+    insertDigitSequence(digitsOnly);
+  };
+
+  const ensureCaretAtEditableStart = () => {
+    const start = input.selectionStart ?? 0;
+    if (start < PHONE_MASK_DIGIT_POSITIONS[0]) {
+      moveCaretToSlot(0);
+    }
+  };
+
+  syncDigitsFromValue(input.value);
+  render();
+
+  input.addEventListener("focus", function () {
+    if (!this.value || this.value === "+7") {
+      render();
+    }
+    requestAnimationFrame(() => {
+      ensureCaretAtEditableStart();
+      if (digits.every((digit) => digit === null)) {
+        moveCaretToSlot(0);
+      }
+    });
+  });
+
+  input.addEventListener("click", ensureCaretAtEditableStart);
+
+  input.addEventListener("paste", (event) => {
+    event.preventDefault();
+    const text =
+      (event.clipboardData || window.clipboardData)?.getData("text") || "";
+    handlePasteText(text);
+  });
+
+  input.addEventListener("input", () => {
+    if (isRendering) {
+      return;
+    }
+    const caretSlot = getSlotIndexAtOrAfter(input.selectionStart ?? 0);
+    syncDigitsFromValue(input.value);
+    render();
+    moveCaretToSlot(caretSlot);
+  });
+
+  if (SUPPORTS_BEFORE_INPUT) {
+    input.addEventListener("beforeinput", (event) => {
+      const { inputType, data } = event;
+
+      if (inputType === "insertText") {
+        event.preventDefault();
+        insertDigitSequence(data || "");
+        return;
+      }
+
+      if (
+        inputType === "deleteContentBackward" ||
+        inputType === "deleteByCut"
+      ) {
+        event.preventDefault();
+        handleBackspace();
+        return;
+      }
+
+      if (inputType === "deleteContentForward") {
+        event.preventDefault();
+        handleDelete();
+        return;
+      }
+
+      if (inputType === "insertFromPaste") {
+        event.preventDefault();
+        return;
+      }
+
+      if (inputType === "insertCompositionText") {
+        event.preventDefault();
+        return;
+      }
+    });
+  } else {
+    input.addEventListener("keydown", (event) => {
+      if (event.ctrlKey || event.metaKey) {
+        return;
+      }
+
+      if (/\d/.test(event.key)) {
+        event.preventDefault();
+        insertDigitSequence(event.key);
+        return;
+      }
+
+      if (event.key === "Backspace") {
+        event.preventDefault();
+        handleBackspace();
+        return;
+      }
+
+      if (event.key === "Delete") {
+        event.preventDefault();
+        handleDelete();
+      }
     });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initPhoneMask);
-  } else {
-    initPhoneMask();
+  return true;
+}
+
+/**
+ * Инициализация масок телефона для всех форм заявки
+ */
+function initPhoneMasks() {
+  const phoneInputs = document.querySelectorAll('input[type="tel"]');
+  let initializedCount = 0;
+
+  phoneInputs.forEach((input) => {
+    if (applyPhoneMask(input)) {
+      initializedCount++;
+    }
+  });
+
+  if (initializedCount > 0) {
+    console.log(`✅ Маски телефона применены к ${initializedCount} полям`);
   }
-})();
+}
+
+/**
+ * Инициализация маски телефона для мобильной формы
+ * Применяет маску напрямую к полю #mobilePhoneInput
+ */
+function initMobileFormPhoneMask() {
+  const mobilePhoneInput = document.getElementById("mobilePhoneInput");
+
+  if (mobilePhoneInput) {
+    applyPhoneMask(mobilePhoneInput);
+    console.log(
+      "✅ Маска телефона применена к мобильной форме (#mobilePhoneInput)"
+    );
+  } else {
+    console.warn("⚠️ Поле #mobilePhoneInput не найдено");
+  }
+}
