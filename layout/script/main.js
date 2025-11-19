@@ -2681,3 +2681,327 @@ function initMobileMenu() {
 
   console.log("Мобильное меню инициализировано");
 }
+
+// Phone mask for two fields: modal and quick-response
+(function () {
+  "use strict";
+
+  function initPhoneMask() {
+    const phoneSelectors = [
+      "#callModalForm > div:nth-child(2) > input",
+      "#mobileMenuContent > div > form > div.quick-response__field.has-warning > input",
+      "#mainContent > section.section.section--quick-response > div.quick-response__content > form > div:nth-child(2) > input",
+    ];
+
+    const template = "+7 (___) ___-__-__";
+    const prefixMinPos = 4; // caret must not go before this index
+
+    phoneSelectors.forEach((sel) => {
+      const input = document.querySelector(sel);
+      if (!input) return;
+
+      // helpers
+      const onlyDigits = (s) => (s || "").replace(/\D/g, "");
+      const buildFromDigits = (digits) => {
+        // digits = string of up to 10 digits (without leading 7)
+        let out = "";
+        let di = 0;
+        for (let i = 0; i < template.length; i++) {
+          const ch = template[i];
+          if (ch === "_") {
+            out += di < digits.length ? digits[di++] : "_";
+          } else {
+            out += ch;
+          }
+        }
+        return out;
+      };
+      const firstPlaceholderPos = (str) => str.indexOf("_");
+      const setCaretSafe = (el, pos) => {
+        if (pos < prefixMinPos) pos = prefixMinPos;
+        pos = Math.max(0, Math.min(pos, el.value.length));
+        try {
+          el.setSelectionRange(pos, pos);
+        } catch (err) {
+          // ignore for older browsers
+        }
+      };
+
+      // Convert formatted string and caret position to "digits" array and caretDigitIndex
+      // Returns {digits: [...], caretDigitIndex, digitsBeforeCaret}
+      const analyzeState = (formatted, caretPos) => {
+        const digits = [];
+        // Map each formatted position to whether it is a digit and what digit index it corresponds to
+        const posToDigitIndex = new Array(formatted.length).fill(-1);
+        let di = 0;
+        for (let i = 0; i < template.length; i++) {
+          if (template[i] === "_") {
+            // placeholder position
+            const ch = formatted[i];
+            if (/\d/.test(ch)) {
+              digits.push(ch);
+              posToDigitIndex[i] = di;
+            } else {
+              posToDigitIndex[i] = di; // even if underscore, map to next digit index
+            }
+            di++;
+          }
+        }
+        // compute digitsBeforeCaret: count number of digit placeholders strictly before caret that are filled
+        let digitsBefore = 0;
+        for (let i = 0; i < Math.min(caretPos, formatted.length); i++) {
+          if (/\d/.test(formatted[i])) digitsBefore++;
+        }
+        return {
+          digits: digits, // array of filled digits (may be shorter than placeholders)
+          posToDigitIndex,
+          digitsBefore,
+        };
+      };
+
+      // Remove digit(s) by index(es) in the local-part (0..9), rebuild and set caret
+      const removeDigitsAndUpdate = (el, removeIndexes) => {
+        const formatted = el.value;
+        // full digits with leading 7 maybe present
+        let nums = onlyDigits(formatted);
+        if (!nums) nums = "";
+        if (!nums.startsWith("7")) nums = "7" + nums;
+        let local = nums.substring(1, 11).split(""); // array of current local digits
+
+        // remove indexes sorted descending to avoid reindex shift
+        removeIndexes = Array.from(new Set(removeIndexes))
+          .filter((i) => i >= 0 && i < local.length)
+          .sort((a, b) => b - a);
+
+        removeIndexes.forEach((idx) => local.splice(idx, 1));
+
+        const newDigits = local.join("").substring(0, 10);
+        el.value = buildFromDigits(newDigits);
+
+        // place caret at first placeholder after removal
+        const pos = firstPlaceholderPos(el.value);
+        setCaretSafe(el, pos === -1 ? el.value.length : pos);
+      };
+
+      // initialize
+      input.value = template;
+
+      // ensure on focus caret at first placeholder if coming from untouched
+      input.addEventListener("focus", function () {
+        if (!this.value || this.value.trim() === "" || this.value === "+7") {
+          this.value = template;
+        } else {
+          const nums = onlyDigits(this.value);
+          let normalized = nums;
+          if (!normalized.startsWith("7")) normalized = "7" + normalized;
+          normalized = normalized.substring(1, 11); // up to 10 digits after leading 7
+          this.value = buildFromDigits(normalized);
+        }
+        setTimeout(() => {
+          const pos = firstPlaceholderPos(this.value);
+          setCaretSafe(this, pos === -1 ? this.value.length : pos);
+        }, 0);
+      });
+
+      // prevent click moving caret before prefix
+      input.addEventListener("click", function () {
+        setTimeout(() => {
+          if (this.selectionStart < prefixMinPos) {
+            setCaretSafe(this, prefixMinPos);
+          }
+        }, 0);
+      });
+
+      // keydown: handle Backspace/Delete to remove nearby digits even when caret on mask chars
+      input.addEventListener("keydown", function (e) {
+        // allow Ctrl/Cmd combos (e.g. Ctrl+C)
+        if (e.ctrlKey || e.metaKey) return;
+
+        // If user presses minus key, treat as deletion of previous digit
+        if (e.key === "-" || e.key === "Subtract") {
+          e.preventDefault();
+          // simulate backspace behavior
+          const caret = this.selectionStart;
+          const state = analyzeState(this.value, caret);
+          const removeIdx = state.digitsBefore - 1;
+          if (removeIdx >= 0) {
+            removeDigitsAndUpdate(this, [removeIdx]);
+          } else {
+            setCaretSafe(this, prefixMinPos);
+          }
+          return;
+        }
+
+        // Backspace/Delete handling:
+        if (e.key === "Backspace" || e.key === "Delete") {
+          e.preventDefault();
+
+          const selStart = this.selectionStart;
+          const selEnd = this.selectionEnd;
+
+          // If there is a selection - remove all digits that overlap selection
+          if (selEnd > selStart) {
+            // compute digit indexes overlapped by selection
+            const removeIndexes = [];
+            const formatted = this.value;
+            let digitPos = 0; // placeholder digit index (0..9)
+            for (let i = 0; i < template.length; i++) {
+              if (template[i] === "_") {
+                // position i corresponds to digit index digitPos
+                if (i >= selStart && i < selEnd) {
+                  removeIndexes.push(digitPos);
+                }
+                digitPos++;
+              }
+            }
+            if (removeIndexes.length > 0) {
+              removeDigitsAndUpdate(this, removeIndexes);
+            } else {
+              // nothing to remove in selection — just clamp caret
+              setCaretSafe(this, selStart < prefixMinPos ? prefixMinPos : selStart);
+            }
+            return;
+          }
+
+          // No selection — remove single digit before (Backspace) or after (Delete) caret
+          const caret = selStart;
+          const formatted = this.value;
+          // map caret to nearest digit index:
+          // count digits (placeholders) before caret
+          let placeholderIndexBefore = -1;
+          let placeholderIndexAfter = -1;
+          let pIndex = 0;
+          for (let i = 0; i < template.length; i++) {
+            if (template[i] === "_") {
+              if (i < caret) placeholderIndexBefore = pIndex;
+              if (i >= caret && placeholderIndexAfter === -1) placeholderIndexAfter = pIndex;
+              pIndex++;
+            }
+          }
+
+          if (e.key === "Backspace") {
+            const removeIdx = placeholderIndexBefore;
+            if (removeIdx >= 0) {
+              removeDigitsAndUpdate(this, [removeIdx]);
+            } else {
+              // nothing to remove — ensure caret not before prefix
+              setCaretSafe(this, prefixMinPos);
+            }
+            return;
+          } else {
+            // Delete
+            const removeIdx = placeholderIndexAfter;
+            if (removeIdx >= 0) {
+              removeDigitsAndUpdate(this, [removeIdx]);
+            } else {
+              setCaretSafe(this, prefixMinPos);
+            }
+            return;
+          }
+        }
+
+        const allowed = [
+          "Tab",
+          "Escape",
+          "Enter",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowDown",
+          "Home",
+          "End",
+          "Shift",
+          "Control",
+          "Meta",
+          "Alt",
+        ];
+
+        // block attempts to move caret before prefix with ArrowLeft/Home
+        if ((e.key === "ArrowLeft" || e.key === "Home") && this.selectionStart <= prefixMinPos) {
+          e.preventDefault();
+          setCaretSafe(this, prefixMinPos);
+          return;
+        }
+
+        // prevent deletion of prefix when caret at/before prefix for other keys
+        if ((e.key === "Backspace" || e.key === "Delete") && this.selectionStart <= prefixMinPos) {
+          e.preventDefault();
+          setCaretSafe(this, prefixMinPos);
+          return;
+        }
+
+        if (allowed.includes(e.key)) return;
+
+        // if not digit -> prevent
+        if (!/^[0-9]$/.test(e.key)) {
+          e.preventDefault();
+          return;
+        }
+
+        // If digit typed -> allow default and let input handler reformat
+      });
+
+      // paste handling
+      input.addEventListener("paste", function (e) {
+        e.preventDefault();
+        const raw = (e.clipboardData || window.clipboardData).getData("text") || "";
+        let nums = onlyDigits(raw);
+        if (!nums) return;
+
+        if (nums.startsWith("8") || nums.startsWith("7")) nums = nums.substring(1);
+        nums = nums.substring(0, 10);
+        this.value = buildFromDigits(nums);
+        const pos = firstPlaceholderPos(this.value);
+        setTimeout(() => setCaretSafe(this, pos === -1 ? this.value.length : pos), 0);
+      });
+
+      // input event: reconstruct from digits, robust to selection and editing
+      input.addEventListener("input", function () {
+        // Extract digits from current value
+        let nums = onlyDigits(this.value);
+
+        // If nothing, reset to template
+        if (!nums) {
+          this.value = template;
+          setTimeout(() => setCaretSafe(this, firstPlaceholderPos(this.value)), 0);
+          return;
+        }
+
+        // Ensure leading 7 (country code)
+        if (!nums.startsWith("7")) nums = "7" + nums;
+        nums = nums.substring(1, 11); // local part
+        nums = nums.substring(0, 10);
+
+        // rebuild formatted value
+        this.value = buildFromDigits(nums);
+
+        // place caret at first placeholder or end
+        const pos = firstPlaceholderPos(this.value);
+        setTimeout(() => setCaretSafe(this, pos === -1 ? this.value.length : pos), 0);
+      });
+
+      // protect programmatic attempts to set selection before prefix
+      input.addEventListener("select", function () {
+        if (this.selectionStart < prefixMinPos) {
+          setCaretSafe(this, prefixMinPos);
+        }
+      });
+
+      // ensure when form is reset/cleared, mask is restored
+      input.form && input.form.addEventListener("reset", function () {
+        setTimeout(() => {
+          phoneSelectors.forEach((s) => {
+            const el = document.querySelector(s);
+            if (el) el.value = template;
+          });
+        }, 0);
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPhoneMask);
+  } else {
+    initPhoneMask();
+  }
+})();

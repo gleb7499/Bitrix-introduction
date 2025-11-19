@@ -57,14 +57,14 @@ $curPage = $APPLICATION->GetCurPage();
                             <span class="quick-response__error">Additional text</span>
                         </div>
                         <div class="quick-response__field">
-                            <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" />
+                            <input type="tel" class="quick-response__input" placeholder="+7" />
                             <span class="quick-response__error">Additional text</span>
                         </div>
                         <button type="submit" class="btn btn--primary">Отправить</button>
                         <p>
                             Отправляя форму, вы соглашаетесь с условиями
-                            <a href="#">пользовательского соглашения</a> и
-                            <a href="#">обработкой персональных данных</a>
+                            <a href="/terms/">пользовательского соглашения</a> и
+                            <a href="/privacy/">политикой обработки персональных данных</a>
                         </p>
                     </form>
                 </div>

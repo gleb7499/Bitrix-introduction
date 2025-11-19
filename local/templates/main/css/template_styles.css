@@ -2974,6 +2974,19 @@ body.overlay-active .header--desktop {
   margin-bottom: clamp(24px, 2.083vw, 40px) /* 40px */;
 }
 
+/* Ссылки в форме быстрого ответа: такой же hover как у .footer__legal-link */
+.quick-response__content p a,
+.quick-response__content--mobile p a {
+  color: #9d9d9d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.quick-response__content p a:hover,
+.quick-response__content--mobile p a:hover {
+  color: #1e1b39;
+}
+
 .quick-response__input {
   width: 100%;
   padding: clamp(20px, 1.563vw, 30px) /* 30px */ 2.188vw /* 42px */;
@@ -3955,14 +3968,9 @@ body.modal-open {
    СТРАНИЦА 404
    ======================================== */
 
-/* Обертка страницы 404 */
-#page404Content {
-  /* Дополнительные стили при необходимости */
-}
-
 /* Специальные стили для секции 404 */
 .section--404 {
-  /* Можно добавить особенности отображения, если нужно */
+  margin-bottom: clamp(16px, 1.042vw, 20px);
 }
 
 /* Адаптация изображения 404 */
@@ -4357,7 +4365,9 @@ img {
   }
 
   /* Footer остаётся на своём месте (в конце страницы) */
-  /* Никаких изменений для .footer в мобилке */
+  .footer {
+    padding: 0;
+  }
 
   /* ========================================
      УПРАВЛЕНИЕ ВИДИМОСТЬЮ HEADER
@@ -4630,6 +4640,11 @@ img {
     display: flex;
     flex-direction: column;
     padding: 20px;
+    margin-bottom: clamp(
+      16px,
+      1.042vw,
+      20px
+    ); /* визуальный отступ перед футером */
   }
 
   .section--404 .hero__content {

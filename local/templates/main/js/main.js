@@ -3131,3 +3131,229 @@ function initMobileMenu() {
 
   console.log("Мобильное меню инициализировано");
 }
+
+// ========================================
+// МАСКА ТЕЛЕФОНА ДЛЯ ПОЛЕЙ ВВОДА
+// ========================================
+
+/**
+ * Инициализация маски телефона для указанных полей
+ * Формат: +7 (___) ___-__-__
+ *
+ * Особенности:
+ * - "+7" всегда статичен и не может быть удалён
+ * - Подчёркивания исчезают по мере ввода цифр
+ * - Автоматическая расстановка скобок, пробелов и тире
+ * - Минимальная позиция каретки — после "+7 "
+ */
+// Phone mask for two fields: modal and quick-response
+(function () {
+  "use strict";
+
+  function initPhoneMask() {
+    const phoneSelectors = [
+      "#callModalForm > div:nth-child(2) > input",
+      "#mainContent > section.section.section--quick-response > div.quick-response__content > form > div:nth-child(2) > input",
+    ];
+
+    const template = "+7 (___) ___-__-__";
+    const prefixMinPos = 4; // caret must not go before this index
+
+    phoneSelectors.forEach((sel) => {
+      const input = document.querySelector(sel);
+      if (!input) return;
+
+      // helpers
+      const onlyDigits = (s) => (s || "").replace(/\D/g, "");
+      const buildFromDigits = (digits) => {
+        // digits = string of up to 10 digits (without leading 7)
+        let out = "";
+        let di = 0;
+        for (let i = 0; i < template.length; i++) {
+          const ch = template[i];
+          if (ch === "_") {
+            out += di < digits.length ? digits[di++] : "_";
+          } else {
+            out += ch;
+          }
+        }
+        return out;
+      };
+      const firstPlaceholderPos = (str) => str.indexOf("_");
+      const setCaretSafe = (el, pos) => {
+        if (pos < prefixMinPos) pos = prefixMinPos;
+        // clamp to [0, length]
+        pos = Math.max(0, Math.min(pos, el.value.length));
+        try {
+          el.setSelectionRange(pos, pos);
+        } catch (err) {
+          // ignore for older browsers
+        }
+      };
+
+      // initialize
+      input.value = template;
+
+      // ensure on focus caret at first placeholder if coming from untouched
+      input.addEventListener("focus", function () {
+        // always keep template if empty or user erased something
+        if (!this.value || this.value.trim() === "" || this.value === "+7") {
+          this.value = template;
+        } else {
+          // normalize to template form in case something weird happened
+          const nums = onlyDigits(this.value);
+          // ensure leading 7
+          let normalized = nums;
+          if (!normalized.startsWith("7")) normalized = "7" + normalized;
+          normalized = normalized.substring(1, 11); // up to 10 digits after leading 7
+          this.value = buildFromDigits(normalized);
+        }
+        setTimeout(() => {
+          const pos = firstPlaceholderPos(this.value);
+          setCaretSafe(this, pos === -1 ? this.value.length : pos);
+        }, 0);
+      });
+
+      // prevent click moving caret before prefix
+      input.addEventListener("click", function (e) {
+        setTimeout(() => {
+          if (this.selectionStart < prefixMinPos) {
+            setCaretSafe(this, prefixMinPos);
+          }
+        }, 0);
+      });
+
+      // keydown: block non-digit keys except navigation and control
+      input.addEventListener("keydown", function (e) {
+        const allowed = [
+          "Backspace",
+          "Delete",
+          "Tab",
+          "Escape",
+          "Enter",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowDown",
+          "Home",
+          "End",
+          "Shift",
+          "Control",
+          "Meta",
+          "Alt",
+        ];
+
+        // allow Ctrl/Cmd combos (e.g. Ctrl+C)
+        if (e.ctrlKey || e.metaKey) return;
+
+        // block attempts to move caret before prefix with ArrowLeft/Home
+        if ((e.key === "ArrowLeft" || e.key === "Home") && this.selectionStart <= prefixMinPos) {
+          e.preventDefault();
+          setCaretSafe(this, prefixMinPos);
+          return;
+        }
+
+        // prevent deletion of prefix
+        if ((e.key === "Backspace" || e.key === "Delete") && this.selectionStart <= prefixMinPos) {
+          e.preventDefault();
+          setCaretSafe(this, prefixMinPos);
+          return;
+        }
+
+        if (allowed.includes(e.key)) return;
+
+        // if not digit -> prevent
+        if (!/^[0-9]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+
+      // paste handling
+      input.addEventListener("paste", function (e) {
+        e.preventDefault();
+        const raw = (e.clipboardData || window.clipboardData).getData("text") || "";
+        let nums = onlyDigits(raw);
+        if (!nums) return;
+
+        // if starts with 8 or 7, drop first digit (we keep country code separately)
+        if (nums.startsWith("8") || nums.startsWith("7")) nums = nums.substring(1);
+
+        nums = nums.substring(0, 10);
+        this.value = buildFromDigits(nums);
+        // place caret at first placeholder or end
+        const pos = firstPlaceholderPos(this.value);
+        setTimeout(() => setCaretSafe(this, pos === -1 ? this.value.length : pos), 0);
+      });
+
+      // input event: reconstruct from digits, robust to selection and editing
+      input.addEventListener("input", function (e) {
+        // Extract digits from current value
+        let nums = onlyDigits(this.value);
+
+        // If nothing, reset to template
+        if (!nums) {
+          this.value = template;
+          setTimeout(() => setCaretSafe(this, firstPlaceholderPos(this.value)), 0);
+          return;
+        }
+
+        // Ensure leading 7 (country code). If user pasted/typed a leading 8 -> convert to 7
+        if (!nums.startsWith("7")) {
+          nums = "7" + nums;
+        } else {
+          // ensure leading is '7' (if starts with '8' it was handled above)
+        }
+
+        // remove leading 7 for the 10-digit local part
+        nums = nums.substring(1);
+
+        // limit to 10 digits
+        nums = nums.substring(0, 10);
+
+        // rebuild formatted value
+        const formatted = buildFromDigits(nums);
+        this.value = formatted;
+
+        // Determine caret position:
+        // Place at first underscore (next placeholder). If none, put at end.
+        let pos = firstPlaceholderPos(formatted);
+        if (pos === -1) pos = formatted.length;
+
+        // If inputType indicates deletion, move caret to first placeholder as well.
+        // This makes delete/backspace predictable.
+        setTimeout(() => setCaretSafe(this, pos), 0);
+      });
+
+      // protect programmatic attempts to set selection before prefix
+      input.addEventListener("select", function (e) {
+        if (this.selectionStart < prefixMinPos) {
+          setCaretSafe(this, prefixMinPos);
+        }
+      });
+
+      // ensure when form is reset/cleared, mask is restored
+      input.form && input.form.addEventListener("reset", function () {
+        setTimeout(() => {
+          phoneSelectors.forEach((s) => {
+            const el = document.querySelector(s);
+            if (el) el.value = template;
+          });
+        }, 0);
+      });
+
+      // ensure initial caret not before prefix on load
+      input.addEventListener("DOMContentLoaded", function () {
+        if (this.selectionStart < prefixMinPos) setCaretSafe(this, prefixMinPos);
+      });
+
+      // mark init
+      // console.log(`Phone mask initialized for: ${sel}`);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPhoneMask);
+  } else {
+    initPhoneMask();
+  }
+})();

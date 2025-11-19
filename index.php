@@ -681,7 +681,7 @@ $APPLICATION->SetTitle("Главная");
                     <span class="quick-response__error">Additional text</span>
                 </div>
                 <div class="quick-response__field">
-                    <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" />
+                    <input type="tel" class="quick-response__input" placeholder="+7" />
                     <span class="quick-response__error">Additional text</span>
                 </div>
                 <button type="submit" class="btn btn--primary">Отправить</button>
