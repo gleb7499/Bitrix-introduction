@@ -977,30 +977,63 @@ function initQuickResponseForm() {
     });
 
     if (isValid) {
-      console.log("Форма Quick Response отправлена");
-      alert(
-        "Спасибо! Ваш запрос принят. Мы свяжемся с вами в течение 15 минут."
-      );
+      // Отключаем кнопку во время отправки
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Отправка...";
+      }
 
-      // Сброс формы
-      form.reset();
+      // Получаем данные из формы
+      const formData = new FormData(form);
 
-      // Сброс всех состояний
-      fields.forEach((field, index) => {
-        const input = field.querySelector(".quick-response__input");
-        const fieldId = `field_${index}`;
+      // Устанавливаем URL текущей страницы
+      formData.set("page_url", window.location.href);
 
-        input.classList.remove("active", "error", "warning");
-        field.classList.remove("has-error", "has-warning");
+      // Отправляем AJAX-запрос
+      fetch("/local/ajax/send_form.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert(
+              data.message ||
+                "Спасибо! Ваш запрос принят. Мы свяжемся с вами в течение 15 минут."
+            );
 
-        fieldStates[fieldId] = {
-          touched: false,
-          valid: false,
-          empty: true,
-        };
-      });
+            // Сброс формы
+            form.reset();
 
-      updateSubmitButton();
+            // Сброс всех состояний
+            fields.forEach((field, index) => {
+              const input = field.querySelector(".quick-response__input");
+              const fieldId = `field_${index}`;
+
+              input.classList.remove("active", "error", "warning");
+              field.classList.remove("has-error", "has-warning");
+
+              fieldStates[fieldId] = {
+                touched: false,
+                valid: false,
+                empty: true,
+              };
+            });
+          } else {
+            alert(data.error || "Произошла ошибка. Попробуйте позже.");
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка отправки формы:", error);
+          alert("Произошла ошибка при отправке. Попробуйте позже.");
+        })
+        .finally(() => {
+          // Возвращаем кнопку в исходное состояние
+          if (submitBtn) {
+            submitBtn.textContent = "Отправить";
+            updateSubmitButton();
+          }
+        });
     }
   });
 }
@@ -1528,36 +1561,69 @@ function initCallModalForm() {
     });
 
     if (isValid) {
-      console.log("Форма модального окна отправлена");
-
-      // Скрываем форму и показываем сообщение об успехе
-      const formContent = document.querySelector(".quick-response__content");
-      const successContent = document.querySelector(".modal-success");
-
-      if (formContent && successContent) {
-        formContent.style.display = "none";
-        successContent.style.display = "flex";
+      // Отключаем кнопку во время отправки
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Отправка...";
       }
 
-      // Сброс формы
-      form.reset();
+      // Получаем данные из формы
+      const formData = new FormData(form);
 
-      // Сброс всех состояний
-      fields.forEach((field, index) => {
-        const input = field.querySelector(".quick-response__input");
-        const fieldId = `modal_field_${index}`;
+      // Устанавливаем URL текущей страницы
+      formData.set("page_url", window.location.href);
 
-        input.classList.remove("active", "error", "warning");
-        field.classList.remove("has-error", "has-warning");
+      // Отправляем AJAX-запрос
+      fetch("/local/ajax/send_form.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // Скрываем форму и показываем сообщение об успехе
+            const formContent = document.querySelector(
+              ".quick-response__content"
+            );
+            const successContent = document.querySelector(".modal-success");
 
-        fieldStates[fieldId] = {
-          touched: false,
-          valid: false,
-          empty: true,
-        };
-      });
+            if (formContent && successContent) {
+              formContent.style.display = "none";
+              successContent.style.display = "flex";
+            }
 
-      updateSubmitButton();
+            // Сброс формы
+            form.reset();
+
+            // Сброс всех состояний
+            fields.forEach((field, index) => {
+              const input = field.querySelector(".quick-response__input");
+              const fieldId = `modal_field_${index}`;
+
+              input.classList.remove("active", "error", "warning");
+              field.classList.remove("has-error", "has-warning");
+
+              fieldStates[fieldId] = {
+                touched: false,
+                valid: false,
+                empty: true,
+              };
+            });
+          } else {
+            alert(data.error || "Произошла ошибка. Попробуйте позже.");
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка отправки модальной формы:", error);
+          alert("Произошла ошибка при отправке. Попробуйте позже.");
+        })
+        .finally(() => {
+          // Возвращаем кнопку в исходное состояние
+          if (submitBtn) {
+            submitBtn.textContent = "Отправить";
+            updateSubmitButton();
+          }
+        });
     }
   });
 
@@ -3110,10 +3176,43 @@ function initMobileMenu() {
       });
 
       if (isValid) {
-        console.log("Форма мобильного оверлея успешно отправлена");
+        // Отключаем кнопку во время отправки
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Отправка...";
+        }
 
-        // 🔑 АРХИТЕКТУРНОЕ РЕШЕНИЕ: Заменяем форму на сообщение об успехе
-        showMobileSuccessMessage();
+        // Получаем данные из формы
+        const formData = new FormData(form);
+
+        // Устанавливаем URL текущей страницы
+        formData.set("page_url", window.location.href);
+
+        // Отправляем AJAX-запрос
+        fetch("/local/ajax/send_form.php", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // 🔑 АРХИТЕКТУРНОЕ РЕШЕНИЕ: Заменяем форму на сообщение об успехе
+              showMobileSuccessMessage();
+            } else {
+              alert(data.error || "Произошла ошибка. Попробуйте позже.");
+            }
+          })
+          .catch((error) => {
+            console.error("Ошибка отправки мобильной формы:", error);
+            alert("Произошла ошибка при отправке. Попробуйте позже.");
+          })
+          .finally(() => {
+            // Возвращаем кнопку в исходное состояние
+            if (submitBtn) {
+              submitBtn.textContent = "Отправить";
+              updateSubmitButton();
+            }
+          });
       }
     });
 

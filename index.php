@@ -676,12 +676,13 @@ $APPLICATION->SetTitle("Главная");
                 ["MODE" => "html", "NAME" => "Подзаголовок секции Получить ответ за 15 минут"]
             ); ?>
             <form class="quick-response__form">
+                <input type="hidden" name="page_url" value="" />
                 <div class="quick-response__field">
-                    <input type="text" class="quick-response__input" placeholder="Имя" />
+                    <input type="text" name="name" class="quick-response__input" placeholder="Имя" />
                     <span class="quick-response__error">Additional text</span>
                 </div>
                 <div class="quick-response__field">
-                    <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" />
+                    <input type="tel" name="phone" class="quick-response__input" placeholder="+7 __ __ __" />
                     <span class="quick-response__error">Additional text</span>
                 </div>
                 <button type="submit" class="btn btn--primary">Отправить</button>

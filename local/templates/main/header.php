@@ -29,7 +29,7 @@ $curPage = $APPLICATION->GetCurPage();
     $APPLICATION->ShowCSS();
     ?>
 
-    <link rel="shortcut icon" href="<?= SITE_TEMPLATE_PATH ?>/image/icons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -52,12 +52,13 @@ $curPage = $APPLICATION->GetCurPage();
                         Заполните форму с актуальными данными
                     </p>
                     <form class="quick-response__form" id="callModalForm">
+                        <input type="hidden" name="page_url" value="" />
                         <div class="quick-response__field">
-                            <input type="text" class="quick-response__input" placeholder="Имя" />
+                            <input type="text" name="name" class="quick-response__input" placeholder="Имя" />
                             <span class="quick-response__error">Additional text</span>
                         </div>
                         <div class="quick-response__field">
-                            <input type="tel" class="quick-response__input" placeholder="+7 __ __ __" />
+                            <input type="tel" name="phone" class="quick-response__input" placeholder="+7 __ __ __" />
                             <span class="quick-response__error">Additional text</span>
                         </div>
                         <button type="submit" class="btn btn--primary">Отправить</button>

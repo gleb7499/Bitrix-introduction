@@ -3121,6 +3121,14 @@ body.overlay-active .header--desktop {
   margin-top: clamp(8px, 0.521vw, 10px) /* 10px */;
 }
 
+.quick-response__form > p > a {
+  transition: color 0.3s ease;
+}
+
+.quick-response__form > p > a:hover {
+  color: #1e1b39;
+}
+
 .quick-response__agreement a {
   color: #9d9d9d;
   text-decoration: underline;
@@ -6044,6 +6052,14 @@ img {
   .quick-response__form > p {
     font-size: 14px;
     margin-top: 10px;
+  }
+
+  .quick-response__form > p > a:hover {
+    color: #9d9d9d;
+  }
+
+  .quick-response__form > p > a:active {
+    color: #1e1b39;
   }
 
   /* ========================================
