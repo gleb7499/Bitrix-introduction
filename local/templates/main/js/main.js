@@ -37,7 +37,7 @@ const overlayManager = {
 };
 
 // Константы для маски телефона
-const PHONE_MASK_TEMPLATE = "+7 ___ __ __ __";
+const PHONE_MASK_TEMPLATE = "+7 ___ ___ __ __";
 const PHONE_MASK_PLACEHOLDER = "_";
 const PHONE_MASK_DIGIT_POSITIONS = PHONE_MASK_TEMPLATE.split("")
   .map((char, index) => (char === PHONE_MASK_PLACEHOLDER ? index : null))
