@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initPricingCarousel();
   initClientsCarousel();
   initReviewsCarousel();
+  initPhoneMask(); // Инициализация маски +7 для полей телефона
 });
 
 // Функция для обновления высоты header
@@ -1005,6 +1006,166 @@ function initQuickResponseForm() {
 }
 
 /**
+ * 📞 МАСКА ТЕЛЕФОНА: Добавляет нестираемый "+7" в начало полей телефона
+ * Находит все поля с классом quick-response__input и type="tel"
+ * и добавляет маску "+7" в начало
+ */
+function initPhoneMask() {
+  // Находим все поля ввода телефона в формах
+  const phoneInputs = document.querySelectorAll(
+    '.quick-response__input[type="tel"]'
+  );
+
+  phoneInputs.forEach((input) => {
+    // Переменная для хранения выбранного текста
+    let selectionStart = 0;
+
+    // ==================== ФУНКЦИЯ: Форматирование значения с маской +7 ====================
+    function formatPhoneValue(value) {
+      // Убираем все нецифровые символы
+      let digits = value.replace(/\D/g, "");
+
+      // Если нет цифр - возвращаем пусто
+      if (!digits) return "+7";
+
+      // Если номер начинается с 8, заменяем на 7
+      if (digits.startsWith("8")) {
+        digits = "7" + digits.slice(1);
+      }
+
+      // Если номер не начинается с 7 - добавляем 7
+      if (!digits.startsWith("7")) {
+        digits = "7" + digits;
+      }
+
+      // Оставляем максимум 11 цифр (7 + 10 цифр)
+      digits = digits.slice(0, 11);
+
+      return "+".concat(digits);
+    }
+
+    // ==================== ФУНКЦИЯ: Установка значения с сохранением позиции курсора ====================
+    function setFormattedValue(newValue) {
+      const oldValue = input.value;
+      input.value = newValue;
+
+      // Сохраняем позицию курсора
+      // Если пользователь печатает в конце - остаемся в конце
+      if (
+        selectionStart >= oldValue.length ||
+        selectionStart === oldValue.length - 1
+      ) {
+        input.setSelectionRange(newValue.length, newValue.length);
+        selectionStart = newValue.length;
+      } else {
+        // Если пользователь печатает в начале или середине - смещаем курсор
+        const diff = newValue.length - oldValue.length;
+        const newPosition = Math.max(1, selectionStart + diff); // Минимум 1 позиция (после +7)
+        input.setSelectionRange(newPosition, newPosition);
+        selectionStart = newPosition;
+      }
+    }
+
+    // ==================== ИНИЦИАЛИЗАЦИЯ: Устанавливаем начальное значение ====================
+    if (!input.value || input.value.trim() === "") {
+      input.value = "+7";
+    } else {
+      input.value = formatPhoneValue(input.value);
+    }
+
+    // ==================== ОБРАБОТЧИК: input событие (при вводе текста) ====================
+    input.addEventListener("input", function (e) {
+      selectionStart = this.selectionStart || 0;
+
+      // Если пользователь попытался удалить +7 - возвращаем его
+      if (!this.value.startsWith("+7")) {
+        setFormattedValue("+7");
+        return;
+      }
+
+      // Форматируем значение
+      const formatted = formatPhoneValue(this.value);
+      if (this.value !== formatted) {
+        setFormattedValue(formatted);
+      }
+    });
+
+    // ==================== ОБРАБОТЧИК: keydown событие (для обработки Backspace) ====================
+    input.addEventListener("keydown", function (e) {
+      selectionStart = this.selectionStart || 0;
+
+      // Если пользователь нажал Backspace и пытается удалить +7
+      if (
+        e.key === "Backspace" &&
+        selectionStart <= 2 &&
+        this.value.startsWith("+7")
+      ) {
+        e.preventDefault(); // Предотвращаем удаление
+        this.setSelectionRange(2, 2); // Ставим курсор после +7
+      }
+
+      // Если пользователь нажал Delete и пытается удалить + или 7
+      if (
+        e.key === "Delete" &&
+        selectionStart === 0 &&
+        this.value.startsWith("+7")
+      ) {
+        e.preventDefault(); // Предотвращаем удаление
+        this.setSelectionRange(1, 1); // Ставим курсор после +
+      }
+    });
+
+    // ==================== ОБРАБОТЧИК: focus событие (переход в поле) ====================
+    input.addEventListener("focus", function () {
+      // Если поле пусто при фокусе - устанавливаем +7
+      if (!this.value || this.value.trim() === "") {
+        this.value = "+7";
+      }
+
+      // Если в поле только +7 - ставим курсор в конец
+      if (this.value === "+7") {
+        this.setSelectionRange(2, 2);
+      }
+
+      // Если нет правильного префикса - форматируем
+      if (!this.value.startsWith("+7")) {
+        this.value = formatPhoneValue(this.value);
+      }
+    });
+
+    // ==================== ОБРАБОТЧИК: blur событие (выход из поля) ====================
+    input.addEventListener("blur", function () {
+      // При выходе из поля проверяем, что +7 остался на месте
+      if (!this.value.startsWith("+7")) {
+        this.value = formatPhoneValue(this.value);
+      }
+
+      // Если остались только +7 - это нормально, поле может быть пусто
+      // Валидация проверит это отдельно
+    });
+
+    // ==================== ОБРАБОТЧИК: paste событие (вставка текста) ====================
+    input.addEventListener("paste", function (e) {
+      e.preventDefault(); // Предотвращаем стандартную вставку
+
+      // Получаем вставляемый текст
+      const pastedText =
+        (e.clipboardData || window.clipboardData).getData("text") || "";
+
+      // Форматируем и устанавливаем
+      const formatted = formatPhoneValue(this.value + pastedText);
+      this.value = formatted;
+
+      // Ставим курсор в конец
+      this.setSelectionRange(formatted.length, formatted.length);
+      selectionStart = formatted.length;
+    });
+
+    console.log("✅ Маска +7 инициализирована для поля телефона");
+  });
+}
+
+/**
  * 🔐 Жёсткая валидация полей формы с защитой от всех возможных случаев
  * @param {HTMLInputElement} input - Поле ввода
  * @param {HTMLElement} field - Родительский контейнер поля
@@ -1136,8 +1297,8 @@ function validatePhone(value, input, field, errorText, isTyping) {
   // Убираем все нецифровые символы
   const phoneDigits = value.replace(/\D/g, "");
 
-  // 1. Пустой номер
-  if (phoneDigits.length === 0) {
+  // 1. Пустой номер или только маска +7
+  if (phoneDigits.length === 0 || phoneDigits === "7") {
     return false;
   }
 
