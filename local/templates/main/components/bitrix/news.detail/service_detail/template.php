@@ -104,11 +104,11 @@ $this->setFrameMode(true);
                     <div class="work-process-card">
                         <div class="work-process-card__image">
                             <?php
-                            // Проверяем, загружены ли кастомные картинки
+                            // Check if custom images are uploaded
                             if (!empty($arResult['PROPERTIES']['PROCESS_STEPS_IMAGES']['VALUE'][$key])) {
                                 $imageUrl = CFile::GetPath($arResult['PROPERTIES']['PROCESS_STEPS_IMAGES']['VALUE'][$key]);
                             } else {
-                                // Используем дефолтные картинки
+                                // Use default images
                                 $defaultImages = [
                                     '/local/templates/main/image/content/audit-section-crm-proces.png',
                                     '/local/templates/main/image/content/implem-section-crm-proces.png',
@@ -195,7 +195,7 @@ $this->setFrameMode(true);
             <?php if (!empty($arResult['PROPERTIES']['TARIFFS']['~VALUE'])): ?>
                 <?php foreach ($arResult['PROPERTIES']['TARIFFS']['~VALUE'] as $key => $tariff): ?>
                     <?php
-                    // Декодируем JSON (используем ~VALUE для получения неэкранированных данных)
+                    // Decode JSON (use ~VALUE to get unescaped data)
                     $tariffData = json_decode($tariff, true);
                     $colorClass = ['green', 'orange', 'red'][$key % 3];
                     ?>
@@ -551,14 +551,14 @@ $this->setFrameMode(true);
 
         <div class="services-opportunities__grid">
             <?php
-            // Устанавливаем фильтр для выборки услуг из той же категории (исключая текущую)
+            // Set a filter to fetch services from the same category (excluding the current one)
             global $arRelatedFilter;
             $arRelatedFilter = array(
-                "SECTION_ID" => $arResult["IBLOCK_SECTION_ID"], // Только текущий раздел (например, 1С)
-                "!ID" => $arResult["ID"] // Исключаем текущую страницу
+                "SECTION_ID" => $arResult["IBLOCK_SECTION_ID"], // Only the current section (e.g., 1C)
+                "!ID" => $arResult["ID"] // Exclude the current page
             );
 
-            // Получаем услуги из той же категории, исключая текущую
+            // Fetch services from the same category, excluding the current one
             $APPLICATION->IncludeComponent(
                 "bitrix:news.list",
                 "related_services",

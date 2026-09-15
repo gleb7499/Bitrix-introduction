@@ -19,13 +19,13 @@ $curPage = $APPLICATION->GetCurPage();
     <title><?php $APPLICATION->ShowTitle(); ?></title>
 
     <?php
-    // Подключение CSS
+    // CSS includes
     $asset->addCss(SITE_TEMPLATE_PATH . '/css/template_styles.css');
 
-    // Мета-теги и заголовки
+    // Meta tags and titles
     $APPLICATION->ShowHead();
 
-    // CSS из панели управления и компонентов
+    // CSS from the control panel and components
     $APPLICATION->ShowCSS();
     ?>
 

@@ -132,7 +132,7 @@ use Bitrix\Main\Page\Asset;
 </footer>
 
 <?php
-// Подключение JavaScript
+// JavaScript includes
 $asset = Asset::getInstance();
 $asset->addJs(SITE_TEMPLATE_PATH . '/js/main.js');
 ?>

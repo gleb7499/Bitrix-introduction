@@ -1,20 +1,20 @@
 <?php
 /**
- * 404 - Страница не найдена
- * Корневой файл для IntezGroup
+ * 404 - Page Not Found
+ * Root file for IntezGroup
  * 
- * ВАЖНО: Этот файл должен быть в КОРНЕ сайта (/404.php)
- * Он подключает шаблон из /local/templates/main/404.php
+ * IMPORTANT: This file must be in the site ROOT (/404.php)
+ * It includes the template from /local/templates/main/404.php
  */
 
-// Устанавливаем HTTP статус 404
+// Set HTTP 404 status
 header("HTTP/1.0 404 Not Found");
 @define("ERROR_404", "Y");
 
-// Подключаем header Bitrix
+// Include Bitrix header
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
-// Устанавливаем заголовок страницы
+// Set page title
 $APPLICATION->SetTitle("Страница не найдена");
 $APPLICATION->SetPageProperty("title", "404 - Страница не найдена | IntezGroup");
 ?>
@@ -37,6 +37,6 @@ $APPLICATION->SetPageProperty("title", "404 - Страница не найден
 </section>
 
 <?php
-// Подключаем footer Bitrix
+// Include Bitrix footer
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
 ?>

@@ -28,7 +28,7 @@ if (empty($arResult)) {
         $hasChildren = !empty($arItem["ITEMS"]);
         $isActive = $arItem["SELECTED"];
 
-        // Отладка (удалить после проверки)
+        // Debug (remove after checking)
         // echo "<pre>"; echo $arItem["TEXT"]; print_r($arItem["ITEMS"]); echo "</pre>";
         ?>
 

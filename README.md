@@ -1,95 +1,107 @@
-# 🎯 Bitrix Introduction - Динамические страницы услуг
+# 🎯 Bitrix Introduction - Dynamic Service Pages
 
-## 📚 Что это?
+## 📚 What is this?
 
-Проект для внедрения **динамического шаблона страниц услуг** в 1С-Битрикс.
+Project for implementing **dynamic service page templates** in 1C-Bitrix.
 
-Вместо захардкоженных HTML-страниц, контент управляется через **админку Битрикса** — создаёшь услугу в инфоблоке, и она автоматически отображается с твоей версткой.
+Instead of hardcoded HTML pages, content is managed through the **Bitrix admin panel** — you create a service in an info-block, and it is automatically rendered with your markup.
 
 ---
 
-## 🗂️ Структура проекта
+## 📸 Screenshots
+
+**Home page** (static template from `layout/index.html`):
+
+![Home page](images/home-page.png)
+
+**Service page** (static template from `layout/services.html` — the same markup rendered dynamically by the Bitrix template):
+
+![Service page](images/service-page.png)
+
+---
+
+## 🗂️ Project Structure
 
 ```
-layout/                      # Статичные HTML-шаблоны (исходники)
-├── index.html              # Главная страница
-├── services.html           # Шаблон страницы услуг
-└── assets/                 # Картинки, стили, скрипты
+layout/                      # Static HTML templates (source files)
+├── index.html              # Home page
+├── services.html           # Service page template
+└── assets/                 # Images, styles, scripts
 
-local/                       # Файлы для Битрикса
+local/                       # Files for Bitrix
 ├── templates/
 │   └── main/
-│       ├── header.php              # Шапка сайта (PHP)
-│       ├── footer.php              # Подвал сайта (PHP)
+│       ├── header.php              # Site header (PHP)
+│       ├── footer.php              # Site footer (PHP)
 │       └── components/
 │           └── bitrix/
 │               ├── news.detail/
 │               │   └── service_detail/
-│               │       └── template.php    # 🎨 ГЛАВНЫЙ ШАБЛОН страницы услуги
+│               │       └── template.php    # 🎨 MAIN service page template
 │               └── news.list/
 │                   └── related_services/
-│                       └── template.php    # 🔗 Блок "Похожие услуги"
+│                       └── template.php    # 🔗 "Related services" block
 └── services/
     ├── bitrix24/
     │   └── implementation/
-    │       └── index.php       # Страница "Внедрение Битрикс 24"
+    │       └── index.php       # "Bitrix 24 Implementation" page
     └── 1c/
         └── support/
-            └── index.php       # Страница "Техподдержка 1С"
+            └── index.php       # "1C Support" page
 ```
 
 ---
 
-## 📖 Документация
+## 📖 Documentation
 
-### 🚀 **Быстрый старт**
+### 🚀 **Quick Start**
 
-1. **Читай:** [BITRIX_SETUP_GUIDE.md](BITRIX_SETUP_GUIDE.md) — полная инструкция на 400+ строк
-2. **Используй:** [PROPERTIES_CHECKLIST.md](PROPERTIES_CHECKLIST.md) — шпаргалка со списком всех свойств
-
----
-
-### 📝 **Что включено в инструкцию:**
-
-✅ Создание инфоблока "Каталог услуг"  
-✅ Список всех 16 свойств (с примерами)  
-✅ Создание разделов (1С, Битрикс 24, ИТ-инфраструктура...)  
-✅ Заполнение первой услуги "Внедрение Битрикс 24"  
-✅ Настройка ЧПУ (красивых URL)  
-✅ Копирование файлов на сервер  
-✅ Решение частых проблем  
+1. **Read:** [BITRIX_SETUP_GUIDE.md](BITRIX_SETUP_GUIDE.md) — full 400+ line instructions
+2. **Use:** [PROPERTIES_CHECKLIST.md](PROPERTIES_CHECKLIST.md) — cheat sheet with the full property list
 
 ---
 
-## 🎨 Особенности решения
+### 📝 **What the guide covers:**
 
-### 1️⃣ **10 секций на странице:**
-
-| № | Секция | Тип данных | Где заполняется |
-|---|--------|------------|-----------------|
-| 1 | Hero (главный экран) | Динамика | Свойства: HERO_TITLE, HERO_DESCRIPTION, HERO_IMAGE |
-| 2 | О компании | Динамика | Свойство ABOUT_TITLE + поле DETAIL_TEXT |
-| 3 | Процесс работы | Динамика | Свойства: PROCESS_TITLE, PROCESS_STEPS (список), PROCESS_STEPS_DESC |
-| 4 | Тарифы | Динамика | Свойство TARIFFS (JSON, 3 значения) |
-| 5 | Преимущества | **Статика** | Одинаково для всех услуг |
-| 6 | Отзывы | **Статика** | Одинаково для всех услуг |
-| 7 | Ready-to-start | Динамика | Свойства: READY_TITLE, READY_DESCRIPTION, READY_LIST |
-| 8 | Клиенты | **Статика** | Одинаково для всех услуг |
-| 9 | FAQ (6 карточек) | Динамика | Свойства: FAQ_QUESTIONS (список), FAQ_ANSWERS (список) |
-| 10 | Похожие услуги | **Авто** | Автоматически выбирает из той же категории |
+✅ Creating the "Service Catalog" info-block  
+✅ List of all 16 properties (with examples)  
+✅ Creating sections (1C, Bitrix 24, IT infrastructure...)  
+✅ Filling in the first service "Bitrix 24 Implementation"  
+✅ Setting up SEF URLs (pretty URLs)  
+✅ Copying files to the server  
+✅ Troubleshooting common problems
 
 ---
 
-### 2️⃣ **Умная секция "Похожие услуги"**
+## 🎨 Solution Highlights
 
-Автоматически показывает **3 услуги из той же категории**, исключая текущую страницу.
+### 1️⃣ **10 sections on the page:**
 
-**Пример:** На странице "Внедрение Битрикс 24" → показываются "Обслуживание Битрикс 24", "Настройка Битрикс 24", "Разработка Битрикс 24"
+| # | Section | Data type | Where it is filled |
+|---|---------|-----------|--------------------|
+| 1 | Hero (main screen) | Dynamic | Properties: HERO_TITLE, HERO_DESCRIPTION, HERO_IMAGE |
+| 2 | About the company | Dynamic | Property ABOUT_TITLE + DETAIL_TEXT field |
+| 3 | Work process | Dynamic | Properties: PROCESS_TITLE, PROCESS_STEPS (list), PROCESS_STEPS_DESC |
+| 4 | Pricing plans | Dynamic | Property TARIFFS (JSON, 3 values) |
+| 5 | Advantages | **Static** | Same for all services |
+| 6 | Testimonials | **Static** | Same for all services |
+| 7 | Ready-to-start | Dynamic | Properties: READY_TITLE, READY_DESCRIPTION, READY_LIST |
+| 8 | Clients | **Static** | Same for all services |
+| 9 | FAQ (6 cards) | Dynamic | Properties: FAQ_QUESTIONS (list), FAQ_ANSWERS (list) |
+| 10 | Related services | **Auto** | Automatically picked from the same category |
 
-**Код (уже реализовано в шаблоне):**
+---
+
+### 2️⃣ **Smart "Related Services" section**
+
+Automatically shows **3 services from the same category**, excluding the current page.
+
+**Example:** On the "Bitrix 24 Implementation" page → shows "Bitrix 24 Maintenance", "Bitrix 24 Configuration", "Bitrix 24 Development"
+
+**Code (already implemented in the template):**
 
 ```php
-// Фильтр выбирает услуги из того же раздела, кроме текущей
+// Filter picks services from the same section, excluding the current one
 $arRelatedFilter = array(
     "SECTION_ID" => $arResult["IBLOCK_SECTION_ID"],
     "!ID" => $arResult["ID"]
@@ -98,117 +110,117 @@ $arRelatedFilter = array(
 
 ---
 
-### 3️⃣ **JSON для тарифов**
+### 3️⃣ **JSON for pricing plans**
 
-Тарифы хранятся в формате JSON (удобно для редактирования):
+Pricing plans are stored in JSON format (easy to edit):
 
 ```json
 {
-  "name": "Базовый",
-  "price": "От 29 900 ₽",
-  "badge": "Цена ниже рынка",
+  "name": "Basic",
+  "price": "From 29 900 ₽",
+  "badge": "Price below market",
   "old_price": "",
   "features": [
-    "Аудит бизнес-процессов",
-    "Базовая настройка CRM",
-    "Настройка воронок продаж"
+    "Business process audit",
+    "Basic CRM setup",
+    "Sales pipeline setup"
   ]
 }
 ```
 
-Для **зачеркнутой цены** (3-й тариф):
+For a **strikethrough price** (3rd plan):
 
 ```json
 {
-  "name": "Максимальный",
-  "price": "От 120 000 ₽",
-  "badge": "-50 %",
-  "old_price": "(от 180 000 ₽)",
+  "name": "Maximum",
+  "price": "From 120 000 ₽",
+  "badge": "-50%",
+  "old_price": "(from 180 000 ₽)",
   "features": [...]
 }
 ```
 
 ---
 
-## 🔧 Настройка в админке Битрикса
+## 🔧 Configuration in the Bitrix Admin Panel
 
-### Шаг 1: Создать инфоблок
+### Step 1: Create an info-block
 
-- **Тип:** Услуги (`services`)
-- **Название:** Каталог услуг
-- **Символьный код:** `service-catalog`
+- **Type:** Services (`services`)
+- **Name:** Service Catalog
+- **Symbolic code:** `service-catalog`
 
-### Шаг 2: Добавить 16 свойств
+### Step 2: Add 16 properties
 
-См. полный список в [PROPERTIES_CHECKLIST.md](PROPERTIES_CHECKLIST.md)
+See the full list in [PROPERTIES_CHECKLIST.md](PROPERTIES_CHECKLIST.md)
 
-### Шаг 3: Создать разделы
+### Step 3: Create sections
 
-- `1c` → Услуги 1С
-- `bitrix24` → Услуги Битрикс 24
-- `it-infrastructure` → ИТ-инфраструктура
-- `server-solutions` → Серверные решения
+- `1c` → 1C Services
+- `bitrix24` → Bitrix 24 Services
+- `it-infrastructure` → IT Infrastructure
+- `server-solutions` → Server Solutions
 
-### Шаг 4: Добавить услуги
+### Step 4: Add services
 
-- Название: `Внедрение Битрикс 24`
-- Символьный код: `bitrix24-implementation`
-- Раздел: `Услуги Битрикс 24`
-- Заполнить все 16 свойств
-
----
-
-## 📂 Как добавить новую услугу?
-
-### Вариант 1: Через админку (рекомендуется)
-
-1. Зайти в **Контент → Инфоблоки → Каталог услуг**
-2. Нажать **"Добавить элемент"**
-3. Заполнить все поля и свойства
-4. Сохранить
-
-### Вариант 2: Создать файл вручную
-
-1. Создать папку `/services/новая-категория/новая-услуга/`
-2. Скопировать туда `index.php` из примера
-3. Изменить параметры:
-   - `ELEMENT_CODE` → символьный код услуги
-   - `SECTION_CODE` → символьный код раздела
-   - `$APPLICATION->SetTitle()` → заголовок страницы
+- Name: `Bitrix 24 Implementation`
+- Symbolic code: `bitrix24-implementation`
+- Section: `Bitrix 24 Services`
+- Fill in all 16 properties
 
 ---
 
-## 🎯 Что дальше?
+## 📂 How to Add a New Service?
 
-После настройки в админке:
+### Option 1: Via the admin panel (recommended)
 
-1. ✅ Создавайте новые услуги **без программирования**
-2. ✅ Редактируйте тексты и картинки через админку
-3. ✅ Добавляйте разделы и категории
-4. ✅ Масштабируйте структуру бесконечно
+1. Go to **Content → Info-blocks → Service Catalog**
+2. Click **"Add element"**
+3. Fill in all fields and properties
+4. Save
 
-**URL услуг:**
+### Option 2: Create a file manually
 
-- `/services/bitrix24/implementation/` — Внедрение Битрикс 24
-- `/services/1c/support/` — Техподдержка 1С
-- `/services/IT-infrastructure-and-equipment/creation/` — Создание ИТ-инфраструктуры
-
----
-
-## 🛠️ Технологии
-
-- **1С-Битрикс** (CMS)
-- **PHP** (серверная логика)
-- **HTML/CSS/JS** (верстка из `layout/`)
-- **Инфоблоки** (структурированные данные)
-- **Компоненты** `bitrix:news.detail`, `bitrix:news.list`
+1. Create a folder `/services/new-category/new-service/`
+2. Copy `index.php` from the example there
+3. Change the parameters:
+   - `ELEMENT_CODE` → service symbolic code
+   - `SECTION_CODE` → section symbolic code
+   - `$APPLICATION->SetTitle()` → page title
 
 ---
 
-## 📞 Контакты
+## 🎯 What's Next?
 
-Если что-то непонятно — читай инструкцию в [BITRIX_SETUP_GUIDE.md](BITRIX_SETUP_GUIDE.md) или задавай вопросы! 🚀
+After configuring the admin panel:
+
+1. ✅ Create new services **without programming**
+2. ✅ Edit texts and images via the admin panel
+3. ✅ Add sections and categories
+4. ✅ Scale the structure infinitely
+
+**Service URLs:**
+
+- `/services/bitrix24/implementation/` — Bitrix 24 Implementation
+- `/services/1c/support/` — 1C Support
+- `/services/IT-infrastructure-and-equipment/creation/` — IT Infrastructure Creation
 
 ---
 
-## 🎉 Удачи с внедрением
+## 🛠️ Technologies
+
+- **1C-Bitrix** (CMS)
+- **PHP** (server-side logic)
+- **HTML/CSS/JS** (markup from `layout/`)
+- **Info-blocks** (structured data)
+- **Components** `bitrix:news.detail`, `bitrix:news.list`
+
+---
+
+## 📞 Contacts
+
+If anything is unclear — read the guide in [BITRIX_SETUP_GUIDE.md](BITRIX_SETUP_GUIDE.md) or ask questions! 🚀
+
+---
+
+## 🎉 Good luck with the implementation

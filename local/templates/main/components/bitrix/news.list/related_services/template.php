@@ -23,17 +23,17 @@ $this->setFrameMode(true);
         ?>
 
         <?php
-        // Формируем правильный URL: преобразуем ELEMENT_CODE в путь
-        // Например: "1c-development" -> "/services/1c/development/"
+        // Build the correct URL: convert ELEMENT_CODE to a path
+        // Example: "1c-development" -> "/services/1c/development/"
         $elementCode = $arItem["CODE"];
         $detailUrl = $arItem["DETAIL_PAGE_URL"];
 
-        // Если код содержит дефис после префикса (1c-, bitrix24-, и т.д.), убираем префикс
+        // If the code contains a hyphen after the prefix (1c-, bitrix24-, etc.), strip the prefix
         if (preg_match('/^(1c|bitrix24|it-infrastructure|server-solutions)-(.+)$/', $elementCode, $matches)) {
             $category = $matches[1];
             $service = $matches[2];
 
-            // Формируем корректный URL на основе структуры папок
+            // Build the correct URL based on the folder structure
             if ($category === '1c') {
                 $detailUrl = "/services/1c/{$service}/";
             } elseif ($category === 'bitrix24') {
@@ -51,7 +51,7 @@ $this->setFrameMode(true);
                 <h3><?= $arItem["NAME"] ?></h3>
                 <p>
                     <?php
-                    // Используем HERO_DESCRIPTION из свойств или PREVIEW_TEXT
+                    // Use HERO_DESCRIPTION from properties or PREVIEW_TEXT
                     if (!empty($arItem['PROPERTIES']['HERO_DESCRIPTION']['VALUE'])):
                         echo $arItem['PROPERTIES']['HERO_DESCRIPTION']['VALUE'];
                     elseif (!empty($arItem['PREVIEW_TEXT'])):

@@ -7,7 +7,7 @@ $APPLICATION->IncludeComponent(
     "service_detail",
     array(
         "IBLOCK_TYPE" => "services",
-        "IBLOCK_ID" => "14", // ⚠️ ID инфоблока!
+        "IBLOCK_ID" => "14", // ⚠️ Info-block ID!
         "ELEMENT_CODE" => $_REQUEST["CODE"] ?: "bitrix24-development",
         "SECTION_CODE" => "",
 

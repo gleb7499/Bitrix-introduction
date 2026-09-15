@@ -1,250 +1,250 @@
-# 📋 Шпаргалка: Список свойств инфоблока "Каталог услуг"
+# 📋 Cheat Sheet: "Service Catalog" Info-block Property List
 
-## ✅ ПОЛНЫЙ список свойств для создания в админке
+## ✅ FULL property list to create in the admin panel
 
-Создайте **18 свойств** в разделе **Контент → Инфоблоки → Каталог услуг → Свойства**
-
----
-
-### 📝 Таблица всех свойств
-
-| № | Название | Код | Тип | Множ. | Обяз. | Секция HTML |
-|---|----------|-----|-----|-------|-------|-------------|
-| 1 | Заголовок Hero | `HERO_TITLE` | Строка | ☐ | ☑ | section--hero |
-| 2 | Описание Hero | `HERO_DESCRIPTION` | Текст | ☐ | ☑ | section--hero |
-| 3 | Картинка Hero | `HERO_IMAGE` | Файл | ☐ | ☑ | section--hero |
-| 4 | Заголовок "Узнайте больше" | `ABOUT_TITLE` | Строка | ☐ | ☑ | section--about-company |
-| 5 | Картинка "О компании" | `ABOUT_IMAGE` | Файл | ☐ | ☑ | section--about-company |
-| 6 | Описание "О компании" | `ABOUT_DESCRIPTION` | Текст (HTML) | ☐ | ☑ | section--about-company |
-| 7 | Заголовок процесса | `PROCESS_TITLE` | Строка | ☐ | ☑ | section--work-process |
-| 7 | Подзаголовок процесса | `PROCESS_SUBTITLE` | Строка | ☐ | ☐ | section--work-process |
-| 8 | Подзаголовок процесса | `PROCESS_SUBTITLE` | Строка | ☐ | ☐ | section--work-process |
-| 9 | Этапы процесса (названия) | `PROCESS_STEPS` | Список | ☑ | ☑ | section--work-process |
-| 10 | Описания этапов | `PROCESS_STEPS_DESC` | Список | ☑ | ☑ | section--work-process |
-| 11 | Картинки этапов процесса | `PROCESS_STEPS_IMAGES` | Файл | ☑ | ☐ | section--work-process |
-| 12 | Тарифы JSON | `TARIFFS` | Текст | ☑ | ☑ | section--pricing |
-| 13 | Заголовок "Ready" | `READY_TITLE` | Строка | ☐ | ☑ | section--ready-to-start |
-| 14 | Описание "Ready" | `READY_DESCRIPTION` | Текст | ☐ | ☑ | section--ready-to-start |
-| 15 | Список преимуществ | `READY_LIST` | Список | ☑ | ☑ | section--ready-to-start |
-| 16 | Картинка "Ready" | `READY_IMAGE` | Файл | ☐ | ☑ | section--ready-to-start |
-| 17 | Вопросы FAQ | `FAQ_QUESTIONS` | Список | ☑ | ☑ | section--faq |
-| 18 | Ответы FAQ | `FAQ_ANSWERS` | Список | ☑ | ☑ | section--faq |
-
-**Легенда:**
-
-- ☑ = Да
-- ☐ = Нет
-- **Множ.** = Множественное (можно добавить несколько значений)
-- **Обяз.** = Обязательное для заполнения
+Create **18 properties** in **Content → Info-blocks → Service Catalog → Properties**
 
 ---
 
-## 🎯 Какие секции НЕ требуют свойств (одинаковые для всех)
+### 📝 Table of All Properties
 
-✅ **section--advantages** — Преимущества работы (4 карточки)  
-✅ **section--reviews** — Отзывы клиентов (6 карточек)  
-✅ **section--clients** — Логотипы клиентов (14 логотипов)  
-✅ **section--services-opportunities** — Похожие услуги (автоматическая выборка)
+| # | Name | Code | Type | Multiple | Required | HTML Section |
+|---|------|------|------|----------|----------|--------------|
+| 1 | Hero title | `HERO_TITLE` | String | ☐ | ☑ | section--hero |
+| 2 | Hero description | `HERO_DESCRIPTION` | Text | ☐ | ☑ | section--hero |
+| 3 | Hero image | `HERO_IMAGE` | File | ☐ | ☑ | section--hero |
+| 4 | "Learn more" title | `ABOUT_TITLE` | String | ☐ | ☑ | section--about-company |
+| 5 | "About the company" image | `ABOUT_IMAGE` | File | ☐ | ☑ | section--about-company |
+| 6 | "About the company" description | `ABOUT_DESCRIPTION` | Text (HTML) | ☐ | ☑ | section--about-company |
+| 7 | Process title | `PROCESS_TITLE` | String | ☐ | ☑ | section--work-process |
+| 7 | Process subtitle | `PROCESS_SUBTITLE` | String | ☐ | ☐ | section--work-process |
+| 8 | Process subtitle | `PROCESS_SUBTITLE` | String | ☐ | ☐ | section--work-process |
+| 9 | Process steps (names) | `PROCESS_STEPS` | List | ☑ | ☑ | section--work-process |
+| 10 | Process step descriptions | `PROCESS_STEPS_DESC` | List | ☑ | ☑ | section--work-process |
+| 11 | Process step images | `PROCESS_STEPS_IMAGES` | File | ☑ | ☐ | section--work-process |
+| 12 | Pricing plans JSON | `TARIFFS` | Text | ☑ | ☑ | section--pricing |
+| 13 | "Ready" title | `READY_TITLE` | String | ☐ | ☑ | section--ready-to-start |
+| 14 | "Ready" description | `READY_DESCRIPTION` | Text | ☐ | ☑ | section--ready-to-start |
+| 15 | Advantages list | `READY_LIST` | List | ☑ | ☑ | section--ready-to-start |
+| 16 | "Ready" image | `READY_IMAGE` | File | ☐ | ☑ | section--ready-to-start |
+| 17 | FAQ questions | `FAQ_QUESTIONS` | List | ☑ | ☑ | section--faq |
+| 18 | FAQ answers | `FAQ_ANSWERS` | List | ☑ | ☑ | section--faq |
 
----
+**Legend:**
 
-## 📦 Стандартные поля инфоблока (не свойства!)
-
-Эти поля создаются автоматически при создании элемента:
-
-| Поле | Обязательное | Использование в шаблоне |
-|------|--------------|-------------------------|
-| `NAME` | ☑ | Название услуги (заголовки, хлебные крошки) |
-| `PREVIEW_TEXT` | ☐ | Краткое описание (для списков услуг) |
-| `PREVIEW_PICTURE` | ☐ | Картинка анонса (для карточек в списке) |
-| `DETAIL_PICTURE` | ☐ | Главная детальная картинка (опционально) |
-
-**⚠️ ВАЖНО:** Текст для секции "О компании" теперь в **свойстве ABOUT_DESCRIPTION** (№6), а не в стандартном поле DETAIL_TEXT!
-
----
-
-## 🎨 Примеры значений для услуги "Внедрение Битрикс 24"
-
-### 1. HERO_TITLE (Строка)
-
-```
-ИТ-инфраструктура нового уровня
-```
-
-### 2. HERO_DESCRIPTION (Текст)
-
-```
-Мы помогаем бизнесу автоматизировать процессы, обеспечивать безопасность и создавать ИТ-инфраструктуру
-```
-
-### 3. HERO_IMAGE (Файл)
-
-Загрузить: `a-new-level-of-IT-infrastructure.png`
+- ☑ = Yes
+- ☐ = No
+- **Multiple** = Multiple values allowed
+- **Required** = Must be filled in
 
 ---
 
-### 4. ABOUT_TITLE (Строка)
+## 🎯 Which Sections Do NOT Require Properties (Identical for All)
 
-```
-Узнайте больше о внедрении Битрикс 24
-```
-
-### 5. ABOUT_IMAGE (Файл)
-
-Загрузить: `section-learn-more.png`
+✅ **section--advantages** — Work advantages (4 cards)  
+✅ **section--reviews** — Client testimonials (6 cards)  
+✅ **section--clients** — Client logos (14 logos)  
+✅ **section--services-opportunities** — Related services (automatic selection)
 
 ---
 
-### 6. ABOUT_DESCRIPTION (Текст с HTML)
+## 📦 Standard Info-block Fields (Not Properties!)
 
-**⚠️ ВАЖНО:** Это свойство с типом "HTML/Текст" — будет визуальный редактор!
+These fields are created automatically when an element is created:
+
+| Field | Required | Usage in the template |
+|-------|----------|-----------------------|
+| `NAME` | ☑ | Service name (headings, breadcrumbs) |
+| `PREVIEW_TEXT` | ☐ | Short description (for service lists) |
+| `PREVIEW_PICTURE` | ☐ | Announcement image (for list cards) |
+| `DETAIL_PICTURE` | ☐ | Main detail image (optional) |
+
+**⚠️ IMPORTANT:** The text for the "About the Company" section is now in the **ABOUT_DESCRIPTION property** (#6), not in the standard DETAIL_TEXT field!
+
+---
+
+## 🎨 Example Values for the "Bitrix 24 Implementation" Service
+
+### 1. HERO_TITLE (String)
+
+```
+IT infrastructure of a new level
+```
+
+### 2. HERO_DESCRIPTION (Text)
+
+```
+We help businesses automate processes, ensure security, and build IT infrastructure
+```
+
+### 3. HERO_IMAGE (File)
+
+Upload: `a-new-level-of-IT-infrastructure.png`
+
+---
+
+### 4. ABOUT_TITLE (String)
+
+```
+Learn more about Bitrix 24 implementation
+```
+
+### 5. ABOUT_IMAGE (File)
+
+Upload: `section-learn-more.png`
+
+---
+
+### 6. ABOUT_DESCRIPTION (HTML Text)
+
+**⚠️ IMPORTANT:** This is an "HTML/Text" type property — it will have a visual editor!
 
 ```html
-<p>Внедрение Битрикс 24 — решение для автоматизации бизнес-процессов.
-Мы настраиваем систему под ваши задачи и интегрируем с другими сервисами.</p>
+<p>Bitrix 24 implementation is a solution for automating business processes.
+We configure the system for your tasks and integrate it with other services.</p>
 
-<p>Обучаем сотрудников для эффективной работы. Повысьте эффективность
-команды и улучшите управление проектами с Битрикс 24!</p>
+<p>We train employees for efficient work. Increase your team's efficiency
+and improve project management with Bitrix 24!</p>
 ```
 
-**Как заполнить:**
+**How to fill in:**
 
-1. В админке найдите свойство "Описание 'О компании'"
-2. Введите 2-3 абзаца текста (можно использовать визуальный редактор)
-3. Сохраните элемент
+1. In the admin panel, find the "About the Company description" property
+2. Enter 2-3 paragraphs of text (you can use the visual editor)
+3. Save the element
 
 ---
 
-### 7. PROCESS_TITLE (Строка)
+### 7. PROCESS_TITLE (String)
 
 ```
-Как проходит внедрение CRM?
+How does CRM implementation work?
 ```
 
-### 8. PROCESS_SUBTITLE (Строка)
+### 8. PROCESS_SUBTITLE (String)
 
 ```
-Анализ, настройка, интеграция и обучение для эффективности
+Analysis, configuration, integration and training for efficiency
 ```
 
-### 9. PROCESS_STEPS (Список, 4 значения)
+### 9. PROCESS_STEPS (List, 4 values)
 
 ```
-Значение 1: Аудит
-Значение 2: Внедрение и настройка
-Значение 3: Интеграция
-Значение 4: Сопровождение
+Value 1: Audit
+Value 2: Implementation and Configuration
+Value 3: Integration
+Value 4: Support
 ```
 
-### 10. PROCESS_STEPS_DESC (Список, 4 значения)
+### 10. PROCESS_STEPS_DESC (List, 4 values)
 
 ```
-Значение 1: Проводим максимально подробный анализ текущего бизнеса
-Значение 2: Настройка в соответствии с написанным ТЗ
-Значение 3: Мессенджеры, телефония, социальные сети, 1С, МойСклад
-Значение 4: Сопровождение, развитие и добавление нового функционала
+Value 1: We conduct a maximally detailed analysis of the current business
+Value 2: Configuration according to the written specification
+Value 3: Messengers, telephony, social networks, 1C, MyWarehouse
+Value 4: Support, development and addition of new functionality
 ```
 
-### 11. PROCESS_STEPS_IMAGES (Файл, 4 значения)
+### 11. PROCESS_STEPS_IMAGES (File, 4 values)
 
-**⚠️ Это поле НЕ обязательное!** Если не загрузить картинки, будут использоваться дефолтные изображения из шаблона.
+**⚠️ This field is NOT required!** If no images are uploaded, default images from the template will be used.
 
-Загрузите **4 картинки** в том же порядке, что и названия этапов:
+Upload **4 images** in the same order as the step names:
 
 ```
-Файл 1: audit-section-crm-proces.png (или своя картинка для "Аудит")
-Файл 2: implem-section-crm-proces.png (или своя картинка для "Внедрение")
-Файл 3: integration-section-crm-proces.png (или своя картинка для "Интеграция")
-Файл 4: escort-section-crm-proces.png (или своя картинка для "Сопровождение")
+File 1: audit-section-crm-proces.png (or your own image for "Audit")
+File 2: implem-section-crm-proces.png (or your own image for "Implementation")
+File 3: integration-section-crm-proces.png (or your own image for "Integration")
+File 4: escort-section-crm-proces.png (or your own image for "Support")
 ```
 
-**Как загрузить:**
+**How to upload:**
 
-1. В админке перейдите в элемент "Внедрение Битрикс 24"
-2. Найдите свойство "Картинки этапов процесса"
-3. Нажмите "Добавить" 4 раза и загрузите по одной картинке
-4. Сохраните элемент
+1. In the admin panel, open the "Bitrix 24 Implementation" element
+2. Find the "Process step images" property
+3. Click "Add" 4 times and upload one image each time
+4. Save the element
 
 ---
 
-### 12. TARIFFS (Текст, 3 значения JSON)
+### 12. TARIFFS (Text, 3 JSON values)
 
-**Значение 1 (Базовый):**
+**Value 1 (Basic):**
 
 ```json
-{"name":"Базовый","price":"От 29 900 ₽","badge":"Цена ниже рынка","old_price":"","features":["Аудит бизнес-процессов","Базовая настройка CRM","Настройка воронок продаж","Обучение сотрудников (до 5 человек)","Техническая поддержка"]}
+{"name":"Basic","price":"From 29 900 ₽","badge":"Price below market","old_price":"","features":["Business process audit","Basic CRM setup","Sales pipeline setup","Employee training (up to 5 people)","Technical support"]}
 ```
 
-**Значение 2 (Оптимальный):**
+**Value 2 (Optimal):**
 
 ```json
-{"name":"Оптимальный","price":"От 55 000 ₽","badge":"Самый выгодный","old_price":"","features":["Аудит бизнес-процессов","Расширенная настройка CRM под бизнес-задачи","Интеграция с мессенджерами и почтой","Настройка автоматизации задач и уведомлений","Обучение команды (до 15 человек)"]}
+{"name":"Optimal","price":"From 55 000 ₽","badge":"Best value","old_price":"","features":["Business process audit","Extended CRM setup for business tasks","Integration with messengers and email","Automation of tasks and notifications setup","Team training (up to 15 people)"]}
 ```
 
-**Значение 3 (Максимальный с зачеркнутой ценой):**
+**Value 3 (Maximum with strikethrough price):**
 
 ```json
-{"name":"Максимальный","price":"От 120 000 ₽","badge":"-50 %","old_price":"(от 180 000 ₽)","features":["Комплексный аудит и разработка CRM-стратегии","Полная интеграция с бизнес-системами","Настройка аналитики и отчётов","Автоматизация ключевых процессов","Обучение сотрудников и руководства","Нестандартный функционал"]}
+{"name":"Maximum","price":"From 120 000 ₽","badge":"-50%","old_price":"(from 180 000 ₽)","features":["Comprehensive audit and CRM strategy development","Full integration with business systems","Analytics and reporting setup","Key process automation","Employee and management training","Custom functionality"]}
 ```
 
 ---
 
-### 13. READY_TITLE (Строка)
+### 13. READY_TITLE (String)
 
 ```
-Внедрение и настройка CRM под бизнес
+CRM implementation and configuration for your business
 ```
 
-### 14. READY_DESCRIPTION (Текст)
+### 14. READY_DESCRIPTION (Text)
 
 ```
-Анализируем процессы и внедряем CRM под задачи компании, автоматизируя продажи и контроль клиентов. Интегрируем мессенджеры, телефонию и 1С, сокращаем рутину и повышаем эффективность работы
+We analyze processes and implement a CRM tailored to your company's tasks, automating sales and client control. We integrate messengers, telephony and 1C, reduce routine work and increase efficiency
 ```
 
-### 15. READY_LIST (Список, 3 значения)
+### 15. READY_LIST (List, 3 values)
 
 ```
-Значение 1: Более 120 успешных CRM-проектов по России и СНГ
-Значение 2: Повышение LTV клиента до 37 %
-Значение 3: Снижение операционных затрат отдела продаж на 51 %
+Value 1: Over 120 successful CRM projects across Russia and the CIS
+Value 2: Customer LTV increase up to 37%
+Value 3: Sales department operating cost reduction by 51%
 ```
 
-### 16. READY_IMAGE (Файл)
+### 16. READY_IMAGE (File)
 
-Загрузить: `ready-to-start-img.png`
+Upload: `ready-to-start-img.png`
 
 ---
 
-### 17. FAQ_QUESTIONS (Список, 6 значений)
+### 17. FAQ_QUESTIONS (List, 6 values)
 
 ```
-Значение 1: Зачем CRM-система нужна моему бизнесу?
-Значение 2: Сколько времени занимает внедрение CRM?
-Значение 3: Как проходит обучение по работе в CRM?
-Значение 4: Из чего складывается стоимость?
-Значение 5: Что делать после внедрения?
-Значение 6: Какую CRM выбрать?
+Value 1: Why does my business need a CRM system?
+Value 2: How long does CRM implementation take?
+Value 3: How does CRM training work?
+Value 4: What determines the cost?
+Value 5: What to do after implementation?
+Value 6: Which CRM should I choose?
 ```
 
-### 18. FAQ_ANSWERS (Список, 6 значений)
+### 18. FAQ_ANSWERS (List, 6 values)
 
 ```
-Значение 1: CRM-система помогает систематизировать работу с клиентами, автоматизировать бизнес-процессы и увеличить продажи. Она позволяет хранить всю историю взаимодействия с клиентами в одном месте, отслеживать сделки на всех этапах воронки продаж и анализировать эффективность вашей команды.
+Value 1: A CRM system helps systematize client management, automate business processes and increase sales. It allows you to store the entire interaction history with clients in one place, track deals at every stage of the sales pipeline and analyze your team's efficiency.
 
-Значение 2: Сроки внедрения CRM зависят от масштаба вашего бизнеса, сложности интеграций и объема персональных данных. В среднем, процесс занимает от нескольких недель до нескольких месяцев. Мы проводим предварительный анализ ваших задач и бизнес-процессов, чтобы определить наиболее оптимальные сроки и предоставить вам план внедрения
+Value 2: CRM implementation timelines depend on the scale of your business, the complexity of integrations and the volume of personal data. On average, the process takes from several weeks to several months. We conduct a preliminary analysis of your tasks and business processes to determine the most optimal timelines and provide you with an implementation plan.
 
-Значение 3: Мы проводим комплексное обучение для вашей команды, включающее теоретические занятия и практические тренинги. Обучение адаптируется под специфику вашего бизнеса и включает в себя работу с основными модулями системы, настройку воронок продаж и автоматизацию процессов. После обучения мы предоставляем техническую поддержку.
+Value 3: We provide comprehensive training for your team, including theoretical sessions and practical workshops. The training is adapted to the specifics of your business and covers working with the main system modules, setting up sales pipelines and process automation. After training we provide technical support.
 
-Значение 4: Стоимость внедрения CRM складывается из нескольких компонентов: лицензия на использование системы, работы по настройке и кастомизации под ваши бизнес-процессы, интеграция с другими сервисами, обучение сотрудников и техническая поддержка. Мы предлагаем гибкие тарифные планы, чтобы вы могли выбрать оптимальный вариант.
+Value 4: The cost of CRM implementation consists of several components: the system license, configuration and customization work for your business processes, integration with other services, employee training and technical support. We offer flexible pricing plans so you can choose the optimal option.
 
-Значение 5: После внедрения CRM мы остаемся на связи для технической поддержки и консультаций. Рекомендуем регулярно анализировать эффективность использования системы, оптимизировать бизнес-процессы и обучать новых сотрудников. Мы также предлагаем услуги по доработке функционала и масштабированию системы по мере роста вашего бизнеса.
+Value 5: After CRM implementation we stay in touch for technical support and consultations. We recommend regularly analyzing the efficiency of system usage, optimizing business processes and training new employees. We also offer services for further functionality development and system scaling as your business grows.
 
-Значение 6: Выбор CRM зависит от специфики вашего бизнеса, количества сотрудников и задач, которые необходимо решить. Мы работаем с Bitrix24 — это мощная российская платформа, которая включает CRM, задачи и проекты, телефонию, чаты и многое другое. Проведем аудит и поможем определить оптимальное решение именно для вас.
+Value 6: The choice of CRM depends on the specifics of your business, the number of employees and the tasks that need to be solved. We work with Bitrix24 — a powerful Russian platform that includes CRM, tasks and projects, telephony, chats and much more. We will conduct an audit and help determine the optimal solution for you.
 ```
 
 ---
 
-## 🔄 Структура файлов в проекте
+## 🔄 Project File Structure
 
 ```
 local/
@@ -254,34 +254,34 @@ local/
 │           └── bitrix/
 │               ├── news.detail/
 │               │   └── service_detail/
-│               │       └── template.php (шаблон страницы услуги)
+│               │       └── template.php (service page template)
 │               └── news.list/
 │                   └── related_services/
-│                       └── template.php (блок похожих услуг)
+│                       └── template.php (related services block)
 └── services/
     ├── bitrix24/
     │   └── implementation/
-    │       └── index.php (вызов компонента)
+    │       └── index.php (component call)
     └── 1c/
         └── support/
-            └── index.php (вызов компонента)
+            └── index.php (component call)
 ```
 
 ---
 
-## ✅ Чек-лист проверки
+## ✅ Verification Checklist
 
-- [ ] Создан инфоблок "Каталог услуг" с ID = 1
-- [ ] Созданы все 16 свойств из таблицы выше
-- [ ] Созданы разделы: 1c, bitrix24, it-infrastructure, server-solutions
-- [ ] Скопированы файлы из `local/` в корень сайта
-- [ ] В файле `index.php` указан правильный `IBLOCK_ID`
-- [ ] Создана первая услуга "Внедрение Битрикс 24"
-- [ ] Заполнены все обязательные поля и свойства
-- [ ] Страница открывается по URL `/services/bitrix24/implementation/`
+- [ ] The "Service Catalog" info-block is created with ID = 1
+- [ ] All 16 properties from the table above are created
+- [ ] Sections are created: 1c, bitrix24, it-infrastructure, server-solutions
+- [ ] Files from `local/` are copied to the site root
+- [ ] The correct `IBLOCK_ID` is specified in the `index.php` file
+- [ ] The first service "Bitrix 24 Implementation" is created
+- [ ] All required fields and properties are filled in
+- [ ] The page opens at the URL `/services/bitrix24/implementation/`
 
 ---
 
-## 🚀 Готово
+## 🚀 Done
 
-Теперь можно создавать новые услуги, просто **дублируя существующую** и меняя содержимое! 🎉
+Now you can create new services simply by **duplicating the existing one** and changing the content! 🎉
