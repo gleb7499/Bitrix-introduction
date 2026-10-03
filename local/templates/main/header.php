@@ -19,17 +19,17 @@ $curPage = $APPLICATION->GetCurPage();
     <title><?php $APPLICATION->ShowTitle(); ?></title>
 
     <?php
-    // CSS includes
+    // Подключение CSS
     $asset->addCss(SITE_TEMPLATE_PATH . '/css/template_styles.css');
 
-    // Meta tags and titles
+    // Мета-теги и заголовки
     $APPLICATION->ShowHead();
 
-    // CSS from the control panel and components
+    // CSS из панели управления и компонентов
     $APPLICATION->ShowCSS();
     ?>
 
-    <link rel="shortcut icon" href="<?= SITE_TEMPLATE_PATH ?>/image/icons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -52,19 +52,20 @@ $curPage = $APPLICATION->GetCurPage();
                         Заполните форму с актуальными данными
                     </p>
                     <form class="quick-response__form" id="callModalForm">
+                        <input type="hidden" name="page_url" value="" />
                         <div class="quick-response__field">
-                            <input type="text" class="quick-response__input" placeholder="Имя" />
+                            <input type="text" name="name" class="quick-response__input" placeholder="Имя" />
                             <span class="quick-response__error">Additional text</span>
                         </div>
                         <div class="quick-response__field">
-                            <input type="tel" class="quick-response__input" placeholder="+7" />
+                            <input type="tel" name="phone" class="quick-response__input" placeholder="+7 __ __ __" />
                             <span class="quick-response__error">Additional text</span>
                         </div>
                         <button type="submit" class="btn btn--primary">Отправить</button>
                         <p>
                             Отправляя форму, вы соглашаетесь с условиями
-                            <a href="/terms/">пользовательского соглашения</a> и
-                            <a href="/privacy/">политикой обработки персональных данных</a>
+                            <a href="#">пользовательского соглашения</a> и
+                            <a href="#">обработкой персональных данных</a>
                         </p>
                     </form>
                 </div>
@@ -273,32 +274,7 @@ $curPage = $APPLICATION->GetCurPage();
         <button class="btn-icon mobile-menu-back" id="mobileMenuBack" aria-label="Назад">
             <img src="<?= SITE_TEMPLATE_PATH ?>/image/icons/back.svg" alt="" loading="lazy" />
         </button>
-
-        <!-- Контент меню - переключается через JS -->
-        <div class="mobile-menu-content" id="mobileMenuContent">
-            <!-- Форма обратного звонка (аналог desktop #callModal > .quick-response__content) -->
-            <div class="quick-response__content quick-response__content--mobile" id="mobileCallForm"
-                style="display: none;">
-                <h2>Получить ответ за 15 минут</h2>
-                <p>Заполните форму с актуальными данными</p>
-                <form class="quick-response__form" id="mobileCallFormElement">
-                    <div class="quick-response__field">
-                        <input type="text" class="quick-response__input" placeholder="Имя" />
-                        <span class="quick-response__error">Additional text</span>
-                    </div>
-                    <div class="quick-response__field">
-                        <input type="tel" class="quick-response__input" id="mobilePhoneInput" placeholder="+7" />
-                        <span class="quick-response__error">Additional text</span>
-                    </div>
-                    <button type="submit" class="btn btn--primary">Отправить</button>
-                    <p>
-                        Отправляя форму, вы соглашаетесь с условиями
-                        <a href="/terms/">пользовательского соглашения</a> и
-                        <a href="/privacy/">политикой обработки персональных данных</a>
-                    </p>
-                </form>
-            </div>
-        </div>
+        <div class="mobile-menu-content" id="mobileMenuContent"></div>
     </div>
 
     <!-- Основной контент страницы -->
